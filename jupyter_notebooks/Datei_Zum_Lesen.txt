@@ -1,0 +1,2 @@
+Hallo Studenten
+Viel Spass mit dem Python!
