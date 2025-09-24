@@ -1,10 +1,10 @@
 ## Ausgangslage
 
-Das Ziel des Moduls ist, dass die Studierende im Laufe des Semesters eigene, voll funktionierende Programme für konkrete Zielsetzungen selbständig konzipieren und entwickeln können. Für die Entwicklung wird entsprechende Entwicklungsumgebungeingerichtet, dabei wird mit den Systemen für die Versions-kontrollegearbeitet (GitHub) und als Entwicklungssprache wird ausschliesslichPython und seine Module verwendet. Die Zwischenprüfungen werden als Begleitung und Vorbereitung für die Entwicklung der Programme gesehen. Finale Programme werden zum Schluss bei der MEP präsentiert und vorgestellt.
+Das Ziel des Moduls ist, dass die Studierende im Laufe des Semesters eigene, voll funktionierende Programme für konkrete Zielsetzungen selbständig konzipieren und entwickeln können. Für die Entwicklung wird entsprechende Entwicklungsumgebungeingerichtet, dabei wird mit den Systemen für die Versions-kontrollegearbeitet (GitHub) und als Entwicklungssprache wird ausschliesslich Python und seine Module verwendet. Die Zwischenprüfungen werden als Begleitung und Vorbereitung für die Entwicklung der Programme gesehen. Finale Programme werden zum Schluss bei der MEP präsentiert und vorgestellt.
 
 ## Aufgabenstellung –Themen/Kontext:
 
-Die Studierende arbeiten an den Projekten individuelloder in max. Zweiergruppen. Die Themen und Inhalte für die Projekte sollten durch die Studierenden selbständig konzipiert werden, sie sollten aber in ein der folgenden Kontexte eigeordnet werden:
+Die Studierende arbeiten an den Projekten individuell oder in max. Zweiergruppen. Die Themen und Inhalte für die Projekte sollten durch die Studierenden selbständig konzipiert werden, sie sollten aber in ein der folgenden Kontexte eigeordnet werden:
 
 - Datenauswertung
 - «IFC Editor»
