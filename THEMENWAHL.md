@@ -8,6 +8,15 @@ Gemäss [Aufgabenstellung](AUFGABENSTELLUNG.md) soll ein eigenständiges Program
 - Daten-Visualisierung (Dashboards)
 - Calculator(Wettbewerb, Kosten, Nachhaltigkeit, Kreislaufwirtschaft, etc.)
 
+## FINAL
+
+Ausmass mit Objektgliederung und BKP anhand PyRevit mit Fokus auf Architektur und Elektro.
+Visualisierung der Kostenaufteilung nach BKP oder Räumlichkeit.
+
+### Zusatz
+
+Qualitätschecker der Attribute, ob alle benötigten Attribute für die saubere Auflistung angegeben und ausgefüllt sind.
+
 ## Konzepte
 
 Wir haben uns für das Modul folgende Konzepte überlegt:
