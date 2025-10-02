@@ -1,5 +1,22 @@
-matplotlib
-numpy
-pandas
-streamlit
-ifcopenshell
+# Datenanalyse
+numpy              # Numerische Berechnungen und Arrays
+pandas             # Tabellen-Verarbeitung und Analyse
+matplotlib         # Datenplotting und Visualisierung
+
+# Interaktive Visualisierung
+seaborn            # Statistische Datenvisualisierung
+plotly             # Interaktive Diagramme und Dashboards
+
+# Webentwicklung & API-Zugriff
+requests           # HTTP-Anfragen für APIs
+
+# Testing und Codequalität
+pytest             # Unit- und Integrationstests
+
+# BIM/IFC-Projekte
+streamlit          # Interaktive Apps und Dashboards
+ifcopenshell       # Verarbeitung von IFC/BIM-Dateien
+
+# Sonstige Nützliche Tools
+openpyxl           # Verarbeitung von Excel-Dateien (.xlsx)
+schedule           # Python-basierte Task-Planung
