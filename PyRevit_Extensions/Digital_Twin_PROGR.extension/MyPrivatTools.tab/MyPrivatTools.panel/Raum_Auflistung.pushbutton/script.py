@@ -62,13 +62,24 @@ for room in rooms:
         # Ebene
         level = doc.GetElement(room.LevelId)
         level_name = level.Name if level else "Keine Ebene"
+
+        # Wandmaterial aus Raumstempel
+        wall_finish_param = room.get_Parameter(DB.BuiltInParameter.ROOM_FINISH_WALL)
+        wall_finish = wall_finish_param.AsString() if wall_finish_param and wall_finish_param.AsString() else ""
+        
+        # Deckenmaterial aus Raumstempel
+        ceiling_finish_param = room.get_Parameter(DB.BuiltInParameter.ROOM_FINISH_CEILING)
+        ceiling_finish = ceiling_finish_param.AsString() if ceiling_finish_param and ceiling_finish_param.AsString() else ""
+
         
         # Raumdaten zur Liste hinzufügen
         room_data.append({
             'Raumnummer': room_number,
             'Raumname': room_name,
             'Fläche (m²)': round(area_sqm, 2),
-            'Ebene': level_name
+            'Ebene': level_name,
+            'Wandmaterial': wall_finish,
+            'Deckenmaterial': ceiling_finish
         })
         
         logger.debug("Raum hinzugefügt: {} - {}".format(room_number, room_name))
@@ -97,7 +108,7 @@ if result == DialogResult.OK:
     try:
         # CSV-Datei schreiben mit codecs für IronPython
         with codecs.open(file_path, 'w', 'utf-8-sig') as csvfile:
-            fieldnames = ['Raumnummer', 'Raumname', 'Fläche (m²)', 'Ebene']
+            fieldnames = ['Raumnummer', 'Raumname', 'Fläche (m²)', 'Ebene', 'Wandmaterial', 'Deckenmaterial']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames, delimiter=';', lineterminator='\n')
             
             writer.writeheader()
