@@ -2,17 +2,17 @@
 marp: true
 title: Zwischenpräsentation 1
 theme: uncover
-header: "TA.BA_DT_PROGR.H25"
-footer: "Zwischenprüfung 1 | Gruppe 8"
+header: "TA.BA_DT_PROGR.H25 | Zwischenpräsentation 1"
+footer: "Gruppe 8 | 27. Oktober 2025"
 paginate: true
 ---
 
 <style>
-section { font-size: 25px; }
+section { font-size: 30px; }
 </style>
 
 <!-- _header: "" -->
-<!-- _footer: "" -->
+<!-- _footer: "27. Oktober 2025" -->
 <!-- _paginate: skip -->
 <!-- _class: invert -->
 
@@ -22,7 +22,7 @@ _Ein pyRevit-Plugin von Nicole und Orlando_
 
 ---
 
-# Konzept
+## Konzept
 
 - Datenauswertung mit **pyRevit**
 - Schnelles, modellbasiertes **Ausmass nach BKP**
@@ -30,46 +30,53 @@ _Ein pyRevit-Plugin von Nicole und Orlando_
 
 ---
 
-# Workflow
+## Entwicklungsumgebung
 
-![width:1000px height:200px](DT_PROGR_Flow_simplified.svg)
-
----
-
-# Entwicklungsumgebung
-
-- **Visual Studio Code** als Entwicklungsumgebung
+- [Visual Studio Code](https://code.visualstudio.com/) als IDE
 - Virtual Environment mit Python **3.13.7**
-- [GitHub Repository](https://github.com/NH-HSLU/TA.BA_DT_PROGR)
+- [pyRevit](https://pyrevitlabs.notion.site/) als Schnittstelle zwischen Python und Revit
+- [GitHub](https://github.com/NH-HSLU/TA.BA_DT_PROGR) Repository
 
-### zusätzliche Tools:
+#### zusätzliche Tools:
 
 - [Mermaid](https://www.mermaidchart.com/) Flowchart-Diagramme erstellen
-- [Marp](https://marp.app/) Slides aus Markdown Dateien
+- [Marp](https://marp.app/) Slides aus Markdown-Syntax
 
 ---
 
-## Wichtige Python-Bibliotheken
+## Workflow
+
+![width:1000px height:300px](DT_PROGR_Flow_simplified.svg)
+
+---
+
+## Program Structure
+
+![width:1000px height:300px](DT_PROGR_ProcecssStructure.svg)
+
+---
+
+## Data Structure
+
+![width:1000px height:300px](DT_PROGR_DataStructure.svg)
+
+---
+
+## Python-Bibliotheken
 
 **Datenanalyse**
 
 ```
 numpy           # Numerische Berechnungen und Arrays       
 pandas          # Tabellen-Verarbeitung und Analyse
+```
+
+**Visualisierung**
+
+```
 matplotlib      # Datenplotting und Visualisierung
-```
-
-**Interaktive Visualisierung**
-
-```
-plotly          # Interaktive Diagramme und Dashboards.    
-```
-
-**BIM/IFC-Projekte**
-
-```
-streamlit       # Interaktive Apps und Dashboards
-ifcopenshell    # Verarbeitung von IFC/BIM-Dateien.        
+plotly          # Diagramme und Dashboards.                
+streamlit       # Apps und Dashboards.                     
 ```
 
 **Sonstige nützliche Tools**
@@ -80,18 +87,33 @@ openpyxl        # Verarbeitung von Excel-Dateien (.xlsx).
 
 ---
 
-# Herausforderungen
+## Herausforderungen
 
+- Revit Grundverständnis Erarbeiten
 - pyRevit-Intellisense und Autocomplete
-- Geeignete pyRevit-Syntax finden
+- Geeignete pyRevit Tutorials finden
 
 ---
 
-# Nächste Schritte
+## Erfolge
 
-1. Alle wichtigen Elemente einzeln exportieren
-2. Elemente zusammenführen in eine Liste
-3. Streamlit-Dashboard erstellen
+- erste Auswertung mit pyRevit
+- GitHub einrichten mit Collaborators
+- neue Tools Kennengelernt [[Mermaid](https://www.mermaidchart.com/) / [Marp](https://marp.app/)]
+
+---
+
+Entwurf von einem Dashboard in Streamlit
+![height:500px](StreamlitPreview.png)
+
+---
+
+## Nächste Schritte
+
+1. Alle Elemente in einer **Excel**-Liste exportieren
+2. Elemente mit **BKP** klassifizieren
+3. **Streamlit**-Dashboard erstellen
+4. Auswertung als **PDF** exportieren
 
 ---
 
