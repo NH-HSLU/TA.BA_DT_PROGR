@@ -15,37 +15,20 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS
+# Custom CSS (theme-aware, no fixed colors)
 st.markdown("""
     <style>
     .big-title {
         font-size: 2.5rem;
         font-weight: bold;
         text-align: center;
-        color: #1f77b4;
         margin-bottom: 0.5rem;
     }
     .subtitle {
         text-align: center;
         font-size: 1.1rem;
-        color: #666;
+        opacity: 0.7;
         margin-bottom: 2rem;
-    }
-    .feature-box {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 1.5rem;
-        border-radius: 10px;
-        color: white;
-        margin: 0.5rem 0;
-        cursor: pointer;
-        transition: transform 0.2s;
-    }
-    .feature-box:hover {
-        transform: translateY(-5px);
-    }
-    .feature-box h3 {
-        color: white;
-        margin-bottom: 0.5rem;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -62,46 +45,42 @@ st.header("🚀 Schnellstart")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.markdown("""
-    <div style="background-color: #e8f4f8; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #1f77b4;">
-        <h3>📊 Daten visualisieren</h3>
-        <p>Sie haben bereits BKP-klassifizierte Daten?</p>
-        <p><strong>→ Gehen Sie zu "eBKP-H Auswertung"</strong></p>
-        <ul style="margin-top: 1rem;">
-            <li>CSV hochladen</li>
-            <li>Kosten nach BKP analysieren</li>
-            <li>Berichte exportieren</li>
-        </ul>
-    </div>
-    """, unsafe_allow_html=True)
+    st.info("""
+    ### 📊 Daten visualisieren
+    Sie haben bereits BKP-klassifizierte Daten?
+
+    **→ Gehen Sie zu "eBKP-H Auswertung"**
+
+    - CSV hochladen
+    - Kosten nach BKP analysieren
+    - Berichte exportieren
+    """)
 
 with col2:
-    st.markdown("""
-    <div style="background-color: #f0e8f8; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #9b59b6;">
-        <h3>🤖 KI-Klassifizierung</h3>
-        <p>Ihre Daten sind noch nicht klassifiziert?</p>
-        <p><strong>→ Gehen Sie zu "KI Klassifizierung"</strong></p>
-        <ul style="margin-top: 1rem;">
-            <li>CSV hochladen</li>
-            <li>Automatisch klassifizieren</li>
-            <li>Ergebnisse prüfen</li>
-        </ul>
-    </div>
-    """, unsafe_allow_html=True)
+    st.success("""
+    ### 🤖 KI-Klassifizierung
+    Ihre Daten sind noch nicht klassifiziert?
+
+    **→ Gehen Sie zu "KI Klassifizierung"**
+
+    - CSV hochladen
+    - Automatisch klassifizieren
+    - BKP-Codes bearbeiten
+    - Ergebnisse prüfen
+    """)
 
 with col3:
-    st.markdown("""
-    <div style="background-color: #fff4e6; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #f39c12;">
-        <h3>⚙️ Einrichten</h3>
-        <p>Erstmalige Nutzung der KI?</p>
-        <p><strong>→ Gehen Sie zu "Einstellungen"</strong></p>
-        <ul style="margin-top: 1rem;">
-            <li>API-Key eingeben</li>
-            <li>Key validieren</li>
-            <li>Los geht's!</li>
-        </ul>
-    </div>
-    """, unsafe_allow_html=True)
+    st.warning("""
+    ### ⚙️ Einrichten
+    Erstmalige Nutzung der KI?
+
+    **→ Gehen Sie zu "Einstellungen"**
+
+    - API-Key eingeben
+    - Key validieren
+    - Los geht's!
+    """)
+
 
 st.markdown("---")
 
