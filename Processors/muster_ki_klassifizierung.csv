@@ -1,0 +1,31 @@
+Typ;Kategorie;Familie;Raum_Nummer;Raum_Name;Zusatzinfo
+Steckdose T13;Electrical Fixtures;Steckdose Standard;001;Büro 1;Wandmontage
+Steckdose T13;Electrical Fixtures;Steckdose Standard;002;Büro 2;Wandmontage
+LED Deckenleuchte;Lighting Fixtures;Deckenleuchte Modern;001;Büro 1;6500K Tageslicht
+LED Deckenleuchte;Lighting Fixtures;Deckenleuchte Modern;002;Büro 2;6500K Tageslicht
+Wandleuchte;Lighting Fixtures;Wandleuchte Flur;003;Korridor;Bewegungsmelder
+Netzwerkdose;Communication Devices;Datendose CAT6;001;Büro 1;Doppeldose
+Netzwerkdose;Communication Devices;Datendose CAT6;002;Büro 2;Doppeldose
+Brandmelder;Fire Alarm Devices;Rauchmelder;003;Korridor;Funkvernetzt
+Lichtschalter;Electrical Fixtures;Schalter Einbau;001;Büro 1;Taster
+Lichtschalter;Electrical Fixtures;Schalter Einbau;002;Büro 2;Taster
+WC-Becken;Plumbing Fixtures;WC wandhängend;010;WC EG;Spülkasten unterputz
+Lavabo;Plumbing Fixtures;Waschtisch;010;WC EG;mit Unterschrank
+Dusche;Plumbing Fixtures;Duschkabine;011;Bad OG;90x90cm
+Heizkörper;HVAC;Radiator flach;001;Büro 1;1200W
+Heizkörper;HVAC;Radiator flach;002;Büro 2;1200W
+Lüftungsgitter;HVAC;Zuluftgitter;003;Korridor;200x100mm
+Innenwand Gips;Walls;Trennwand 10cm;001;Büro 1;nicht tragend
+Innenwand Gips;Walls;Trennwand 10cm;002;Büro 2;nicht tragend
+Aussenwand Beton;Walls;Tragwand 30cm;-;Fassade;gedämmt
+Innentür Holz;Doors;Türe 80cm;001;Büro 1;Brandschutz T30
+Innentür Holz;Doors;Türe 80cm;002;Büro 2;Brandschutz T30
+Fenster;Windows;Fenster 120x150;001;Büro 1;Dreifachverglasung
+Fenster;Windows;Fenster 120x150;002;Büro 2;Dreifachverglasung
+Decke abgehängt;Ceilings;Gipskartondecke;001;Büro 1;Akustik
+Decke abgehängt;Ceilings;Gipskartondecke;002;Büro 2;Akustik
+Bodenbelag Parkett;Floors;Parkett Eiche;001;Büro 1;geölt
+Bodenbelag Parkett;Floors;Parkett Eiche;002;Büro 2;geölt
+Bodenbelag Fliesen;Floors;Keramikfliesen;010;WC EG;60x60cm rutschfest
+Wandbelag Farbe;Finishes;Wandfarbe weiss;001;Büro 1;2x Anstrich
+Wandbelag Fliesen;Finishes;Wandfliesen;010;WC EG;30x60cm
