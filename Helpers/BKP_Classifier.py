@@ -68,7 +68,8 @@ F3: Innentüren
         category: Optional[str] = None,
         family: Optional[str] = None,
         additional_info: Optional[str] = None,
-        debug: bool = False
+        debug: bool = False,
+        return_details: bool = False
     ) -> Dict[str, any]:
         """
         Klassifiziert ein einzelnes Bauelement.
@@ -79,9 +80,11 @@ F3: Innentüren
             family: Revit Family Name (optional)
             additional_info: Zusätzliche Beschreibung (optional)
             debug: Wenn True, zeigt API Response (optional)
+            return_details: Wenn True, gibt zusätzlich raw_response und tokens zurück
 
         Returns:
             Dict mit 'bkp_code', 'bkp_description', 'confidence' (0-1)
+            Falls return_details=True zusätzlich: 'raw_response', 'tokens', 'model'
         """
         # Kompakter Prompt - nur essenzielle Infos
         element_info = f"{element_type}"
@@ -110,6 +113,7 @@ Antworte NUR mit diesem JSON Format (keine Markdown, kein Text):
 
             # Parse JSON Response
             content = response.content[0].text.strip()
+            raw_content = content  # Speichere Original für return_details
 
             if debug:
                 print(f"DEBUG - API Response: {content}")
@@ -127,11 +131,22 @@ Antworte NUR mit diesem JSON Format (keine Markdown, kein Text):
             result = json.loads(content)
 
             # Standardisiere Output Format
-            return {
+            output = {
                 'bkp_code': result.get('code') or result.get('bkp_code') or result.get('BKP', 'UNKNOWN'),
                 'bkp_description': result.get('desc') or result.get('description') or result.get('beschreibung', ''),
                 'confidence': float(result.get('conf') or result.get('confidence', 0.5))
             }
+
+            # Füge Details hinzu wenn gewünscht
+            if return_details:
+                output['raw_response'] = raw_content
+                output['model'] = self.model
+                output['tokens'] = {
+                    'input': response.usage.input_tokens,
+                    'output': response.usage.output_tokens
+                }
+
+            return output
 
         except json.JSONDecodeError as e:
             if debug:
@@ -141,29 +156,32 @@ Antworte NUR mit diesem JSON Format (keine Markdown, kein Text):
             # Versuche einfaches Text-Parsing als Fallback
             # Erwarte Format wie "C13"
             parts = content.strip().split()
-            if parts and len(parts[0]) <= 5:  # BKP Code ist kurz
-                return {
-                    'bkp_code': parts[0],
-                    'bkp_description': ' '.join(parts[1:]) if len(parts) > 1 else '',
-                    'confidence': 0.5
-                }
-
-            return {
-                'bkp_code': 'PARSE_ERROR',
-                'bkp_description': content[:50],
+            error_result = {
+                'bkp_code': parts[0] if parts and len(parts[0]) <= 5 else 'PARSE_ERROR',
+                'bkp_description': ' '.join(parts[1:]) if len(parts) > 1 else content[:50],
                 'confidence': 0.0
             }
+            if return_details:
+                error_result['raw_response'] = raw_content if 'raw_content' in locals() else content
+                error_result['model'] = self.model
+                error_result['tokens'] = {'input': 0, 'output': 0}
+            return error_result
 
         except Exception as e:
             if debug:
                 print(f"DEBUG - Exception: {e}")
-            return {
+            error_result = {
                 'bkp_code': 'ERROR',
                 'bkp_description': str(e),
                 'confidence': 0.0
             }
+            if return_details:
+                error_result['raw_response'] = str(e)
+                error_result['model'] = self.model
+                error_result['tokens'] = {'input': 0, 'output': 0}
+            return error_result
 
-    def classify_batch(self, elements: List[Dict], debug: bool = False) -> List[Dict]:
+    def classify_batch(self, elements: List[Dict], debug: bool = False, return_details: bool = False) -> List[Dict]:
         """
         Klassifiziert mehrere Elemente in einem Batch.
         Effizienter als Einzelabfragen.
@@ -171,9 +189,10 @@ Antworte NUR mit diesem JSON Format (keine Markdown, kein Text):
         Args:
             elements: Liste von Dicts mit 'type', optional 'category', 'family', 'info'
             debug: Debug-Modus aktivieren
+            return_details: Wenn True, gibt zusätzlich raw_response und tokens zurück
 
         Returns:
-            Liste von Classification Results
+            Liste von Classification Results (mit Details wenn return_details=True)
         """
         # Batch-Prompt erstellen (mehrere Elemente auf einmal)
         elements_str = "\n".join([
@@ -200,6 +219,7 @@ Antworte NUR mit einem JSON Array (keine Markdown, kein Text):
             )
 
             content = response.content[0].text.strip()
+            raw_content = content  # Speichere Original für return_details
 
             if debug:
                 print(f"DEBUG - Batch API Response: {content}")
@@ -222,11 +242,20 @@ Antworte NUR mit einem JSON Array (keine Markdown, kein Text):
             # Formatiere Ergebnisse
             formatted_results = []
             for result in results:
-                formatted_results.append({
+                output = {
                     'bkp_code': result.get('code') or result.get('bkp_code', 'UNKNOWN'),
                     'bkp_description': result.get('desc') or result.get('description', ''),
                     'confidence': float(result.get('conf') or result.get('confidence', 0.5))
-                })
+                }
+                # Füge Details hinzu wenn gewünscht (gleiche Details für alle Batch-Elemente)
+                if return_details:
+                    output['raw_response'] = raw_content
+                    output['model'] = self.model
+                    output['tokens'] = {
+                        'input': response.usage.input_tokens,
+                        'output': response.usage.output_tokens
+                    }
+                formatted_results.append(output)
 
             return formatted_results
 
@@ -240,7 +269,9 @@ Antworte NUR mit einem JSON Array (keine Markdown, kein Text):
             return [self.classify_element(e.get('type', ''),
                                           e.get('category'),
                                           e.get('family'),
-                                          e.get('info'))
+                                          e.get('info'),
+                                          debug=debug,
+                                          return_details=return_details)
                     for e in elements]
 
 
