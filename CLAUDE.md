@@ -39,11 +39,8 @@ Elements are organized hierarchically: Room → Walls → Sockets/Electrical Ele
 ### Branch Structure
 
 - **main**: Clean production branch with documentation only
-- **develop**: Active development branch (currently empty, being restructured)
-- **DOODLES**: Experimental branch with working implementations:
-  - `DOODLES/`: Prototype scripts (IFC reading, Streamlit apps, class definitions)
-  - `PyRevit_Extensions/Digital_Twin_PROGR.extension/`: pyRevit scripts for Revit integration
-  - `DEVELOPMENT/`: Import and evaluation scripts
+- **develop**: Active development branch with working Streamlit multi-page app
+- **DOODLES**: Experimental branch with prototype implementations
 - **feature**: Feature development branch
 - **ZP1**: Checkpoint 1 submission
 - **jupyter_notebook**: Jupyter notebook experiments
@@ -79,14 +76,12 @@ pip install -r requirements.txt
 source .venv/bin/activate  # macOS/Linux
 # .venv\Scripts\activate    # Windows
 
-# Run Streamlit dashboard (when implemented in develop/main)
-streamlit run app.py
+# Run Streamlit multi-page app (develop branch)
+.venv/bin/streamlit run Processors/streamlit_app.py  # macOS/Linux
+# .venv\Scripts\streamlit run Processors/streamlit_app.py  # Windows
 
-# For DOODLES branch implementations:
-git checkout DOODLES
-streamlit run DOODLES/streamlit_app.py
-# or
-streamlit run DOODLES/streamlit_Raumauswertung.py
+# Note: Use .venv/bin/streamlit to ensure correct Python environment
+# App will be available at http://localhost:8501
 ```
 
 ### pyRevit Scripts
@@ -152,11 +147,122 @@ This is an academic project for a Programming module (Digital Twin - Programming
 - ZP2 (Checkpoint 2): [Milestone ZP2](https://github.com/NH-HSLU/TA.BA_DT_PROGR/milestone/2)
 - MEP (Final Exam): [Milestone MEP](https://github.com/NH-HSLU/TA.BA_DT_PROGR/milestone/3)
 
+## Streamlit Multi-Page App Architecture
+
+The develop branch contains a fully functional Streamlit app with the following structure:
+
+### App Entry Point
+- **`Processors/streamlit_app.py`**: Landing page with project overview and quick-start guide
+
+### Pages (in `Processors/pages/`)
+1. **`1_eBKP_Auswertung.py`**: Hierarchical visualization of BKP-classified data
+   - Auto-loads data from Session State (KI classification results)
+   - Displays costs grouped by eBKP-H hierarchy with collapsible expanders
+   - Interactive charts (pie, bar) and CSV export
+
+2. **`2_KI_Klassifizierung.py`**: AI-powered BKP classification
+   - Tab 1: Upload CSV and configure classification
+   - Tab 2: View classification results
+   - Tab 3: Real-time API response monitoring with live updates
+   - Tab 4: Processing log
+   - Batch processing with progress tracking
+   - Results stored in `st.session_state.classification_results`
+   - API responses captured with raw JSON for debugging
+
+2.5. **`2.5_BKP_Bearbeiten.py`**: Manual BKP code editing (NEW)
+   - Load classified data from Session State
+   - Filter by confidence threshold or BKP groups
+   - Inline editing with `st.data_editor()`
+   - BKP code validation (format and known codes)
+   - Save edited data back to Session State
+   - Positioned between KI classification and eBKP evaluation in workflow
+
+3. **`3_Einstellungen.py`**: API key management
+   - Session State-based key storage (non-persistent)
+   - API key validation with test classification
+   - Fallback to `.env` file if available
+
+### Session State Data Flow
+
+The app uses Streamlit Session State for cross-page data sharing:
+
+```python
+# Set by KI Klassifizierung page:
+st.session_state.classification_results = df  # Pandas DataFrame with BKP codes
+st.session_state.api_responses = [...]        # List of API response logs with raw JSON
+st.session_state.processing_log = [...]       # Processing events log
+st.session_state.api_key = "sk-ant-..."       # User's API key
+st.session_state.api_key_validated = True     # Validation status
+
+# Modified by BKP Bearbeiten page:
+# Updates classification_results with edited BKP codes
+
+# Read by eBKP Auswertung page:
+if 'classification_results' in st.session_state:
+    df = st.session_state.classification_results
+```
+
+### Complete Workflow
+
+1. **KI Klassifizierung** (`2_KI_Klassifizierung.py`)
+   - Upload CSV without BKP codes
+   - Classify with Claude AI
+   - View live API responses during processing
+
+2. **BKP Bearbeiten** (`2.5_BKP_Bearbeiten.py`) - OPTIONAL
+   - Review classification results
+   - Edit low-confidence codes
+   - Validate BKP codes
+
+3. **eBKP Auswertung** (`1_eBKP_Auswertung.py`)
+   - Visualize data by BKP hierarchy
+   - Export reports
+
+### Example Data Files
+
+- **`Processors/beispiel_daten.csv`**: Sample data WITH BKP codes (for testing visualization)
+- **`Processors/muster_ki_klassifizierung.csv`**: Sample data WITHOUT BKP codes (for testing AI classification)
+
+## AI Classification with Claude
+
+The `Helpers/BKP_Classifier.py` module provides AI-powered BKP classification:
+
+### Key Features
+- Uses Claude 3.5 Haiku model for cost efficiency
+- Supports single element and batch classification
+- Token optimization through prompt caching and short prompts
+- Returns BKP code, description, and confidence score
+
+### Usage in Streamlit
+```python
+from Helpers.BKP_Classifier import BKPClassifier
+
+classifier = BKPClassifier()
+
+# Basic classification
+result = classifier.classify_element(
+    element_type="Steckdose T13",
+    category="Electrical Fixtures"
+)
+# Returns: {'bkp_code': 'C13', 'bkp_description': 'Steckdosen', 'confidence': 0.95}
+
+# With API details for debugging
+result = classifier.classify_element(
+    element_type="Steckdose T13",
+    category="Electrical Fixtures",
+    return_details=True
+)
+# Returns additional: 'raw_response', 'model', 'tokens'
+```
+
+### API Key Configuration
+1. Via `.env` file (persistent): `ANTHROPIC_API_KEY=sk-ant-...`
+2. Via Streamlit UI (Session State, non-persistent): Use Einstellungen page
+
 ## Important Notes
 
-- The current working directory structure is being restructured from DOODLES to develop/main branches
-- Most working implementations are currently in the DOODLES branch
-- `app.py`, `Processors/`, and `Helpers/` directories in develop/main are mostly empty shells
-- When adding functionality, check DOODLES branch for reference implementations
-- IFC files are typically large - they are in `.gitignore` but some test files exist in DOODLES branch
-- The `.env` file exists but is gitignored - may contain API keys for AI integration (see `Helpers/Anisotropic.py`)
+- **ALWAYS use `.venv/bin/streamlit`** on macOS/Linux to ensure correct Python environment
+- pyRevit extensions are in `PyRevit_Extensions/` directory (merged from DOODLES branch)
+- IFC files are typically large - they are in `.gitignore`
+- The `.env` file is gitignored - never commit API keys
+- German is used for UI text and comments, English for commit messages
