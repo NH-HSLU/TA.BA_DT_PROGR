@@ -16,9 +16,9 @@ import plotly.graph_objects as go
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 try:
-    from Helpers.BKP_Classifier import BKPClassifier
+    from Helpers.eBKP_H_Classifier import eBKPHClassifier
 except ImportError:
-    st.error("BKP_Classifier konnte nicht importiert werden. Stellen Sie sicher, dass Helpers/BKP_Classifier.py existiert.")
+    st.error("eBKP_H_Classifier konnte nicht importiert werden. Stellen Sie sicher, dass Helpers/eBKP_H_Classifier.py existiert.")
     st.stop()
 
 # Seitenkonfiguration
@@ -41,20 +41,30 @@ if 'active_tab' not in st.session_state:
     st.session_state.active_tab = 0
 
 
-def estimate_cost(num_elements: int, batch_mode: bool = True) -> dict:
-    """Schätzt die Kosten für die Klassifizierung"""
+def estimate_cost(num_elements: int, batch_mode: bool = True, batch_size: int = 40) -> dict:
+    """Schätzt die Kosten für die Klassifizierung mit eBKP-H"""
     # Claude Haiku Pricing (Stand Nov 2024)
     # Input: $0.80 / 1M tokens, Output: $4.00 / 1M tokens
-    # Geschätzte Tokens pro Element: ~100 input, ~50 output
+    # eBKP-H System Prompt: ~3000 tokens (wird gecacht, 90% günstiger nach erstem Call)
 
     if batch_mode:
-        # Batch ist effizienter: ~10 Elemente pro Request
-        num_requests = max(1, num_elements // 10)
-        input_tokens = num_requests * 500  # ~500 tokens pro Batch
-        output_tokens = num_requests * 300  # ~300 tokens Output
+        # Batch-Verarbeitung: 30-50 Elemente pro Request
+        num_requests = max(1, (num_elements + batch_size - 1) // batch_size)
+
+        # Erster Request: Volle System Prompt Kosten
+        first_request_input = 3000 + (batch_size * 50)  # System Prompt + Batch
+        first_request_output = batch_size * 30  # ~30 tokens pro Element Output
+
+        # Weitere Requests: Gecachter System Prompt (10% Kosten)
+        cached_requests = num_requests - 1
+        cached_input = cached_requests * (300 + (batch_size * 50))  # Cached prompt + Batch
+        cached_output = cached_requests * (batch_size * 30)
+
+        input_tokens = first_request_input + cached_input
+        output_tokens = first_request_output + cached_output
     else:
-        # Einzelabfragen
-        input_tokens = num_elements * 100
+        # Einzelabfragen (nicht empfohlen)
+        input_tokens = 3000 + (num_elements * 100)  # System Prompt + alle Elemente
         output_tokens = num_elements * 50
 
     input_cost = (input_tokens / 1_000_000) * 0.80
@@ -155,17 +165,17 @@ with st.sidebar:
     use_batch = st.toggle(
         "Batch-Modus (empfohlen)",
         value=True,
-        help="Klassifiziert mehrere Elemente gleichzeitig für bessere Effizienz"
+        help="Klassifiziert mehrere Elemente gleichzeitig für bessere Effizienz und Kostenersparnis"
     )
 
-    batch_size = 10
+    batch_size = 40
     if use_batch:
         batch_size = st.slider(
             "Batch-Größe",
-            min_value=5,
-            max_value=20,
-            value=10,
-            help="Anzahl Elemente pro API-Anfrage"
+            min_value=20,
+            max_value=50,
+            value=40,
+            help="Anzahl Elemente pro API-Anfrage (30-50 empfohlen für eBKP-H)"
         )
 
     # Debug-Modus
@@ -218,14 +228,23 @@ with tab1:
 
     if uploaded_file:
         try:
-            # CSV einlesen
-            try:
-                df = pd.read_csv(uploaded_file, sep=';', encoding='utf-8-sig')
-            except:
-                uploaded_file.seek(0)
-                df = pd.read_csv(uploaded_file, encoding='utf-8-sig')
+            # CSV einlesen mit automatischer Encoding-Erkennung
+            df = None
+            encodings = ['utf-8-sig', 'latin1', 'iso-8859-1', 'cp1252']
 
-            st.success(f"✓ CSV geladen: {len(df)} Zeilen")
+            for encoding in encodings:
+                try:
+                    uploaded_file.seek(0)
+                    df = pd.read_csv(uploaded_file, sep=';', encoding=encoding)
+                    st.success(f"✓ CSV geladen: {len(df)} Zeilen (Encoding: {encoding})")
+                    break
+                except (UnicodeDecodeError, UnicodeError):
+                    continue
+
+            if df is None:
+                st.error("❌ Fehler: Konnte CSV-Datei mit keinem bekannten Encoding laden. "
+                        "Bitte speichern Sie die Datei als UTF-8.")
+                st.stop()
 
             # Spalten-Mapping
             st.subheader("Spalten-Zuordnung")
@@ -268,7 +287,7 @@ with tab1:
             # Kostenabschätzung
             if type_column:
                 num_elements = len(df)
-                cost_estimate = estimate_cost(num_elements, use_batch)
+                cost_estimate = estimate_cost(num_elements, use_batch, batch_size)
 
                 st.markdown("---")
                 st.subheader("💰 Kostenabschätzung")
@@ -315,14 +334,21 @@ with tab1:
 
                     try:
                         # Classifier initialisieren mit API-Key aus Session State
-                        add_log("BKPClassifier initialisieren...", "info")
+                        add_log("eBKP-H Classifier initialisieren...", "info")
 
-                        # Setze API-Key temporär für Classifier
+                        # API-Key holen
                         api_key = get_api_key()
-                        original_key = os.getenv('ANTHROPIC_API_KEY')
-                        os.environ['ANTHROPIC_API_KEY'] = api_key
 
-                        classifier = BKPClassifier()
+                        # Classifier mit API-Key initialisieren
+                        classifier = eBKPHClassifier(api_key=api_key)
+
+                        # Log-Datei für API-Responses erstellen
+                        from datetime import datetime
+                        log_filename = f"ebkp_classification_log_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
+                        log_path = os.path.join(os.path.dirname(__file__), '..', '..', 'Logs', log_filename)
+                        os.makedirs(os.path.dirname(log_path), exist_ok=True)
+
+                        add_log(f"API-Response-Log wird gespeichert: {log_filename}", "info")
 
                         results = []
 
@@ -343,21 +369,36 @@ with tab1:
                                 batch_elements = []
                                 for _, row in batch_df.iterrows():
                                     elem = {
-                                        'type': row[type_column] if type_column else '',
-                                        'category': row[category_column] if category_column else None,
-                                        'family': row[family_column] if family_column else None,
-                                        'info': row[info_column] if info_column else None
+                                        'kategorie': row[category_column] if category_column else '',
+                                        'typ': row[type_column] if type_column else '',
+                                        'familie': row[family_column] if family_column else '',
+                                        'zusatzinfo': row[info_column] if info_column else ''
                                     }
                                     batch_elements.append(elem)
 
-                                # Batch klassifizieren (mit Details für API-Responses)
-                                batch_results = classifier.classify_batch(batch_elements, debug=debug_mode, return_details=True)
+                                # Batch klassifizieren (mit Debug-Modus und Logging)
+                                batch_results = classifier.classify_batch(
+                                    batch_elements,
+                                    debug=debug_mode,
+                                    log_file=log_path
+                                )
+
+                                # Formatiere Ergebnisse für Kompatibilität mit bestehendem Code
+                                batch_results = [
+                                    {
+                                        'bkp_code': r['code'],
+                                        'bkp_description': r['desc'],
+                                        'confidence': r['conf'],
+                                        'raw_response': f'{{"code": "{r["code"]}", "desc": "{r["desc"]}", "conf": {r["conf"]}}}'
+                                    }
+                                    for r in batch_results
+                                ]
 
                                 # Speichere API-Responses für jedes Element im Batch
                                 for elem_idx, (elem, result) in enumerate(zip(batch_elements, batch_results)):
-                                    element_info = elem.get('type', 'N/A')
-                                    if elem.get('category'):
-                                        element_info += f" ({elem['category']})"
+                                    element_info = elem.get('typ', 'N/A')
+                                    if elem.get('kategorie'):
+                                        element_info += f" ({elem['kategorie']})"
 
                                     # Speichere Response
                                     add_api_response(
@@ -402,14 +443,13 @@ with tab1:
                             for idx, row in df.iterrows():
                                 status_text.text(f"Verarbeite Element {idx + 1}/{num_elements}...")
 
-                                # Klassifiziere mit Details
+                                # Klassifiziere Element
                                 result = classifier.classify_element(
-                                    element_type=row[type_column] if type_column else '',
-                                    category=row[category_column] if category_column else None,
-                                    family=row[family_column] if family_column else None,
-                                    additional_info=row[info_column] if info_column else None,
-                                    debug=debug_mode,
-                                    return_details=True
+                                    kategorie=row[category_column] if category_column else '',
+                                    typ=row[type_column] if type_column else '',
+                                    familie=row[family_column] if family_column else '',
+                                    zusatzinfo=row[info_column] if info_column else '',
+                                    debug=debug_mode
                                 )
 
                                 # Speichere API-Response
@@ -417,18 +457,26 @@ with tab1:
                                 if category_column and row[category_column]:
                                     element_info += f" ({row[category_column]})"
 
+                                # Formatiere für Kompatibilität
+                                formatted_result = {
+                                    'bkp_code': result['code'],
+                                    'bkp_description': result['desc'],
+                                    'confidence': result['conf'],
+                                    'raw_response': f'{{"code": "{result["code"]}", "desc": "{result["desc"]}", "conf": {result["conf"]}}}'
+                                }
+
                                 add_api_response(
                                     request_num=idx + 1,
                                     element_info=element_info,
-                                    response=result.get('raw_response', 'N/A'),
+                                    response=formatted_result['raw_response'],
                                     parsed_result={
-                                        'bkp_code': result['bkp_code'],
-                                        'bkp_description': result['bkp_description'],
-                                        'confidence': result['confidence']
+                                        'bkp_code': formatted_result['bkp_code'],
+                                        'bkp_description': formatted_result['bkp_description'],
+                                        'confidence': formatted_result['confidence']
                                     }
                                 )
 
-                                results.append(result)
+                                results.append(formatted_result)
 
                                 # Progress aktualisieren
                                 progress = ((idx + 1) / num_elements)
@@ -463,6 +511,7 @@ with tab1:
                         add_log(f"✓ Klassifizierung erfolgreich abgeschlossen", "success")
                         add_log(f"Durchschnittliche Konfidenz: {df['KI_Konfidenz'].mean():.1%}", "success")
                         add_log(f"📊 {len(st.session_state.api_responses)} API-Responses aufgezeichnet", "success")
+                        add_log(f"📝 Detailliertes Log gespeichert: {log_filename}", "success")
 
                         # Live-Container Final Update
                         live_response_container.success(
@@ -472,6 +521,19 @@ with tab1:
 
                         # Success Message mit nächsten Schritten
                         st.success("✓ Klassifizierung erfolgreich abgeschlossen!")
+
+                        # Download-Button für Log-Datei
+                        if os.path.exists(log_path):
+                            with open(log_path, 'r', encoding='utf-8') as f:
+                                log_content = f.read()
+                            st.download_button(
+                                label="📥 API-Response-Log herunterladen",
+                                data=log_content,
+                                file_name=log_filename,
+                                mime="text/plain",
+                                help="Enthält alle API-Requests und Responses für Debugging"
+                            )
+
                         st.balloons()
 
                         # Automatischer Workflow-Hinweis

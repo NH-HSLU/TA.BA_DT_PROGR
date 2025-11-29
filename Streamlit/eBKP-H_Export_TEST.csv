@@ -1,0 +1,18 @@
+﻿Quelle;GUID;Kategorie;Typ;Familie;Zusatzinfo;Menge;Einheit;Ebene;Schichtaufbau;Dicke_mm;Fl‰che_m2;L‰nge_m
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002824a;Tueren;0915 x 2134mm;M_Single-Flush;320B;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000282d6;Tueren;0915 x 2134mm;M_Single-Flush Vision;320A;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;cf8cfcc0-c742-4a2a-b6ca-a26573419e10-00030078;Tueren;M_Curtain Wall Dbl Glass;M_Curtain Wall Dbl Glass;101C;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;b2e5db11-6e86-402f-9cca-c737bc6f09a8-00034f0d;Tueren;M_Curtain Wall Sgl Glass;M_Curtain Wall Sgl Glass;;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-000311cc;Boeden;Metal Sunscreen;;;21;m2;01 - Entry Level;Metal - Sunscreen [Tragend] (13 mm);13;;
+racadvancedsampleproject;e4148a5a-ef43-42c7-8c1f-cbfa1d6199fc-00033ec3;Boeden;Concrete- 100mm;;;1759.93;m2;01 - Entry Level;Concrete - Cast-in-Place Concrete [Tragend] (100 mm);100;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000294ba;Decken;600 x 600mm Grid;;;80.02;m2;03 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003b4f9;Decken;Furred Ceiling;;;449.98;m2;03 - Floor;Metal - Stud Layer [Tragend] (22 mm) | Plasterboard [Finish 2] (16 mm);38;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-0003976d;Beleuchtung;60 watt Incandescent;Table Lamp 4;69;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003b868;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;17;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003c0fb;Beleuchtung;40 watt Halogen;Sconce 4;20;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00030fa2;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c190;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-00039745;Moebel;Chair;Chair-Viper;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-00039749;Moebel;Couch;Couch-Viper;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028241;Waende;Interior - 138mm Partition (1-hr);;;3.999;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.87;8.33
+racadvancedsampleproject;110717dd-74ae-4656-b586-fb1c03e9905a-00030954;Fenster;0915 x 1220mm;M_Fixed;11;1;Stk;02 - Floor;;;;

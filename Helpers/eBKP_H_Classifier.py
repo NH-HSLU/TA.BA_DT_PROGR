@@ -11,7 +11,7 @@ Optimiert für:
 import os
 import json
 import pandas as pd
-from typing import Dict, List, Optional
+from typing import Dict, List
 from dotenv import load_dotenv
 from anthropic import Anthropic
 
@@ -128,14 +128,21 @@ Regeln:
         element_lines = []
         for i, elem in enumerate(elements, 1):
             parts = []
-            if elem.get('kategorie'):
-                parts.append(f"Kat: {elem['kategorie']}")
-            if elem.get('typ'):
-                parts.append(f"Typ: {elem['typ']}")
-            if elem.get('familie'):
-                parts.append(f"Fam: {elem['familie']}")
-            if elem.get('zusatzinfo'):
-                parts.append(f"Info: {elem['zusatzinfo']}")
+
+            # Sichere String-Konvertierung (behandelt NaN, None, float, etc.)
+            kategorie = str(elem.get('kategorie', '')).strip() if elem.get('kategorie') not in [None, '', 'nan', 'NaN'] else ''
+            typ = str(elem.get('typ', '')).strip() if elem.get('typ') not in [None, '', 'nan', 'NaN'] else ''
+            familie = str(elem.get('familie', '')).strip() if elem.get('familie') not in [None, '', 'nan', 'NaN'] else ''
+            zusatzinfo = str(elem.get('zusatzinfo', '')).strip() if elem.get('zusatzinfo') not in [None, '', 'nan', 'NaN'] else ''
+
+            if kategorie:
+                parts.append(f"Kat: {kategorie}")
+            if typ:
+                parts.append(f"Typ: {typ}")
+            if familie:
+                parts.append(f"Fam: {familie}")
+            if zusatzinfo:
+                parts.append(f"Info: {zusatzinfo}")
 
             line = f"{i}. {', '.join(parts)}" if parts else f"{i}. (keine Info)"
             element_lines.append(line)
@@ -204,7 +211,8 @@ Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
         typ: str = "",
         familie: str = "",
         zusatzinfo: str = "",
-        debug: bool = False
+        debug: bool = False,
+        log_file: str = None
     ) -> Dict[str, any]:
         """
         Klassifiziert ein einzelnes Bauelement.
@@ -215,6 +223,7 @@ Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
             familie: Familie Name (z.B. "Basic Wall")
             zusatzinfo: Zusätzliche Info (optional)
             debug: Debug-Ausgaben aktivieren
+            log_file: Pfad zu Log-Datei für Response-Logging (optional)
 
         Returns:
             Dict mit 'code', 'desc', 'conf'
@@ -227,13 +236,14 @@ Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
             'zusatzinfo': zusatzinfo
         }]
 
-        results = self.classify_batch(elements, debug=debug)
+        results = self.classify_batch(elements, debug=debug, log_file=log_file)
         return results[0] if results else {'code': 'ERROR', 'desc': 'No result', 'conf': 0.0}
 
     def classify_batch(
         self,
         elements: List[Dict],
-        debug: bool = False
+        debug: bool = False,
+        log_file: str = None
     ) -> List[Dict]:
         """
         Klassifiziert einen Batch von Elementen (30-50 empfohlen).
@@ -241,6 +251,7 @@ Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
         Args:
             elements: Liste von Dicts mit 'kategorie', 'typ', 'familie', 'zusatzinfo'
             debug: Debug-Ausgaben aktivieren
+            log_file: Pfad zu Log-Datei für Response-Logging (optional)
 
         Returns:
             Liste von Dicts mit 'code', 'desc', 'conf'
@@ -269,6 +280,19 @@ Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
 
             # Response extrahieren
             response_text = response.content[0].text
+
+            # Logging in Datei (falls gewünscht)
+            if log_file:
+                from datetime import datetime
+                timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                with open(log_file, 'a', encoding='utf-8') as f:
+                    f.write(f"\n{'='*80}\n")
+                    f.write(f"Timestamp: {timestamp}\n")
+                    f.write(f"Batch: {len(elements)} Elemente\n")
+                    f.write(f"Tokens: Input={response.usage.input_tokens}, Output={response.usage.output_tokens}\n")
+                    f.write(f"\nPrompt:\n{prompt}\n")
+                    f.write(f"\nResponse:\n{response_text}\n")
+                    f.write(f"{'='*80}\n")
 
             if debug:
                 print(f"Response (erste 300 Zeichen):\n{response_text[:300]}...\n")
@@ -300,7 +324,8 @@ Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
         column_mapping: Dict[str, str] = None,
         batch_size: int = 40,
         show_progress: bool = True,
-        debug: bool = False
+        debug: bool = False,
+        log_file: str = None
     ) -> pd.DataFrame:
         """
         Klassifiziert komplette CSV-Datei mit eBKP-H Codes.
@@ -313,6 +338,7 @@ Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
             batch_size: Elemente pro API-Call (30-50 empfohlen)
             show_progress: Progress-Bar anzeigen (benötigt tqdm)
             debug: Debug-Ausgaben aktivieren
+            log_file: Pfad zu Log-Datei für API-Response-Logging (optional)
 
         Returns:
             DataFrame mit neuen Spalten: eBKP_Code, eBKP_Beschreibung, eBKP_Confidence
@@ -337,18 +363,36 @@ Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
                 'zusatzinfo': 'Zusatzinfo'
             }
 
-        # Element-Infos extrahieren
+        # Element-Infos extrahieren (mit sicherer NaN-Behandlung)
         elements = []
-        for idx, row in df.iterrows():
+        for _, row in df.iterrows():
+            # Sichere Konvertierung: behandelt NaN, None, float
+            def safe_str(val):
+                if pd.isna(val) or val is None or str(val).lower() == 'nan':
+                    return ''
+                return str(val).strip()
+
             elements.append({
-                'kategorie': str(row.get(column_mapping['kategorie'], '')),
-                'typ': str(row.get(column_mapping['typ'], '')),
-                'familie': str(row.get(column_mapping['familie'], '')),
-                'zusatzinfo': str(row.get(column_mapping['zusatzinfo'], ''))
+                'kategorie': safe_str(row.get(column_mapping['kategorie'], '')),
+                'typ': safe_str(row.get(column_mapping['typ'], '')),
+                'familie': safe_str(row.get(column_mapping['familie'], '')),
+                'zusatzinfo': safe_str(row.get(column_mapping['zusatzinfo'], ''))
             })
 
         # Batch-Klassifizierung mit Progress
         print(f"Klassifizierung (Batch-Size: {batch_size})...")
+
+        # Log-Datei initialisieren
+        if log_file:
+            from datetime import datetime
+            with open(log_file, 'w', encoding='utf-8') as f:
+                f.write(f"eBKP-H Klassifizierung Log\n")
+                f.write(f"Gestartet: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+                f.write(f"Input CSV: {input_csv}\n")
+                f.write(f"Elemente: {len(elements)}\n")
+                f.write(f"Batch-Größe: {batch_size}\n")
+                f.write(f"{'='*80}\n")
+            print(f"✓ Log-Datei erstellt: {log_file}")
 
         all_results = []
 
@@ -370,7 +414,7 @@ Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
                       f"(Elemente {start_idx + 1}-{end_idx})...")
 
             # Klassifizierung
-            batch_results = self.classify_batch(batch, debug=debug)
+            batch_results = self.classify_batch(batch, debug=debug, log_file=log_file)
             all_results.extend(batch_results)
 
             # Progress update
