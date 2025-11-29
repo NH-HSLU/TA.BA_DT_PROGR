@@ -35,6 +35,10 @@ if 'processing_log' not in st.session_state:
     st.session_state.processing_log = []
 if 'total_cost' not in st.session_state:
     st.session_state.total_cost = 0.0
+if 'api_responses' not in st.session_state:
+    st.session_state.api_responses = []
+if 'active_tab' not in st.session_state:
+    st.session_state.active_tab = 0
 
 
 def estimate_cost(num_elements: int, batch_mode: bool = True) -> dict:
@@ -77,23 +81,47 @@ def add_log(message: str, level: str = "info"):
     })
 
 
+def add_api_response(request_num: int, element_info: str, response: str, parsed_result: dict):
+    """Speichert eine API-Response für Echtzeit-Anzeige"""
+    timestamp = datetime.now().strftime("%H:%M:%S.%f")[:-3]
+    st.session_state.api_responses.append({
+        'timestamp': timestamp,
+        'request_num': request_num,
+        'element': element_info,
+        'raw_response': response,
+        'parsed_result': parsed_result
+    })
+
+
 def display_log():
-    """Zeigt das Processing Log an"""
+    """Zeigt das Processing Log an (theme-aware)"""
     if st.session_state.processing_log:
-        log_df = pd.DataFrame(st.session_state.processing_log)
+        # Zeige Log-Einträge mit nativen Streamlit-Komponenten für Dark Mode Support
+        for log_entry in st.session_state.processing_log:
+            timestamp = log_entry['timestamp']
+            message = log_entry['message']
+            level = log_entry['level']
 
-        # Färbe nach Level
-        def color_level(row):
-            colors = {
-                'info': 'background-color: #e8f4f8',
-                'success': 'background-color: #d4edda',
-                'warning': 'background-color: #fff3cd',
-                'error': 'background-color: #f8d7da'
+            # Icons für Level
+            level_icons = {
+                'info': 'ℹ️',
+                'success': '✅',
+                'warning': '⚠️',
+                'error': '❌'
             }
-            return [colors.get(row['level'], '')] * len(row)
 
-        styled_df = log_df.style.apply(color_level, axis=1)
-        st.dataframe(styled_df, use_container_width=True, height=300)
+            icon = level_icons.get(level, 'ℹ️')
+            log_text = f"{icon} **{timestamp}** | {message}"
+
+            # Zeige mit entsprechendem Streamlit-Widget (auto Dark Mode)
+            if level == 'error':
+                st.error(log_text, icon=icon)
+            elif level == 'warning':
+                st.warning(log_text, icon=icon)
+            elif level == 'success':
+                st.success(log_text, icon=icon)
+            else:
+                st.info(log_text, icon=icon)
 
 
 # API-Key Prüfung
@@ -177,7 +205,7 @@ with st.sidebar:
         st.info("→ Gehen Sie zu Einstellungen")
 
 # Tabs für verschiedene Bereiche
-tab1, tab2, tab3 = st.tabs(["📤 Upload & Klassifizierung", "📊 Ergebnisse", "📝 Monitoring"])
+tab1, tab2, tab3, tab4 = st.tabs(["📤 Upload & Klassifizierung", "📊 Ergebnisse", "🔍 KI Responses", "📝 Monitoring"])
 
 with tab1:
     st.subheader("CSV-Datei hochladen")
@@ -268,17 +296,22 @@ with tab1:
                 st.markdown("---")
 
                 if st.button("🚀 Klassifizierung starten", type="primary", use_container_width=True):
-                    # Log zurücksetzen
+                    # Log und API responses zurücksetzen
                     st.session_state.processing_log = []
+                    st.session_state.api_responses = []  # Reset API responses
                     st.session_state.total_cost = cost_estimate['total_cost']
 
                     add_log("Klassifizierung gestartet", "info")
                     add_log(f"Modus: {'Batch' if use_batch else 'Einzeln'}", "info")
                     add_log(f"{num_elements} Elemente zu klassifizieren", "info")
 
-                    # Progress Bar
+                    # Progress Bar und Live-Response-Container
                     progress_bar = st.progress(0)
                     status_text = st.empty()
+
+                    # Live API Response Display Container
+                    with st.expander("🔍 API Responses (Live)", expanded=True):
+                        live_response_container = st.empty()
 
                     try:
                         # Classifier initialisieren mit API-Key aus Session State
@@ -317,13 +350,44 @@ with tab1:
                                     }
                                     batch_elements.append(elem)
 
-                                # Batch klassifizieren
-                                batch_results = classifier.classify_batch(batch_elements, debug=debug_mode)
+                                # Batch klassifizieren (mit Details für API-Responses)
+                                batch_results = classifier.classify_batch(batch_elements, debug=debug_mode, return_details=True)
+
+                                # Speichere API-Responses für jedes Element im Batch
+                                for elem_idx, (elem, result) in enumerate(zip(batch_elements, batch_results)):
+                                    element_info = elem.get('type', 'N/A')
+                                    if elem.get('category'):
+                                        element_info += f" ({elem['category']})"
+
+                                    # Speichere Response
+                                    add_api_response(
+                                        request_num=batch_idx + elem_idx + 1,
+                                        element_info=element_info,
+                                        response=result.get('raw_response', 'N/A'),
+                                        parsed_result={
+                                            'bkp_code': result['bkp_code'],
+                                            'bkp_description': result['bkp_description'],
+                                            'confidence': result['confidence']
+                                        }
+                                    )
+
                                 results.extend(batch_results)
 
                                 # Progress aktualisieren
                                 progress = (batch_end / num_elements)
                                 progress_bar.progress(progress)
+
+                                # Live-Update: Zeige neueste Responses
+                                if st.session_state.api_responses:
+                                    latest_responses = st.session_state.api_responses[-5:]  # Zeige letzte 5
+                                    live_response_container.markdown(
+                                        f"**Letzte {len(latest_responses)} Responses:**\n\n" +
+                                        "\n".join([
+                                            f"- Request #{r['request_num']}: {r['parsed_result']['bkp_code']} "
+                                            f"({r['parsed_result']['confidence']:.0%}) - {r['element'][:30]}..."
+                                            for r in latest_responses
+                                        ])
+                                    )
 
                                 add_log(f"Batch {current_batch}/{total_batches} abgeschlossen "
                                        f"({len(batch_results)} Elemente)", "success")
@@ -338,18 +402,49 @@ with tab1:
                             for idx, row in df.iterrows():
                                 status_text.text(f"Verarbeite Element {idx + 1}/{num_elements}...")
 
+                                # Klassifiziere mit Details
                                 result = classifier.classify_element(
                                     element_type=row[type_column] if type_column else '',
                                     category=row[category_column] if category_column else None,
                                     family=row[family_column] if family_column else None,
                                     additional_info=row[info_column] if info_column else None,
-                                    debug=debug_mode
+                                    debug=debug_mode,
+                                    return_details=True
                                 )
+
+                                # Speichere API-Response
+                                element_info = row[type_column] if type_column else 'N/A'
+                                if category_column and row[category_column]:
+                                    element_info += f" ({row[category_column]})"
+
+                                add_api_response(
+                                    request_num=idx + 1,
+                                    element_info=element_info,
+                                    response=result.get('raw_response', 'N/A'),
+                                    parsed_result={
+                                        'bkp_code': result['bkp_code'],
+                                        'bkp_description': result['bkp_description'],
+                                        'confidence': result['confidence']
+                                    }
+                                )
+
                                 results.append(result)
 
                                 # Progress aktualisieren
                                 progress = ((idx + 1) / num_elements)
                                 progress_bar.progress(progress)
+
+                                # Live-Update: Zeige neueste Responses
+                                if (idx + 1) % 5 == 0 or idx == num_elements - 1:  # Update alle 5 Elemente
+                                    latest_responses = st.session_state.api_responses[-5:]
+                                    live_response_container.markdown(
+                                        f"**Letzte {len(latest_responses)} Responses:**\n\n" +
+                                        "\n".join([
+                                            f"- Request #{r['request_num']}: {r['parsed_result']['bkp_code']} "
+                                            f"({r['parsed_result']['confidence']:.0%}) - {r['element'][:30]}..."
+                                            for r in latest_responses
+                                        ])
+                                    )
 
                                 if (idx + 1) % 10 == 0:
                                     add_log(f"{idx + 1}/{num_elements} Elemente klassifiziert", "info")
@@ -367,9 +462,40 @@ with tab1:
 
                         add_log(f"✓ Klassifizierung erfolgreich abgeschlossen", "success")
                         add_log(f"Durchschnittliche Konfidenz: {df['KI_Konfidenz'].mean():.1%}", "success")
+                        add_log(f"📊 {len(st.session_state.api_responses)} API-Responses aufgezeichnet", "success")
 
+                        # Live-Container Final Update
+                        live_response_container.success(
+                            f"✅ Klassifizierung abgeschlossen! {len(st.session_state.api_responses)} API-Responses aufgezeichnet.\n\n"
+                            f"➡️ Wechseln Sie zum Tab **'KI Responses'** für Details."
+                        )
+
+                        # Success Message mit nächsten Schritten
                         st.success("✓ Klassifizierung erfolgreich abgeschlossen!")
                         st.balloons()
+
+                        # Automatischer Workflow-Hinweis
+                        st.info("""
+                        ### 🎉 Ihre Daten wurden klassifiziert!
+
+                        **Nächste Schritte:**
+                        1. **Ergebnisse prüfen** → Wechseln Sie zum Tab "Ergebnisse"
+                        2. **KI Responses ansehen** → Tab "KI Responses" für Details
+                        3. **Zur Auswertung** → Ihre Daten sind automatisch für die eBKP-H Auswertung verfügbar!
+
+                        → Gehen Sie zur Seite **"eBKP Auswertung"** in der Seitenleiste links.
+                        """)
+
+                        # Direct Action Buttons
+                        col1, col2 = st.columns(2)
+                        with col1:
+                            if st.button("📊 Zu den Ergebnissen", type="primary", use_container_width=True):
+                                st.session_state.active_tab = 1  # Tab "Ergebnisse"
+                                st.rerun()
+
+                        with col2:
+                            # Verwende Link statt HTML-Button für bessere Dark Mode Kompatibilität
+                            st.page_link("pages/1_eBKP_Auswertung.py", label="🔍 Zur eBKP-H Auswertung", icon="📊")
 
                     except Exception as e:
                         add_log(f"Fehler: {str(e)}", "error")
@@ -535,6 +661,81 @@ with tab2:
         st.info("Noch keine Klassifizierung durchgeführt. Wechseln Sie zum Tab 'Upload & Klassifizierung'.")
 
 with tab3:
+    st.subheader("🔍 KI API Responses (Echtzeit)")
+
+    if st.session_state.api_responses:
+        st.info(f"💬 {len(st.session_state.api_responses)} API-Anfragen aufgezeichnet")
+
+        # Anzeige-Optionen
+        col1, col2 = st.columns([3, 1])
+
+        with col1:
+            show_mode = st.radio(
+                "Ansicht",
+                ["Neueste zuerst", "Älteste zuerst", "Nur Fehler"],
+                horizontal=True
+            )
+
+        with col2:
+            if st.button("🗑️ Responses löschen", use_container_width=True):
+                st.session_state.api_responses = []
+                st.rerun()
+
+        st.markdown("---")
+
+        # Responses anzeigen
+        responses = st.session_state.api_responses.copy()
+
+        if show_mode == "Neueste zuerst":
+            responses = reversed(responses)
+        elif show_mode == "Nur Fehler":
+            responses = [r for r in responses if r['parsed_result'].get('bkp_code') in ['ERROR', 'PARSE_ERROR', 'UNKNOWN']]
+
+        for idx, response in enumerate(responses):
+            with st.expander(
+                f"Request #{response['request_num']} | {response['timestamp']} | Element: {response['element'][:50]}...",
+                expanded=(idx < 3)  # Erste 3 aufgeklappt
+            ):
+                col1, col2 = st.columns(2)
+
+                with col1:
+                    st.markdown("**📤 Request Info:**")
+                    st.text(f"Zeitstempel: {response['timestamp']}")
+                    st.text(f"Request #: {response['request_num']}")
+                    st.text(f"Element: {response['element']}")
+
+                with col2:
+                    st.markdown("**📥 Parsed Result:**")
+                    result = response['parsed_result']
+
+                    # Farbe je nach Ergebnis
+                    if result.get('bkp_code') == 'ERROR':
+                        st.error(f"❌ Error: {result.get('bkp_description', 'Unknown error')}")
+                    elif result.get('confidence', 0) < 0.7:
+                        st.warning(f"⚠️ BKP: {result.get('bkp_code')} (Konfidenz: {result.get('confidence', 0):.1%})")
+                    else:
+                        st.success(f"✓ BKP: {result.get('bkp_code')} (Konfidenz: {result.get('confidence', 0):.1%})")
+
+                    st.text(f"Beschreibung: {result.get('bkp_description', 'N/A')}")
+
+                st.markdown("**🔍 Raw API Response:**")
+                st.code(response['raw_response'], language="json")
+
+    else:
+        st.info("Noch keine API-Responses aufgezeichnet. Starten Sie eine Klassifizierung im Tab 'Upload & Klassifizierung'.")
+
+        st.markdown("""
+        ### 💡 Was wird hier angezeigt?
+
+        Dieser Tab zeigt alle API-Anfragen und -Antworten in Echtzeit:
+        - **Request Info**: Zeitstempel und Element-Details
+        - **Parsed Result**: Interpretiertes Ergebnis mit BKP-Code und Konfidenz
+        - **Raw Response**: Unverarbeitete API-Antwort von Claude
+
+        So können Sie die KI-Klassifizierung live nachvollziehen!
+        """)
+
+with tab4:
     st.subheader("📝 Processing Log")
 
     if st.session_state.processing_log:

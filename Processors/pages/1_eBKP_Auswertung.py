@@ -128,18 +128,41 @@ def display_bkp_hierarchy(df: pd.DataFrame, hauptgruppe: str):
 
 # Haupttitel
 st.title("📊 eBKP-H Kostenauswertung")
+
+# Prüfe ob Daten aus KI-Klassifizierung vorhanden sind
+auto_load_data = False
+if 'classification_results' in st.session_state and st.session_state.classification_results is not None:
+    auto_load_data = True
+    st.success("✅ Daten aus KI-Klassifizierung automatisch geladen!")
+    st.info("💡 Die Daten wurden direkt aus der KI-Klassifizierung übernommen. Sie können auch eine andere Datei hochladen.")
+
 st.markdown("---")
 
 # Sidebar für Upload und Filter
 with st.sidebar:
     st.header("⚙️ Einstellungen")
 
-    # File Upload
-    uploaded_file = st.file_uploader(
-        "CSV-Datei hochladen",
-        type=['csv'],
-        help="Laden Sie eine CSV-Datei mit BKP-zugeordneten Daten hoch"
-    )
+    # Datenquelle wählen
+    if auto_load_data:
+        data_source = st.radio(
+            "Datenquelle",
+            ["🤖 Aus KI-Klassifizierung", "📁 Neue Datei hochladen"],
+            help="Verwenden Sie Daten aus der KI oder laden Sie eine neue Datei hoch"
+        )
+
+        use_auto_data = (data_source == "🤖 Aus KI-Klassifizierung")
+    else:
+        use_auto_data = False
+        st.info("💡 Keine automatischen Daten verfügbar")
+
+    # File Upload (nur wenn nicht auto-load oder manuell gewählt)
+    uploaded_file = None
+    if not use_auto_data:
+        uploaded_file = st.file_uploader(
+            "CSV-Datei hochladen",
+            type=['csv'],
+            help="Laden Sie eine CSV-Datei mit BKP-zugeordneten Daten hoch"
+        )
 
     st.markdown("---")
     st.markdown("""
@@ -149,8 +172,15 @@ with st.sidebar:
     - Daten werden automatisch nach eBKP-H gruppiert
     """)
 
-# Hauptbereich
-if uploaded_file is not None:
+# Hauptbereich - Daten laden
+df = None
+
+if use_auto_data:
+    # Lade Daten aus Session State
+    df = st.session_state.classification_results.copy()
+    st.info(f"📊 {len(df)} Elemente aus KI-Klassifizierung geladen")
+
+elif uploaded_file is not None:
     try:
         # CSV einlesen (versuche verschiedene Trennzeichen)
         try:
@@ -175,6 +205,14 @@ if uploaded_file is not None:
         if df_original_len > len(df):
             st.warning(f"⚠️ {df_original_len - len(df)} Zeilen ohne BKP-Code wurden entfernt")
 
+    except Exception as e:
+        st.error(f"❌ Fehler beim Laden der Datei: {str(e)}")
+        st.exception(e)
+        df = None
+
+# Verarbeite Daten wenn vorhanden
+if df is not None:
+    try:
         # Extrahiere BKP-Hierarchie
         df['BKP_Hauptgruppe'] = df['BKP_Code'].apply(extract_bkp_hauptgruppe)
         df['BKP_Untergruppe'] = df['BKP_Code'].apply(extract_bkp_untergruppe)
@@ -299,9 +337,10 @@ if uploaded_file is not None:
         st.error(f"❌ Fehler beim Laden der Datei: {str(e)}")
         st.exception(e)
 
-else:
+# Zeige Anleitung nur wenn keine Daten geladen wurden
+if df is None:
     # Anleitung wenn keine Datei hochgeladen
-    st.info("👆 Bitte laden Sie eine CSV-Datei hoch, um zu beginnen")
+    st.info("👆 Bitte laden Sie eine CSV-Datei hoch oder nutzen Sie die KI-Klassifizierung")
 
     with st.expander("📖 Anleitung & Anforderungen", expanded=True):
         st.markdown("""
