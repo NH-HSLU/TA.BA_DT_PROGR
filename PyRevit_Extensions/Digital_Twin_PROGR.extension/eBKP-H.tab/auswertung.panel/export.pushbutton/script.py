@@ -190,6 +190,45 @@ def get_parameter_value(element, param_name):
         return ""
 
 
+def round_length_mm(value_in_feet):
+    """
+    Konvertiert Laenge von Revit-Einheiten (feet) zu mm mit 0 Kommastellen.
+
+    Args:
+        value_in_feet: Laengenwert in Revit-Einheiten (feet)
+
+    Returns:
+        int: Laenge in mm, gerundet auf 0 Kommastellen
+    """
+    return int(round(value_in_feet * 304.8, 0))
+
+
+def round_area_m2(value_in_sqft):
+    """
+    Konvertiert Flaeche von Revit-Einheiten (sqft) zu m2 mit 2 Kommastellen.
+
+    Args:
+        value_in_sqft: Flaechenwert in Revit-Einheiten (square feet)
+
+    Returns:
+        float: Flaeche in m2, gerundet auf 2 Kommastellen
+    """
+    return round(value_in_sqft * 0.092903, 2)
+
+
+def round_volume_m3(value_in_cuft):
+    """
+    Konvertiert Volumen von Revit-Einheiten (cuft) zu m3 mit 3 Kommastellen.
+
+    Args:
+        value_in_cuft: Volumenwert in Revit-Einheiten (cubic feet)
+
+    Returns:
+        float: Volumen in m3, gerundet auf 3 Kommastellen
+    """
+    return round(value_in_cuft * 0.0283168, 3)
+
+
 def get_compound_structure(element, target_doc):
     """
     Holt den strukturellen Aufbau eines Elements (Wand, Boden, Decke) mit allen Schichten.
@@ -223,7 +262,7 @@ def get_compound_structure(element, target_doc):
             width_param = element_type.LookupParameter("Breite") or element_type.LookupParameter("Width") \
                           or element_type.LookupParameter("Dicke") or element_type.LookupParameter("Thickness")
             if width_param and width_param.HasValue:
-                width_mm = round(width_param.AsDouble() * 304.8, 1)  # ft -> mm
+                width_mm = round_length_mm(width_param.AsDouble())  # ft -> mm
                 return "Einschichtig", width_mm
             return "", 0
 
@@ -244,7 +283,7 @@ def get_compound_structure(element, target_doc):
 
         for layer in layers:
             # Schichtdicke in mm
-            thickness_mm = round(layer.Width * 304.8, 1)  # ft -> mm
+            thickness_mm = round_length_mm(layer.Width)  # ft -> mm
             total_thickness += thickness_mm
 
             # Material Name
@@ -272,36 +311,57 @@ def get_compound_structure(element, target_doc):
         return "Fehler: {}".format(str(e)), 0
 
 
-def get_wall_volume(wall):
-    #TODO Wanddicke und Fläche auch ausgeben
+def get_wall_metrics(wall):
     """
-    Holt das Volumen einer Wand in m3.
+    Holt Volumen, Flaeche, Laenge und Dicke einer Wand.
+
+    Args:
+        wall: Revit Wall Element
+
+    Returns:
+        tuple: (volume_m3, area_m2, length_m, thickness_mm)
+        - volume_m3 (float): Volumen in m3 mit 3 Kommastellen
+        - area_m2 (float): Flaeche in m2 mit 2 Kommastellen
+        - length_m (float): Laenge in m mit 2 Kommastellen
+        - thickness_mm (int): Dicke in mm mit 0 Kommastellen
     """
     try:
-        # Versuche verschiedene Parameter
+        volume_m3 = 0
+        area_m2 = 0
+        length_m = 0
+        thickness_mm = 0
+
+        # 1. Volumen holen
         vol_param = wall.LookupParameter("Volumen") or wall.LookupParameter("Volume")
         if vol_param and vol_param.HasValue:
-            # Revit speichert in cubic feet, Umrechnung in m3
-            volume_cf = vol_param.AsDouble()
-            volume_m3 = round(volume_cf * 0.0283168, 3)  # cf -> m3
-            return volume_m3
+            volume_m3 = round_volume_m3(vol_param.AsDouble())
 
-        # Fallback: Berechne aus Flaeche * Dicke
+        # 2. Flaeche holen
         area_param = wall.LookupParameter("Flaeche") or wall.LookupParameter("Area")
         if area_param and area_param.HasValue:
-            area_m2 = area_param.AsDouble() * 0.092903  # sqft -> m2
+            area_m2 = round_area_m2(area_param.AsDouble())
 
-            # Dicke aus WallType
-            wall_type = wall.WallType
-            if wall_type:
-                width_param = wall_type.LookupParameter("Breite") or wall_type.LookupParameter("Width")
-                if width_param and width_param.HasValue:
-                    width_m = width_param.AsDouble() * 0.3048  # ft -> m
-                    return round(area_m2 * width_m, 3)
+        # 3. Laenge holen
+        length_param = wall.LookupParameter("Laenge") or wall.LookupParameter("Length")
+        if length_param and length_param.HasValue:
+            # Konvertiere von feet zu Meter mit 2 Kommastellen
+            length_m = round(length_param.AsDouble() * 0.3048, 2)
 
-        return 0
+        # 4. Dicke holen (aus WallType)
+        wall_type = wall.WallType
+        if wall_type:
+            width_param = wall_type.LookupParameter("Breite") or wall_type.LookupParameter("Width")
+            if width_param and width_param.HasValue:
+                thickness_mm = round_length_mm(width_param.AsDouble())
+
+        # Fallback: Wenn Volumen nicht verfuegbar, berechne aus Flaeche * Dicke
+        if volume_m3 == 0 and area_m2 > 0 and thickness_mm > 0:
+            volume_m3 = round(area_m2 * (thickness_mm / 1000.0), 3)
+
+        return volume_m3, area_m2, length_m, thickness_mm
+
     except:
-        return 0
+        return 0, 0, 0, 0
 
 
 def export_elements(selected_docs, output_path):
@@ -391,29 +451,32 @@ def export_elements(selected_docs, output_path):
                         einheit = "Stk"
                         schichtaufbau = ""
                         dicke_mm = 0
+                        wall_area = 0  # Fuer Waende
+                        wall_length = 0  # Fuer Waende
 
                         # Fuer Raeume: Flaeche
                         if cat_item.CategoryId == DB.BuiltInCategory.OST_Rooms:
                             area_param = elem.LookupParameter("Flaeche") or elem.LookupParameter("Area")
                             if area_param and area_param.HasValue:
-                                menge = round(area_param.AsDouble() * 0.092903, 2)  # sqft -> m2
+                                menge = round_area_m2(area_param.AsDouble())
                                 einheit = "m2"
 
-                        # Fuer Waende: Volumen und Schichtaufbau
-                        # TODO Wanddicke und Flaeche auch ausgeben
+                        # Fuer Waende: Volumen, Flaeche, Laenge und Schichtaufbau
                         elif cat_item.CategoryId == DB.BuiltInCategory.OST_Walls:
-                            # Volumen holen
-                            menge = get_wall_volume(elem)
+                            # Volumen, Flaeche, Laenge und Dicke holen
+                            menge, wall_area, wall_length, dicke_mm = get_wall_metrics(elem)
                             einheit = "m3"
 
-                            # Schichtaufbau holen
-                            schichtaufbau, dicke_mm = get_compound_structure(elem, target_doc)
+                            # Schichtaufbau holen (dicke_mm wird hier ueberschrieben falls verfuegbar)
+                            schichtaufbau, compound_thickness = get_compound_structure(elem, target_doc)
+                            if compound_thickness > 0:
+                                dicke_mm = compound_thickness
 
                         # Fuer Decken: Flaeche und Schichtaufbau
                         elif cat_item.CategoryId == DB.BuiltInCategory.OST_Ceilings:
                             area_param = elem.LookupParameter("Flaeche") or elem.LookupParameter("Area")
                             if area_param and area_param.HasValue:
-                                menge = round(area_param.AsDouble() * 0.092903, 2)
+                                menge = round_area_m2(area_param.AsDouble())
                                 einheit = "m2"
 
                             # Schichtaufbau holen
@@ -423,7 +486,7 @@ def export_elements(selected_docs, output_path):
                         elif cat_item.CategoryId == DB.BuiltInCategory.OST_Floors:
                             area_param = elem.LookupParameter("Flaeche") or elem.LookupParameter("Area")
                             if area_param and area_param.HasValue:
-                                menge = round(area_param.AsDouble() * 0.092903, 2)
+                                menge = round_area_m2(area_param.AsDouble())
                                 einheit = "m2"
 
                             # Schichtaufbau holen
@@ -441,7 +504,9 @@ def export_elements(selected_docs, output_path):
                             'Einheit': einheit,
                             'Dicke_mm': dicke_mm if dicke_mm > 0 else "",
                             'Schichtaufbau': schichtaufbau,
-                            'Zusatzinfo': zusatzinfo
+                            'Zusatzinfo': zusatzinfo,
+                            'Fläche_m2': wall_area if wall_area > 0 else "",
+                            'Länge_m': wall_length if wall_length > 0 else ""
                         }
                         all_data.append(row)
 
@@ -452,10 +517,9 @@ def export_elements(selected_docs, output_path):
                 output.print_md("**Fehler** bei Kategorie {}: {}".format(cat_item.Name, str(e)))
 
     # CSV schreiben
-    #TODO Wanddicke und Flaeche auch ausgeben
     if all_data:
         fieldnames = ['Quelle', 'GUID', 'Kategorie', 'Typ', 'Familie',
-                      'Zusatzinfo', 'Menge', 'Einheit', 'Ebene', 'Schichtaufbau', 'Dicke_mm']
+                      'Zusatzinfo', 'Menge', 'Einheit', 'Ebene', 'Schichtaufbau', 'Dicke_mm', 'Fläche_m2', 'Länge_m']
 
         with open(output_path, 'wb') as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=';')

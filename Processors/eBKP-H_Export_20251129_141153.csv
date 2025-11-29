@@ -1,0 +1,665 @@
+Quelle;GUID;Kategorie;Typ;Familie;Zusatzinfo;Menge;Einheit;Ebene;Schichtaufbau;Dicke_mm;Fläche_m2;Länge_m
+racadvancedsampleproject;1832d549-62c0-44df-812c-b19e8965ded5-00023a4f;Tueren;0915 x 2134mm;M_Single-Flush-Dbl Acting;122;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;1832d549-62c0-44df-812c-b19e8965ded5-00023aae;Tueren;0915 x 2134mm;M_Single-Flush;124;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;1832d549-62c0-44df-812c-b19e8965ded5-00023ae8;Tueren;0915 x 2134mm 20 Minute Rated;M_Single-Flush;125;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;1832d549-62c0-44df-812c-b19e8965ded5-00023b6a;Tueren;1830 x 2134mm;M_Double-Flush;123;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;1832d549-62c0-44df-812c-b19e8965ded5-00023ba7;Tueren;0915 x 2134mm;M_Single-Flush;126;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;1832d549-62c0-44df-812c-b19e8965ded5-00023c33;Tueren;0915 x 2134mm;M_Single-Flush;129;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;1832d549-62c0-44df-812c-b19e8965ded5-00023c83;Tueren;0915 x 2134mm;M_Single-Flush;128;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;1832d549-62c0-44df-812c-b19e8965ded5-00023cd1;Tueren;0915 x 2134mm;M_Single-Flush;127;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;1832d549-62c0-44df-812c-b19e8965ded5-00023d35;Tueren;0915 x 2134mm;M_Single-Flush;130;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002417a;Tueren;M_Curtain Wall Sgl Glass;M_Curtain Wall Sgl Glass;130A;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000249a1;Tueren;1730 x 2134mm;M_Double-Flush;119A;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00024a12;Tueren;1730 x 2134mm 20 Minute Rated;M_Double-Flush;119B;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00024a89;Tueren;1730 x 2134mm 20 Minute Rated;M_Double-Flush;118;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00024b83;Tueren;0915 x 2134mm;M_Single-Flush;117;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00024bbd;Tueren;0915 x 2134mm;M_Single-Flush;116;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00024c38;Tueren;1830 x 2134mm;M_Double-Flush;115;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002502a;Tueren;M_Curtain Wall Sgl Glass;M_Curtain Wall Sgl Glass;114;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002533a;Tueren;0915 x 2134mm;M_Single-Flush;111;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002539c;Tueren;0915 x 2134mm 20 Minute Rated;M_Single-Flush;112;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002542e;Tueren;0915 x 2134mm;M_Single-Flush;110;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00025470;Tueren;0915 x 2134mm;M_Single-Flush;109;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00025b78;Tueren;0915 x 2134mm;M_Single-Flush;103;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00025baa;Tueren;0915 x 2134mm;M_Single-Flush;104B;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00025bd9;Tueren;0915 x 2134mm;M_Single-Flush;104A;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00025c6b;Tueren;0915 x 2134mm;M_Single-Flush;105B;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00025c98;Tueren;0915 x 2134mm;M_Single-Flush;105A;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00025cc4;Tueren;0915 x 2134mm;M_Single-Flush;106B;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00025cee;Tueren;0915 x 2134mm;M_Single-Flush;106A;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00025d22;Tueren;0915 x 2134mm;M_Single-Flush;108B;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00025d42;Tueren;0915 x 2134mm;M_Single-Flush;108A;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00025e18;Tueren;M_Curtain Wall Sgl Glass;M_Curtain Wall Sgl Glass;132A;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00025e8e;Tueren;0915 x 2134mm;M_Single-Flush;132B;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000267d0;Tueren;0915 x 2134mm;M_Single-Flush;232;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000267d3;Tueren;M_Curtain Wall Sgl Glass;M_Curtain Wall Sgl Glass;233;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000267ec;Tueren;M_Curtain Wall Sgl Glass;M_Curtain Wall Sgl Glass;217;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026800;Tueren;0915 x 2134mm;M_Single-Flush;212;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026801;Tueren;0915 x 2134mm 20 Minute Rated;M_Single-Flush;214;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026803;Tueren;0915 x 2134mm;M_Single-Flush;211;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026804;Tueren;0915 x 2134mm;M_Single-Flush;210;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026815;Tueren;M_Curtain Wall Sgl Glass;M_Curtain Wall Sgl Glass;201;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002685a;Tueren;0915 x 2134mm;M_Single-Flush;326;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002685d;Tueren;M_Curtain Wall Sgl Glass;M_Curtain Wall Sgl Glass;327;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026876;Tueren;M_Curtain Wall Sgl Glass;M_Curtain Wall Sgl Glass;312;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002688a;Tueren;0915 x 2134mm;M_Single-Flush;309;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002688b;Tueren;0915 x 2134mm 20 Minute Rated;M_Single-Flush;310;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002688d;Tueren;0915 x 2134mm;M_Single-Flush;308;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002688e;Tueren;0915 x 2134mm;M_Single-Flush;307;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002689f;Tueren;M_Curtain Wall Sgl Glass;M_Curtain Wall Sgl Glass;301;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026b49;Tueren;0915 x 2134mm;M_Single-Flush;202;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026b85;Tueren;0915 x 2134mm;M_Single-Flush;203;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026bb7;Tueren;0915 x 2134mm;M_Single-Flush;204;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026be7;Tueren;0915 x 2134mm;M_Single-Flush;205;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026c15;Tueren;0915 x 2134mm;M_Single-Flush;206;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026c63;Tueren;0915 x 2134mm;M_Single-Flush;207;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026c95;Tueren;0915 x 2134mm;M_Single-Flush;208;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026cd5;Tueren;0915 x 2134mm;M_Single-Flush;209;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026ece;Tueren;0915 x 2134mm;M_Single-Flush;218;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026f10;Tueren;0915 x 2134mm;M_Single-Flush;219A;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026f70;Tueren;0915 x 2134mm;M_Single-Flush;219B;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026fbc;Tueren;0915 x 2134mm 20 Minute Rated;M_Single-Flush;220;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026ff8;Tueren;0915 x 2134mm;M_Single-Flush;221;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002703c;Tueren;0915 x 2134mm;M_Single-Flush;222;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00027537;Tueren;0915 x 2134mm;M_Single-Flush;231;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000275f0;Tueren;0915 x 2134mm;M_Single-Flush;230;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00027636;Tueren;0915 x 2134mm;M_Single-Flush;229;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000276a0;Tueren;0915 x 2134mm;M_Single-Flush;226;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00027704;Tueren;0915 x 2134mm;M_Single-Flush;228;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00027752;Tueren;0915 x 2134mm;M_Single-Flush;225;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000277bf;Tueren;1730 x 2134mm 20 Minute Rated;M_Double-Flush;227;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00027f03;Tueren;0915 x 2134mm;M_Single-Flush;306;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00027f35;Tueren;0915 x 2134mm;M_Single-Flush;305B;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00027f79;Tueren;0915 x 2134mm;M_Single-Flush;305A;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00027fa7;Tueren;0915 x 2134mm;M_Single-Flush;304B;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00027fcf;Tueren;0915 x 2134mm;M_Single-Flush;304A;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00027ff1;Tueren;0915 x 2134mm;M_Single-Flush;303B;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002801b;Tueren;0915 x 2134mm;M_Single-Flush;303A;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002805d;Tueren;0915 x 2134mm;M_Single-Flush;302B;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002809b;Tueren;0915 x 2134mm;M_Single-Flush;302A;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002824a;Tueren;0915 x 2134mm;M_Single-Flush;320B;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000282d6;Tueren;0915 x 2134mm;M_Single-Flush Vision;320A;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028312;Tueren;0915 x 2134mm;M_Single-Flush Vision;319;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028342;Tueren;0915 x 2134mm 20 Minute Rated;M_Single-Flush;317;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000283a0;Tueren;0915 x 2134mm;M_Single-Flush Vision;315;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028405;Tueren;0915 x 2134mm;M_Single-Flush Vision;314;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028439;Tueren;0915 x 2134mm;M_Single-Flush;313A;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028462;Tueren;0915 x 2134mm;M_Single-Flush;313B;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000284e2;Tueren;0915 x 2134mm;M_Single-Flush;316;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000285f8;Tueren;1830 x 2134mm;M_Double-Glass 1;321;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028656;Tueren;1730 x 2134mm 20 Minute Rated;M_Double-Flush;323;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028695;Tueren;0915 x 2134mm;M_Single-Glass 1;322;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000286c3;Tueren;0915 x 2134mm;M_Single-Flush;324;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002870d;Tueren;0915 x 2134mm;M_Single-Flush;325;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;07ae6064-8e02-489e-896d-f7554545ebb2-0002c8e7;Tueren;M_Curtain Wall Dbl Glass;M_Curtain Wall Dbl Glass;101B;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;d80b1bb3-cb99-438c-9e13-a910093d55fb-0002f9db;Tueren;M_Curtain Wall Dbl Glass;M_Curtain Wall Dbl Glass;121;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;cf8cfcc0-c742-4a2a-b6ca-a26573419e10-0002ff74;Tueren;M_Curtain Wall Dbl Glass;M_Curtain Wall Dbl Glass;101A;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;cf8cfcc0-c742-4a2a-b6ca-a26573419e10-00030078;Tueren;M_Curtain Wall Dbl Glass;M_Curtain Wall Dbl Glass;101C;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;cf8cfcc0-c742-4a2a-b6ca-a26573419e10-000300e6;Tueren;M_Curtain Wall Dbl Glass;M_Curtain Wall Dbl Glass;101D;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;110717dd-74ae-4656-b586-fb1c03e9905a-000305a6;Tueren;M_Curtain Wall Dbl Glass;M_Curtain Wall Dbl Glass;120;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;b2e5db11-6e86-402f-9cca-c737bc6f09a8-00034f0c;Tueren;M_Curtain Wall Sgl Glass;M_Curtain Wall Sgl Glass;234;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;b2e5db11-6e86-402f-9cca-c737bc6f09a8-00034f0d;Tueren;M_Curtain Wall Sgl Glass;M_Curtain Wall Sgl Glass;;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;b2e5db11-6e86-402f-9cca-c737bc6f09a8-000350cb;Tueren;M_Curtain Wall Sgl Glass;M_Curtain Wall Sgl Glass;223;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;6949fe39-3e9a-4d4d-b7fe-71339c615138-0002221b;Boeden;Hollow Core Plank - Concrete Topping;;;1555.7700000000000;m2;02 - Floor;Carpet (1) [Finish 1] (15 mm) | Concrete - Cast-in-Place Concrete [Substrat] (50 mm) | Concrete - Cast In Situ [Tragend] (200 mm);265;;
+racadvancedsampleproject;6949fe39-3e9a-4d4d-b7fe-71339c615138-00022235;Boeden;Hollow Core Plank - Concrete Topping;;;1550.0300000000000;m2;03 - Floor;Carpet (1) [Finish 1] (15 mm) | Concrete - Cast-in-Place Concrete [Substrat] (50 mm) | Concrete - Cast In Situ [Tragend] (200 mm);265;;
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002640e;Boeden;Standard Timber-Wood Finish;;;239.40000000000001;m2;01 - Entry Level;Wood - Flooring [Finish 2] (40 mm) | Concrete - Cast-in-Place Concrete [Tragend] (100 mm);140;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-000310e1;Boeden;Metal Sunscreen;;;36.200000000000003;m2;03 - Floor;Metal - Sunscreen [Tragend] (13 mm);13;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-0003115e;Boeden;Metal Sunscreen;;;5.7999999999999998;m2;03 - Floor;Metal - Sunscreen [Tragend] (13 mm);13;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00031176;Boeden;Metal Sunscreen;;;21.0;m2;03 - Floor;Metal - Sunscreen [Tragend] (13 mm);13;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-000311a8;Boeden;Metal Sunscreen;;;5.7999999999999998;m2;03 - Floor;Metal - Sunscreen [Tragend] (13 mm);13;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-000311ba;Boeden;Metal Sunscreen;;;36.200000000000003;m2;01 - Entry Level;Metal - Sunscreen [Tragend] (13 mm);13;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-000311c3;Boeden;Metal Sunscreen;;;5.7999999999999998;m2;01 - Entry Level;Metal - Sunscreen [Tragend] (13 mm);13;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-000311cc;Boeden;Metal Sunscreen;;;21.0;m2;01 - Entry Level;Metal - Sunscreen [Tragend] (13 mm);13;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-000311d5;Boeden;Metal Sunscreen;;;5.7999999999999998;m2;01 - Entry Level;Metal - Sunscreen [Tragend] (13 mm);13;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-000311e7;Boeden;Metal Sunscreen;;;36.200000000000003;m2;02 - Floor;Metal - Sunscreen [Tragend] (13 mm);13;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-000311f0;Boeden;Metal Sunscreen;;;5.7999999999999998;m2;02 - Floor;Metal - Sunscreen [Tragend] (13 mm);13;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-000311f9;Boeden;Metal Sunscreen;;;21.0;m2;02 - Floor;Metal - Sunscreen [Tragend] (13 mm);13;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00031202;Boeden;Metal Sunscreen;;;5.7999999999999998;m2;02 - Floor;Metal - Sunscreen [Tragend] (13 mm);13;;
+racadvancedsampleproject;e4148a5a-ef43-42c7-8c1f-cbfa1d6199fc-00033ec3;Boeden;Concrete- 100mm;;;1759.9300000000001;m2;01 - Entry Level;Concrete - Cast-in-Place Concrete [Tragend] (100 mm);100;;
+racadvancedsampleproject;aa83bc3b-70bb-4e53-963e-3d5c9084e667-00024014;Decken;600 x 600mm Grid;;;41.530000000000001;m2;01 - Entry Level;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;aa83bc3b-70bb-4e53-963e-3d5c9084e667-0002401e;Decken;600 x 600mm Grid;;;15.380000000000001;m2;01 - Entry Level;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;aa83bc3b-70bb-4e53-963e-3d5c9084e667-00024026;Decken;600 x 600mm Grid;;;15.779999999999999;m2;01 - Entry Level;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;aa83bc3b-70bb-4e53-963e-3d5c9084e667-0002402e;Decken;600 x 600mm Grid;;;5.5800000000000001;m2;01 - Entry Level;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;aa83bc3b-70bb-4e53-963e-3d5c9084e667-00024036;Decken;Plain;;;22.180000000000000;m2;01 - Entry Level;Metal - Stud Layer [Tragend] (45 mm) | Plasterboard [Tragend] (12 mm);57;;
+racadvancedsampleproject;aa83bc3b-70bb-4e53-963e-3d5c9084e667-0002403e;Decken;Plain;;;8.4600000000000009;m2;01 - Entry Level;Metal - Stud Layer [Tragend] (45 mm) | Plasterboard [Tragend] (12 mm);57;;
+racadvancedsampleproject;aa83bc3b-70bb-4e53-963e-3d5c9084e667-0002404e;Decken;600 x 600mm Grid;;;94.900000000000006;m2;01 - Entry Level;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000292c1;Decken;600 x 600mm Grid;;;48.700000000000003;m2;01 - Entry Level;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000292c9;Decken;600 x 600mm Grid;;;31.710000000000001;m2;01 - Entry Level;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000292d1;Decken;600 x 600mm Grid;;;127.05000000000000;m2;01 - Entry Level;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000292df;Decken;600 x 600mm Grid;;;7.0800000000000001;m2;01 - Entry Level;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000292e7;Decken;600 x 600mm Grid;;;18.850000000000001;m2;01 - Entry Level;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000292ef;Decken;600 x 600mm Grid;;;13.690000000000000;m2;01 - Entry Level;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000292f7;Decken;600 x 600mm Grid;;;13.119999999999999;m2;01 - Entry Level;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000292ff;Decken;600 x 600mm Grid;;;89.760000000000005;m2;01 - Entry Level;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-00029307;Decken;600 x 600mm Grid;;;48.130000000000003;m2;01 - Entry Level;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-0002930f;Decken;600 x 600mm Grid;;;97.400000000000006;m2;01 - Entry Level;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-00029317;Decken;600 x 600mm Grid;;;48.130000000000003;m2;01 - Entry Level;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-0002931f;Decken;600 x 600mm Grid;;;47.170000000000002;m2;01 - Entry Level;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-0002932e;Decken;600 x 600mm Grid;;;5.5800000000000001;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-00029336;Decken;600 x 600mm Grid;;;25.460000000000001;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-0002933e;Decken;600 x 600mm Grid;;;14.869999999999999;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-00029346;Decken;600 x 600mm Grid;;;40.509999999999998;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-0002934e;Decken;600 x 600mm Grid;;;12.300000000000001;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-00029356;Decken;600 x 600mm Grid;;;7.0999999999999996;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-0002935e;Decken;600 x 600mm Grid;;;6.8200000000000003;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-00029366;Decken;600 x 600mm Grid;;;168.68000000000001;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-00029380;Decken;600 x 600mm Grid;;;55.240000000000002;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-0002938e;Decken;600 x 600mm Grid;;;41.060000000000002;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-00029396;Decken;600 x 600mm Grid;;;122.48999999999999;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000293a4;Decken;600 x 600mm Grid;;;94.209999999999994;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000293ae;Decken;600 x 600mm Grid;;;7.0800000000000001;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000293b6;Decken;600 x 600mm Grid;;;18.850000000000001;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000293be;Decken;600 x 600mm Grid;;;13.690000000000000;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000293c6;Decken;600 x 600mm Grid;;;13.119999999999999;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000293ce;Decken;600 x 600mm Grid;;;73.329999999999998;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000293d6;Decken;600 x 600mm Grid;;;48.130000000000003;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000293de;Decken;600 x 600mm Grid;;;31.710000000000001;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000293e6;Decken;600 x 600mm Grid;;;31.710000000000001;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000293ee;Decken;600 x 600mm Grid;;;31.710000000000001;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000293f6;Decken;600 x 600mm Grid;;;48.130000000000003;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000293fe;Decken;600 x 600mm Grid;;;31.710000000000001;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-00029406;Decken;600 x 600mm Grid;;;30.75;m2;02 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-0002941a;Decken;600 x 600mm Grid;;;60.009999999999998;m2;03 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-00029424;Decken;600 x 600mm Grid;;;5.5800000000000001;m2;03 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-0002942c;Decken;600 x 600mm Grid;;;50.259999999999998;m2;03 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-00029434;Decken;600 x 600mm Grid;;;58.869999999999997;m2;03 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-00029442;Decken;600 x 600mm Grid;;;131.99000000000001;m2;03 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-00029450;Decken;600 x 600mm Grid;;;52.670000000000002;m2;03 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-00029458;Decken;600 x 600mm Grid;;;44.299999999999997;m2;03 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-00029460;Decken;600 x 600mm Grid;;;48.700000000000003;m2;03 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-00029468;Decken;600 x 600mm Grid;;;80.980000000000004;m2;03 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-00029470;Decken;600 x 600mm Grid;;;77.780000000000001;m2;03 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-0002947a;Decken;600 x 600mm Grid;;;18.850000000000001;m2;03 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-00029482;Decken;600 x 600mm Grid;;;7.0800000000000001;m2;03 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-0002948a;Decken;600 x 600mm Grid;;;13.690000000000000;m2;03 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-00029492;Decken;600 x 600mm Grid;;;13.119999999999999;m2;03 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-0002949a;Decken;600 x 600mm Grid;;;73.329999999999998;m2;03 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000294a2;Decken;600 x 600mm Grid;;;64.549999999999997;m2;03 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000294aa;Decken;600 x 600mm Grid;;;48.130000000000003;m2;03 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000294b2;Decken;600 x 600mm Grid;;;64.549999999999997;m2;03 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000294ba;Decken;600 x 600mm Grid;;;80.019999999999996;m2;03 - Floor;Default [Tragend] (36 mm) | Ceiling Tile 600 x 600 [Finish 2] (16 mm);52;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003b4f9;Decken;Furred Ceiling;;;449.98000000000002;m2;03 - Floor;Metal - Stud Layer [Tragend] (22 mm) | Plasterboard [Finish 2] (16 mm);38;;
+racadvancedsampleproject;756f49ce-c2cc-4494-9564-30c29a26ab7f-0003c741;Decken;Furred Ceiling;;;356.16000000000003;m2;02 - Floor;Metal - Stud Layer [Tragend] (22 mm) | Plasterboard [Finish 2] (16 mm);38;;
+racadvancedsampleproject;756f49ce-c2cc-4494-9564-30c29a26ab7f-0003c77d;Decken;Furred Ceiling;;;115.84000000000000;m2;02 - Floor;Metal - Stud Layer [Tragend] (22 mm) | Plasterboard [Finish 2] (16 mm);38;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-0003976b;Beleuchtung;60 watt Incandescent;Table Lamp 4;67;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-0003976c;Beleuchtung;60 watt Incandescent;Table Lamp 4;68;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-0003976d;Beleuchtung;60 watt Incandescent;Table Lamp 4;69;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-0003976e;Beleuchtung;60 watt Incandescent;Table Lamp 4;70;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003b604;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;12;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003b68f;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;2;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003b6d2;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;3;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003b6d3;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;4;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003b768;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;5;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003b769;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;6;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003b79b;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;7;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003b79c;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;8;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003b7ce;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;9;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003b7cf;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;10;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003b801;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;11;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003b802;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;13;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003b834;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;14;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003b835;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;15;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003b867;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;16;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003b868;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;17;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003bd9f;Beleuchtung;40 watt Halogen;Sconce 4;21;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003c093;Beleuchtung;40 watt Halogen;Sconce 4;18;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003c0c6;Beleuchtung;40 watt Halogen;Sconce 4;19;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003c0fb;Beleuchtung;40 watt Halogen;Sconce 4;20;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003c0fc;Beleuchtung;40 watt Halogen;Sconce 4;22;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003c111;Beleuchtung;40 watt Halogen;Sconce 4;23;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003c171;Beleuchtung;40 watt Halogen;Sconce 4;24;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;756f49ce-c2cc-4494-9564-30c29a26ab7f-0003c870;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;25;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;756f49ce-c2cc-4494-9564-30c29a26ab7f-0003c871;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;26;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;756f49ce-c2cc-4494-9564-30c29a26ab7f-0003c8dc;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;27;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;756f49ce-c2cc-4494-9564-30c29a26ab7f-0003c8dd;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;28;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;756f49ce-c2cc-4494-9564-30c29a26ab7f-0003c95a;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;29;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;756f49ce-c2cc-4494-9564-30c29a26ab7f-0003c95b;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;30;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;756f49ce-c2cc-4494-9564-30c29a26ab7f-0003c985;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;31;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;756f49ce-c2cc-4494-9564-30c29a26ab7f-0003c986;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;32;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;756f49ce-c2cc-4494-9564-30c29a26ab7f-0003c9b0;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;33;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;756f49ce-c2cc-4494-9564-30c29a26ab7f-0003c9b1;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;34;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;756f49ce-c2cc-4494-9564-30c29a26ab7f-0003c9db;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;35;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;756f49ce-c2cc-4494-9564-30c29a26ab7f-0003c9dc;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;36;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;756f49ce-c2cc-4494-9564-30c29a26ab7f-0003ca06;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;37;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;756f49ce-c2cc-4494-9564-30c29a26ab7f-0003ca07;Beleuchtung;2440mm - 277V;Pendant Light - Linear - 1 Lamp;38;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;110717dd-74ae-4656-b586-fb1c03e9905a-00030f41;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00030fa2;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00030fcc;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00030fce;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00030fd0;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00030fd2;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00030fd4;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00030fd6;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00030fd8;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00030fda;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00030fdc;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00030fde;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00030fe0;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00030fe2;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00030fe4;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00030fe6;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00030fe8;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00030fea;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00030fec;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00030fee;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00031011;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00031027;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00031033;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00031035;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-0003104d;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-0003107e;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00031088;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-0003108a;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-0003108c;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-0003108e;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00031090;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00031092;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00031094;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00031096;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-00031098;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-0003109a;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-000310b2;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-000310ca;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-000310da;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;dcc088fe-6ceb-45a9-9f34-c6da1e55aa8e-000310dc;Allgemein;SHADE SUPPORT;SHADE SUPPORT;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-0003975b;Allgemein;Potted Plant;Potted Plant;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-0003975c;Allgemein;Potted Plant;Potted Plant;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c046;Moebel;0915mm Diameter;M_Table-Dining Round w Chairs;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c048;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c049;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c04a;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c04b;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c088;Moebel;0915mm Diameter;M_Table-Dining Round w Chairs;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c08a;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c08b;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c08c;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c08d;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c0c0;Moebel;0915mm Diameter;M_Table-Dining Round w Chairs;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c0c2;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c0c3;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c0c4;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c0c5;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c139;Moebel;0915mm Diameter;M_Table-Dining Round w Chairs;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c13a;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c13b;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c13c;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c13d;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c13e;Moebel;0915mm Diameter;M_Table-Dining Round w Chairs;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c13f;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c140;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c141;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c142;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c143;Moebel;0915mm Diameter;M_Table-Dining Round w Chairs;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c144;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c145;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c146;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c147;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c154;Moebel;0915mm Diameter;M_Table-Dining Round w Chairs;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c155;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c156;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c157;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c158;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c159;Moebel;0915mm Diameter;M_Table-Dining Round w Chairs;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c15a;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c15b;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c15c;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c15d;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c15e;Moebel;0915mm Diameter;M_Table-Dining Round w Chairs;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c15f;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c160;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c161;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c162;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c165;Moebel;0915mm Diameter;M_Table-Dining Round w Chairs;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c166;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c167;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c168;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c169;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c16a;Moebel;0915mm Diameter;M_Table-Dining Round w Chairs;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c16b;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c16c;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c16d;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c16e;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c176;Moebel;0915mm Diameter;M_Table-Dining Round w Chairs;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c177;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c178;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c179;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c17a;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c17b;Moebel;0915mm Diameter;M_Table-Dining Round w Chairs;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c17c;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c17d;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c17e;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c17f;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c187;Moebel;0915mm Diameter;M_Table-Dining Round w Chairs;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c188;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c189;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c18a;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c18b;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c18c;Moebel;0915mm Diameter;M_Table-Dining Round w Chairs;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c18d;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c18e;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c18f;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;68b5e6d1-3275-40e2-9043-4b72a1f0aa12-0002c190;Moebel;M_Chair-Breuer;M_Chair-Breuer;;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-00039745;Moebel;Chair;Chair-Viper;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-00039746;Moebel;Chair;Chair-Viper;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-00039747;Moebel;Chair;Chair-Viper;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-00039748;Moebel;Couch;Couch-Viper;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-00039749;Moebel;Couch;Couch-Viper;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-0003974a;Moebel;Chair;Chair-Viper;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-0003974b;Moebel;Chair;Chair-Viper;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-0003974c;Moebel;Chair;Chair-Viper;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-0003974d;Moebel;Chair;Chair-Viper;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-0003974e;Moebel;Couch;Couch-Viper;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-0003974f;Moebel;Wastebasket2;Wastebasket2;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-00039750;Moebel;Wastebasket2;Wastebasket2;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-00039751;Moebel;Wastebasket2;Wastebasket2;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-00039752;Moebel;Wastebasket2;Wastebasket2;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-00039753;Moebel;"24"" x 24"" x 30""";Table-Night Stand;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-00039754;Moebel;"24"" x 24"" x 30""";Table-Night Stand;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-00039755;Moebel;"24"" x 24"" x 30""";Table-Night Stand;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-00039756;Moebel;"24"" x 24"" x 30""";Table-Night Stand;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-00039757;Moebel;"24"" x 24"" x 30""";Table-Night Stand;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-00039758;Moebel;"24"" x 24"" x 30""";Table-Night Stand;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-00039759;Moebel;"24"" x 24"" x 30""";Table-Night Stand;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-0003975a;Moebel;"24"" x 24"" x 30""";Table-Night Stand;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;925be55e-b3cf-454d-a521-260204a42898-0003976a;Moebel;"24"" x 24"" x 30""";Table-Night Stand;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003c198;Moebel;Window Shade;Window Shade;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003c53d;Moebel;Window Shade;Window Shade;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003c569;Moebel;Window Shade;Window Shade;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003c588;Moebel;Window Shade;Window Shade;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003c5c9;Moebel;Window Shade;Window Shade;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;da2c0b38-0351-4835-b45a-db7110b0617d-0003c6e3;Moebel;Window Shade;Window Shade;;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;6949fe39-3e9a-4d4d-b7fe-71339c615138-0002224e;Waende;Exterior - Insulation on Masonry;;;28.577000000000002;m3;;Insulation / Thermal Barriers - External Wall Insulation [Finish 1] (100 mm) | Air Barrier - Air Infiltration Barrier [Membran] (0 mm) | Masonry - Concrete Block [Tragend] (190 mm) | Vapour / Moisture Barriers - Vapour Retarder [Membran] (0 mm) | Plasterboard [Finish 2] (13 mm);303;95.549999999999997;8.4000000000000004
+racadvancedsampleproject;6949fe39-3e9a-4d4d-b7fe-71339c615138-0002224f;Waende;Exterior Curtain Wall;;;0;m3;;;;93.609999999999999;8.3100000000000005
+racadvancedsampleproject;6949fe39-3e9a-4d4d-b7fe-71339c615138-00022250;Waende;Exterior Curtain Wall;;;0;m3;;;;92.319999999999993;8.25
+racadvancedsampleproject;6949fe39-3e9a-4d4d-b7fe-71339c615138-00022251;Waende;Exterior - Insulation on Masonry;;;57.865000000000002;m3;;Insulation / Thermal Barriers - External Wall Insulation [Finish 1] (100 mm) | Air Barrier - Air Infiltration Barrier [Membran] (0 mm) | Masonry - Concrete Block [Tragend] (190 mm) | Vapour / Moisture Barriers - Vapour Retarder [Membran] (0 mm) | Plasterboard [Finish 2] (13 mm);303;190.97000000000000;20.710000000000001
+racadvancedsampleproject;6949fe39-3e9a-4d4d-b7fe-71339c615138-00022252;Waende;Exterior Curtain Wall;;;0;m3;;;;31.020000000000000;2.7200000000000002
+racadvancedsampleproject;6949fe39-3e9a-4d4d-b7fe-71339c615138-000222e3;Waende;Exterior Curtain Wall;;;0;m3;;;;561.16999999999996;49.229999999999997
+racadvancedsampleproject;6949fe39-3e9a-4d4d-b7fe-71339c615138-000222e6;Waende;Exterior Curtain Wall;;;0;m3;;;;63.140000000000001;5.6500000000000004
+racadvancedsampleproject;6949fe39-3e9a-4d4d-b7fe-71339c615138-000222e9;Waende;Exterior Curtain Wall;;;0;m3;;;;229.31999999999999;20.120000000000001
+racadvancedsampleproject;6949fe39-3e9a-4d4d-b7fe-71339c615138-000222ec;Waende;Pavillion Curtain Wall;;;0;m3;;;;44.770000000000003;6.2599999999999998
+racadvancedsampleproject;6949fe39-3e9a-4d4d-b7fe-71339c615138-000222ef;Waende;Pavillion Curtain Wall;;;0;m3;;;;40.450000000000003;5.9900000000000002
+racadvancedsampleproject;6949fe39-3e9a-4d4d-b7fe-71339c615138-000222f2;Waende;Pavillion Curtain Wall;;;0;m3;;;;44.770000000000003;6.2599999999999998
+racadvancedsampleproject;9ddc7feb-6f54-4b53-9ca4-7923d929ea52-000231f2;Waende;Interior - 138mm Partition (1-hr);;;6.6849999999999996;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;48.270000000000003;16.25
+racadvancedsampleproject;9ddc7feb-6f54-4b53-9ca4-7923d929ea52-000232b3;Waende;Interior - 138mm Partition (1-hr);;;2.3279999999999998;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;16.809999999999999;5.8899999999999997
+racadvancedsampleproject;9ddc7feb-6f54-4b53-9ca4-7923d929ea52-00023334;Waende;Interior - 138mm Partition (1-hr);;;3.7229999999999999;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;26.879999999999999;8.3800000000000008
+racadvancedsampleproject;9ddc7feb-6f54-4b53-9ca4-7923d929ea52-00023366;Waende;Interior - 138mm Partition (1-hr);;;3.9940000000000002;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.829999999999998;8.3800000000000008
+racadvancedsampleproject;9ddc7feb-6f54-4b53-9ca4-7923d929ea52-000233a1;Waende;Interior - 138mm Partition (1-hr);;;3.9940000000000002;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.829999999999998;8.3800000000000008
+racadvancedsampleproject;9ddc7feb-6f54-4b53-9ca4-7923d929ea52-000233d8;Waende;Generic - 200mm;;;18.808000000000000;m3;;Unbekannt [Tragend] (200 mm);200;94.040000000000006;8.3800000000000008
+racadvancedsampleproject;9ddc7feb-6f54-4b53-9ca4-7923d929ea52-000235c5;Waende;Exterior - Insulation on Masonry;;;8.3800000000000008;m3;;Insulation / Thermal Barriers - External Wall Insulation [Finish 1] (100 mm) | Air Barrier - Air Infiltration Barrier [Membran] (0 mm) | Masonry - Concrete Block [Tragend] (190 mm) | Vapour / Moisture Barriers - Vapour Retarder [Membran] (0 mm) | Plasterboard [Finish 2] (13 mm);303;27.660000000000000;8.3300000000000001
+racadvancedsampleproject;9ddc7feb-6f54-4b53-9ca4-7923d929ea52-0002367f;Waende;Interior - 138mm Partition (1-hr);;;2.9420000000000002;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;21.239999999999998;6.7000000000000002
+racadvancedsampleproject;9ddc7feb-6f54-4b53-9ca4-7923d929ea52-0002369e;Waende;Interior - 138mm Partition (1-hr);;;1.0840000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;7.8300000000000001;2.3500000000000001
+racadvancedsampleproject;9ddc7feb-6f54-4b53-9ca4-7923d929ea52-000236d5;Waende;Interior - 138mm Partition (1-hr);;;2.7149999999999999;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;19.600000000000001;6.2699999999999996
+racadvancedsampleproject;9ddc7feb-6f54-4b53-9ca4-7923d929ea52-00023716;Waende;Interior - 138mm Partition (1-hr);;;2.4199999999999999;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;17.469999999999999;5.6299999999999999
+racadvancedsampleproject;9ddc7feb-6f54-4b53-9ca4-7923d929ea52-0002373b;Waende;Interior - 138mm Partition (1-hr);;;1.5109999999999999;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;10.910000000000000;3.2599999999999998
+racadvancedsampleproject;9ddc7feb-6f54-4b53-9ca4-7923d929ea52-0002376f;Waende;Interior - 138mm Partition (1-hr);;;1.0840000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;7.8300000000000001;2.3500000000000001
+racadvancedsampleproject;9ddc7feb-6f54-4b53-9ca4-7923d929ea52-0002388b;Waende;Exterior Curtain Wall;;;0;m3;;;;56.420000000000002;16.260000000000002
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00024179;Waende;Storefront;;;0;m3;;;;9.3300000000000001;2.8900000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000243c6;Waende;Exterior Curtain Wall;;;0;m3;;;;187.47000000000000;16.440000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00024521;Waende;Exterior - Insulation on Masonry;;;52.122999999999998;m3;;Insulation / Thermal Barriers - External Wall Insulation [Finish 1] (100 mm) | Air Barrier - Air Infiltration Barrier [Membran] (0 mm) | Masonry - Concrete Block [Tragend] (190 mm) | Vapour / Moisture Barriers - Vapour Retarder [Membran] (0 mm) | Plasterboard [Finish 2] (13 mm);303;173.88000000000000;20.0
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000245e0;Waende;Storefront;;;0;m3;;;;33.689999999999998;9.5999999999999996
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000246c5;Waende;Interior - 138mm Partition (1-hr);;;4.0389999999999997;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;29.160000000000000;8.3300000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002472d;Waende;Interior - 138mm Partition (1-hr);;;3.9840000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.760000000000002;8.2100000000000009
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00024793;Waende;Interior - 138mm Partition (1-hr);;;3.9840000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.760000000000002;8.2100000000000009
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00024801;Waende;Interior - 138mm Partition (1-hr);;;1.2110000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;8.7400000000000002;3.7400000000000002
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002482f;Waende;Interior - 138mm Partition (1-hr);;;0.46800000000000003;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;3.3799999999999999;2.0
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00024855;Waende;Interior - 138mm Partition (1-hr);;;0.36399999999999999;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;2.6200000000000001;0.88
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00024975;Waende;Exterior Curtain Wall;;;0;m3;;;;291.17000000000002;25.609999999999999
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00024b46;Waende;Interior - 138mm Partition (1-hr);;;7.3350000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;52.960000000000001;17.260000000000002
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00024d4d;Waende;Generic - 200mm;;;18.809999999999999;m3;;Unbekannt [Tragend] (200 mm);200;94.049999999999997;8.4000000000000004
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00024dc4;Waende;Exterior - Insulation on Masonry;;;48.923000000000002;m3;;Insulation / Thermal Barriers - External Wall Insulation [Finish 1] (100 mm) | Air Barrier - Air Infiltration Barrier [Membran] (0 mm) | Masonry - Concrete Block [Tragend] (190 mm) | Vapour / Moisture Barriers - Vapour Retarder [Membran] (0 mm) | Plasterboard [Finish 2] (13 mm);303;163.03999999999999;14.130000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00024f23;Waende;Generic - 200mm;;;18.809999999999999;m3;;Unbekannt [Tragend] (200 mm);200;94.049999999999997;8.3300000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00025024;Waende;Storefront;;;0;m3;;;;9.3300000000000001;2.8399999999999999
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000251e5;Waende;Interior - 138mm Partition (1-hr);;;1.2180000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;8.8000000000000007;2.3199999999999998
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002522f;Waende;Interior - 138mm Partition (1-hr);;;4.2690000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;30.820000000000000;8.3300000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000252cf;Waende;Interior - 138mm Partition (1-hr);;;4.3419999999999996;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;31.350000000000001;8.3300000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002531b;Waende;Interior - 138mm Partition (1-hr);;;3.9409999999999998;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.449999999999999;8.7899999999999991
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00025532;Waende;Interior - 138mm Partition (1-hr);;;1.2180000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;8.8000000000000007;2.3199999999999998
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000255a8;Waende;Interior - 138mm Partition (1-hr);;;1.2180000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;8.8000000000000007;2.3199999999999998
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002564a;Waende;Interior - 138mm Partition (1-hr);;;3.0510000000000002;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;22.030000000000001;6.0199999999999996
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002569a;Waende;Interior - 138mm Partition (1-hr);;;3.0510000000000002;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;22.030000000000001;6.0199999999999996
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002575b;Waende;Interior - 138mm Partition (1-hr);;;0.91300000000000003;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;6.5899999999999999;2.0
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000257a2;Waende;Interior - 138mm Partition (1-hr);;;17.547999999999998;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;126.70000000000000;40.979999999999997
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00025810;Waende;Exterior Curtain Wall;;;0;m3;;;;465.26999999999998;40.979999999999997
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00025930;Waende;Interior - 138mm Partition (1-hr);;;3.9840000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.760000000000002;8.2100000000000009
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000259a7;Waende;Interior - 138mm Partition (1-hr);;;3.9809999999999999;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.739999999999998;8.1999999999999993
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00025a07;Waende;Interior - 138mm Partition (1-hr);;;3.9840000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.760000000000002;8.2100000000000009
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00025a75;Waende;Interior - 138mm Partition (1-hr);;;3.9840000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.760000000000002;8.2100000000000009
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00025aa7;Waende;Generic - 200mm;;;19.501000000000001;m3;;Unbekannt [Tragend] (200 mm);200;97.5;8.3300000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00025b3b;Waende;Exterior - Insulation on Masonry;;;3.0400000000000000;m3;;Insulation / Thermal Barriers - External Wall Insulation [Finish 1] (100 mm) | Air Barrier - Air Infiltration Barrier [Membran] (0 mm) | Masonry - Concrete Block [Tragend] (190 mm) | Vapour / Moisture Barriers - Vapour Retarder [Membran] (0 mm) | Plasterboard [Finish 2] (13 mm);303;10.029999999999999;2.8900000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00025e17;Waende;Storefront;;;0;m3;;;;9.3300000000000001;2.8900000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00025f1b;Waende;Exterior Curtain Wall;;;0;m3;;;;29.590000000000000;2.6000000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000260cb;Waende;Generic - 225mm Concrete;;;3.5910000000000002;m3;;Concrete - Cast-in-Place Concrete [Tragend] (225 mm);225;15.960000000000001;1.3999999999999999
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026159;Waende;Generic - 225mm Concrete;;;3.5910000000000002;m3;;Concrete - Cast-in-Place Concrete [Tragend] (225 mm);225;15.960000000000001;1.3999999999999999
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000261a8;Waende;Generic - 225mm Concrete;;;3.5910000000000002;m3;;Concrete - Cast-in-Place Concrete [Tragend] (225 mm);225;15.960000000000001;1.3999999999999999
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002620f;Waende;Generic - 225mm Concrete;;;3.5910000000000002;m3;;Concrete - Cast-in-Place Concrete [Tragend] (225 mm);225;15.960000000000001;1.3999999999999999
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026268;Waende;Exterior Curtain Wall;;;0;m3;;;;24.530000000000001;5.9900000000000002
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026279;Waende;Exterior Curtain Wall;;;0;m3;;;;118.27000000000000;10.600000000000000
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002629c;Waende;Exterior Curtain Wall;;;0;m3;;;;85.930000000000007;7.7599999999999998
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000262f8;Waende;Exterior Curtain Wall;;;0;m3;;;;20.879999999999999;1.9399999999999999
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000267c8;Waende;Interior - 138mm Partition (1-hr);;;1.3089999999999999;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;9.4499999999999993;3.2599999999999998
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000267c9;Waende;Interior - 138mm Partition (1-hr);;;2.3279999999999998;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;16.809999999999999;5.8899999999999997
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000267ca;Waende;Interior - 138mm Partition (1-hr);;;1.0840000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;7.8300000000000001;2.3500000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000267cb;Waende;Interior - 138mm Partition (1-hr);;;2.9289999999999998;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;21.149999999999999;7.2599999999999998
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000267cc;Waende;Interior - 138mm Partition (1-hr);;;1.0840000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;7.8300000000000001;2.3500000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000267d2;Waende;Storefront;;;0;m3;;;;9.3300000000000001;2.8900000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000267e5;Waende;Storefront;;;0;m3;;;;16.489999999999998;4.7300000000000004
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000267e9;Waende;Storefront;;;0;m3;;;;9.3300000000000001;2.8399999999999999
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000267fc;Waende;Interior - 138mm Partition (1-hr);;;1.1330000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;8.1799999999999997;2.3199999999999998
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000267fd;Waende;Interior - 138mm Partition (1-hr);;;3.9710000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.670000000000002;8.3300000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000267fe;Waende;Interior - 138mm Partition (1-hr);;;4.0389999999999997;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;29.160000000000000;8.3300000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000267ff;Waende;Interior - 138mm Partition (1-hr);;;3.6280000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;26.199999999999999;8.7899999999999991
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026805;Waende;Interior - 138mm Partition (1-hr);;;1.1330000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;8.1799999999999997;2.3199999999999998
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026806;Waende;Interior - 138mm Partition (1-hr);;;1.1330000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;8.1799999999999997;2.3199999999999998
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026807;Waende;Interior - 138mm Partition (1-hr);;;2.8380000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;20.489999999999998;6.0199999999999996
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026808;Waende;Interior - 138mm Partition (1-hr);;;2.8380000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;20.489999999999998;6.0199999999999996
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026809;Waende;Interior - 138mm Partition (1-hr);;;0.91300000000000003;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;6.5899999999999999;2.0
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002680a;Waende;Interior - 138mm Partition (1-hr);;;17.818999999999999;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;128.65000000000001;40.979999999999997
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026814;Waende;Storefront;;;0;m3;;;;9.3300000000000001;2.8900000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026852;Waende;Interior - 138mm Partition (1-hr);;;11.526000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;83.219999999999999;25.989999999999998
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026853;Waende;Interior - 138mm Partition (1-hr);;;2.5430000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;18.359999999999999;5.8899999999999997
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026854;Waende;Interior - 138mm Partition (1-hr);;;1.2380000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;8.9399999999999995;2.3500000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026855;Waende;Interior - 138mm Partition (1-hr);;;1.625;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;11.730000000000000;3.2599999999999998
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026856;Waende;Interior - 138mm Partition (1-hr);;;1.1650000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;8.4199999999999999;2.3500000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002685c;Waende;Storefront;;;0;m3;;;;10.029999999999999;2.8900000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002686f;Waende;Interior - 138mm Partition (1-hr);;;17.911999999999999;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;129.33000000000001;37.189999999999998
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026873;Waende;Storefront;;;0;m3;;;;10.029999999999999;2.8399999999999999
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026886;Waende;Interior - 138mm Partition (1-hr);;;1.2180000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;8.8000000000000007;2.3199999999999998
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026887;Waende;Interior - 138mm Partition (1-hr);;;4.2690000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;30.820000000000000;8.3300000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026888;Waende;Interior - 138mm Partition (1-hr);;;4.3419999999999996;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;31.350000000000001;8.3300000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026889;Waende;Interior - 138mm Partition (1-hr);;;3.9409999999999998;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.449999999999999;8.7899999999999991
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002688f;Waende;Interior - 138mm Partition (1-hr);;;1.2180000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;8.8000000000000007;2.3199999999999998
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026890;Waende;Interior - 138mm Partition (1-hr);;;1.2180000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;8.8000000000000007;2.3199999999999998
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026891;Waende;Interior - 138mm Partition (1-hr);;;3.0510000000000002;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;22.030000000000001;6.0199999999999996
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026892;Waende;Interior - 138mm Partition (1-hr);;;3.0510000000000002;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;22.030000000000001;6.0199999999999996
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026893;Waende;Interior - 138mm Partition (1-hr);;;0.98099999999999998;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;7.0800000000000001;2.0
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026894;Waende;Interior - 138mm Partition (1-hr);;;19.317000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;139.47000000000000;40.979999999999997
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002689e;Waende;Storefront;;;0;m3;;;;10.029999999999999;2.8900000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026968;Waende;Interior - 138mm Partition (1-hr);;;3.9840000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.760000000000002;8.2100000000000009
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026988;Waende;Interior - 138mm Partition (1-hr);;;4.0119999999999996;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.969999999999999;8.2100000000000009
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026a49;Waende;Interior - 138mm Partition (1-hr);;;3.9809999999999999;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.739999999999998;8.1999999999999993
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026a86;Waende;Interior - 138mm Partition (1-hr);;;3.9809999999999999;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.739999999999998;8.1999999999999993
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026ac4;Waende;Interior - 138mm Partition (1-hr);;;3.9809999999999999;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.739999999999998;8.1999999999999993
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026ae2;Waende;Interior - 138mm Partition (1-hr);;;3.9840000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.760000000000002;8.2100000000000009
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026b11;Waende;Interior - 138mm Partition (1-hr);;;3.9840000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.760000000000002;8.2100000000000009
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026b40;Waende;Interior - 138mm Partition (1-hr);;;3.9840000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.760000000000002;8.2100000000000009
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026d2b;Waende;Interior - 138mm Partition (1-hr);;;3.9840000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.760000000000002;8.2100000000000009
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026dc8;Waende;Interior - 138mm Partition (1-hr);;;2.6930000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;19.440000000000001;5.5
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026de5;Waende;Interior - 138mm Partition (1-hr);;;3.9710000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.670000000000002;8.3300000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026e03;Waende;Interior - 138mm Partition (1-hr);;;1.4500000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;10.470000000000001;3.1000000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026e55;Waende;Interior - 138mm Partition (1-hr);;;3.9710000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.670000000000002;8.3300000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026e71;Waende;Interior - 138mm Partition (1-hr);;;2.7420000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;19.800000000000001;5.75
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00026ec3;Waende;Interior - 138mm Partition (1-hr);;;3.7690000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;27.210000000000001;8.3300000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000270b8;Waende;Interior - 138mm Partition (1-hr);;;2.9230000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;21.100000000000001;5.9000000000000004
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002710e;Waende;Interior - 138mm Partition (1-hr);;;1.7400000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;12.560000000000000;3.7700000000000000
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00027196;Waende;Interior - 138mm Partition (1-hr);;;3.9870000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.780000000000001;8.2200000000000006
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000271ea;Waende;Interior - 138mm Partition (1-hr);;;2.8420000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;20.520000000000000;6.0199999999999996
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002721c;Waende;Interior - 138mm Partition (1-hr);;;3.7160000000000002;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;26.829999999999998;8.2200000000000006
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002723f;Waende;Interior - 138mm Partition (1-hr);;;3.5579999999999998;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;25.690000000000001;7.2699999999999996
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002729b;Waende;Interior - 138mm Partition (1-hr);;;2.1789999999999998;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;15.730000000000000;4.4500000000000002
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00027395;Waende;Interior - 138mm Partition (1-hr);;;1.0770000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;7.7800000000000002;2.2000000000000002
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000273bf;Waende;Interior - 138mm Partition (1-hr);;;2.9500000000000002;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;21.300000000000001;7.2699999999999996
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000273fb;Waende;Interior - 138mm Partition (1-hr);;;1.0770000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;7.7800000000000002;2.2000000000000002
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002746f;Waende;Interior - 138mm Partition (1-hr);;;1.0340000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;7.4600000000000000;2.25
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00027499;Waende;Interior - 138mm Partition (1-hr);;;1.0340000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;7.4600000000000000;2.25
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00027526;Waende;Interior - 138mm Partition (1-hr);;;2.2080000000000002;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;15.940000000000000;5.2000000000000002
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002785b;Waende;Interior - 138mm Partition (1-hr);;;1.3029999999999999;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;9.4100000000000001;2.7999999999999998
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002787b;Waende;Interior - 138mm Partition (1-hr);;;0.72699999999999998;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;5.25;2.6699999999999999
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000278e7;Waende;Storefront;;;0;m3;;;;27.910000000000000;7.9600000000000000
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00027a4d;Waende;Interior - 138mm Partition (1-hr);;;14.577000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;105.25;32.600000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00027adc;Waende;Storefront;;;0;m3;;;;11.990000000000000;3.4600000000000000
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00027e8c;Waende;Interior - 138mm Partition (1-hr);;;4.2820000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;30.920000000000002;8.2100000000000009
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00027ea5;Waende;Interior - 138mm Partition (1-hr);;;4.2820000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;30.920000000000002;8.2100000000000009
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00027ec5;Waende;Interior - 138mm Partition (1-hr);;;4.2820000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;30.920000000000002;8.2100000000000009
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028130;Waende;Interior - 138mm Partition (1-hr);;;4.0119999999999996;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.969999999999999;8.2100000000000009
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000281a7;Waende;Interior - 138mm Partition (1-hr);;;4.2820000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;30.920000000000002;8.2100000000000009
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000281ce;Waende;Interior - 138mm Partition (1-hr);;;4.2690000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;30.820000000000000;8.3300000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000281f9;Waende;Interior - 138mm Partition (1-hr);;;3.9990000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.870000000000001;8.3300000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002821d;Waende;Interior - 138mm Partition (1-hr);;;4.2690000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;30.820000000000000;8.3300000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028241;Waende;Interior - 138mm Partition (1-hr);;;3.9990000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;28.870000000000001;8.3300000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028497;Waende;Interior - 138mm Partition (1-hr);;;1.5060000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;10.869999999999999;3.0
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002854c;Waende;Interior - 138mm Partition (1-hr);;;4.3099999999999996;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;31.120000000000001;8.2599999999999998
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028575;Waende;Interior - 138mm Partition (1-hr);;;1.2380000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;8.9399999999999995;2.3500000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028576;Waende;Interior - 138mm Partition (1-hr);;;1.3310000000000000;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;9.6099999999999994;2.6699999999999999
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028577;Waende;Interior - 138mm Partition (1-hr);;;4.2930000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;31.0;8.3800000000000008
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000285ee;Waende;Interior - 138mm Partition (1-hr);;;4.2930000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;31.0;8.3800000000000008
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028742;Waende;Interior - 138mm Partition (1-hr);;;0.24199999999999999;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;1.8400000000000001;2.8999999999999999
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028743;Waende;Interior - 138mm Partition (1-hr);;;0.66900000000000004;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;4.9400000000000004;8.0299999999999994
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028744;Waende;Interior - 138mm Partition (1-hr);;;0.23100000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;1.7600000000000000;2.8999999999999999
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028745;Waende;Interior - 138mm Partition (1-hr);;;0.68400000000000005;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;5.2000000000000002;8.0299999999999994
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028752;Waende;Interior - 138mm Partition (1-hr);;;0.245;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;1.8600000000000001;2.9300000000000002
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028753;Waende;Interior - 138mm Partition (1-hr);;;0.66900000000000004;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;4.9400000000000004;8.0299999999999994
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028754;Waende;Interior - 138mm Partition (1-hr);;;0.23300000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;1.7800000000000000;2.9300000000000002
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028755;Waende;Interior - 138mm Partition (1-hr);;;0.68400000000000005;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;5.2000000000000002;8.0299999999999994
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028761;Waende;Interior - 138mm Partition (1-hr);;;0.245;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;1.8600000000000001;2.9300000000000002
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028762;Waende;Interior - 138mm Partition (1-hr);;;0.66900000000000004;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;4.9400000000000004;8.0299999999999994
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028763;Waende;Interior - 138mm Partition (1-hr);;;0.23300000000000001;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;1.7800000000000000;2.9300000000000002
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028764;Waende;Interior - 138mm Partition (1-hr);;;0.68400000000000005;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;5.2000000000000002;8.0299999999999994
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028e7c;Waende;Parapet Wall;;;1.9700000000000000;m3;;Insulation / Thermal Barriers - External Wall Insulation [Finish 1] (100 mm) | Air Barrier - Air Infiltration Barrier [Membran] (0 mm) | Masonry - Concrete Block [Tragend] (190 mm);290;6.7900000000000000;11.029999999999999
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028f35;Waende;Parapet Wall;;;6.4770000000000003;m3;;Insulation / Thermal Barriers - External Wall Insulation [Finish 1] (100 mm) | Air Barrier - Air Infiltration Barrier [Membran] (0 mm) | Masonry - Concrete Block [Tragend] (190 mm);290;22.329999999999998;37.219999999999999
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00028ffe;Waende;Parapet Wall;;;9.3940000000000001;m3;;Insulation / Thermal Barriers - External Wall Insulation [Finish 1] (100 mm) | Air Barrier - Air Infiltration Barrier [Membran] (0 mm) | Masonry - Concrete Block [Tragend] (190 mm);290;32.390000000000001;53.990000000000002
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002907a;Waende;Parapet Wall;;;11.551000000000000;m3;;Insulation / Thermal Barriers - External Wall Insulation [Finish 1] (100 mm) | Air Barrier - Air Infiltration Barrier [Membran] (0 mm) | Masonry - Concrete Block [Tragend] (190 mm);290;39.829999999999998;66.379999999999995
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-000290c1;Waende;Parapet Wall;;;1.9150000000000000;m3;;Insulation / Thermal Barriers - External Wall Insulation [Finish 1] (100 mm) | Air Barrier - Air Infiltration Barrier [Membran] (0 mm) | Masonry - Concrete Block [Tragend] (190 mm);290;6.5999999999999996;11.0
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-00029183;Waende;Parapet Wall;;;5.7100000000000000;m3;;Insulation / Thermal Barriers - External Wall Insulation [Finish 1] (100 mm) | Air Barrier - Air Infiltration Barrier [Membran] (0 mm) | Masonry - Concrete Block [Tragend] (190 mm);290;29.570000000000000;49.280000000000001
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002920a;Waende;Parapet Wall;;;3.6930000000000001;m3;;Insulation / Thermal Barriers - External Wall Insulation [Finish 1] (100 mm) | Air Barrier - Air Infiltration Barrier [Membran] (0 mm) | Masonry - Concrete Block [Tragend] (190 mm);290;19.170000000000002;31.949999999999999
+racadvancedsampleproject;9e597f98-694d-4ada-b8ef-0e7459e0b930-0002925b;Waende;Parapet Wall;;;2.3010000000000002;m3;;Insulation / Thermal Barriers - External Wall Insulation [Finish 1] (100 mm) | Air Barrier - Air Infiltration Barrier [Membran] (0 mm) | Masonry - Concrete Block [Tragend] (190 mm);290;11.900000000000000;20.120000000000001
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-000295ba;Waende;Exterior Curtain Wall;;;0;m3;;;;20.059999999999999;2.8900000000000001
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-00029682;Waende;Exterior Curtain Wall;;;0;m3;;;;20.059999999999999;2.8900000000000001
+racadvancedsampleproject;f1268bbe-9264-4ea5-b30b-6919ab197ea7-0002972a;Waende;Exterior - Insulation on Masonry;;;9.5790000000000006;m3;;Insulation / Thermal Barriers - External Wall Insulation [Finish 1] (100 mm) | Air Barrier - Air Infiltration Barrier [Membran] (0 mm) | Masonry - Concrete Block [Tragend] (190 mm) | Vapour / Moisture Barriers - Vapour Retarder [Membran] (0 mm) | Plasterboard [Finish 2] (13 mm);303;31.609999999999999;8.4700000000000006
+racadvancedsampleproject;9e94f57c-3b96-47ee-8d6b-c46d9346a9cb-0002c838;Waende;Exterior - Insulation on Masonry;;;27.178999999999998;m3;;Insulation / Thermal Barriers - External Wall Insulation [Finish 1] (100 mm) | Air Barrier - Air Infiltration Barrier [Membran] (0 mm) | Masonry - Concrete Block [Tragend] (190 mm) | Vapour / Moisture Barriers - Vapour Retarder [Membran] (0 mm) | Plasterboard [Finish 2] (13 mm);303;90.870000000000005;8.2899999999999991
+racadvancedsampleproject;5bbf8047-337a-468f-98e7-d037aa536b9a-0002dc57;Waende;Interior - 138mm Partition (1-hr);;;0.81100000000000005;m3;;Plasterboard [Finish 2] (16 mm) | Metal - Stud Layer [Tragend] (92 mm) | Plasterboard [Finish 2] (16 mm) | Plasterboard [Finish 2] (16 mm);140;5.8499999999999996;1.7400000000000000
+racadvancedsampleproject;cf8cfcc0-c742-4a2a-b6ca-a26573419e10-00030069;Waende;Exterior Curtain Wall;;;0;m3;;;;56.420000000000002;16.260000000000002
+racadvancedsampleproject;1832d549-62c0-44df-812c-b19e8965ded5-000238c7;Fenster;0915 x 1220mm;M_Fixed;5;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;1832d549-62c0-44df-812c-b19e8965ded5-00023913;Fenster;0915 x 1220mm;M_Fixed;6;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;1832d549-62c0-44df-812c-b19e8965ded5-00023945;Fenster;0915 x 1220mm;M_Fixed;7;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;1832d549-62c0-44df-812c-b19e8965ded5-00023989;Fenster;0915 x 1220mm;M_Fixed;8;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;1832d549-62c0-44df-812c-b19e8965ded5-000239b3;Fenster;0915 x 1220mm;M_Fixed;9;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;1832d549-62c0-44df-812c-b19e8965ded5-000239e3;Fenster;0915 x 1220mm;M_Fixed;10;1;Stk;01 - Entry Level;;;;
+racadvancedsampleproject;110717dd-74ae-4656-b586-fb1c03e9905a-00030954;Fenster;0915 x 1220mm;M_Fixed;11;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;110717dd-74ae-4656-b586-fb1c03e9905a-00030987;Fenster;0915 x 1220mm;M_Fixed;12;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;110717dd-74ae-4656-b586-fb1c03e9905a-000309b9;Fenster;0915 x 1220mm;M_Fixed;13;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;110717dd-74ae-4656-b586-fb1c03e9905a-000309e5;Fenster;0915 x 1220mm;M_Fixed;14;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;110717dd-74ae-4656-b586-fb1c03e9905a-00030a13;Fenster;0915 x 1220mm;M_Fixed;15;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;110717dd-74ae-4656-b586-fb1c03e9905a-00030a31;Fenster;0915 x 1220mm;M_Fixed;16;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;110717dd-74ae-4656-b586-fb1c03e9905a-00030a57;Fenster;0915 x 1220mm;M_Fixed;17;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;110717dd-74ae-4656-b586-fb1c03e9905a-00030a7b;Fenster;0915 x 1220mm;M_Fixed;18;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;110717dd-74ae-4656-b586-fb1c03e9905a-00030a95;Fenster;0915 x 1220mm;M_Fixed;19;1;Stk;02 - Floor;;;;
+racadvancedsampleproject;110717dd-74ae-4656-b586-fb1c03e9905a-00030ac0;Fenster;0915 x 1220mm;M_Fixed;20;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;110717dd-74ae-4656-b586-fb1c03e9905a-00030aea;Fenster;0915 x 1220mm;M_Fixed;21;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;110717dd-74ae-4656-b586-fb1c03e9905a-00030b0c;Fenster;0915 x 1220mm;M_Fixed;22;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;110717dd-74ae-4656-b586-fb1c03e9905a-00030b2c;Fenster;0915 x 1220mm;M_Fixed;23;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;110717dd-74ae-4656-b586-fb1c03e9905a-00030b56;Fenster;0915 x 1220mm;M_Fixed;24;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;110717dd-74ae-4656-b586-fb1c03e9905a-00030b86;Fenster;0915 x 1220mm;M_Fixed;25;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;110717dd-74ae-4656-b586-fb1c03e9905a-00030ba0;Fenster;0915 x 1220mm;M_Fixed;26;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;110717dd-74ae-4656-b586-fb1c03e9905a-00030bbe;Fenster;0915 x 1220mm;M_Fixed;27;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;110717dd-74ae-4656-b586-fb1c03e9905a-00030bd8;Fenster;0915 x 1220mm;M_Fixed;28;1;Stk;03 - Floor;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b3a0;Raeume;;;;38.659999999999997;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b498;Raeume;;;;323.58999999999997;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b499;Raeume;;;;143.62000000000000;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b49a;Raeume;;;;22.180000000000000;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b49b;Raeume;;;;8.4600000000000009;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b49c;Raeume;;;;5.6900000000000004;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b49d;Raeume;;;;41.460000000000001;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b49e;Raeume;;;;15.310000000000000;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b49f;Raeume;;;;15.710000000000001;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b4a0;Raeume;;;;9.6999999999999993;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b4a1;Raeume;;;;5.5800000000000001;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b4a2;Raeume;;;;18.620000000000001;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b4a3;Raeume;;;;52.399999999999999;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b4a4;Raeume;;;;8.9000000000000004;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b4a5;Raeume;;;;17.379999999999999;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b4a6;Raeume;;;;48.049999999999997;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b4a7;Raeume;;;;38.850000000000001;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b4a8;Raeume;;;;31.230000000000000;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b4a9;Raeume;;;;124.63000000000000;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b4aa;Raeume;;;;18.930000000000000;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b4ac;Raeume;;;;7.0800000000000001;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b4ad;Raeume;;;;38.490000000000002;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b4ae;Raeume;;;;13.690000000000000;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b4b0;Raeume;;;;13.119999999999999;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b4b1;Raeume;;;;132.75999999999999;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b4b2;Raeume;;;;88.370000000000005;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b4b3;Raeume;;;;47.399999999999999;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b4b4;Raeume;;;;95.930000000000007;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b4b5;Raeume;;;;47.399999999999999;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b4b6;Raeume;;;;46.590000000000003;m2;01 - Entry Level;;;;
+racadvancedsampleproject;50383581-0df4-4a83-bafb-ea6cc3265f8b-0002b4b7;Raeume;;;;18.930000000000000;m2;01 - Entry Level;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-000347ae;Raeume;;;;19.180000000000000;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-000347b6;Raeume;;;;30.370000000000001;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-000347b8;Raeume;;;;31.320000000000000;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-000347ba;Raeume;;;;47.380000000000003;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-000347c1;Raeume;;;;31.180000000000000;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-000347cb;Raeume;;;;132.86000000000001;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-000347cd;Raeume;;;;13.119999999999999;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-00034839;Raeume;;;;13.690000000000000;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-0003483b;Raeume;;;;38.490000000000002;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-0003483d;Raeume;;;;7.0800000000000001;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-0003483f;Raeume;;;;282.31999999999999;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-00034841;Raeume;;;;18.920000000000002;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-0003484e;Raeume;;;;91.819999999999993;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-00034850;Raeume;;;;120.81999999999999;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-00034852;Raeume;;;;15.880000000000001;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-00034854;Raeume;;;;40.909999999999997;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-00034862;Raeume;;;;55.100000000000001;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-00034864;Raeume;;;;130.59999999999999;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-0003487f;Raeume;;;;34.420000000000002;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-00034881;Raeume;;;;6.8200000000000003;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-00034883;Raeume;;;;7.0999999999999996;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-00034885;Raeume;;;;5.2100000000000000;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-00034887;Raeume;;;;12.300000000000001;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-00034889;Raeume;;;;40.359999999999999;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-0003488b;Raeume;;;;14.800000000000001;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-00034898;Raeume;;;;25.460000000000001;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-0003489a;Raeume;;;;5.5800000000000001;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-0003489c;Raeume;;;;18.920000000000002;m2;02 - Floor;;;;
+racadvancedsampleproject;a79add17-780f-499e-a863-104a9aa9c91e-0003489e;Raeume;;;;112.56999999999999;m2;02 - Floor;;;;
+racadvancedsampleproject;e29811d8-f362-4144-bef4-40532c4f577a-000348c9;Raeume;;;;19.210000000000001;m2;03 - Floor;;;;
+racadvancedsampleproject;e29811d8-f362-4144-bef4-40532c4f577a-000348cf;Raeume;;;;78.900000000000006;m2;03 - Floor;;;;
+racadvancedsampleproject;e29811d8-f362-4144-bef4-40532c4f577a-000348d1;Raeume;;;;63.630000000000003;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034d49;Raeume;;;;47.399999999999999;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034d5d;Raeume;;;;63.630000000000003;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034d5f;Raeume;;;;72.150000000000006;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034d61;Raeume;;;;13.119999999999999;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034d63;Raeume;;;;13.690000000000000;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034d65;Raeume;;;;38.490000000000002;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034d67;Raeume;;;;7.0099999999999998;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034d71;Raeume;;;;18.940000000000001;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034d76;Raeume;;;;75.739999999999995;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034d78;Raeume;;;;79.709999999999994;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034d7a;Raeume;;;;47.969999999999999;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034d7c;Raeume;;;;6.9000000000000004;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034d7e;Raeume;;;;15.910000000000000;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034d87;Raeume;;;;319.32999999999998;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034d89;Raeume;;;;44.159999999999997;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034d8b;Raeume;;;;52.520000000000003;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034d8d;Raeume;;;;129.5;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034d8f;Raeume;;;;58.240000000000002;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034d91;Raeume;;;;5.5999999999999996;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034d93;Raeume;;;;50.119999999999997;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034d9e;Raeume;;;;59.869999999999997;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034da0;Raeume;;;;5.5800000000000001;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034da2;Raeume;;;;18.899999999999999;m2;03 - Floor;;;;
+racadvancedsampleproject;7a4f2d19-b926-444c-8a52-5eac052b5192-00034da4;Raeume;;;;52.180000000000000;m2;03 - Floor;;;;
+racadvancedsampleproject;4d6d2a90-c0a4-4bdc-97aa-ce91bd1344ab-000352d2;Raeume;;;;31.180000000000000;m2;02 - Floor;;;;
+racadvancedsampleproject;4d6d2a90-c0a4-4bdc-97aa-ce91bd1344ab-000352d3;Raeume;;;;31.320000000000000;m2;02 - Floor;;;;
+racadvancedsampleproject;4d6d2a90-c0a4-4bdc-97aa-ce91bd1344ab-000352d4;Raeume;;;;47.399999999999999;m2;02 - Floor;;;;
+racadvancedsampleproject;4d6d2a90-c0a4-4bdc-97aa-ce91bd1344ab-000352d5;Raeume;;;;72.150000000000006;m2;02 - Floor;;;;
