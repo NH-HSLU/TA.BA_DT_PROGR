@@ -27,9 +27,9 @@ _Ein pyRevit-Plugin von Nicole und Orlando_
 ## Konzept
 
 - Datenauswertung mit **pyRevit** direkt aus dem Revit Modell
-- Schnelles, modellbasiertes **Ausmass nach eBKP-H** mit [Haiku](https://www.anthropic.com/claude/haiku)
+- Schnelles, modellbasiertes **Ausmass nach eBKP-H**
+mit Anthropic's [Haiku](https://www.anthropic.com/claude/haiku) KI-Modell
 - Visualisierung und Export mit **Streamlit**
-- **Kostenberechnung** nach verschiedenen Methoden
 
 ---
 
@@ -75,6 +75,7 @@ openpyxl        # Verarbeitung von Excel-Dateien (.xlsx).
 ## Herausforderungen
 
 - Datenexport mit Schichtaufbau aus Revit
+- Prompt für eBKP-H Kategorisierung > Antwort in **JSON** Format.
 
 ---
 
@@ -100,15 +101,15 @@ Kostenberechnung
 
 ---
 
-![width:1100px](KI_Klassifizierung_Dashboard.png)
+![width:1000px](KI_Klassifizierung_Dashboard.png)
 
 ---
 
-![width:1100px](KI_Monitoring.png)
+![width:1000px](KI_Monitoring.png)
 
 ---
 
-![width:1100px](KI_Response.png)
+![width:1000px](KI_Response.png)
 
 ---
 
@@ -119,7 +120,7 @@ Kostenberechnung
 3. ~~**Streamlit**-Dashboard erstellen~~
 4. Auswertung als **PDF** exportieren
 5. Flächen-/ Volumenauswertung nach **SIA416**
-6. Kostenberechnung nach verschiedenen Methoden
+6. **Kostenberechnung** nach verschiedenen Methoden
 
 ---
 
