@@ -1,0 +1,51 @@
+
+================================================================================
+Timestamp: 2025-11-29 21:02:58
+Batch: 17 Elemente
+Tokens: Input=2045, Output=480
+
+Prompt:
+Klassifiziere diese 17 Bauelemente nach eBKP-H (Level 1+2):
+
+1. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 320B
+2. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush Vision, Info: 320A
+3. Kat: Tueren, Typ: M_Curtain Wall Dbl Glass, Fam: M_Curtain Wall Dbl Glass, Info: 101C
+4. Kat: Tueren, Typ: M_Curtain Wall Sgl Glass, Fam: M_Curtain Wall Sgl Glass, Info: nan
+5. Kat: Boeden, Typ: Metal Sunscreen, Fam: nan, Info: nan
+6. Kat: Boeden, Typ: Concrete- 100mm, Fam: nan, Info: nan
+7. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+8. Kat: Decken, Typ: Furred Ceiling, Fam: nan, Info: nan
+9. Kat: Beleuchtung, Typ: 60 watt Incandescent, Fam: Table Lamp 4, Info: 69
+10. Kat: Beleuchtung, Typ: 2440mm - 277V, Fam: Pendant Light - Linear - 1 Lamp, Info: 17
+11. Kat: Beleuchtung, Typ: 40 watt Halogen, Fam: Sconce 4, Info: 20
+12. Kat: Allgemein, Typ: SHADE SUPPORT, Fam: SHADE SUPPORT, Info: nan
+13. Kat: Moebel, Typ: M_Chair-Breuer, Fam: M_Chair-Breuer, Info: nan
+14. Kat: Moebel, Typ: Chair, Fam: Chair-Viper, Info: nan
+15. Kat: Moebel, Typ: Couch, Fam: Couch-Viper, Info: nan
+16. Kat: Waende, Typ: Interior - 138mm Partition (1-hr), Fam: nan, Info: nan
+17. Kat: Fenster, Typ: 0915 x 1220mm, Fam: M_Fixed, Info: 11
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+{"id":1,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":2,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":3,"code":"E03","desc":"Element in Aussenwand","conf":0.90},
+{"id":4,"code":"E03","desc":"Element in Aussenwand","conf":0.90},
+{"id":5,"code":"I01","desc":"Umgebungsgestaltung","conf":0.80},
+{"id":6,"code":"C01","desc":"Fundament, Bodenplatte","conf":0.90},
+{"id":7,"code":"G04","desc":"Deckenbekleidung","conf":0.90},
+{"id":8,"code":"G04","desc":"Deckenbekleidung","conf":0.85},
+{"id":9,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":10,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":11,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":12,"code":"G05","desc":"Einbauten, Schutzeinrichtung zu Ausbau","conf":0.80},
+{"id":13,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":14,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":15,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":16,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":17,"code":"E03","desc":"Element in Aussenwand","conf":0.90}
+]
+================================================================================
