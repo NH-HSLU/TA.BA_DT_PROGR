@@ -1,9 +1,9 @@
 ---
 marp: true
-title: Zwischenpräsentation 1
+title: Zwischenpräsentation 2
 theme: uncover
-header: "TA.BA_DT_PROGR.H25 | Zwischenpräsentation 1"
-footer: "Gruppe 8 | 27. Oktober 2025"
+header: "TA.BA_DT_PROGR.H25 | Zwischenpräsentation 2"
+footer: "Gruppe 8 | 15. Dezember 2025"
 paginate: true
 ---
 <style>
@@ -11,16 +11,16 @@ section { font-size: 30px; }
 </style>
 
 <!-- _header: "" -->
-
-<!-- _footer: "27. Oktober 2025" -->
-
+<!-- _footer: "15. Dezember 2025" -->
 <!-- _paginate: skip -->
-
 <!-- _class: invert -->
 
-# eBKP-H Klassifizierung
+![width:150](LOGO.gif)
 
-_Ein pyRevit-Plugin von Nicole und Orlando_
+# eBKP⁺
+eBKP-H Klassifizierung
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Ein pyRevit-Plugin von Nicole und Orlando
 
 ---
 
@@ -28,7 +28,7 @@ _Ein pyRevit-Plugin von Nicole und Orlando_
 
 - Datenauswertung mit **pyRevit** direkt aus dem Revit Modell
 - Schnelles, modellbasiertes **Ausmass nach eBKP-H**
-mit Anthropic's [Haiku](https://www.anthropic.com/claude/haiku) KI-Modell
+  mit Anthropic's [Haiku](https://www.anthropic.com/claude/haiku) KI-Modell
 - Visualisierung und Export mit **Streamlit**
 
 ---
@@ -60,8 +60,8 @@ pandas          # Tabellen-Verarbeitung und Analyse
 
 ```
 matplotlib      # Datenplotting und Visualisierung
-plotly          # Diagramme und Dashboards.          
-streamlit       # Apps und Dashboards.               
+plotly          # Diagramme und Dashboards.        
+streamlit       # Apps und Dashboards.             
 ```
 
 **Sonstige nützliche Tools**
@@ -81,20 +81,19 @@ openpyxl        # Verarbeitung von Excel-Dateien (.xlsx).
 
 ## Erfolge
 
-- eBKP-H Kategorisierung über Claude API
-- 
+- eBKP-H Kategorisierung mit KI
+- Export aus pyRevit
+- übersichtliche Visualisierung in Streamlit
 
 ---
 
 <!-- _header: "" -->
-
 <!-- _footer: "" -->
-
 <!-- _paginate: skip -->
-
 <!-- _class: invert -->
 
 # STREAMLIT
+
 Klassifizierung mit Haiku
 Visualisierung der Ergebnisse
 Kostenberechnung
@@ -113,28 +112,39 @@ Kostenberechnung
 
 ---
 
-## Nächste Schritte
+## Erkenntnisse
+
+- ~~Einzelne Bauteil-Kategorien pro Liste Auswerten~~
+  ➤ Alle Bauteil-Kategorien in einer Liste Auswerten
+- Claude funktioniert viel besser mit `#TODO Änderung` als reinem umschreiben vom Problem das gelöst werden soll
+
+
+---
+
+### Nächste Schritte
 
 1. ~~Alle Elemente in einer **Excel**-Liste exportieren~~
 2. ~~Elemente mit **BKP** klassifizieren~~
 3. ~~**Streamlit**-Dashboard erstellen~~
 4. Auswertung als **PDF** exportieren
-5. Flächen-/ Volumenauswertung nach **SIA416**
-6. **Kostenberechnung** nach verschiedenen Methoden
+5. **Kostenberechnung** nach verschiedenen Methoden
+
+#### Optional
+
+1. Flächen-/ Volumenauswertung nach **SIA416**
 
 ---
 
 <!-- _header: "" -->
+
 <!-- _footer: "" -->
+
 <!-- _paginate: skip -->
+
 <!-- _class: invert -->
- 
->  
->  
+
 > If a picture is worth a thousand words,
->  
+>
 > a prototype is worth a thousand meetings,
->  
->  
 
 — *Tom & David Kelley, IDEO*
