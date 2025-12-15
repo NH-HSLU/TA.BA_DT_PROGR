@@ -6,6 +6,18 @@ Zeigt ausgewertete Daten nach eBKP-H gegliedert mit aufklappbaren Bereichen.
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import sys
+import os
+
+# Füge Parent-Verzeichnis zum Path hinzu für Imports
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+
+try:
+    from Streamlit.helpers.sia_lho_102_config import format_tolerance
+except ImportError:
+    # Fallback wenn Modul nicht verfügbar
+    def format_tolerance(tolerance: int) -> str:
+        return f'± {tolerance}%' if tolerance > 0 else 'exakt'
 
 # Seitenkonfiguration
 st.set_page_config(
@@ -50,6 +62,26 @@ def extract_bkp_untergruppe(bkp_code: str) -> str:
 def format_currency(value: float) -> str:
     """Formatiert einen Wert als Währung (CHF)"""
     return f"CHF {value:,.2f}".replace(',', "'")
+
+
+def format_currency_with_tolerance(value: float, tolerance: int = 0) -> str:
+    """
+    Formatiert Währung mit Toleranzbereich.
+
+    Args:
+        value: Betrag in CHF
+        tolerance: Toleranz in Prozent
+
+    Returns:
+        Formatierter String mit Toleranzbereich
+    """
+    formatted = format_currency(value)
+    if tolerance > 0:
+        tolerance_amount = value * (tolerance / 100)
+        min_value = value - tolerance_amount
+        max_value = value + tolerance_amount
+        return f"{formatted}\n({format_currency(min_value)} - {format_currency(max_value)})"
+    return formatted
 
 
 def calculate_grouped_totals(df: pd.DataFrame, group_column: str) -> pd.DataFrame:
@@ -128,6 +160,23 @@ def display_bkp_hierarchy(df: pd.DataFrame, hauptgruppe: str):
 
 # Haupttitel
 st.title("📊 eBKP-H Kostenauswertung")
+
+# Qualitätsindikator anzeigen
+if 'cost_estimation_config' in st.session_state and st.session_state.cost_estimation_config.get('selected'):
+    config = st.session_state.cost_estimation_config
+
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.metric("📐 Kostenermittlungsart", config['name'].split()[0])  # Kurzer Name
+    with col2:
+        st.metric("⚖️ Toleranz", format_tolerance(config['tolerance']))
+    with col3:
+        st.metric("🏗️ Projektphase", config['project_phase'])
+    with col4:
+        st.metric("📊 eBKP-Tiefe", config['ebkp_depth'].replace(' eBKP', ''))
+
+    st.info(f"ℹ️ Die Kostenauswertung entspricht der Genauigkeit: **{config['name']}** ({config['phase_code']})")
+    st.markdown("---")
 
 # Prüfe ob Daten aus KI-Klassifizierung vorhanden sind
 auto_load_data = False
@@ -236,7 +285,13 @@ if df is not None:
         with col4:
             if 'Kosten' in df.columns:
                 gesamtkosten = df['Kosten'].sum()
-                st.metric("Gesamtkosten", format_currency(gesamtkosten))
+
+                # Hole Toleranz aus Config (falls vorhanden)
+                tolerance = 0
+                if 'cost_estimation_config' in st.session_state and st.session_state.cost_estimation_config.get('selected'):
+                    tolerance = st.session_state.cost_estimation_config.get('tolerance', 0)
+
+                st.metric("Gesamtkosten", format_currency_with_tolerance(gesamtkosten, tolerance))
             elif 'Fläche (m²)' in df.columns or 'Fläche' in df.columns:
                 flaeche_col = 'Fläche (m²)' if 'Fläche (m²)' in df.columns else 'Fläche'
                 gesamtflaeche = df[flaeche_col].sum()

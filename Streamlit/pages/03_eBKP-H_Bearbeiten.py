@@ -74,6 +74,12 @@ def validate_bkp_code(code: str) -> dict:
 # Haupttitel
 st.title("✏️ BKP-Codes Bearbeiten")
 st.markdown("Überprüfen und korrigieren Sie die KI-Klassifizierung vor der Auswertung")
+
+# Zeige Kostenermittlungsart (falls ausgewählt)
+if 'cost_estimation_config' in st.session_state and st.session_state.cost_estimation_config.get('selected'):
+    config = st.session_state.cost_estimation_config
+    st.caption(f"📐 Bearbeitung für: **{config['name']}** (±{config['tolerance']}%) | eBKP-Tiefe: {config['ebkp_depth']}")
+
 st.markdown("---")
 
 # Prüfe ob Daten vorhanden sind

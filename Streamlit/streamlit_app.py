@@ -42,9 +42,21 @@ st.markdown("---")
 # Quick Start Cards
 st.header("🚀 Schnellstart")
 
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4 = st.columns(4)
 
 with col1:
+    st.success("""
+    ### 🏗️ Kostenermittlung
+    Wählen Sie zuerst Ihre Projektphase!
+
+    **→ Gehen Sie zu "Kostenermittlung"**
+
+    - SIA LHO 102 Standard
+    - ±10% bis ±30% Genauigkeit
+    - Beeinflusst BKP-Tiefe
+    """)
+
+with col2:
     st.info("""
     ### 📊 Daten visualisieren
     Sie haben bereits BKP-klassifizierte Daten?
@@ -56,7 +68,7 @@ with col1:
     - Berichte exportieren
     """)
 
-with col2:
+with col3:
     st.success("""
     ### 🤖 KI-Klassifizierung
     Ihre Daten sind noch nicht klassifiziert?
@@ -69,7 +81,7 @@ with col2:
     - Ergebnisse prüfen
     """)
 
-with col3:
+with col4:
     st.warning("""
     ### ⚙️ Einrichten
     Erstmalige Nutzung der KI?
@@ -127,29 +139,37 @@ st.markdown("---")
 # Workflow
 st.header("🔄 So funktioniert's")
 
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4 = st.columns(4)
 
 with col1:
     st.markdown("""
-    ### 1️⃣ Daten vorbereiten
+    ### 1️⃣ Kostenermittlung
+    - Projektphase festlegen
+    - Toleranz bestimmen (±10% bis ±30%)
+    - eBKP-Tiefe definieren
+    """)
+
+with col2:
+    st.markdown("""
+    ### 2️⃣ Daten vorbereiten
     - Exportieren Sie Daten aus Revit
     - Als CSV speichern
     - Spalten: Typ, Kategorie, etc.
     """)
 
-with col2:
+with col3:
     st.markdown("""
-    ### 2️⃣ Klassifizieren
+    ### 3️⃣ Klassifizieren
     **Option A:** Manuelle BKP-Zuordnung
     **Option B:** KI-Klassifizierung nutzen
     (schneller & automatisch)
     """)
 
-with col3:
+with col4:
     st.markdown("""
-    ### 3️⃣ Auswerten
+    ### 4️⃣ Auswerten
     - Hierarchische Ansicht
-    - Kosten nach BKP
+    - Kosten nach BKP mit Toleranz
     - Berichte exportieren
     """)
 
@@ -189,8 +209,10 @@ with st.sidebar:
     st.markdown("""
     **Hauptseiten:**
     - 🏠 Home (diese Seite)
+    - 🏗️ Kostenermittlung
     - 📊 eBKP-H Auswertung
     - 🤖 KI Klassifizierung
+    - ✏️ BKP Bearbeiten
     - ⚙️ Einstellungen
     """)
 

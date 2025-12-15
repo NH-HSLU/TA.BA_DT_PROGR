@@ -17,8 +17,9 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../.
 
 try:
     from Helpers.eBKP_H_Classifier import eBKPHClassifier
+    from Streamlit.helpers.sia_lho_102_config import get_level_config
 except ImportError:
-    st.error("eBKP_H_Classifier konnte nicht importiert werden. Stellen Sie sicher, dass Helpers/eBKP_H_Classifier.py existiert.")
+    st.error("Module konnten nicht importiert werden. Stellen Sie sicher, dass alle erforderlichen Dateien existieren.")
     st.stop()
 
 # Seitenkonfiguration
@@ -197,6 +198,27 @@ with st.sidebar:
 
     st.markdown("---")
 
+    # Kostenermittlungs-Status anzeigen
+    st.subheader("📐 Kostenermittlung")
+
+    if 'cost_estimation_config' in st.session_state and st.session_state.cost_estimation_config.get('selected'):
+        config = st.session_state.cost_estimation_config
+        st.success(f"✓ {config['name']}")
+        st.caption(f"Toleranz: ±{config['tolerance']}%")
+        st.caption(f"Phase: {config['project_phase']}")
+        st.caption(f"eBKP-Tiefe: {config['ebkp_depth']}")
+
+        # Zeige verwendete Levels
+        levels_str = ", ".join([str(l) for l in config['ebkp_levels']])
+        st.caption(f"CSV Levels: {levels_str}")
+    else:
+        st.info("ℹ️ Keine Auswahl getroffen")
+        st.caption("Standard: Level 1+2")
+        if st.button("🏗️ Kostenermittlung wählen"):
+            st.switch_page("pages/0.5_Kostenermittlung.py")
+
+    st.markdown("---")
+
     # API Status prüfen
     st.subheader("🔑 API Status")
     api_key = get_api_key()
@@ -339,8 +361,16 @@ with tab1:
                         # API-Key holen
                         api_key = get_api_key()
 
-                        # Classifier mit API-Key initialisieren
-                        classifier = eBKPHClassifier(api_key=api_key)
+                        # Hole max_levels aus Kostenermittlungs-Config (oder Default)
+                        max_levels = [1, 2]  # Default
+                        if 'cost_estimation_config' in st.session_state and st.session_state.cost_estimation_config.get('selected'):
+                            max_levels = st.session_state.cost_estimation_config['ebkp_levels']
+                            add_log(f"Verwende eBKP Levels aus Kostenermittlung: {max_levels}", "info")
+                        else:
+                            add_log(f"Keine Kostenermittlung gewählt, verwende Standard-Levels: {max_levels}", "info")
+
+                        # Classifier mit API-Key und max_levels initialisieren
+                        classifier = eBKPHClassifier(api_key=api_key, max_levels=max_levels)
 
                         # Log-Datei für API-Responses erstellen
                         from datetime import datetime

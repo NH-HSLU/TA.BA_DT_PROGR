@@ -28,17 +28,20 @@ load_dotenv()
 
 class eBKPHClassifier:
     """
-    Klassifiziert Bauelemente nach eBKP-H Standard (Level 1+2) mit Claude AI.
+    Klassifiziert Bauelemente nach eBKP-H Standard mit Claude AI.
+    Unterstützt variable Level-Tiefe (1-5) basierend auf Kostenermittlungsart.
     Optimiert für minimalen Token-Verbrauch durch Batch-Verarbeitung und Prompt Caching.
     """
 
-    def __init__(self, ebkp_csv_path: str = None, api_key: str = None):
+    def __init__(self, ebkp_csv_path: str = None, api_key: str = None, max_levels: list = None):
         """
-        Initialisiert den Classifier mit eBKP-H Katalog (Level 1+2).
+        Initialisiert den Classifier mit eBKP-H Katalog.
 
         Args:
             ebkp_csv_path: Pfad zur eBKP-H CSV (default: Helpers/eBKP-H.csv)
             api_key: Anthropic API Key (optional, sonst aus .env)
+            max_levels: Liste der zu verwendenden CSV Levels (z.B. [1, 2, 3])
+                       Default: [1, 2] (bisheriges Verhalten)
         """
         # API Key
         self.api_key = api_key or os.getenv('ANTHROPIC_API_KEY')
@@ -61,54 +64,70 @@ class eBKPHClassifier:
         if not os.path.exists(ebkp_csv_path):
             raise FileNotFoundError(f"eBKP-H Katalog nicht gefunden: {ebkp_csv_path}")
 
-        # CSV einlesen und Level 1+2 filtern
+        # CSV einlesen und nach Levels filtern
         df = pd.read_csv(ebkp_csv_path, encoding='utf-8-sig')
-        self.ebkp_catalog = df[df['Level'].isin([1, 2])].copy()
 
-        print(f"✓ eBKP-H Katalog geladen: {len(self.ebkp_catalog)} Codes "
-              f"(Level 1: {len(df[df['Level'] == 1])}, "
-              f"Level 2: {len(df[df['Level'] == 2])})")
+        # Default: Level 1+2 (bisheriges Verhalten)
+        if max_levels is None:
+            max_levels = [1, 2]
+        self.max_levels = max_levels
+
+        # Filtere nach gewünschten Levels
+        self.ebkp_catalog = df[df['Level'].isin(max_levels)].copy()
+
+        # Detailliertes Logging
+        levels_detail = ", ".join([f"Level {l}: {len(df[df['Level'] == l])}" for l in max_levels])
+        print(f"✓ eBKP-H Katalog geladen: {len(self.ebkp_catalog)} Codes ({levels_detail})")
 
         # System Prompt generieren (wird gecacht von Anthropic)
         self.system_prompt = self._build_system_prompt()
 
     def _build_system_prompt(self) -> str:
         """
-        Baut kompakten System Prompt mit eBKP-H Katalog (Level 1+2).
+        Baut kompakten System Prompt mit eBKP-H Katalog basierend auf max_levels.
         Dieser Prompt wird von Anthropic gecacht für 5 Minuten.
 
         Returns:
             System Prompt String (kompakt formatiert)
         """
-        # Level 1 Codes (Hauptgruppen)
-        level_1 = self.ebkp_catalog[self.ebkp_catalog['Level'] == 1]
-        level_1_lines = [f"{row['Code']}: {row['Description']}"
-                         for _, row in level_1.iterrows()]
+        # Baue Prompt dynamisch basierend auf verfügbaren Levels
+        level_sections = []
 
-        # Level 2 Codes (Untergruppen)
-        level_2 = self.ebkp_catalog[self.ebkp_catalog['Level'] == 2]
-        level_2_lines = [f"{row['Code']}: {row['Description']}"
-                         for _, row in level_2.iterrows()]
+        level_names = {
+            1: "Hauptgruppen",
+            2: "Untergruppen",
+            3: "Elemente",
+            4: "Teilelemente",
+            5: "Komponenten"
+        }
+
+        for level in sorted(self.max_levels):
+            level_data = self.ebkp_catalog[self.ebkp_catalog['Level'] == level]
+            if not level_data.empty:
+                level_lines = [f"{row['Code']}: {row['Description']}"
+                             for _, row in level_data.iterrows()]
+                level_name = level_names.get(level, f"Level {level}")
+                level_sections.append(f"LEVEL {level} ({level_name}):\n{chr(10).join(level_lines)}")
+
+        # Bestimme höchstes Level für Regeln
+        max_level = max(self.max_levels)
+        levels_str = "+".join([str(l) for l in sorted(self.max_levels)])
 
         prompt = f"""eBKP-H Klassifizierung (Schweizer Baukostenplan)
 
 Du bist ein Experte für Bauwesen und Kostenkalkulation nach eBKP-H Standard.
 
-LEVEL 1 (Hauptgruppen):
-{chr(10).join(level_1_lines)}
+{chr(10).join(level_sections)}
 
-LEVEL 2 (Untergruppen):
-{chr(10).join(level_2_lines)}
-
-Aufgabe: Klassifiziere Bauelemente nach eBKP-H Level 1+2 basierend auf:
+Aufgabe: Klassifiziere Bauelemente nach eBKP-H Level {levels_str} basierend auf:
 - Kategorie (z.B. Waende, Tueren, Decken, Beleuchtung)
 - Typ (z.B. "Interior - Partition (92mm Stud)")
 - Familie (z.B. "Basic Wall", "M_Single-Flush")
 - Zusatzinfo (optional)
 
 Regeln:
-1. Gib IMMER einen Level 2 Code zurück (z.B. "C02", nicht nur "C")
-2. Falls unsicher zwischen mehreren Codes, wähle den spezifischsten
+1. Gib IMMER den spezifischsten verfügbaren Code zurück (höchstes verfügbares Level)
+2. Falls unsicher zwischen mehreren Codes, wähle den detailliertesten
 3. Confidence: 0.9+ = sicher, 0.7-0.9 = wahrscheinlich, <0.7 = unsicher
 4. Antworte NUR mit dem angeforderten JSON Format, KEIN zusätzlicher Text"""
 
