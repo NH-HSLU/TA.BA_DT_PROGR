@@ -1,0 +1,1328 @@
+
+================================================================================
+Timestamp: 2025-12-10 13:50:40
+Batch: 50 Elemente
+Tokens: Input=3639, Output=1756
+
+Prompt:
+Klassifiziere diese 50 Bauelemente nach eBKP-H (Level 1+2):
+
+1. Kat: Tueren, Typ: 2000 x 2100mm, Fam: M_Door-Passage-Double-Flush, Info: 101.0
+2. Kat: Tueren, Typ: WC TÃ¼r, Fam: Door-Single-Panel, Info: 108.0
+3. Kat: Tueren, Typ: WC TÃ¼r, Fam: Door-Single-Panel, Info: 114.0
+4. Kat: Tueren, Typ: WC TÃ¼r Rollstuhl, Fam: Door-Single-Panel, Info: 115.0
+5. Kat: Tueren, Typ: WC TÃ¼r, Fam: Door-Single-Panel, Info: 116.0
+6. Kat: Tueren, Typ: WC TÃ¼r, Fam: Door-Single-Panel, Info: 117.0
+7. Kat: Tueren, Typ: Door-Curtain-Wall-Double-Storefront, Fam: Door-Curtain-Wall-Double-Storefront, Info: nan
+8. Kat: Tueren, Typ: Door-Curtain-Wall-Double-Storefront, Fam: Door-Curtain-Wall-Double-Storefront, Info: 122.0
+9. Kat: Tueren, Typ: 2000 x 2100mm, Fam: M_Door-Passage-Double-Flush, Info: 125.0
+10. Kat: Tueren, Typ: 2000 x 2100mm, Fam: M_Door-Passage-Double-Flush, Info: 126.0
+11. Kat: Tueren, Typ: 800 x 2100mm, Fam: M_Door-Passage-Single-Flush, Info: 127.0
+12. Kat: Tueren, Typ: 1200 x 1900mm, Fam: M_Door-Passage-Single-Flush, Info: 128.0
+13. Kat: Tueren, Typ: WC TÃ¼r, Fam: Door-Single-Panel, Info: 130.0
+14. Kat: Tueren, Typ: WC TÃ¼r, Fam: Door-Single-Panel, Info: 131.0
+15. Kat: Tueren, Typ: WC TÃ¼r Rollstuhl, Fam: Door-Single-Panel, Info: 132.0
+16. Kat: Tueren, Typ: WC TÃ¼r, Fam: Door-Single-Panel, Info: 133.0
+17. Kat: Tueren, Typ: WC TÃ¼r, Fam: Door-Single-Panel, Info: 134.0
+18. Kat: Tueren, Typ: WC TÃ¼r, Fam: Door-Single-Panel, Info: 138.0
+19. Kat: Tueren, Typ: WC TÃ¼r, Fam: Door-Single-Panel, Info: 139.0
+20. Kat: Tueren, Typ: 800 x 2100mm, Fam: M_Door-Passage-Single-Flush, Info: 102.0
+21. Kat: Tueren, Typ: 800 x 2100mm, Fam: M_Door-Passage-Single-Flush, Info: 104.0
+22. Kat: Tueren, Typ: 2000 x 2100mm, Fam: M_Door-Passage-Double-Flush, Info: 124.0
+23. Kat: Tueren, Typ: 800 x 2100mm, Fam: M_Door-Passage-Single-Flush, Info: 140.0
+24. Kat: Tueren, Typ: 800 x 2100mm, Fam: M_Door-Passage-Single-Flush, Info: 141.0
+25. Kat: Tueren, Typ: 800 x 2100mm, Fam: M_Door-Passage-Single-Flush, Info: 146.0
+26. Kat: Tueren, Typ: 800 x 2100mm, Fam: M_Door-Passage-Single-Flush, Info: 148.0
+27. Kat: Tueren, Typ: 800 x 2100mm, Fam: M_Door-Passage-Single-Flush, Info: 129.0
+28. Kat: Tueren, Typ: 800 x 2100mm, Fam: M_Door-Passage-Single-Flush, Info: 142.0
+29. Kat: Tueren, Typ: 800 x 2100mm, Fam: M_Door-Passage-Single-Flush, Info: 147.0
+30. Kat: Tueren, Typ: 900 x 2100mm_200, Fam: M_Door-Passage-Single-Flush, Info: 150.0
+31. Kat: Tueren, Typ: 900 x 2100mm_200, Fam: M_Door-Passage-Single-Flush, Info: 151.0
+32. Kat: Tueren, Typ: 900 x 2100mm_200, Fam: M_Door-Passage-Single-Flush, Info: 152.0
+33. Kat: Tueren, Typ: 900 x 2100mm_200, Fam: M_Door-Passage-Single-Flush, Info: 153.0
+34. Kat: Tueren, Typ: 900 x 2100mm_200, Fam: M_Door-Passage-Single-Flush, Info: 154.0
+35. Kat: Tueren, Typ: 1000 x 2100mm, Fam: M_Door-Passage-Single-Flush, Info: 156.0
+36. Kat: Tueren, Typ: 1000 x 2100mm, Fam: M_Door-Passage-Single-Flush, Info: 157.0
+37. Kat: Tueren, Typ: 68" x 80", Fam: Door-Double-Flush_Panel, Info: 158.0
+38. Kat: Tueren, Typ: 68" x 80", Fam: Door-Double-Flush_Panel, Info: 159.0
+39. Kat: Tueren, Typ: 68" x 80", Fam: Door-Double-Flush_Panel, Info: 160.0
+40. Kat: Tueren, Typ: 68" x 80", Fam: Door-Double-Flush_Panel, Info: 161.0
+41. Kat: Tueren, Typ: 68" x 80", Fam: Door-Double-Flush_Panel, Info: 162.0
+42. Kat: Tueren, Typ: Door-Curtain-Wall-Single-Glass, Fam: Door-Curtain-Wall-Single-Glass, Info: nan
+43. Kat: Tueren, Typ: Door-Curtain-Wall-Single-Glass, Fam: Door-Curtain-Wall-Single-Glass, Info: nan
+44. Kat: Tueren, Typ: Door-Curtain-Wall-Single-Glass, Fam: Door-Curtain-Wall-Single-Glass, Info: 167.0
+45. Kat: Tueren, Typ: Door-Curtain-Wall-Single-Glass, Fam: Door-Curtain-Wall-Single-Glass, Info: 168.0
+46. Kat: Tueren, Typ: 800 x 2100mm, Fam: M_Door-Passage-Single-Flush, Info: 129.0
+47. Kat: Tueren, Typ: 800 x 2100mm, Fam: M_Door-Passage-Single-Flush, Info: 142.0
+48. Kat: Tueren, Typ: 800 x 2100mm, Fam: M_Door-Passage-Single-Flush, Info: 147.0
+49. Kat: Tueren, Typ: 900 x 2100mm_200, Fam: M_Door-Passage-Single-Flush, Info: 172.0
+50. Kat: Tueren, Typ: 800 x 2100mm, Fam: M_Door-Passage-Single-Flush, Info: 173.0
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+{"id":1,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":2,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":3,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":4,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":5,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":6,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":7,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.85},
+{"id":8,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.85},
+{"id":9,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":10,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":11,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":12,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":13,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":14,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":15,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":16,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":17,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":18,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":19,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":20,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":21,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":22,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":23,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":24,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":25,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":26,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":27,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":28,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":29,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":30,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":31,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":32,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":33,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":34,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":35,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":36,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":37,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.85},
+{"id":38,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.85},
+{"id":39,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.85},
+{"id":40,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.85},
+{"id":41,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.85},
+{"id":42,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.80},
+{"id":43,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.80},
+{"id":44,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.80},
+{"id":45,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.80},
+{"id":46,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":47,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":48,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":49,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":50,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95}
+]
+================================================================================
+
+================================================================================
+Timestamp: 2025-12-10 13:50:55
+Batch: 50 Elemente
+Tokens: Input=3335, Output=1272
+
+Prompt:
+Klassifiziere diese 50 Bauelemente nach eBKP-H (Level 1+2):
+
+1. Kat: Tueren, Typ: 1100 x 2100mm_200, Fam: M_Door-Passage-Single-Flush, Info: 174.0
+2. Kat: Tueren, Typ: 1100 x 2100mm_200, Fam: M_Door-Passage-Single-Flush, Info: 175.0
+3. Kat: Tueren, Typ: 1000 x 2100mm_200 2, Fam: M_Door-Passage-Single-Flush, Info: 176.0
+4. Kat: Boeden, Typ: Generic 300mm, Fam: nan, Info: nan
+5. Kat: Boeden, Typ: Generic 300mm, Fam: nan, Info: nan
+6. Kat: Boeden, Typ: Generic 300mm, Fam: nan, Info: nan
+7. Kat: Boeden, Typ: Generic 300mm, Fam: nan, Info: nan
+8. Kat: Boeden, Typ: Generic 300mm, Fam: nan, Info: nan
+9. Kat: Boeden, Typ: Generic 300mm, Fam: nan, Info: nan
+10. Kat: Boeden, Typ: Generic 300mm, Fam: nan, Info: nan
+11. Kat: Boeden, Typ: Generic 300mm, Fam: nan, Info: nan
+12. Kat: Boeden, Typ: Generic 300mm, Fam: nan, Info: nan
+13. Kat: Boeden, Typ: Generic 300mm, Fam: nan, Info: nan
+14. Kat: Boeden, Typ: Generic 300mm, Fam: nan, Info: nan
+15. Kat: Boeden, Typ: Generic 300mm, Fam: nan, Info: nan
+16. Kat: Decken, Typ: 16mm GWB on Metal Stud, Fam: nan, Info: nan
+17. Kat: Decken, Typ: 16mm GWB on Metal Stud, Fam: nan, Info: nan
+18. Kat: Decken, Typ: 16mm GWB on Metal Stud, Fam: nan, Info: nan
+19. Kat: Decken, Typ: 16mm GWB on Metal Stud, Fam: nan, Info: nan
+20. Kat: Decken, Typ: 16mm GWB on Metal Stud, Fam: nan, Info: nan
+21. Kat: Decken, Typ: 16mm GWB on Metal Stud, Fam: nan, Info: nan
+22. Kat: Decken, Typ: 16mm GWB on Metal Stud, Fam: nan, Info: nan
+23. Kat: Decken, Typ: 16mm GWB on Metal Stud, Fam: nan, Info: nan
+24. Kat: Decken, Typ: 16mm GWB on Metal Stud, Fam: nan, Info: nan
+25. Kat: Allgemein, Typ: 00 - White Alpin, Fam: Sanitary_Accessories_DURAVIT-AG_Starck-3-Urinal-partition-80x400x705-mm, Info: nan
+26. Kat: Allgemein, Typ: 00 - White Alpin, Fam: Sanitary_Accessories_DURAVIT-AG_Starck-3-Urinal-partition-80x400x705-mm, Info: nan
+27. Kat: Allgemein, Typ: 00 - White Alpin, Fam: Sanitary_Accessories_DURAVIT-AG_Starck-3-Urinal-partition-80x400x705-mm, Info: nan
+28. Kat: Allgemein, Typ: 00 - White Alpin, Fam: Sanitary_Accessories_DURAVIT-AG_Starck-3-Urinal-partition-80x400x705-mm, Info: nan
+29. Kat: Moebel, Typ: Meeting Table Basic 960x655, Fam: Furniture_Office Desks & Tables_KOKUYO_Meta Cabin, Info: nan
+30. Kat: Moebel, Typ: Meeting Table Basic 960x655, Fam: Furniture_Office Desks & Tables_KOKUYO_Meta Cabin, Info: nan
+31. Kat: Moebel, Typ: Meeting Table Basic 960x655, Fam: Furniture_Office Desks & Tables_KOKUYO_Meta Cabin, Info: nan
+32. Kat: Moebel, Typ: Meeting Table Basic 960x655, Fam: Furniture_Office Desks & Tables_KOKUYO_Meta Cabin, Info: nan
+33. Kat: Moebel, Typ: 1200 x 700 x 800mm, Fam: Desk Student, Info: nan
+34. Kat: Moebel, Typ: 2000 x 700 x 1000mm, Fam: Desk Student, Info: nan
+35. Kat: Moebel, Typ: 1200 x 700 x 800mm, Fam: Desk Student, Info: nan
+36. Kat: Moebel, Typ: 1200 x 700 x 800mm, Fam: Desk Student, Info: nan
+37. Kat: Moebel, Typ: Chair-Desk, Fam: Chair-Desk, Info: nan
+38. Kat: Moebel, Typ: Chair-Desk, Fam: Chair-Desk, Info: nan
+39. Kat: Moebel, Typ: Chair-Desk, Fam: Chair-Desk, Info: nan
+40. Kat: Moebel, Typ: Chair-Desk, Fam: Chair-Desk, Info: nan
+41. Kat: Moebel, Typ: Chair-Desk, Fam: Chair-Desk, Info: nan
+42. Kat: Moebel, Typ: Chair-Desk, Fam: Chair-Desk, Info: nan
+43. Kat: Moebel, Typ: Meeting Table Basic 960x655, Fam: Furniture_Office Desks & Tables_KOKUYO_Meta Cabin, Info: nan
+44. Kat: Moebel, Typ: Meeting Table Basic 960x655, Fam: Furniture_Office Desks & Tables_KOKUYO_Meta Cabin, Info: nan
+45. Kat: Moebel, Typ: 1500 x 700 x 1000mm, Fam: Desk Student, Info: nan
+46. Kat: Moebel, Typ: Chair-Desk, Fam: Chair-Desk, Info: nan
+47. Kat: Moebel, Typ: Chair-Desk, Fam: Chair-Desk, Info: nan
+48. Kat: Moebel, Typ: Chair-Desk, Fam: Chair-Desk, Info: nan
+49. Kat: Moebel, Typ: Chair-Desk, Fam: Chair-Desk, Info: nan
+50. Kat: Moebel, Typ: 1200 x 700 x 800mm, Fam: Desk Student, Info: nan
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+{"id":1,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":2,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":3,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+{"id":4,"code":"G02","desc":"Bodenbelag","conf":0.95},
+{"id":5,"code":"G02","desc":"Bodenbelag","conf":0.95},
+{"id":6,"code":"G02","desc":"Bodenbelag","conf":0.95},
+{"id":7,"code":"G02","desc":"Bodenbelag","conf":0.95},
+{"id":8,"code":"G02","desc":"Bodenbelag","conf":0.95},
+{"id":9,"code":"G02","desc":"Bodenbelag","conf":0.95},
+{"id":10,"code":"G02","desc":"Bodenbelag","conf":0.95},
+{"id":11,"code":"G02","desc":"Bodenbelag","conf":0.95},
+{"id":12,"code":"G02","desc":"Bodenbelag","conf":0.95},
+{"id":13,"code":"G02","desc":"Bodenbelag","conf":0.95},
+{"id":14,"code":"G02","desc":"Bodenbelag","conf":0.95},
+{"id":15,"code":"G02","desc":"Bodenbelag","conf":0.95},
+{"id":16,"code":"G04","desc":"Deckenbekleidung","conf":0.95},
+{"id":17,"code":"G04","desc":"Deckenbekleidung","conf":0.95},
+{"id":18,"code":"G04","desc":"Deckenbekleidung","conf":0.95},
+{"id":19,"code":"G04","desc":"Deckenbekleidung","conf":0.95},
+{"id":20,"code":"G04","desc":"Deckenbekleidung","conf":0.95},
+{"id":21,"code":"G04","desc":"Deckenbekleidung","conf":0.95},
+{"id":22,"code":"G04","desc":"Deckenbekleidung","conf":0.95},
+{"id":23,"code":"G04","desc":"Deckenbekleidung","conf":0.95},
+{"id":24,"code":"G04","desc":"Deckenbekleidung","conf":0.95},
+{"id":25,"code":"H05","desc":"Anlage für Gesundheit","conf":0.85},
+{"id":26,"code":"H05","desc":"Anlage für Gesundheit","conf":0.85},
+{"id":27,"code":"H05","desc":"Anlage für Gesundheit","conf":0.85},
+{"id":28,"code":"H05","desc":"Anlage für Gesundheit","conf":0.85},
+{"id":29,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":30,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":31,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":32,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":33,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":34,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":35,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":36,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":37,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":38,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":39,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":40,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":41,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":42,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":43,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":44,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":45,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":46,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":47,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":48,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":49,"code":"J01","desc":"Mobiliar","conf":0.95},
+{"id":50,"code":"J01","desc":"Mobiliar","conf":0.95}
+]
+================================================================================
+
+================================================================================
+Timestamp: 2025-12-10 13:51:12
+Batch: 50 Elemente
+Tokens: Input=4200, Output=1507
+
+Prompt:
+Klassifiziere diese 50 Bauelemente nach eBKP-H (Level 1+2):
+
+1. Kat: Moebel, Typ: Meeting Table Basic 960x655, Fam: Furniture_Office Desks & Tables_KOKUYO_Meta Cabin, Info: nan
+2. Kat: Moebel, Typ: Meeting Table Basic 960x655, Fam: Furniture_Office Desks & Tables_KOKUYO_Meta Cabin, Info: nan
+3. Kat: Moebel, Typ: Meeting Table Basic 960x655, Fam: Furniture_Office Desks & Tables_KOKUYO_Meta Cabin, Info: nan
+4. Kat: Moebel, Typ: Meeting Table Basic 960x655, Fam: Furniture_Office Desks & Tables_KOKUYO_Meta Cabin, Info: nan
+5. Kat: Moebel, Typ: 1200 x 700 x 800mm, Fam: Desk Student, Info: nan
+6. Kat: Moebel, Typ: 1200 x 700 x 800mm, Fam: Desk Student, Info: nan
+7. Kat: Moebel, Typ: Meeting Table Basic 960x655, Fam: Furniture_Office Desks & Tables_KOKUYO_Meta Cabin, Info: nan
+8. Kat: Moebel, Typ: Meeting Table Basic 960x655, Fam: Furniture_Office Desks & Tables_KOKUYO_Meta Cabin, Info: nan
+9. Kat: Moebel, Typ: Meeting Table Basic 960x655, Fam: Furniture_Office Desks & Tables_KOKUYO_Meta Cabin, Info: nan
+10. Kat: Moebel, Typ: Meeting Table Basic 960x655, Fam: Furniture_Office Desks & Tables_KOKUYO_Meta Cabin, Info: nan
+11. Kat: Moebel, Typ: Meeting Table Basic 960x655, Fam: Furniture_Office Desks & Tables_KOKUYO_Meta Cabin, Info: nan
+12. Kat: Moebel, Typ: Meeting Table Basic 960x655, Fam: Furniture_Office Desks & Tables_KOKUYO_Meta Cabin, Info: nan
+13. Kat: Moebel, Typ: Meeting Table Basic 960x655, Fam: Furniture_Office Desks & Tables_KOKUYO_Meta Cabin, Info: nan
+14. Kat: Moebel, Typ: Meeting Table Basic 960x655, Fam: Furniture_Office Desks & Tables_KOKUYO_Meta Cabin, Info: nan
+15. Kat: Moebel, Typ: Meeting Table Basic 960x655, Fam: Furniture_Office Desks & Tables_KOKUYO_Meta Cabin, Info: nan
+16. Kat: Moebel, Typ: Meeting Table Basic 960x655, Fam: Furniture_Office Desks & Tables_KOKUYO_Meta Cabin, Info: nan
+17. Kat: Moebel, Typ: Meeting Table Basic 960x655, Fam: Furniture_Office Desks & Tables_KOKUYO_Meta Cabin, Info: nan
+18. Kat: Moebel, Typ: Meeting Table Basic 960x655, Fam: Furniture_Office Desks & Tables_KOKUYO_Meta Cabin, Info: nan
+19. Kat: Sanitaer, Typ: 840090000 White, Fam: Urinal - Tamaro- Laufen - 840090, Info: nan
+20. Kat: Sanitaer, Typ: 840090000 White, Fam: Urinal - Tamaro- Laufen - 840090, Info: nan
+21. Kat: Sanitaer, Typ: 840090000 White, Fam: Urinal - Tamaro- Laufen - 840090, Info: nan
+22. Kat: Sanitaer, Typ: 840090000 White, Fam: Urinal - Tamaro- Laufen - 840090, Info: nan
+23. Kat: Sanitaer, Typ: 00 - White Alpin, Fam: Sanitary_Wash-basins_DURAVIT-AG_Vero-Washbasin-White-High-Gloss-600-mm-045460, Info: nan
+24. Kat: Sanitaer, Typ: 000 White, Fam: Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542, Info: nan
+25. Kat: Sanitaer, Typ: 000 White, Fam: Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542, Info: nan
+26. Kat: Sanitaer, Typ: 000 White, Fam: Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542, Info: nan
+27. Kat: Sanitaer, Typ: 000 White, Fam: Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542, Info: nan
+28. Kat: Sanitaer, Typ: 000 White, Fam: Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542, Info: nan
+29. Kat: Sanitaer, Typ: 00 - White Alpin, Fam: Sanitary_Wash-basins_DURAVIT-AG_Vero-Washbasin-White-High-Gloss-600-mm-045460, Info: nan
+30. Kat: Sanitaer, Typ: 00 - White Alpin, Fam: Sanitary_Wash-basins_DURAVIT-AG_Vero-Washbasin-White-High-Gloss-600-mm-045460, Info: nan
+31. Kat: Sanitaer, Typ: 00 - White Alpin, Fam: Sanitary_Wash-basins_DURAVIT-AG_Vero-Washbasin-White-High-Gloss-600-mm-045460, Info: nan
+32. Kat: Sanitaer, Typ: 00 - White Alpin, Fam: Sanitary_Wash-basins_DURAVIT-AG_Vero-Washbasin-White-High-Gloss-600-mm-045460, Info: nan
+33. Kat: Sanitaer, Typ: 000 White, Fam: Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542, Info: nan
+34. Kat: Sanitaer, Typ: 000 White, Fam: Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542, Info: nan
+35. Kat: Sanitaer, Typ: 000 White, Fam: Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542, Info: nan
+36. Kat: Sanitaer, Typ: 000 White, Fam: Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542, Info: nan
+37. Kat: Sanitaer, Typ: 000 White, Fam: Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542, Info: nan
+38. Kat: Sanitaer, Typ: 00 - White Alpin, Fam: Sanitary_Wash-basins_DURAVIT-AG_Vero-Washbasin-White-High-Gloss-600-mm-045460, Info: nan
+39. Kat: Sanitaer, Typ: 00 - White Alpin, Fam: Sanitary_Wash-basins_DURAVIT-AG_Vero-Washbasin-White-High-Gloss-600-mm-045460, Info: nan
+40. Kat: Sanitaer, Typ: 00 - White Alpin, Fam: Sanitary_Wash-basins_DURAVIT-AG_Vero-Washbasin-White-High-Gloss-600-mm-045460, Info: nan
+41. Kat: Sanitaer, Typ: 00 - White Alpin, Fam: Sanitary_Wash-basins_DURAVIT-AG_Vero-Washbasin-White-High-Gloss-600-mm-045460, Info: nan
+42. Kat: Sanitaer, Typ: 000 White, Fam: Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542, Info: nan
+43. Kat: Sanitaer, Typ: 000 White, Fam: Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542, Info: nan
+44. Kat: Sanitaer, Typ: 840090000 White, Fam: Urinal - Tamaro- Laufen - 840090, Info: nan
+45. Kat: Sanitaer, Typ: 000 White, Fam: Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542, Info: nan
+46. Kat: Sanitaer, Typ: 000 White, Fam: Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542, Info: nan
+47. Kat: Sanitaer, Typ: 000 White, Fam: Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542, Info: nan
+48. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+49. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+50. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+    {"id":1, "code":"J01", "desc":"Mobiliar", "conf":0.95},
+    {"id":2, "code":"J01", "desc":"Mobiliar", "conf":0.95},
+    {"id":3, "code":"J01", "desc":"Mobiliar", "conf":0.95},
+    {"id":4, "code":"J01", "desc":"Mobiliar", "conf":0.95},
+    {"id":5, "code":"J01", "desc":"Mobiliar", "conf":0.95},
+    {"id":6, "code":"J01", "desc":"Mobiliar", "conf":0.95},
+    {"id":7, "code":"J01", "desc":"Mobiliar", "conf":0.95},
+    {"id":8, "code":"J01", "desc":"Mobiliar", "conf":0.95},
+    {"id":9, "code":"J01", "desc":"Mobiliar", "conf":0.95},
+    {"id":10, "code":"J01", "desc":"Mobiliar", "conf":0.95},
+    {"id":11, "code":"J01", "desc":"Mobiliar", "conf":0.95},
+    {"id":12, "code":"J01", "desc":"Mobiliar", "conf":0.95},
+    {"id":13, "code":"J01", "desc":"Mobiliar", "conf":0.95},
+    {"id":14, "code":"J01", "desc":"Mobiliar", "conf":0.95},
+    {"id":15, "code":"J01", "desc":"Mobiliar", "conf":0.95},
+    {"id":16, "code":"J01", "desc":"Mobiliar", "conf":0.95},
+    {"id":17, "code":"J01", "desc":"Mobiliar", "conf":0.95},
+    {"id":18, "code":"J01", "desc":"Mobiliar", "conf":0.95},
+    {"id":19, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":20, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":21, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":22, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":23, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":24, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":25, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":26, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":27, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":28, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":29, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":30, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":31, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":32, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":33, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":34, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":35, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":36, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":37, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":38, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":39, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":40, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":41, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":42, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":43, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":44, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":45, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":46, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":47, "code":"H05", "desc":"Anlage für Gesundheit", "conf":0.9},
+    {"id":48, "code":"C02", "desc":"Wandkonstruktion", "conf":0.95},
+    {"id":49, "code":"C02", "desc":"Wandkonstruktion", "conf":0.95},
+    {"id":50, "code":"C02", "desc":"Wandkonstruktion", "conf":0.95}
+]
+================================================================================
+
+================================================================================
+Timestamp: 2025-12-10 13:51:26
+Batch: 50 Elemente
+Tokens: Input=2904, Output=1330
+
+Prompt:
+Klassifiziere diese 50 Bauelemente nach eBKP-H (Level 1+2):
+
+1. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+2. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+3. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+4. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+5. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+6. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+7. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+8. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+9. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+10. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+11. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+12. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+13. Kat: Waende, Typ: Generic 250mm, Fam: nan, Info: nan
+14. Kat: Waende, Typ: Generic 250mm, Fam: nan, Info: nan
+15. Kat: Waende, Typ: Generic 250mm, Fam: nan, Info: nan
+16. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+17. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+18. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+19. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+20. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+21. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+22. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+23. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+24. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+25. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+26. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+27. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+28. Kat: Waende, Typ: Generic - 200mm exterior, Fam: nan, Info: nan
+29. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+30. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+31. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+32. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+33. Kat: Waende, Typ: M_HSLU-Fassade, Fam: nan, Info: nan
+34. Kat: Waende, Typ: Generic - 200mm exterior, Fam: nan, Info: nan
+35. Kat: Waende, Typ: M_HSLU-Fassade, Fam: nan, Info: nan
+36. Kat: Waende, Typ: Generic - 200mm exterior, Fam: nan, Info: nan
+37. Kat: Waende, Typ: M_HSLU-Fassade, Fam: nan, Info: nan
+38. Kat: Waende, Typ: Generic - 200mm exterior, Fam: nan, Info: nan
+39. Kat: Waende, Typ: M_HSLU-Fassade, Fam: nan, Info: nan
+40. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+41. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+42. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+43. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+44. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+45. Kat: Waende, Typ: M_HSLU Innenbereich, Fam: nan, Info: nan
+46. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+47. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+48. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+49. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+50. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":2,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":3,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":4,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":5,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":6,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":7,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":8,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":9,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":10,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":11,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":12,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":13,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":14,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":15,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":16,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":17,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":18,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":19,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":20,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":21,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":22,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":23,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":24,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":25,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":26,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":27,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":28,"code":"E02","desc":"Äussere Wandbekleidung über Terrain","conf":0.90},
+{"id":29,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":30,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":31,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":32,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":33,"code":"E02","desc":"Äussere Wandbekleidung über Terrain","conf":0.90},
+{"id":34,"code":"E02","desc":"Äussere Wandbekleidung über Terrain","conf":0.90},
+{"id":35,"code":"E02","desc":"Äussere Wandbekleidung über Terrain","conf":0.90},
+{"id":36,"code":"E02","desc":"Äussere Wandbekleidung über Terrain","conf":0.90},
+{"id":37,"code":"E02","desc":"Äussere Wandbekleidung über Terrain","conf":0.90},
+{"id":38,"code":"E02","desc":"Äussere Wandbekleidung über Terrain","conf":0.90},
+{"id":39,"code":"E02","desc":"Äussere Wandbekleidung über Terrain","conf":0.90},
+{"id":40,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":41,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":42,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":43,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":44,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":45,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.85},
+{"id":46,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":47,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":48,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":49,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+{"id":50,"code":"C02","desc":"Wandkonstruktion","conf":0.95}
+]
+================================================================================
+
+================================================================================
+Timestamp: 2025-12-10 13:51:43
+Batch: 50 Elemente
+Tokens: Input=2914, Output=1536
+
+Prompt:
+Klassifiziere diese 50 Bauelemente nach eBKP-H (Level 1+2):
+
+1. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+2. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+3. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+4. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+5. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+6. Kat: Waende, Typ: Vorwand, Fam: nan, Info: nan
+7. Kat: Waende, Typ: Trennwand, Fam: nan, Info: nan
+8. Kat: Waende, Typ: Leichtbauwand, Fam: nan, Info: nan
+9. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+10. Kat: Waende, Typ: Leichtbauwand, Fam: nan, Info: nan
+11. Kat: Waende, Typ: Trennwand, Fam: nan, Info: nan
+12. Kat: Waende, Typ: Trennwand, Fam: nan, Info: nan
+13. Kat: Waende, Typ: Trennwand, Fam: nan, Info: nan
+14. Kat: Waende, Typ: Trennwand, Fam: nan, Info: nan
+15. Kat: Waende, Typ: Trennwand, Fam: nan, Info: nan
+16. Kat: Waende, Typ: Vorwand, Fam: nan, Info: nan
+17. Kat: Waende, Typ: Vorwand, Fam: nan, Info: nan
+18. Kat: Waende, Typ: Generic - 200mm PlÃ¤ttli, Fam: nan, Info: nan
+19. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+20. Kat: Waende, Typ: Generic - 150mm PlÃ¤ttli, Fam: nan, Info: nan
+21. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+22. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+23. Kat: Waende, Typ: TÃ¼re, Fam: nan, Info: nan
+24. Kat: Waende, Typ: TÃ¼re, Fam: nan, Info: nan
+25. Kat: Waende, Typ: Trennwand, Fam: nan, Info: nan
+26. Kat: Waende, Typ: Leichtbauwand, Fam: nan, Info: nan
+27. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+28. Kat: Waende, Typ: Leichtbauwand, Fam: nan, Info: nan
+29. Kat: Waende, Typ: Trennwand, Fam: nan, Info: nan
+30. Kat: Waende, Typ: Trennwand, Fam: nan, Info: nan
+31. Kat: Waende, Typ: Trennwand, Fam: nan, Info: nan
+32. Kat: Waende, Typ: Trennwand, Fam: nan, Info: nan
+33. Kat: Waende, Typ: Trennwand, Fam: nan, Info: nan
+34. Kat: Waende, Typ: Vorwand, Fam: nan, Info: nan
+35. Kat: Waende, Typ: Vorwand, Fam: nan, Info: nan
+36. Kat: Waende, Typ: Generic - 200mm PlÃ¤ttli, Fam: nan, Info: nan
+37. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+38. Kat: Waende, Typ: Generic - 150mm PlÃ¤ttli, Fam: nan, Info: nan
+39. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+40. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+41. Kat: Waende, Typ: Trennwand, Fam: nan, Info: nan
+42. Kat: Waende, Typ: Leichtbauwand, Fam: nan, Info: nan
+43. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+44. Kat: Waende, Typ: Leichtbauwand, Fam: nan, Info: nan
+45. Kat: Waende, Typ: Trennwand, Fam: nan, Info: nan
+46. Kat: Waende, Typ: Vorwand, Fam: nan, Info: nan
+47. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+48. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+49. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+50. Kat: Waende, Typ: Trennwand, Fam: nan, Info: nan
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+    {"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":2,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":3,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":4,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":5,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":6,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":7,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+    {"id":8,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.90},
+    {"id":9,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":10,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.90},
+    {"id":11,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+    {"id":12,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+    {"id":13,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+    {"id":14,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+    {"id":15,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+    {"id":16,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":17,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":18,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":19,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":20,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":21,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":22,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":23,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.80},
+    {"id":24,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.80},
+    {"id":25,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+    {"id":26,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.90},
+    {"id":27,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":28,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.90},
+    {"id":29,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+    {"id":30,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+    {"id":31,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+    {"id":32,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+    {"id":33,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+    {"id":34,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":35,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":36,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":37,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":38,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":39,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":40,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":41,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+    {"id":42,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.90},
+    {"id":43,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":44,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.90},
+    {"id":45,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95},
+    {"id":46,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":47,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":48,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":49,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":50,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.95}
+]
+================================================================================
+
+================================================================================
+Timestamp: 2025-12-10 13:51:58
+Batch: 50 Elemente
+Tokens: Input=2891, Output=1336
+
+Prompt:
+Klassifiziere diese 50 Bauelemente nach eBKP-H (Level 1+2):
+
+1. Kat: Waende, Typ: Trennwand, Fam: nan, Info: nan
+2. Kat: Waende, Typ: Trennwand, Fam: nan, Info: nan
+3. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+4. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+5. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+6. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+7. Kat: Waende, Typ: Concrete 200mm, Fam: nan, Info: nan
+8. Kat: Waende, Typ: Concrete 200mm, Fam: nan, Info: nan
+9. Kat: Waende, Typ: Concrete 200mm, Fam: nan, Info: nan
+10. Kat: Waende, Typ: Concrete 200mm, Fam: nan, Info: nan
+11. Kat: Waende, Typ: Concrete 200mm, Fam: nan, Info: nan
+12. Kat: Waende, Typ: Concrete 200mm, Fam: nan, Info: nan
+13. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+14. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+15. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+16. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+17. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+18. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+19. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+20. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+21. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+22. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+23. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+24. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+25. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+26. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+27. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+28. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+29. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+30. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+31. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+32. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+33. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+34. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+35. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+36. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+37. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+38. Kat: Waende, Typ: M_HSLU Innenbereich, Fam: nan, Info: nan
+39. Kat: Waende, Typ: TÃ¼re 2, Fam: nan, Info: nan
+40. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+41. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+42. Kat: Waende, Typ: TÃ¼re 2, Fam: nan, Info: nan
+43. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+44. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+45. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+46. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+47. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+48. Kat: Waende, Typ: Liftschacht, Fam: nan, Info: nan
+49. Kat: Waende, Typ: Liftschacht, Fam: nan, Info: nan
+50. Kat: Waende, Typ: Liftschacht, Fam: nan, Info: nan
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+    {"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":2,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":3,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":4,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":5,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":6,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":7,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":8,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":9,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":10,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":11,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":12,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":13,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":14,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":15,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":16,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":17,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":18,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":19,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":20,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":21,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":22,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":23,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":24,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":25,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":26,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":27,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":28,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":29,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":30,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":31,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":32,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":33,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":34,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":35,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":36,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":37,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":38,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.85},
+    {"id":39,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.90},
+    {"id":40,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":41,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":42,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.90},
+    {"id":43,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":44,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":45,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":46,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":47,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":48,"code":"C02","desc":"Wandkonstruktion","conf":0.85},
+    {"id":49,"code":"C02","desc":"Wandkonstruktion","conf":0.85},
+    {"id":50,"code":"C02","desc":"Wandkonstruktion","conf":0.85}
+]
+================================================================================
+
+================================================================================
+Timestamp: 2025-12-10 13:52:13
+Batch: 50 Elemente
+Tokens: Input=3033, Output=1306
+
+Prompt:
+Klassifiziere diese 50 Bauelemente nach eBKP-H (Level 1+2):
+
+1. Kat: Waende, Typ: Liftschacht, Fam: nan, Info: nan
+2. Kat: Waende, Typ: Liftschacht, Fam: nan, Info: nan
+3. Kat: Waende, Typ: Liftschacht, Fam: nan, Info: nan
+4. Kat: Waende, Typ: Liftschacht, Fam: nan, Info: nan
+5. Kat: Waende, Typ: Liftschacht, Fam: nan, Info: nan
+6. Kat: Waende, Typ: Liftschacht, Fam: nan, Info: nan
+7. Kat: Waende, Typ: Liftschacht, Fam: nan, Info: nan
+8. Kat: Waende, Typ: Liftschacht, Fam: nan, Info: nan
+9. Kat: Waende, Typ: Liftschacht, Fam: nan, Info: nan
+10. Kat: Waende, Typ: Liftschacht, Fam: nan, Info: nan
+11. Kat: Waende, Typ: Liftschacht, Fam: nan, Info: nan
+12. Kat: Waende, Typ: Liftschacht, Fam: nan, Info: nan
+13. Kat: Waende, Typ: Generic - 200mm PlÃ¤ttli, Fam: nan, Info: nan
+14. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+15. Kat: Waende, Typ: Generic - 200mm PlÃ¤ttli, Fam: nan, Info: nan
+16. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+17. Kat: Waende, Typ: Generic - 200mm PlÃ¤ttli, Fam: nan, Info: nan
+18. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+19. Kat: Waende, Typ: Generic - 200mm PlÃ¤ttli double, Fam: nan, Info: nan
+20. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+21. Kat: Waende, Typ: Generic - 150mm PlÃ¤ttli, Fam: nan, Info: nan
+22. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+23. Kat: Waende, Typ: Generic - 150mm PlÃ¤ttli, Fam: nan, Info: nan
+24. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+25. Kat: Waende, Typ: Generic - 150mm PlÃ¤ttli, Fam: nan, Info: nan
+26. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+27. Kat: Waende, Typ: Generic - 200mm PlÃ¤ttli, Fam: nan, Info: nan
+28. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+29. Kat: Waende, Typ: Generic - 200mm PlÃ¤ttli, Fam: nan, Info: nan
+30. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+31. Kat: Waende, Typ: Generic - 150mm PlÃ¤ttli, Fam: nan, Info: nan
+32. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+33. Kat: Waende, Typ: Generic - 150mm PlÃ¤ttli, Fam: nan, Info: nan
+34. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+35. Kat: Waende, Typ: Generic - 150mm PlÃ¤ttli, Fam: nan, Info: nan
+36. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+37. Kat: Waende, Typ: Generic - 150mm PlÃ¤ttli, Fam: nan, Info: nan
+38. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+39. Kat: Waende, Typ: Generic - 150mm PlÃ¤ttli, Fam: nan, Info: nan
+40. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+41. Kat: Waende, Typ: Generic - 150mm PlÃ¤ttli, Fam: nan, Info: nan
+42. Kat: Waende, Typ: Generic - 150mm, Fam: nan, Info: nan
+43. Kat: Waende, Typ: Generic - 200mm PlÃ¤ttli, Fam: nan, Info: nan
+44. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+45. Kat: Waende, Typ: Generic - 200mm PlÃ¤ttli, Fam: nan, Info: nan
+46. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+47. Kat: Waende, Typ: Generic - 200mm PlÃ¤ttli double, Fam: nan, Info: nan
+48. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+49. Kat: Waende, Typ: Generic - 200mm PlÃ¤ttli double, Fam: nan, Info: nan
+50. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+    {"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":2,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":3,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":4,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":5,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":6,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":7,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":8,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":9,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":10,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":11,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":12,"code":"C02","desc":"Wandkonstruktion","conf":0.95},
+    {"id":13,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":14,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":15,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":16,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":17,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":18,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":19,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":20,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":21,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":22,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":23,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":24,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":25,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":26,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":27,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":28,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":29,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":30,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":31,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":32,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":33,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":34,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":35,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":36,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":37,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":38,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":39,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":40,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":41,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":42,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":43,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":44,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":45,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":46,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":47,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":48,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":49,"code":"C02","desc":"Wandkonstruktion","conf":0.90},
+    {"id":50,"code":"C02","desc":"Wandkonstruktion","conf":0.90}
+]
+================================================================================
+
+================================================================================
+Timestamp: 2025-12-10 13:52:29
+Batch: 50 Elemente
+Tokens: Input=3025, Output=1362
+
+Prompt:
+Klassifiziere diese 50 Bauelemente nach eBKP-H (Level 1+2):
+
+1. Kat: Waende, Typ: M_HSLU-Fassade, Fam: nan, Info: nan
+2. Kat: Waende, Typ: M_HSLU-Fassade, Fam: nan, Info: nan
+3. Kat: Waende, Typ: M_HSLU-Fassade, Fam: nan, Info: nan
+4. Kat: Waende, Typ: M_HSLU Innenbereich, Fam: nan, Info: nan
+5. Kat: Waende, Typ: M_HSLU Innenbereich, Fam: nan, Info: nan
+6. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+7. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+8. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+9. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+10. Kat: Waende, Typ: Generic - 200mm, Fam: nan, Info: nan
+11. Kat: Elektro, Typ: T15, Fam: Steckdose, Info: nan
+12. Kat: Elektro, Typ: T15, Fam: Steckdose, Info: nan
+13. Kat: Elektro, Typ: T15, Fam: Steckdose, Info: nan
+14. Kat: Elektro, Typ: T15, Fam: Steckdose, Info: nan
+15. Kat: Elektro, Typ: T15, Fam: Steckdose, Info: nan
+16. Kat: Elektro, Typ: T15, Fam: Steckdose, Info: nan
+17. Kat: Elektro, Typ: T15, Fam: Steckdose, Info: nan
+18. Kat: Elektro, Typ: T15, Fam: Steckdose, Info: nan
+19. Kat: Elektro, Typ: T15, Fam: Steckdose, Info: nan
+20. Kat: Elektro, Typ: T15, Fam: Steckdose, Info: nan
+21. Kat: Elektro, Typ: 3xT13, Fam: Steckdose, Info: nan
+22. Kat: Elektro, Typ: 3xT13, Fam: Steckdose, Info: nan
+23. Kat: Elektro, Typ: 3xT13, Fam: Steckdose, Info: nan
+24. Kat: Elektro, Typ: 3xT13, Fam: Steckdose, Info: nan
+25. Kat: Elektro, Typ: 3xT13, Fam: Steckdose, Info: nan
+26. Kat: Elektro, Typ: 3xT13, Fam: Steckdose, Info: nan
+27. Kat: Elektro, Typ: 3xT13, Fam: Steckdose, Info: nan
+28. Kat: Elektro, Typ: 3xT13, Fam: Steckdose, Info: nan
+29. Kat: Elektro, Typ: 3xT13, Fam: Steckdose, Info: nan
+30. Kat: Elektro, Typ: 3xT13, Fam: Steckdose, Info: nan
+31. Kat: Elektro, Typ: 3xT13, Fam: Steckdose, Info: nan
+32. Kat: Elektro, Typ: 3xT13, Fam: Steckdose, Info: nan
+33. Kat: Elektro, Typ: 3xT13, Fam: Steckdose, Info: nan
+34. Kat: Elektro, Typ: T15, Fam: Steckdose, Info: nan
+35. Kat: Elektro, Typ: 3xT13, Fam: Steckdose, Info: nan
+36. Kat: Elektro, Typ: 3xT13, Fam: Steckdose, Info: nan
+37. Kat: Elektro, Typ: 3xT13, Fam: Steckdose, Info: nan
+38. Kat: Elektro, Typ: 3xT13, Fam: Steckdose, Info: nan
+39. Kat: Elektro, Typ: 3xT13, Fam: Steckdose, Info: nan
+40. Kat: Daten, Typ: 2xRJ45, Fam: Ethernet, Info: 8.0
+41. Kat: Daten, Typ: AccessPoint, Fam: Ethernet, Info: 9.0
+42. Kat: Daten, Typ: AccessPoint, Fam: Ethernet, Info: 10.0
+43. Kat: Daten, Typ: 2xRJ45, Fam: Ethernet, Info: 11.0
+44. Kat: Daten, Typ: AccessPoint, Fam: Ethernet, Info: 12.0
+45. Kat: Daten, Typ: 2xRJ45, Fam: Ethernet, Info: 13.0
+46. Kat: Daten, Typ: 2xRJ45, Fam: Ethernet, Info: 14.0
+47. Kat: Daten, Typ: AccessPoint, Fam: Ethernet, Info: 15.0
+48. Kat: Daten, Typ: 2xRJ45, Fam: Ethernet, Info: 16.0
+49. Kat: Daten, Typ: 2xRJ45, Fam: Ethernet, Info: 17.0
+50. Kat: Daten, Typ: 2xRJ45, Fam: Ethernet, Info: 18.0
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+    {"id":1,"code":"E02","desc":"Äussere Wandbekleidung über Terrain","conf":0.95},
+    {"id":2,"code":"E02","desc":"Äussere Wandbekleidung über Terrain","conf":0.95},
+    {"id":3,"code":"E02","desc":"Äussere Wandbekleidung über Terrain","conf":0.95},
+    {"id":4,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.90},
+    {"id":5,"code":"G01","desc":"Trennwand, Innentür, Innentor","conf":0.90},
+    {"id":6,"code":"C02","desc":"Wandkonstruktion","conf":0.85},
+    {"id":7,"code":"C02","desc":"Wandkonstruktion","conf":0.85},
+    {"id":8,"code":"C02","desc":"Wandkonstruktion","conf":0.85},
+    {"id":9,"code":"C02","desc":"Wandkonstruktion","conf":0.85},
+    {"id":10,"code":"C02","desc":"Wandkonstruktion","conf":0.85},
+    {"id":11,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":12,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":13,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":14,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":15,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":16,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":17,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":18,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":19,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":20,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":21,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":22,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":23,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":24,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":25,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":26,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":27,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":28,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":29,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":30,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":31,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":32,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":33,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":34,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":35,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":36,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":37,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":38,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":39,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":40,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":41,"code":"D02","desc":"Gebäudeautomation","conf":0.90},
+    {"id":42,"code":"D02","desc":"Gebäudeautomation","conf":0.90},
+    {"id":43,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":44,"code":"D02","desc":"Gebäudeautomation","conf":0.90},
+    {"id":45,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":46,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":47,"code":"D02","desc":"Gebäudeautomation","conf":0.90},
+    {"id":48,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":49,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":50,"code":"D01","desc":"Elektroanlage","conf":0.90}
+]
+================================================================================
+
+================================================================================
+Timestamp: 2025-12-10 13:52:44
+Batch: 50 Elemente
+Tokens: Input=3244, Output=1316
+
+Prompt:
+Klassifiziere diese 50 Bauelemente nach eBKP-H (Level 1+2):
+
+1. Kat: Daten, Typ: 2xRJ45, Fam: Ethernet, Info: 19.0
+2. Kat: Daten, Typ: 2xRJ45, Fam: Ethernet, Info: 20.0
+3. Kat: Sicherheit, Typ: Standard, Fam: Fire Alarm Strobe Speaker - Wall Mounted, Info: 2.0
+4. Kat: Sicherheit, Typ: Standard, Fam: Fire Alarm Strobe Speaker - Wall Mounted, Info: 3.0
+5. Kat: Sicherheit, Typ: Standard, Fam: Fire Alarm Strobe Speaker - Wall Mounted, Info: 4.0
+6. Kat: Sicherheit, Typ: Standard, Fam: Fire Alarm Strobe Speaker - Wall Mounted, Info: 5.0
+7. Kat: Sicherheit, Typ: Standard, Fam: Fire Alarm Strobe Speaker - Wall Mounted, Info: 10.0
+8. Kat: Sicherheit, Typ: Standard, Fam: Fire Alarm Strobe Speaker - Wall Mounted, Info: 11.0
+9. Kat: Sicherheit, Typ: Standard, Fam: Fire Alarm Strobe Speaker - Wall Mounted, Info: 12.0
+10. Kat: Sicherheit, Typ: Standard, Fam: Fire Alarm Strobe Speaker - Wall Mounted, Info: 13.0
+11. Kat: Sicherheit, Typ: Standard, Fam: Fire Alarm Strobe Speaker - Wall Mounted, Info: 14.0
+12. Kat: Sicherheit, Typ: Standard, Fam: Fire Alarm Strobe Speaker - Wall Mounted, Info: 15.0
+13. Kat: Sicherheit, Typ: Standard, Fam: Fire Alarm Strobe Speaker - Wall Mounted, Info: 16.0
+14. Kat: Sicherheit, Typ: Photoelectric, Fam: Smoke Detector, Info: 17.0
+15. Kat: Sicherheit, Typ: Photoelectric, Fam: Smoke Detector, Info: 18.0
+16. Kat: Sicherheit, Typ: Photoelectric, Fam: Smoke Detector, Info: 19.0
+17. Kat: Sicherheit, Typ: Photoelectric, Fam: Smoke Detector, Info: 20.0
+18. Kat: Sicherheit, Typ: Photoelectric, Fam: Smoke Detector, Info: 21.0
+19. Kat: Sicherheit, Typ: Photoelectric, Fam: Smoke Detector, Info: 22.0
+20. Kat: Sicherheit, Typ: Photoelectric, Fam: Smoke Detector, Info: 23.0
+21. Kat: Sicherheit, Typ: Standard, Fam: Fire Alarm Strobe Speaker - Wall Mounted, Info: 24.0
+22. Kat: Sicherheit, Typ: Photoelectric, Fam: Smoke Detector, Info: 25.0
+23. Kat: Sicherheit, Typ: Standard, Fam: Fire Alarm Strobe Speaker - Wall Mounted, Info: 26.0
+24. Kat: Sicherheit, Typ: Standard, Fam: Fire Alarm Strobe Speaker - Wall Mounted, Info: 27.0
+25. Kat: Sicherheit, Typ: Photoelectric, Fam: Smoke Detector, Info: 28.0
+26. Kat: Sicherheit, Typ: Photoelectric, Fam: Smoke Detector, Info: 29.0
+27. Kat: Sicherheit, Typ: Standard, Fam: Fire Alarm Strobe Speaker - Wall Mounted, Info: 30.0
+28. Kat: Sicherheit, Typ: Standard, Fam: Fire Alarm Strobe Speaker - Wall Mounted, Info: 31.0
+29. Kat: Sicherheit, Typ: Photoelectric, Fam: Smoke Detector, Info: 32.0
+30. Kat: Sicherheit, Typ: Photoelectric, Fam: Smoke Detector, Info: 33.0
+31. Kat: Sicherheit, Typ: Photoelectric, Fam: Smoke Detector, Info: 34.0
+32. Kat: Sicherheit, Typ: Photoelectric, Fam: Smoke Detector, Info: 35.0
+33. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 2.0
+34. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 3.0
+35. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 4.0
+36. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 7.0
+37. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 10.0
+38. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 11.0
+39. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 12.0
+40. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 13.0
+41. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 14.0
+42. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 15.0
+43. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 16.0
+44. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 17.0
+45. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 18.0
+46. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 19.0
+47. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 20.0
+48. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 21.0
+49. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 22.0
+50. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 23.0
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+{"id":1,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":2,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":3,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":4,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":5,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":6,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":7,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":8,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":9,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":10,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":11,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":12,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":13,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":14,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":15,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":16,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":17,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":18,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":19,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":20,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":21,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":22,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":23,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":24,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":25,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":26,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":27,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":28,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":29,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":30,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":31,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":32,"code":"D03","desc":"Sicherheitsanlage","conf":0.95},
+{"id":33,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":34,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":35,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":36,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":37,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":38,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":39,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":40,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":41,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":42,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":43,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":44,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":45,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":46,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":47,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":48,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":49,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":50,"code":"D01","desc":"Elektroanlage","conf":0.95}
+]
+================================================================================
+
+================================================================================
+Timestamp: 2025-12-10 13:52:57
+Batch: 50 Elemente
+Tokens: Input=3275, Output=1256
+
+Prompt:
+Klassifiziere diese 50 Bauelemente nach eBKP-H (Level 1+2):
+
+1. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 24.0
+2. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 25.0
+3. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 26.0
+4. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 27.0
+5. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 28.0
+6. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 29.0
+7. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 30.0
+8. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 31.0
+9. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 32.0
+10. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 33.0
+11. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 34.0
+12. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 35.0
+13. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 36.0
+14. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 37.0
+15. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 38.0
+16. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 39.0
+17. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 40.0
+18. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 41.0
+19. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 42.0
+20. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 43.0
+21. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 44.0
+22. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 45.0
+23. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 46.0
+24. Kat: Beleuchtung, Typ: Allgemein, Fam: Schalter, Info: 47.0
+25. Kat: Elektro, Typ: Channel Cable Tray, Fam: nan, Info: nan
+26. Kat: Elektro, Typ: Channel Cable Tray, Fam: nan, Info: nan
+27. Kat: Elektro, Typ: Channel Cable Tray, Fam: nan, Info: nan
+28. Kat: Elektro, Typ: SRX42UBWD, Fam: Rack, Info: nan
+29. Kat: Elektro, Typ: Rigid Nonmetallic Conduit (RNC Sch 40), Fam: nan, Info: nan
+30. Kat: Elektro, Typ: Rigid Nonmetallic Conduit (RNC Sch 40), Fam: nan, Info: nan
+31. Kat: Elektro, Typ: Rigid Nonmetallic Conduit (RNC Sch 40), Fam: nan, Info: nan
+32. Kat: Elektro, Typ: Rigid Nonmetallic Conduit (RNC Sch 40), Fam: nan, Info: nan
+33. Kat: Elektro, Typ: Rigid Nonmetallic Conduit (RNC Sch 40), Fam: nan, Info: nan
+34. Kat: Elektro, Typ: Rigid Nonmetallic Conduit (RNC Sch 40), Fam: nan, Info: nan
+35. Kat: Elektro, Typ: Rigid Nonmetallic Conduit (RNC Sch 40), Fam: nan, Info: nan
+36. Kat: Elektro, Typ: Rigid Nonmetallic Conduit (RNC Sch 40), Fam: nan, Info: nan
+37. Kat: Elektro, Typ: Rigid Nonmetallic Conduit (RNC Sch 40), Fam: nan, Info: nan
+38. Kat: Elektro, Typ: Rigid Nonmetallic Conduit (RNC Sch 40), Fam: nan, Info: nan
+39. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+40. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+41. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+42. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+43. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+44. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+45. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+46. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+47. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+48. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+49. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+50. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+{"id":1,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":2,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":3,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":4,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":5,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":6,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":7,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":8,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":9,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":10,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":11,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":12,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":13,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":14,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":15,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":16,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":17,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":18,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":19,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":20,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":21,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":22,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":23,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":24,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":25,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":26,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":27,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":28,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":29,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":30,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":31,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":32,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":33,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":34,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":35,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":36,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":37,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":38,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":39,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":40,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":41,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":42,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":43,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":44,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":45,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":46,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":47,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":48,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":49,"code":"D01","desc":"Elektroanlage","conf":0.95},
+{"id":50,"code":"D01","desc":"Elektroanlage","conf":0.95}
+]
+================================================================================
+
+================================================================================
+Timestamp: 2025-12-10 13:53:12
+Batch: 50 Elemente
+Tokens: Input=3406, Output=1306
+
+Prompt:
+Klassifiziere diese 50 Bauelemente nach eBKP-H (Level 1+2):
+
+1. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+2. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+3. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+4. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+5. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+6. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+7. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+8. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+9. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+10. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+11. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+12. Kat: Beleuchtung, Typ: 20 x 150 x 14, Fam: Pendelleuchte, Info: nan
+13. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+14. Kat: Beleuchtung, Typ: 20 x 150 x 14, Fam: Pendelleuchte, Info: nan
+15. Kat: Beleuchtung, Typ: 20 x 150 x 14, Fam: Pendelleuchte, Info: nan
+16. Kat: Beleuchtung, Typ: 20 x 150 x 14, Fam: Pendelleuchte, Info: nan
+17. Kat: Beleuchtung, Typ: 20 x 150 x 14, Fam: Pendelleuchte, Info: nan
+18. Kat: Beleuchtung, Typ: 20 x 150 x 14, Fam: Pendelleuchte, Info: nan
+19. Kat: Beleuchtung, Typ: 20 x 150 x 20, Fam: Pendelleuchte, Info: nan
+20. Kat: Beleuchtung, Typ: 20 x 150 x 14, Fam: Pendelleuchte, Info: nan
+21. Kat: Beleuchtung, Typ: 20 x 150 x 14, Fam: Pendelleuchte, Info: nan
+22. Kat: Beleuchtung, Typ: 20 x 150 x 14, Fam: Pendelleuchte, Info: nan
+23. Kat: Beleuchtung, Typ: 20 x 150 x 14, Fam: Pendelleuchte, Info: nan
+24. Kat: Beleuchtung, Typ: 20 x 150 x 20, Fam: Pendelleuchte, Info: nan
+25. Kat: Beleuchtung, Typ: 20 x 150 x 20, Fam: Pendelleuchte, Info: nan
+26. Kat: Beleuchtung, Typ: 20 x 150 x 20, Fam: Pendelleuchte, Info: nan
+27. Kat: Beleuchtung, Typ: 20 x 150 x 20, Fam: Pendelleuchte, Info: nan
+28. Kat: Beleuchtung, Typ: 20 x 150 x 20, Fam: Pendelleuchte, Info: nan
+29. Kat: Beleuchtung, Typ: 20 x 150 x 20, Fam: Pendelleuchte, Info: nan
+30. Kat: Beleuchtung, Typ: 20 x 150 x 20, Fam: Pendelleuchte, Info: nan
+31. Kat: Beleuchtung, Typ: 20 x 150 x 20, Fam: Pendelleuchte, Info: nan
+32. Kat: Beleuchtung, Typ: 20 x 150 x 20, Fam: Pendelleuchte, Info: nan
+33. Kat: Beleuchtung, Typ: 20 x 150 x 20, Fam: Pendelleuchte, Info: nan
+34. Kat: Beleuchtung, Typ: 20 x 150 x 20, Fam: Pendelleuchte, Info: nan
+35. Kat: Beleuchtung, Typ: 20 x 150 x 20, Fam: Pendelleuchte, Info: nan
+36. Kat: Beleuchtung, Typ: 20 x 150 x 20, Fam: Pendelleuchte, Info: nan
+37. Kat: Beleuchtung, Typ: 20 x 150 x 20, Fam: Pendelleuchte, Info: nan
+38. Kat: Beleuchtung, Typ: 20 x 150 x 20, Fam: Pendelleuchte, Info: nan
+39. Kat: Beleuchtung, Typ: 20 x 150 x 20, Fam: Pendelleuchte, Info: nan
+40. Kat: Beleuchtung, Typ: 20 x 150 x 20, Fam: Pendelleuchte, Info: nan
+41. Kat: Beleuchtung, Typ: 20 x 150 x 20, Fam: Pendelleuchte, Info: nan
+42. Kat: Beleuchtung, Typ: 20 x 150 x 20, Fam: Pendelleuchte, Info: nan
+43. Kat: Beleuchtung, Typ: 20 x 150 x 20, Fam: Pendelleuchte, Info: nan
+44. Kat: Beleuchtung, Typ: 20 x 150 x 20, Fam: Pendelleuchte, Info: nan
+45. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+46. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+47. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+48. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+49. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+50. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+    {"id":1,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":2,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":3,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":4,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":5,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":6,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":7,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":8,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":9,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":10,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":11,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":12,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":13,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":14,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":15,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":16,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":17,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":18,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":19,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":20,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":21,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":22,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":23,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":24,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":25,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":26,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":27,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":28,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":29,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":30,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":31,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":32,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":33,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":34,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":35,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":36,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":37,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":38,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":39,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":40,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":41,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":42,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":43,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":44,"code":"D01","desc":"Elektroanlage","conf":0.90},
+    {"id":45,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":46,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":47,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":48,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":49,"code":"D01","desc":"Elektroanlage","conf":0.95},
+    {"id":50,"code":"D01","desc":"Elektroanlage","conf":0.95}
+]
+================================================================================
+
+================================================================================
+Timestamp: 2025-12-10 13:53:19
+Batch: 12 Elemente
+Tokens: Input=1892, Output=354
+
+Prompt:
+Klassifiziere diese 12 Bauelemente nach eBKP-H (Level 1+2):
+
+1. Kat: Beleuchtung, Typ: Almat DX11021 CG-S, Fam: Notlicht, Info: nan
+2. Kat: Beleuchtung, Typ: Almat DX11021 CG-S, Fam: Notlicht, Info: nan
+3. Kat: Beleuchtung, Typ: Almat DX11021 CG-S, Fam: Notlicht, Info: nan
+4. Kat: Beleuchtung, Typ: Almat DX11021 CG-S, Fam: Notlicht, Info: nan
+5. Kat: Beleuchtung, Typ: Almat DX11021 CG-S, Fam: Notlicht, Info: nan
+6. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+7. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+8. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+9. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+10. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+11. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+12. Kat: Beleuchtung, Typ: T5 LED 120, Fam: Balkenleuchte, Info: nan
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+    {"id":1, "code":"D01", "desc":"Elektroanlage", "conf":0.95},
+    {"id":2, "code":"D01", "desc":"Elektroanlage", "conf":0.95},
+    {"id":3, "code":"D01", "desc":"Elektroanlage", "conf":0.95},
+    {"id":4, "code":"D01", "desc":"Elektroanlage", "conf":0.95},
+    {"id":5, "code":"D01", "desc":"Elektroanlage", "conf":0.95},
+    {"id":6, "code":"D01", "desc":"Elektroanlage", "conf":0.95},
+    {"id":7, "code":"D01", "desc":"Elektroanlage", "conf":0.95},
+    {"id":8, "code":"D01", "desc":"Elektroanlage", "conf":0.95},
+    {"id":9, "code":"D01", "desc":"Elektroanlage", "conf":0.95},
+    {"id":10, "code":"D01", "desc":"Elektroanlage", "conf":0.95},
+    {"id":11, "code":"D01", "desc":"Elektroanlage", "conf":0.95},
+    {"id":12, "code":"D01", "desc":"Elektroanlage", "conf":0.95}
+]
+================================================================================

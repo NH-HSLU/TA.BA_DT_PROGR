@@ -1,0 +1,563 @@
+Quelle;GUID;Kategorie;Typ;Familie;Zusatzinfo;Menge;Einheit;Ebene;Schichtaufbau;Dicke_mm;Fläche_m2;Länge_m;BKP_Code;BKP_Beschreibung;KI_Konfidenz
+ARC_Umbau_TRP-T4;0546f683-7a7a-45cd-b582-e19319c291ff-001a2ae0;Tueren;2000 x 2100mm;M_Door-Passage-Double-Flush;101.0;1.0;Stk;B;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;06757a82-5841-4193-b3b5-34af08e84426-001af315;Tueren;WC TÃ¼r;Door-Single-Panel;108.0;1.0;Stk;D;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;06757a82-5841-4193-b3b5-34af08e84426-001af7e5;Tueren;WC TÃ¼r;Door-Single-Panel;114.0;1.0;Stk;D;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;06757a82-5841-4193-b3b5-34af08e84426-001af831;Tueren;WC TÃ¼r Rollstuhl;Door-Single-Panel;115.0;1.0;Stk;D;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;0d074a64-7c38-4772-8936-6efc228c2487-001af8b7;Tueren;WC TÃ¼r;Door-Single-Panel;116.0;1.0;Stk;D;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;0d074a64-7c38-4772-8936-6efc228c2487-001af905;Tueren;WC TÃ¼r;Door-Single-Panel;117.0;1.0;Stk;D;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;96c8cc2f-6d01-4969-aedc-d5b38f0cf10c-001b13b6;Tueren;Door-Curtain-Wall-Double-Storefront;Door-Curtain-Wall-Double-Storefront;;1.0;Stk;D;;;;;G01;Trennwand, Innentür, Innentor;0.85
+ARC_Umbau_TRP-T4;96c8cc2f-6d01-4969-aedc-d5b38f0cf10c-001b1698;Tueren;Door-Curtain-Wall-Double-Storefront;Door-Curtain-Wall-Double-Storefront;122.0;1.0;Stk;E;;;;;G01;Trennwand, Innentür, Innentor;0.85
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b183a;Tueren;2000 x 2100mm;M_Door-Passage-Double-Flush;125.0;1.0;Stk;B;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b18b7;Tueren;2000 x 2100mm;M_Door-Passage-Double-Flush;126.0;1.0;Stk;B;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b192a;Tueren;800 x 2100mm;M_Door-Passage-Single-Flush;127.0;1.0;Stk;B;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b1a25;Tueren;1200 x 1900mm;M_Door-Passage-Single-Flush;128.0;1.0;Stk;B;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c5f;Tueren;WC TÃ¼r;Door-Single-Panel;130.0;1.0;Stk;E;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c60;Tueren;WC TÃ¼r;Door-Single-Panel;131.0;1.0;Stk;E;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c61;Tueren;WC TÃ¼r Rollstuhl;Door-Single-Panel;132.0;1.0;Stk;E;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c62;Tueren;WC TÃ¼r;Door-Single-Panel;133.0;1.0;Stk;E;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c63;Tueren;WC TÃ¼r;Door-Single-Panel;134.0;1.0;Stk;E;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;4a569777-c6f1-4580-8cc0-6f70084b0df2-001b39ac;Tueren;WC TÃ¼r;Door-Single-Panel;138.0;1.0;Stk;F;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;4a569777-c6f1-4580-8cc0-6f70084b0df2-001b39ad;Tueren;WC TÃ¼r;Door-Single-Panel;139.0;1.0;Stk;F;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;4a569777-c6f1-4580-8cc0-6f70084b0df2-001b39f3;Tueren;800 x 2100mm;M_Door-Passage-Single-Flush;102.0;1.0;Stk;D;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;4a569777-c6f1-4580-8cc0-6f70084b0df2-001b39f4;Tueren;800 x 2100mm;M_Door-Passage-Single-Flush;104.0;1.0;Stk;D;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;4a569777-c6f1-4580-8cc0-6f70084b0df2-001b39f5;Tueren;2000 x 2100mm;M_Door-Passage-Double-Flush;124.0;1.0;Stk;D;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;0e406907-8b57-450d-ba49-8c17cf6dfb95-001b4762;Tueren;800 x 2100mm;M_Door-Passage-Single-Flush;140.0;1.0;Stk;E;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;0e406907-8b57-450d-ba49-8c17cf6dfb95-001b4763;Tueren;800 x 2100mm;M_Door-Passage-Single-Flush;141.0;1.0;Stk;E;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;0e406907-8b57-450d-ba49-8c17cf6dfb95-001b47b6;Tueren;800 x 2100mm;M_Door-Passage-Single-Flush;146.0;1.0;Stk;F;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;0e406907-8b57-450d-ba49-8c17cf6dfb95-001b4857;Tueren;800 x 2100mm;M_Door-Passage-Single-Flush;148.0;1.0;Stk;F;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;9fcbdf87-1433-4a7f-ae7e-10b09425362d-001b7922;Tueren;800 x 2100mm;M_Door-Passage-Single-Flush;129.0;1.0;Stk;D;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;225ed64e-eb99-49d1-bbbf-3d8637b1364a-001b8a6a;Tueren;800 x 2100mm;M_Door-Passage-Single-Flush;142.0;1.0;Stk;E;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;225ed64e-eb99-49d1-bbbf-3d8637b1364a-001b8e25;Tueren;800 x 2100mm;M_Door-Passage-Single-Flush;147.0;1.0;Stk;F;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;bf384d7a-2c1b-49aa-b6e8-4aab5a6d633f-001b92e8;Tueren;900 x 2100mm_200;M_Door-Passage-Single-Flush;150.0;1.0;Stk;B;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;bf384d7a-2c1b-49aa-b6e8-4aab5a6d633f-001b95a0;Tueren;900 x 2100mm_200;M_Door-Passage-Single-Flush;151.0;1.0;Stk;C;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;bf384d7a-2c1b-49aa-b6e8-4aab5a6d633f-001b9aac;Tueren;900 x 2100mm_200;M_Door-Passage-Single-Flush;152.0;1.0;Stk;D;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;bf384d7a-2c1b-49aa-b6e8-4aab5a6d633f-001b9bec;Tueren;900 x 2100mm_200;M_Door-Passage-Single-Flush;153.0;1.0;Stk;E;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;bf384d7a-2c1b-49aa-b6e8-4aab5a6d633f-001b9df0;Tueren;900 x 2100mm_200;M_Door-Passage-Single-Flush;154.0;1.0;Stk;F;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;1e8ce7a7-e8f9-4bcb-b61c-47249b0c4f83-001bb2d0;Tueren;1000 x 2100mm;M_Door-Passage-Single-Flush;156.0;1.0;Stk;E;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;1e8ce7a7-e8f9-4bcb-b61c-47249b0c4f83-001bb365;Tueren;1000 x 2100mm;M_Door-Passage-Single-Flush;157.0;1.0;Stk;E;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;39c531de-0dad-46ba-99ec-39a179b1cfa7-001bb9c7;Tueren;"68"" x 80""";Door-Double-Flush_Panel;158.0;1.0;Stk;B;;;;;G01;Trennwand, Innentür, Innentor;0.85
+ARC_Umbau_TRP-T4;7ebf658d-25be-430b-b249-5fbe28fdfa9e-001bf298;Tueren;"68"" x 80""";Door-Double-Flush_Panel;159.0;1.0;Stk;C;;;;;G01;Trennwand, Innentür, Innentor;0.85
+ARC_Umbau_TRP-T4;7ebf658d-25be-430b-b249-5fbe28fdfa9e-001bf2c4;Tueren;"68"" x 80""";Door-Double-Flush_Panel;160.0;1.0;Stk;D;;;;;G01;Trennwand, Innentür, Innentor;0.85
+ARC_Umbau_TRP-T4;7ebf658d-25be-430b-b249-5fbe28fdfa9e-001bf2f0;Tueren;"68"" x 80""";Door-Double-Flush_Panel;161.0;1.0;Stk;E;;;;;G01;Trennwand, Innentür, Innentor;0.85
+ARC_Umbau_TRP-T4;7ebf658d-25be-430b-b249-5fbe28fdfa9e-001bf31c;Tueren;"68"" x 80""";Door-Double-Flush_Panel;162.0;1.0;Stk;F;;;;;G01;Trennwand, Innentür, Innentor;0.85
+ARC_Umbau_TRP-T4;cac67535-074b-462d-9002-93eac0e807fe-001c097d;Tueren;Door-Curtain-Wall-Single-Glass;Door-Curtain-Wall-Single-Glass;;1.0;Stk;F;;;;;G01;Trennwand, Innentür, Innentor;0.8
+ARC_Umbau_TRP-T4;cac67535-074b-462d-9002-93eac0e807fe-001c0982;Tueren;Door-Curtain-Wall-Single-Glass;Door-Curtain-Wall-Single-Glass;;1.0;Stk;F;;;;;G01;Trennwand, Innentür, Innentor;0.8
+ARC_Umbau_TRP-T4;cac67535-074b-462d-9002-93eac0e807fe-001c1b96;Tueren;Door-Curtain-Wall-Single-Glass;Door-Curtain-Wall-Single-Glass;167.0;1.0;Stk;F;;;;;G01;Trennwand, Innentür, Innentor;0.8
+ARC_Umbau_TRP-T4;cac67535-074b-462d-9002-93eac0e807fe-001c1b98;Tueren;Door-Curtain-Wall-Single-Glass;Door-Curtain-Wall-Single-Glass;168.0;1.0;Stk;F;;;;;G01;Trennwand, Innentür, Innentor;0.8
+ARC_Umbau_TRP-T4;fe21a8cb-42a8-42a4-b706-c2f3443cb118-001c20eb;Tueren;800 x 2100mm;M_Door-Passage-Single-Flush;129.0;1.0;Stk;D;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;fe21a8cb-42a8-42a4-b706-c2f3443cb118-001c25a4;Tueren;800 x 2100mm;M_Door-Passage-Single-Flush;142.0;1.0;Stk;E;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;fe21a8cb-42a8-42a4-b706-c2f3443cb118-001c25d4;Tueren;800 x 2100mm;M_Door-Passage-Single-Flush;147.0;1.0;Stk;F;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;80e40190-b19f-4260-a544-1bace9b09e89-001c4448;Tueren;900 x 2100mm_200;M_Door-Passage-Single-Flush;172.0;1.0;Stk;D;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;80e40190-b19f-4260-a544-1bace9b09e89-001c44cb;Tueren;800 x 2100mm;M_Door-Passage-Single-Flush;173.0;1.0;Stk;E;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;80e40190-b19f-4260-a544-1bace9b09e89-001c4572;Tueren;1100 x 2100mm_200;M_Door-Passage-Single-Flush;174.0;1.0;Stk;C;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;80e40190-b19f-4260-a544-1bace9b09e89-001c4606;Tueren;1100 x 2100mm_200;M_Door-Passage-Single-Flush;175.0;1.0;Stk;C;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;80e40190-b19f-4260-a544-1bace9b09e89-001c4660;Tueren;1000 x 2100mm_200 2;M_Door-Passage-Single-Flush;176.0;1.0;Stk;C;;;;;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;e3d091e9-7c46-42f6-8eb9-7561a7cc5db0-001a0b57;Boeden;Generic 300mm;;;121.9;m2;F;Laminate, Linen, Matte [Tragend] (300 mm);300.0;;;G02;Bodenbelag;0.95
+ARC_Umbau_TRP-T4;e3d091e9-7c46-42f6-8eb9-7561a7cc5db0-001a0fd9;Boeden;Generic 300mm;;;171.54;m2;B;Laminate, Linen, Matte [Tragend] (300 mm);300.0;;;G02;Bodenbelag;0.95
+ARC_Umbau_TRP-T4;e3d091e9-7c46-42f6-8eb9-7561a7cc5db0-001a1000;Boeden;Generic 300mm;;;142.32;m2;C;Laminate, Linen, Matte [Tragend] (300 mm);300.0;;;G02;Bodenbelag;0.95
+ARC_Umbau_TRP-T4;e3d091e9-7c46-42f6-8eb9-7561a7cc5db0-001a1027;Boeden;Generic 300mm;;;149.84;m2;D;Laminate, Linen, Matte [Tragend] (300 mm);300.0;;;G02;Bodenbelag;0.95
+ARC_Umbau_TRP-T4;e3d091e9-7c46-42f6-8eb9-7561a7cc5db0-001a1050;Boeden;Generic 300mm;;;121.29;m2;E;Laminate, Linen, Matte [Tragend] (300 mm);300.0;;;G02;Bodenbelag;0.95
+ARC_Umbau_TRP-T4;ed662d93-f758-4f89-953f-a9646237c388-001c2055;Boeden;Generic 300mm;;;102.4;m2;G;Laminate, Linen, Matte [Tragend] (300 mm);300.0;;;G02;Bodenbelag;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c423f;Boeden;Generic 300mm;;;118.46;m2;F;Laminate, Linen, Matte [Tragend] (300 mm);300.0;;;G02;Bodenbelag;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c424e;Boeden;Generic 300mm;;;171.54;m2;B;Laminate, Linen, Matte [Tragend] (300 mm);300.0;;;G02;Bodenbelag;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c4251;Boeden;Generic 300mm;;;139.45;m2;C;Laminate, Linen, Matte [Tragend] (300 mm);300.0;;;G02;Bodenbelag;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c4260;Boeden;Generic 300mm;;;149.13;m2;D;Laminate, Linen, Matte [Tragend] (300 mm);300.0;;;G02;Bodenbelag;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c426c;Boeden;Generic 300mm;;;118.79;m2;E;Laminate, Linen, Matte [Tragend] (300 mm);300.0;;;G02;Bodenbelag;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c4297;Boeden;Generic 300mm;;;99.62;m2;G;Laminate, Linen, Matte [Tragend] (300 mm);300.0;;;G02;Bodenbelag;0.95
+ARC_Umbau_TRP-T4;e3d091e9-7c46-42f6-8eb9-7561a7cc5db0-001a187e;Decken;16mm GWB on Metal Stud;;;104.21;m2;Decke B;Metal Stud Layer [Tragend] (92 mm) | Gypsum Wall Board [Finish 2] (16 mm);108.0;;;G04;Deckenbekleidung;0.95
+ARC_Umbau_TRP-T4;93623f13-9c10-478e-86a6-7cfac96024f7-001b007f;Decken;16mm GWB on Metal Stud;;;94.85;m2;Decke C;Metal Stud Layer [Tragend] (92 mm) | Gypsum Wall Board [Finish 2] (16 mm);108.0;;;G04;Deckenbekleidung;0.95
+ARC_Umbau_TRP-T4;4f170a5c-8248-4e39-b84e-d0755c68c068-001b0462;Decken;16mm GWB on Metal Stud;;;8.36;m2;Decke D;Metal Stud Layer [Tragend] (92 mm) | Gypsum Wall Board [Finish 2] (16 mm);108.0;;;G04;Deckenbekleidung;0.95
+ARC_Umbau_TRP-T4;4f170a5c-8248-4e39-b84e-d0755c68c068-001b046c;Decken;16mm GWB on Metal Stud;;;13.88;m2;Decke D;Metal Stud Layer [Tragend] (92 mm) | Gypsum Wall Board [Finish 2] (16 mm);108.0;;;G04;Deckenbekleidung;0.95
+ARC_Umbau_TRP-T4;4f170a5c-8248-4e39-b84e-d0755c68c068-001b0476;Decken;16mm GWB on Metal Stud;;;2.86;m2;Decke D;Metal Stud Layer [Tragend] (92 mm) | Gypsum Wall Board [Finish 2] (16 mm);108.0;;;G04;Deckenbekleidung;0.95
+ARC_Umbau_TRP-T4;4a569777-c6f1-4580-8cc0-6f70084b0df2-001b2ef3;Decken;16mm GWB on Metal Stud;;;71.45;m2;Decke D;Metal Stud Layer [Tragend] (92 mm) | Gypsum Wall Board [Finish 2] (16 mm);108.0;;;G04;Deckenbekleidung;0.95
+ARC_Umbau_TRP-T4;4a569777-c6f1-4580-8cc0-6f70084b0df2-001b304e;Decken;16mm GWB on Metal Stud;;;70.14;m2;Decke E;Metal Stud Layer [Tragend] (92 mm) | Gypsum Wall Board [Finish 2] (16 mm);108.0;;;G04;Deckenbekleidung;0.95
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4b74;Decken;16mm GWB on Metal Stud;;;8.36;m2;Decke E;Metal Stud Layer [Tragend] (92 mm) | Gypsum Wall Board [Finish 2] (16 mm);108.0;;;G04;Deckenbekleidung;0.95
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4b7c;Decken;16mm GWB on Metal Stud;;;13.88;m2;Decke E;Metal Stud Layer [Tragend] (92 mm) | Gypsum Wall Board [Finish 2] (16 mm);108.0;;;G04;Deckenbekleidung;0.95
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001aa6e4;Allgemein;00 - White Alpin;Sanitary_Accessories_DURAVIT-AG_Starck-3-Urinal-partition-80x400x705-mm;;1.0;Stk;D;;;;;H05;Anlage für Gesundheit;0.85
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001aa765;Allgemein;00 - White Alpin;Sanitary_Accessories_DURAVIT-AG_Starck-3-Urinal-partition-80x400x705-mm;;1.0;Stk;D;;;;;H05;Anlage für Gesundheit;0.85
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001aa785;Allgemein;00 - White Alpin;Sanitary_Accessories_DURAVIT-AG_Starck-3-Urinal-partition-80x400x705-mm;;1.0;Stk;D;;;;;H05;Anlage für Gesundheit;0.85
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001aa87b;Allgemein;00 - White Alpin;Sanitary_Accessories_DURAVIT-AG_Starck-3-Urinal-partition-80x400x705-mm;;1.0;Stk;D;;;;;H05;Anlage für Gesundheit;0.85
+ARC_Umbau_TRP-T4;fe21a8cb-42a8-42a4-b706-c2f3443cb118-001c20f9;Moebel;Meeting Table Basic 960x655;Furniture_Office Desks & Tables_KOKUYO_Meta Cabin;;1.0;Stk;;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;fe21a8cb-42a8-42a4-b706-c2f3443cb118-001c20fa;Moebel;Meeting Table Basic 960x655;Furniture_Office Desks & Tables_KOKUYO_Meta Cabin;;1.0;Stk;;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;fe21a8cb-42a8-42a4-b706-c2f3443cb118-001c20fc;Moebel;Meeting Table Basic 960x655;Furniture_Office Desks & Tables_KOKUYO_Meta Cabin;;1.0;Stk;;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;4ef5454d-9d09-492d-becc-28a413bdea95-001c38a1;Moebel;Meeting Table Basic 960x655;Furniture_Office Desks & Tables_KOKUYO_Meta Cabin;;1.0;Stk;;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;4ef5454d-9d09-492d-becc-28a413bdea95-001c398d;Moebel;1200 x 700 x 800mm;Desk Student;;1.0;Stk;D;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;4ef5454d-9d09-492d-becc-28a413bdea95-001c398e;Moebel;2000 x 700 x 1000mm;Desk Student;;1.0;Stk;D;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;4ef5454d-9d09-492d-becc-28a413bdea95-001c39bd;Moebel;1200 x 700 x 800mm;Desk Student;;1.0;Stk;E;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;4ef5454d-9d09-492d-becc-28a413bdea95-001c39be;Moebel;1200 x 700 x 800mm;Desk Student;;1.0;Stk;E;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;4ef5454d-9d09-492d-becc-28a413bdea95-001c3ca2;Moebel;Chair-Desk;Chair-Desk;;1.0;Stk;D;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c3e93;Moebel;Chair-Desk;Chair-Desk;;1.0;Stk;D;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c3ee4;Moebel;Chair-Desk;Chair-Desk;;1.0;Stk;D;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c3f3d;Moebel;Chair-Desk;Chair-Desk;;1.0;Stk;D;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c3f3e;Moebel;Chair-Desk;Chair-Desk;;1.0;Stk;D;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c3f3f;Moebel;Chair-Desk;Chair-Desk;;1.0;Stk;D;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c3fd1;Moebel;Meeting Table Basic 960x655;Furniture_Office Desks & Tables_KOKUYO_Meta Cabin;;1.0;Stk;;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c3fd2;Moebel;Meeting Table Basic 960x655;Furniture_Office Desks & Tables_KOKUYO_Meta Cabin;;1.0;Stk;;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c4003;Moebel;1500 x 700 x 1000mm;Desk Student;;1.0;Stk;D;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c4004;Moebel;Chair-Desk;Chair-Desk;;1.0;Stk;D;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c4005;Moebel;Chair-Desk;Chair-Desk;;1.0;Stk;D;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c4008;Moebel;Chair-Desk;Chair-Desk;;1.0;Stk;D;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c4009;Moebel;Chair-Desk;Chair-Desk;;1.0;Stk;D;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c408d;Moebel;1200 x 700 x 800mm;Desk Student;;1.0;Stk;D;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c40cc;Moebel;Meeting Table Basic 960x655;Furniture_Office Desks & Tables_KOKUYO_Meta Cabin;;1.0;Stk;;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c40cd;Moebel;Meeting Table Basic 960x655;Furniture_Office Desks & Tables_KOKUYO_Meta Cabin;;1.0;Stk;;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c40ce;Moebel;Meeting Table Basic 960x655;Furniture_Office Desks & Tables_KOKUYO_Meta Cabin;;1.0;Stk;;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c40cf;Moebel;Meeting Table Basic 960x655;Furniture_Office Desks & Tables_KOKUYO_Meta Cabin;;1.0;Stk;;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c4152;Moebel;1200 x 700 x 800mm;Desk Student;;1.0;Stk;E;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c4153;Moebel;1200 x 700 x 800mm;Desk Student;;1.0;Stk;E;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c4160;Moebel;Meeting Table Basic 960x655;Furniture_Office Desks & Tables_KOKUYO_Meta Cabin;;1.0;Stk;E;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c4161;Moebel;Meeting Table Basic 960x655;Furniture_Office Desks & Tables_KOKUYO_Meta Cabin;;1.0;Stk;E;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c4164;Moebel;Meeting Table Basic 960x655;Furniture_Office Desks & Tables_KOKUYO_Meta Cabin;;1.0;Stk;F;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c4165;Moebel;Meeting Table Basic 960x655;Furniture_Office Desks & Tables_KOKUYO_Meta Cabin;;1.0;Stk;F;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c4178;Moebel;Meeting Table Basic 960x655;Furniture_Office Desks & Tables_KOKUYO_Meta Cabin;;1.0;Stk;F;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c4179;Moebel;Meeting Table Basic 960x655;Furniture_Office Desks & Tables_KOKUYO_Meta Cabin;;1.0;Stk;F;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c417a;Moebel;Meeting Table Basic 960x655;Furniture_Office Desks & Tables_KOKUYO_Meta Cabin;;1.0;Stk;F;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;c59b2a8c-208e-483a-9b40-7322bc533959-001c417b;Moebel;Meeting Table Basic 960x655;Furniture_Office Desks & Tables_KOKUYO_Meta Cabin;;1.0;Stk;F;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;bb3221b3-379c-43e7-9b70-4da620013a04-001c65b4;Moebel;Meeting Table Basic 960x655;Furniture_Office Desks & Tables_KOKUYO_Meta Cabin;;1.0;Stk;E;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;bb3221b3-379c-43e7-9b70-4da620013a04-001c65b5;Moebel;Meeting Table Basic 960x655;Furniture_Office Desks & Tables_KOKUYO_Meta Cabin;;1.0;Stk;E;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;bb3221b3-379c-43e7-9b70-4da620013a04-001c65b7;Moebel;Meeting Table Basic 960x655;Furniture_Office Desks & Tables_KOKUYO_Meta Cabin;;1.0;Stk;E;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;bb3221b3-379c-43e7-9b70-4da620013a04-001c65bc;Moebel;Meeting Table Basic 960x655;Furniture_Office Desks & Tables_KOKUYO_Meta Cabin;;1.0;Stk;E;;;;;J01;Mobiliar;0.95
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001aaa93;Sanitaer;840090000 White;Urinal - Tamaro- Laufen - 840090;;1.0;Stk;D;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001aaab9;Sanitaer;840090000 White;Urinal - Tamaro- Laufen - 840090;;1.0;Stk;D;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001aaaef;Sanitaer;840090000 White;Urinal - Tamaro- Laufen - 840090;;1.0;Stk;D;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001aab3b;Sanitaer;840090000 White;Urinal - Tamaro- Laufen - 840090;;1.0;Stk;D;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001ab891;Sanitaer;00 - White Alpin;Sanitary_Wash-basins_DURAVIT-AG_Vero-Washbasin-White-High-Gloss-600-mm-045460;;1.0;Stk;D;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001ab8f6;Sanitaer;000 White;Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542;;1.0;Stk;D;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001ab8f7;Sanitaer;000 White;Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542;;1.0;Stk;D;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001ab8f8;Sanitaer;000 White;Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542;;1.0;Stk;D;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001ab8fa;Sanitaer;000 White;Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542;;1.0;Stk;D;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001ab8fb;Sanitaer;000 White;Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542;;1.0;Stk;D;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;d903aa8e-c113-468d-afd6-e9d3f30b378f-001ab98b;Sanitaer;00 - White Alpin;Sanitary_Wash-basins_DURAVIT-AG_Vero-Washbasin-White-High-Gloss-600-mm-045460;;1.0;Stk;D;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;d903aa8e-c113-468d-afd6-e9d3f30b378f-001ab9de;Sanitaer;00 - White Alpin;Sanitary_Wash-basins_DURAVIT-AG_Vero-Washbasin-White-High-Gloss-600-mm-045460;;1.0;Stk;D;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;d903aa8e-c113-468d-afd6-e9d3f30b378f-001abac4;Sanitaer;00 - White Alpin;Sanitary_Wash-basins_DURAVIT-AG_Vero-Washbasin-White-High-Gloss-600-mm-045460;;1.0;Stk;D;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c45;Sanitaer;00 - White Alpin;Sanitary_Wash-basins_DURAVIT-AG_Vero-Washbasin-White-High-Gloss-600-mm-045460;;1.0;Stk;;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c53;Sanitaer;000 White;Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542;;1.0;Stk;E;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c54;Sanitaer;000 White;Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542;;1.0;Stk;E;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c55;Sanitaer;000 White;Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542;;1.0;Stk;E;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c56;Sanitaer;000 White;Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542;;1.0;Stk;E;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c57;Sanitaer;000 White;Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542;;1.0;Stk;E;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c5b;Sanitaer;00 - White Alpin;Sanitary_Wash-basins_DURAVIT-AG_Vero-Washbasin-White-High-Gloss-600-mm-045460;;1.0;Stk;;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c5d;Sanitaer;00 - White Alpin;Sanitary_Wash-basins_DURAVIT-AG_Vero-Washbasin-White-High-Gloss-600-mm-045460;;1.0;Stk;;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c5e;Sanitaer;00 - White Alpin;Sanitary_Wash-basins_DURAVIT-AG_Vero-Washbasin-White-High-Gloss-600-mm-045460;;1.0;Stk;;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;4a569777-c6f1-4580-8cc0-6f70084b0df2-001b398f;Sanitaer;00 - White Alpin;Sanitary_Wash-basins_DURAVIT-AG_Vero-Washbasin-White-High-Gloss-600-mm-045460;;1.0;Stk;;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;4a569777-c6f1-4580-8cc0-6f70084b0df2-001b39a0;Sanitaer;000 White;Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542;;1.0;Stk;F;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;4a569777-c6f1-4580-8cc0-6f70084b0df2-001b39a1;Sanitaer;000 White;Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542;;1.0;Stk;F;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;88511cf6-bc5e-4c8b-b91c-f5fa21dccc30-001b6f11;Sanitaer;840090000 White;Urinal - Tamaro- Laufen - 840090;;1.0;Stk;E;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;88511cf6-bc5e-4c8b-b91c-f5fa21dccc30-001b6fb7;Sanitaer;000 White;Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542;;1.0;Stk;E;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;88511cf6-bc5e-4c8b-b91c-f5fa21dccc30-001b72e5;Sanitaer;000 White;Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542;;1.0;Stk;F;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;88511cf6-bc5e-4c8b-b91c-f5fa21dccc30-001b73ea;Sanitaer;000 White;Wallhung WC, washdown- rimless  560 x 360 x 350-Moderna R-Laufen- 820542;;1.0;Stk;D;;;;;H05;Anlage für Gesundheit;0.9
+ARC_Umbau_TRP-T4;a86f5e8b-9653-4a40-9072-7971c80ceddf-00196c5e;Waende;Generic - 200mm;;;4.602;m3;;Unknown Material [Tragend] (200 mm);200.0;23.01;5.65;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;a86f5e8b-9653-4a40-9072-7971c80ceddf-00196cf8;Waende;Generic - 200mm;;;2.001;m3;;Unknown Material [Tragend] (200 mm);200.0;10.0;2.32;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;a86f5e8b-9653-4a40-9072-7971c80ceddf-00196d6a;Waende;Generic - 200mm;;;4.956;m3;;Unknown Material [Tragend] (200 mm);200.0;24.78;5.65;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;fb66065e-0983-4f0a-bed0-5a065c9ca52c-00197260;Waende;Generic - 200mm;;;4.636;m3;;Unknown Material [Tragend] (200 mm);200.0;23.18;5.65;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;fb66065e-0983-4f0a-bed0-5a065c9ca52c-00197261;Waende;Generic - 200mm;;;2.014;m3;;Unknown Material [Tragend] (200 mm);200.0;10.07;2.32;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;fb66065e-0983-4f0a-bed0-5a065c9ca52c-00197262;Waende;Generic - 200mm;;;4.988;m3;;Unknown Material [Tragend] (200 mm);200.0;24.94;5.65;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;fb66065e-0983-4f0a-bed0-5a065c9ca52c-00197265;Waende;Generic - 200mm;;;4.617;m3;;Unknown Material [Tragend] (200 mm);200.0;23.09;5.65;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;fb66065e-0983-4f0a-bed0-5a065c9ca52c-00197266;Waende;Generic - 200mm;;;2.007;m3;;Unknown Material [Tragend] (200 mm);200.0;10.03;2.32;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;fb66065e-0983-4f0a-bed0-5a065c9ca52c-00197267;Waende;Generic - 200mm;;;5.142;m3;;Unknown Material [Tragend] (200 mm);200.0;25.71;5.65;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;fb66065e-0983-4f0a-bed0-5a065c9ca52c-0019726a;Waende;Generic - 200mm;;;4.623;m3;;Unknown Material [Tragend] (200 mm);200.0;23.12;5.65;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;fb66065e-0983-4f0a-bed0-5a065c9ca52c-0019726b;Waende;Generic - 200mm;;;2.009;m3;;Unknown Material [Tragend] (200 mm);200.0;10.05;2.32;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;fb66065e-0983-4f0a-bed0-5a065c9ca52c-0019726c;Waende;Generic - 200mm;;;5.147;m3;;Unknown Material [Tragend] (200 mm);200.0;25.74;5.65;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;fb66065e-0983-4f0a-bed0-5a065c9ca52c-0019726f;Waende;Generic - 200mm;;;4.622;m3;;Unknown Material [Tragend] (200 mm);200.0;23.11;5.65;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;fb66065e-0983-4f0a-bed0-5a065c9ca52c-00197270;Waende;Generic - 200mm;;;2.009;m3;;Unknown Material [Tragend] (200 mm);200.0;10.04;2.32;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;fb66065e-0983-4f0a-bed0-5a065c9ca52c-00197271;Waende;Generic - 200mm;;;5.164;m3;;Unknown Material [Tragend] (200 mm);200.0;25.82;5.65;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;fb66065e-0983-4f0a-bed0-5a065c9ca52c-00197274;Waende;Generic 250mm;;;3.513;m3;;Unknown Material [Tragend] (250 mm);250.0;14.05;5.62;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;fb66065e-0983-4f0a-bed0-5a065c9ca52c-00197275;Waende;Generic 250mm;;;1.364;m3;;Unknown Material [Tragend] (250 mm);250.0;5.46;2.27;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;fb66065e-0983-4f0a-bed0-5a065c9ca52c-00197276;Waende;Generic 250mm;;;3.363;m3;;Unknown Material [Tragend] (250 mm);250.0;13.45;5.72;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;88e72a45-234e-407c-a0a9-61ec66676581-0019741b;Waende;Generic - 200mm;;;0.808;m3;;Unknown Material [Tragend] (200 mm);200.0;4.04;4.15;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;88e72a45-234e-407c-a0a9-61ec66676581-0019744d;Waende;Generic - 200mm;;;0.315;m3;;Unknown Material [Tragend] (200 mm);200.0;1.57;2.22;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;88e72a45-234e-407c-a0a9-61ec66676581-001974be;Waende;Generic - 200mm;;;7.392;m3;;Unknown Material [Tragend] (200 mm);200.0;36.96;9.340000000000002;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;88e72a45-234e-407c-a0a9-61ec66676581-001974dc;Waende;Generic - 200mm;;;0.3589999999999999;m3;;Unknown Material [Tragend] (200 mm);200.0;1.79;0.22;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;88e72a45-234e-407c-a0a9-61ec66676581-0019750e;Waende;Generic - 200mm;;;2.297;m3;;Unknown Material [Tragend] (200 mm);200.0;11.49;3.8;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;88e72a45-234e-407c-a0a9-61ec66676581-0019755c;Waende;Generic - 150mm;;;3.509;m3;;Unknown Material [Tragend] (150 mm);150.0;23.4;5.97;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;88e72a45-234e-407c-a0a9-61ec66676581-001975ca;Waende;Generic - 150mm;;;7.273;m3;;Unknown Material [Tragend] (150 mm);150.0;48.49;11.43;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;88e72a45-234e-407c-a0a9-61ec66676581-001976d3;Waende;Generic - 200mm;;;17.446;m3;;Unknown Material [Tragend] (200 mm);200.0;87.23;21.5;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;88e72a45-234e-407c-a0a9-61ec66676581-00197846;Waende;Generic - 200mm;;;5.245;m3;;Unknown Material [Tragend] (200 mm);200.0;26.22;6.04;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;88e72a45-234e-407c-a0a9-61ec66676581-0019794c;Waende;Generic - 200mm;;;5.149;m3;;Unknown Material [Tragend] (200 mm);200.0;25.74;5.72;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;fe940c7c-3a0b-430b-9833-b3e99b5ca3bd-0019b97f;Waende;Generic - 200mm;;;9.896;m3;;Unknown Material [Tragend] (200 mm);200.0;49.48;13.95;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;fe940c7c-3a0b-430b-9833-b3e99b5ca3bd-0019b9a9;Waende;Generic - 200mm;;;9.858;m3;;Unknown Material [Tragend] (200 mm);200.0;49.29;13.94;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;fe940c7c-3a0b-430b-9833-b3e99b5ca3bd-0019b9aa;Waende;Generic - 200mm exterior;;;3.759;m3;;Metal - Aluminium [Tragend] (5 mm) | Unknown Material [Tragend] (200 mm);205.0;18.34;9.39;E02;Äussere Wandbekleidung über Terrain;0.9
+ARC_Umbau_TRP-T4;fe940c7c-3a0b-430b-9833-b3e99b5ca3bd-0019b9be;Waende;Generic - 200mm;;;8.537;m3;;Unknown Material [Tragend] (200 mm);200.0;42.68;9.55;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;1a398d7f-301c-48d6-aae6-414a9c0dc208-0019d5ca;Waende;Generic - 200mm;;;1.026;m3;;Unknown Material [Tragend] (200 mm);200.0;5.49;2.24;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;1a398d7f-301c-48d6-aae6-414a9c0dc208-0019d648;Waende;Generic - 200mm;;;1.04;m3;;Unknown Material [Tragend] (200 mm);200.0;5.2;2.37;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;1a398d7f-301c-48d6-aae6-414a9c0dc208-0019d75d;Waende;Generic - 200mm;;;0.3569999999999999;m3;;Unknown Material [Tragend] (200 mm);200.0;1.78;0.78;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;7c2c59a0-d28e-4468-84a5-095c51c720af-0019f27b;Waende;M_HSLU-Fassade;;;0.0;m3;;;;24.76;8.99;E02;Äussere Wandbekleidung über Terrain;0.9
+ARC_Umbau_TRP-T4;7c2c59a0-d28e-4468-84a5-095c51c720af-0019f73b;Waende;Generic - 200mm exterior;;;4.143;m3;;Metal - Aluminium [Tragend] (5 mm) | Unknown Material [Tragend] (200 mm);205.0;20.21;9.29;E02;Äussere Wandbekleidung über Terrain;0.9
+ARC_Umbau_TRP-T4;7c2c59a0-d28e-4468-84a5-095c51c720af-0019f73c;Waende;M_HSLU-Fassade;;;0.0;m3;;;;16.65;6.0;E02;Äussere Wandbekleidung über Terrain;0.9
+ARC_Umbau_TRP-T4;7c2c59a0-d28e-4468-84a5-095c51c720af-0019f786;Waende;Generic - 200mm exterior;;;3.759;m3;;Metal - Aluminium [Tragend] (5 mm) | Unknown Material [Tragend] (200 mm);205.0;18.34;9.39;E02;Äussere Wandbekleidung über Terrain;0.9
+ARC_Umbau_TRP-T4;7c2c59a0-d28e-4468-84a5-095c51c720af-0019f787;Waende;M_HSLU-Fassade;;;0.0;m3;;;;24.76;9.0;E02;Äussere Wandbekleidung über Terrain;0.9
+ARC_Umbau_TRP-T4;7c2c59a0-d28e-4468-84a5-095c51c720af-0019f7d1;Waende;Generic - 200mm exterior;;;3.734;m3;;Metal - Aluminium [Tragend] (5 mm) | Unknown Material [Tragend] (200 mm);205.0;18.22;9.340000000000002;E02;Äussere Wandbekleidung über Terrain;0.9
+ARC_Umbau_TRP-T4;7c2c59a0-d28e-4468-84a5-095c51c720af-0019f7d2;Waende;M_HSLU-Fassade;;;0.0;m3;;;;24.67;8.96;E02;Äussere Wandbekleidung über Terrain;0.9
+ARC_Umbau_TRP-T4;7c2c59a0-d28e-4468-84a5-095c51c720af-0019fd0c;Waende;Generic - 200mm;;;7.559;m3;;Unknown Material [Tragend] (200 mm);200.0;37.79;8.82;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;e3d091e9-7c46-42f6-8eb9-7561a7cc5db0-0019fec9;Waende;Generic - 200mm;;;0.8299999999999998;m3;;Unknown Material [Tragend] (200 mm);200.0;4.15;4.3;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;e3d091e9-7c46-42f6-8eb9-7561a7cc5db0-0019ffab;Waende;Generic - 200mm;;;0.8289999999999998;m3;;Unknown Material [Tragend] (200 mm);200.0;4.14;4.4;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;e3d091e9-7c46-42f6-8eb9-7561a7cc5db0-0019ffae;Waende;Generic - 200mm;;;0.8289999999999998;m3;;Unknown Material [Tragend] (200 mm);200.0;4.15;4.3;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;e3d091e9-7c46-42f6-8eb9-7561a7cc5db0-0019ffb1;Waende;Generic - 200mm;;;0.803;m3;;Unknown Material [Tragend] (200 mm);200.0;4.02;4.3;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;e3d091e9-7c46-42f6-8eb9-7561a7cc5db0-001a0141;Waende;M_HSLU Innenbereich;;;0.0;m3;;;;10.99;3.05;G01;Trennwand, Innentür, Innentor;0.85
+ARC_Umbau_TRP-T4;e3d091e9-7c46-42f6-8eb9-7561a7cc5db0-001a0518;Waende;Generic - 200mm;;;4.989;m3;;Unknown Material [Tragend] (200 mm);200.0;24.95;5.8;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;e3d091e9-7c46-42f6-8eb9-7561a7cc5db0-001a056b;Waende;Generic - 200mm;;;7.3;m3;;Unknown Material [Tragend] (200 mm);200.0;36.5;9.0;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;e3d091e9-7c46-42f6-8eb9-7561a7cc5db0-001a05b2;Waende;Generic - 200mm;;;2.605;m3;;Unknown Material [Tragend] (200 mm);200.0;13.03;3.03;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;e3d091e9-7c46-42f6-8eb9-7561a7cc5db0-001a05fe;Waende;Generic - 200mm;;;15.878;m3;;Unknown Material [Tragend] (200 mm);200.0;79.39;19.68;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;e3d091e9-7c46-42f6-8eb9-7561a7cc5db0-001a0735;Waende;Generic - 200mm;;;1.173;m3;;Unknown Material [Tragend] (200 mm);200.0;5.86;2.42;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;e3d091e9-7c46-42f6-8eb9-7561a7cc5db0-001a098a;Waende;Generic - 200mm;;;8.341;m3;;Unknown Material [Tragend] (200 mm);200.0;41.71;9.72;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;e3d091e9-7c46-42f6-8eb9-7561a7cc5db0-001a09ca;Waende;Generic - 200mm;;;0.125;m3;;Unknown Material [Tragend] (200 mm);200.0;0.63;2.31;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;e3d091e9-7c46-42f6-8eb9-7561a7cc5db0-001a09e5;Waende;Generic - 200mm;;;0.455;m3;;Unknown Material [Tragend] (200 mm);200.0;2.27;0.3599999999999999;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;e3d091e9-7c46-42f6-8eb9-7561a7cc5db0-001a1625;Waende;Generic - 150mm;;;5.281;m3;;Unknown Material [Tragend] (150 mm);150.0;35.21;8.79;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;4c5243e4-275b-4d22-bb77-087e56cdc338-001a552a;Waende;Generic - 150mm;;;5.865;m3;;Unknown Material [Tragend] (150 mm);150.0;39.1;10.68;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001aa67c;Waende;Vorwand;;;1.162;m3;;Gypsum Wall Board [Finish 1] (13 mm) | Gypsum Wall Board [Finish 1] (13 mm) | Unbekannt [Tragend] (50 mm);76.0;15.49;4.31;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001ab8e4;Waende;Trennwand;;;0.0509999999999999;m3;;Structure, Wood Joist/Rafter Layer [Tragend] (30 mm);30.0;1.7;2.16;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001ab8e5;Waende;Leichtbauwand;;;1.361;m3;;Gypsum Wall Board [Finish 1] (13 mm) | Gypsum Wall Board [Finish 1] (13 mm) | Insulation - PVC Jacketed Fiberglass [Tragend] (100 mm) | Gypsum Wall Board [Finish 1] (13 mm) | Gypsum Wall Board [Finish 1] (13 mm);152.0;9.07;2.14;G01;Trennwand, Innentür, Innentor;0.9
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001ab8e6;Waende;Generic - 150mm;;;1.265;m3;;Unknown Material [Tragend] (150 mm);150.0;8.43;2.07;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001ab8e7;Waende;Leichtbauwand;;;0.4;m3;;Gypsum Wall Board [Finish 1] (13 mm) | Gypsum Wall Board [Finish 1] (13 mm) | Insulation - PVC Jacketed Fiberglass [Tragend] (100 mm) | Gypsum Wall Board [Finish 1] (13 mm) | Gypsum Wall Board [Finish 1] (13 mm);152.0;2.67;0.77;G01;Trennwand, Innentür, Innentor;0.9
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001ab8e8;Waende;Trennwand;;;0.0919999999999999;m3;;Structure, Wood Joist/Rafter Layer [Tragend] (30 mm);30.0;3.08;1.45;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001ab8e9;Waende;Trennwand;;;0.273;m3;;Structure, Wood Joist/Rafter Layer [Tragend] (30 mm);30.0;9.090000000000002;4.31;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001ab8ea;Waende;Trennwand;;;0.095;m3;;Structure, Wood Joist/Rafter Layer [Tragend] (30 mm);30.0;3.17;3.53;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001ab8eb;Waende;Trennwand;;;0.099;m3;;Structure, Wood Joist/Rafter Layer [Tragend] (30 mm);30.0;3.3;1.55;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001ab8ec;Waende;Trennwand;;;0.099;m3;;Structure, Wood Joist/Rafter Layer [Tragend] (30 mm);30.0;3.3;1.55;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001ab8f1;Waende;Vorwand;;;0.554;m3;;Gypsum Wall Board [Finish 1] (13 mm) | Gypsum Wall Board [Finish 1] (13 mm) | Unbekannt [Tragend] (50 mm);76.0;7.39;2.14;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;cef3b455-7480-41f0-a3b8-3a2c4fd41bff-001ab8f4;Waende;Vorwand;;;0.944;m3;;Gypsum Wall Board [Finish 1] (13 mm) | Gypsum Wall Board [Finish 1] (13 mm) | Unbekannt [Tragend] (50 mm);76.0;12.59;3.53;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;0d074a64-7c38-4772-8936-6efc228c2487-001afdac;Waende;Generic - 200mm PlÃ¤ttli;;;4.04;m3;;Unknown Material [Tragend] (200 mm) | Tile, Mosaic, Gray [Finish 1] (5 mm);205.0;19.7;9.36;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;0d074a64-7c38-4772-8936-6efc228c2487-001afdad;Waende;Generic - 200mm;;;4.089;m3;;Unknown Material [Tragend] (200 mm);200.0;20.5;9.33;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;0d074a64-7c38-4772-8936-6efc228c2487-001afe8d;Waende;Generic - 150mm PlÃ¤ttli;;;0.325;m3;;Tile, Mosaic, Gray [Finish 1] (5 mm) | Unknown Material [Tragend] (150 mm) | Tile, Mosaic, Gray [Finish 1] (5 mm);160.0;2.03;2.1;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;0d074a64-7c38-4772-8936-6efc228c2487-001afe8e;Waende;Generic - 150mm;;;0.634;m3;;Unknown Material [Tragend] (150 mm);150.0;4.23;2.08;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;96c8cc2f-6d01-4969-aedc-d5b38f0cf10c-001b06a8;Waende;Generic - 200mm;;;10.016;m3;;Unknown Material [Tragend] (200 mm);200.0;50.08;14.12;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;96c8cc2f-6d01-4969-aedc-d5b38f0cf10c-001b1325;Waende;TÃ¼re;;;0.0;m3;;;;12.98;3.6;G01;Trennwand, Innentür, Innentor;0.8
+ARC_Umbau_TRP-T4;96c8cc2f-6d01-4969-aedc-d5b38f0cf10c-001b168c;Waende;TÃ¼re;;;0.0;m3;;;;12.98;3.6;G01;Trennwand, Innentür, Innentor;0.8
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c47;Waende;Trennwand;;;0.0509999999999999;m3;;Structure, Wood Joist/Rafter Layer [Tragend] (30 mm);30.0;1.7;2.16;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c48;Waende;Leichtbauwand;;;1.363;m3;;Gypsum Wall Board [Finish 1] (13 mm) | Gypsum Wall Board [Finish 1] (13 mm) | Insulation - PVC Jacketed Fiberglass [Tragend] (100 mm) | Gypsum Wall Board [Finish 1] (13 mm) | Gypsum Wall Board [Finish 1] (13 mm);152.0;9.08;2.14;G01;Trennwand, Innentür, Innentor;0.9
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c49;Waende;Generic - 150mm;;;1.266;m3;;Unknown Material [Tragend] (150 mm);150.0;8.44;2.07;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c4a;Waende;Leichtbauwand;;;0.401;m3;;Gypsum Wall Board [Finish 1] (13 mm) | Gypsum Wall Board [Finish 1] (13 mm) | Insulation - PVC Jacketed Fiberglass [Tragend] (100 mm) | Gypsum Wall Board [Finish 1] (13 mm) | Gypsum Wall Board [Finish 1] (13 mm);152.0;2.67;0.77;G01;Trennwand, Innentür, Innentor;0.9
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c4b;Waende;Trennwand;;;0.0919999999999999;m3;;Structure, Wood Joist/Rafter Layer [Tragend] (30 mm);30.0;3.08;1.45;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c4c;Waende;Trennwand;;;0.273;m3;;Structure, Wood Joist/Rafter Layer [Tragend] (30 mm);30.0;9.090000000000002;4.31;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c4d;Waende;Trennwand;;;0.095;m3;;Structure, Wood Joist/Rafter Layer [Tragend] (30 mm);30.0;3.17;3.53;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c4e;Waende;Trennwand;;;0.099;m3;;Structure, Wood Joist/Rafter Layer [Tragend] (30 mm);30.0;3.3;1.55;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c4f;Waende;Trennwand;;;0.099;m3;;Structure, Wood Joist/Rafter Layer [Tragend] (30 mm);30.0;3.3;1.55;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c50;Waende;Vorwand;;;0.554;m3;;Gypsum Wall Board [Finish 1] (13 mm) | Gypsum Wall Board [Finish 1] (13 mm) | Unbekannt [Tragend] (50 mm);76.0;7.39;2.14;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c52;Waende;Vorwand;;;0.944;m3;;Gypsum Wall Board [Finish 1] (13 mm) | Gypsum Wall Board [Finish 1] (13 mm) | Unbekannt [Tragend] (50 mm);76.0;12.59;3.53;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c67;Waende;Generic - 200mm PlÃ¤ttli;;;4.04;m3;;Unknown Material [Tragend] (200 mm) | Tile, Mosaic, Gray [Finish 1] (5 mm);205.0;19.7;9.36;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c68;Waende;Generic - 200mm;;;4.11;m3;;Unknown Material [Tragend] (200 mm);200.0;20.55;9.36;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c6c;Waende;Generic - 150mm PlÃ¤ttli;;;0.325;m3;;Tile, Mosaic, Gray [Finish 1] (5 mm) | Unknown Material [Tragend] (150 mm) | Tile, Mosaic, Gray [Finish 1] (5 mm);160.0;2.03;2.1;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;2fb5e263-2312-4e53-895d-31ea75409d04-001b2c6d;Waende;Generic - 150mm;;;0.635;m3;;Unknown Material [Tragend] (150 mm);150.0;4.24;2.08;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;4a569777-c6f1-4580-8cc0-6f70084b0df2-001b3904;Waende;Generic - 150mm;;;3.683;m3;;Unknown Material [Tragend] (150 mm);150.0;24.55;6.29;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;4a569777-c6f1-4580-8cc0-6f70084b0df2-001b3991;Waende;Trennwand;;;0.0509999999999999;m3;;Structure, Wood Joist/Rafter Layer [Tragend] (30 mm);30.0;1.7;2.16;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;4a569777-c6f1-4580-8cc0-6f70084b0df2-001b3992;Waende;Leichtbauwand;;;1.359;m3;;Gypsum Wall Board [Finish 1] (13 mm) | Gypsum Wall Board [Finish 1] (13 mm) | Insulation - PVC Jacketed Fiberglass [Tragend] (100 mm) | Gypsum Wall Board [Finish 1] (13 mm) | Gypsum Wall Board [Finish 1] (13 mm);152.0;9.06;2.14;G01;Trennwand, Innentür, Innentor;0.9
+ARC_Umbau_TRP-T4;4a569777-c6f1-4580-8cc0-6f70084b0df2-001b3993;Waende;Generic - 150mm;;;1.266;m3;;Unknown Material [Tragend] (150 mm);150.0;8.44;2.07;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;4a569777-c6f1-4580-8cc0-6f70084b0df2-001b3994;Waende;Leichtbauwand;;;0.45;m3;;Gypsum Wall Board [Finish 1] (13 mm) | Gypsum Wall Board [Finish 1] (13 mm) | Insulation - PVC Jacketed Fiberglass [Tragend] (100 mm) | Gypsum Wall Board [Finish 1] (13 mm) | Gypsum Wall Board [Finish 1] (13 mm);152.0;3.0;0.77;G01;Trennwand, Innentür, Innentor;0.9
+ARC_Umbau_TRP-T4;4a569777-c6f1-4580-8cc0-6f70084b0df2-001b3995;Waende;Trennwand;;;0.0919999999999999;m3;;Structure, Wood Joist/Rafter Layer [Tragend] (30 mm);30.0;3.08;1.45;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;4a569777-c6f1-4580-8cc0-6f70084b0df2-001b399a;Waende;Vorwand;;;0.553;m3;;Gypsum Wall Board [Finish 1] (13 mm) | Gypsum Wall Board [Finish 1] (13 mm) | Unbekannt [Tragend] (50 mm);76.0;7.37;2.14;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;4a569777-c6f1-4580-8cc0-6f70084b0df2-001b39e2;Waende;Generic - 200mm;;;6.666;m3;;Unknown Material [Tragend] (200 mm);200.0;33.33;9.47;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;5bfbbe95-c304-4994-8503-eeb77bdd62e9-001b5acf;Waende;Generic - 150mm;;;0.5959999999999999;m3;;Unknown Material [Tragend] (150 mm);150.0;3.98;1.3;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;88511cf6-bc5e-4c8b-b91c-f5fa21dccc30-001b6e03;Waende;Generic - 200mm;;;0.695;m3;;Unknown Material [Tragend] (200 mm);200.0;3.48;0.91;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;88511cf6-bc5e-4c8b-b91c-f5fa21dccc30-001b70ab;Waende;Trennwand;;;0.0759999999999999;m3;;Structure, Wood Joist/Rafter Layer [Tragend] (30 mm);30.0;2.53;1.25;G01;Trennwand, Innentür, Innentor;0.95
+ARC_Umbau_TRP-T4;88511cf6-bc5e-4c8b-b91c-f5fa21dccc30-001b7294;Waende;Trennwand;;;0.129;m3;;Structure, Wood Joist/Rafter Layer [Tragend] (30 mm);30.0;4.3;2.16;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;88511cf6-bc5e-4c8b-b91c-f5fa21dccc30-001b73a3;Waende;Trennwand;;;0.129;m3;;Structure, Wood Joist/Rafter Layer [Tragend] (30 mm);30.0;4.3;2.16;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;9fcbdf87-1433-4a7f-ae7e-10b09425362d-001b7625;Waende;Generic - 150mm;;;0.694;m3;;Unknown Material [Tragend] (150 mm);150.0;4.63;1.64;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;9fcbdf87-1433-4a7f-ae7e-10b09425362d-001b7924;Waende;Generic - 150mm;;;0.771;m3;;Unknown Material [Tragend] (150 mm);150.0;5.14;1.7;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;9fcbdf87-1433-4a7f-ae7e-10b09425362d-001b799f;Waende;Generic - 150mm;;;0.042;m3;;Unknown Material [Tragend] (150 mm);150.0;0.28;;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;9fcbdf87-1433-4a7f-ae7e-10b09425362d-001b7a3d;Waende;Generic - 150mm;;;0.0;m3;;Unknown Material [Tragend] (150 mm);150.0;;;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;9fcbdf87-1433-4a7f-ae7e-10b09425362d-001b7d01;Waende;Concrete 200mm;;;1.501;m3;;Concrete, Cast-in-Place gray [Tragend] (200 mm);200.0;7.51;1.75;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;9fcbdf87-1433-4a7f-ae7e-10b09425362d-001b7d02;Waende;Concrete 200mm;;;1.497;m3;;Concrete, Cast-in-Place gray [Tragend] (200 mm);200.0;7.48;1.74;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;9fcbdf87-1433-4a7f-ae7e-10b09425362d-001b7d03;Waende;Concrete 200mm;;;1.329;m3;;Concrete, Cast-in-Place gray [Tragend] (200 mm);200.0;6.65;1.75;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;9fcbdf87-1433-4a7f-ae7e-10b09425362d-001b7db8;Waende;Concrete 200mm;;;1.767;m3;;Concrete, Cast-in-Place gray [Tragend] (200 mm);200.0;8.83;1.95;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;9fcbdf87-1433-4a7f-ae7e-10b09425362d-001b7db9;Waende;Concrete 200mm;;;1.591;m3;;Concrete, Cast-in-Place gray [Tragend] (200 mm);200.0;7.96;1.74;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;9fcbdf87-1433-4a7f-ae7e-10b09425362d-001b7dba;Waende;Concrete 200mm;;;1.584;m3;;Concrete, Cast-in-Place gray [Tragend] (200 mm);200.0;7.92;1.95;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;9fcbdf87-1433-4a7f-ae7e-10b09425362d-001b7f41;Waende;Generic - 200mm;;;1.498;m3;;Unknown Material [Tragend] (200 mm);200.0;7.49;1.62;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;9fcbdf87-1433-4a7f-ae7e-10b09425362d-001b80c7;Waende;Generic - 200mm;;;1.069;m3;;Unknown Material [Tragend] (200 mm);200.0;5.34;1.64;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;3f6e3cbc-fe21-43a7-b0e4-068795e741f4-001b82c2;Waende;Generic - 200mm;;;0.34;m3;;Unknown Material [Tragend] (200 mm);200.0;1.7;;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;225ed64e-eb99-49d1-bbbf-3d8637b1364a-001b83dc;Waende;Generic - 200mm;;;6.46;m3;;Unknown Material [Tragend] (200 mm);200.0;32.3;7.46;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;225ed64e-eb99-49d1-bbbf-3d8637b1364a-001b8688;Waende;Generic - 200mm;;;0.976;m3;;Unknown Material [Tragend] (200 mm);200.0;4.88;1.54;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;225ed64e-eb99-49d1-bbbf-3d8637b1364a-001b8834;Waende;Generic - 200mm;;;0.34;m3;;Unknown Material [Tragend] (200 mm);200.0;1.7;;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;225ed64e-eb99-49d1-bbbf-3d8637b1364a-001b89bc;Waende;Generic - 150mm;;;0.696;m3;;Unknown Material [Tragend] (150 mm);150.0;4.64;1.64;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;225ed64e-eb99-49d1-bbbf-3d8637b1364a-001b8a6b;Waende;Generic - 150mm;;;0.7439999999999999;m3;;Unknown Material [Tragend] (150 mm);150.0;4.96;1.62;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;225ed64e-eb99-49d1-bbbf-3d8637b1364a-001b8b02;Waende;Generic - 150mm;;;0.042;m3;;Unknown Material [Tragend] (150 mm);150.0;0.28;;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;225ed64e-eb99-49d1-bbbf-3d8637b1364a-001b8bb3;Waende;Generic - 150mm;;;0.0;m3;;Unknown Material [Tragend] (150 mm);150.0;;;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;225ed64e-eb99-49d1-bbbf-3d8637b1364a-001b8caa;Waende;Generic - 150mm;;;0.695;m3;;Unknown Material [Tragend] (150 mm);150.0;4.64;1.64;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;225ed64e-eb99-49d1-bbbf-3d8637b1364a-001b8e26;Waende;Generic - 150mm;;;0.7439999999999999;m3;;Unknown Material [Tragend] (150 mm);150.0;4.96;1.62;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;225ed64e-eb99-49d1-bbbf-3d8637b1364a-001b8e82;Waende;Generic - 150mm;;;0.042;m3;;Unknown Material [Tragend] (150 mm);150.0;0.28;;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;a59fe041-881f-4f6f-b224-87df11fdac8a-001b8ed7;Waende;Generic - 150mm;;;0.0;m3;;Unknown Material [Tragend] (150 mm);150.0;;;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;bf384d7a-2c1b-49aa-b6e8-4aab5a6d633f-001b91aa;Waende;Generic - 200mm;;;1.94;m3;;Unknown Material [Tragend] (200 mm);200.0;9.7;2.32;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;bf384d7a-2c1b-49aa-b6e8-4aab5a6d633f-001b9530;Waende;Generic - 200mm;;;1.952;m3;;Unknown Material [Tragend] (200 mm);200.0;9.76;2.32;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;bf384d7a-2c1b-49aa-b6e8-4aab5a6d633f-001b9533;Waende;Generic - 200mm;;;1.945;m3;;Unknown Material [Tragend] (200 mm);200.0;9.73;2.32;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;bf384d7a-2c1b-49aa-b6e8-4aab5a6d633f-001b9536;Waende;Generic - 200mm;;;1.947;m3;;Unknown Material [Tragend] (200 mm);200.0;9.74;2.32;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;bf384d7a-2c1b-49aa-b6e8-4aab5a6d633f-001b9539;Waende;Generic - 200mm;;;1.947;m3;;Unknown Material [Tragend] (200 mm);200.0;9.73;2.32;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;84a87323-d7fd-4048-83f4-de7cb1327f9c-001bb520;Waende;Generic - 200mm;;;0.971;m3;;Unknown Material [Tragend] (200 mm);200.0;4.86;2.27;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;39c531de-0dad-46ba-99ec-39a179b1cfa7-001bba1b;Waende;Generic - 200mm;;;0.0;m3;;Unknown Material [Tragend] (200 mm);200.0;;;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;7ebf658d-25be-430b-b249-5fbe28fdfa9e-001bf280;Waende;Generic - 200mm;;;1.186;m3;;Unknown Material [Tragend] (200 mm);200.0;5.93;2.32;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;7ebf658d-25be-430b-b249-5fbe28fdfa9e-001bf2ac;Waende;Generic - 200mm;;;1.007;m3;;Unknown Material [Tragend] (200 mm);200.0;5.04;2.32;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;7ebf658d-25be-430b-b249-5fbe28fdfa9e-001bf2d8;Waende;Generic - 200mm;;;1.009;m3;;Unknown Material [Tragend] (200 mm);200.0;5.05;2.32;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;7ebf658d-25be-430b-b249-5fbe28fdfa9e-001bf304;Waende;Generic - 200mm;;;1.009;m3;;Unknown Material [Tragend] (200 mm);200.0;5.05;2.32;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;b1436389-c9d2-4586-937e-1b30babe4f3d-001bfe84;Waende;M_HSLU Innenbereich;;;0.0;m3;;;;11.04;3.05;G01;Trennwand, Innentür, Innentor;0.85
+ARC_Umbau_TRP-T4;cac67535-074b-462d-9002-93eac0e807fe-001c097c;Waende;TÃ¼re 2;;;0.0;m3;;;;8.44;2.31;G01;Trennwand, Innentür, Innentor;0.9
+ARC_Umbau_TRP-T4;cac67535-074b-462d-9002-93eac0e807fe-001c17fd;Waende;Generic - 200mm;;;0.2959999999999999;m3;;Unknown Material [Tragend] (200 mm);200.0;1.48;2.31;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;cac67535-074b-462d-9002-93eac0e807fe-001c1907;Waende;Generic - 200mm;;;0.652;m3;;Unknown Material [Tragend] (200 mm);200.0;3.26;0.56;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;cac67535-074b-462d-9002-93eac0e807fe-001c1b95;Waende;TÃ¼re 2;;;0.0;m3;;;;8.43;2.11;G01;Trennwand, Innentür, Innentor;0.9
+ARC_Umbau_TRP-T4;fe21a8cb-42a8-42a4-b706-c2f3443cb118-001c20ec;Waende;Generic - 150mm;;;0.696;m3;;Unknown Material [Tragend] (150 mm);150.0;4.64;1.7;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;fe21a8cb-42a8-42a4-b706-c2f3443cb118-001c214d;Waende;Generic - 200mm;;;1.409;m3;;Unknown Material [Tragend] (200 mm);200.0;7.04;1.64;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;fe21a8cb-42a8-42a4-b706-c2f3443cb118-001c21b5;Waende;Generic - 200mm;;;1.316;m3;;Unknown Material [Tragend] (200 mm);200.0;6.58;1.54;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;fe21a8cb-42a8-42a4-b706-c2f3443cb118-001c25a5;Waende;Generic - 150mm;;;0.694;m3;;Unknown Material [Tragend] (150 mm);150.0;4.63;1.62;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;fe21a8cb-42a8-42a4-b706-c2f3443cb118-001c25d5;Waende;Generic - 150mm;;;0.694;m3;;Unknown Material [Tragend] (150 mm);150.0;4.63;1.62;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;fe21a8cb-42a8-42a4-b706-c2f3443cb118-001c27f6;Waende;Liftschacht;;;0.1459999999999999;m3;;Steel ASTM A36 [Tragend] (40 mm);40.0;3.66;1.28;C02;Wandkonstruktion;0.85
+ARC_Umbau_TRP-T4;fe21a8cb-42a8-42a4-b706-c2f3443cb118-001c284d;Waende;Liftschacht;;;0.151;m3;;Steel ASTM A36 [Tragend] (40 mm);40.0;3.77;1.34;C02;Wandkonstruktion;0.85
+ARC_Umbau_TRP-T4;fe21a8cb-42a8-42a4-b706-c2f3443cb118-001c289e;Waende;Liftschacht;;;0.1419999999999999;m3;;Steel ASTM A36 [Tragend] (40 mm);40.0;3.55;1.38;C02;Wandkonstruktion;0.85
+ARC_Umbau_TRP-T4;4ef5454d-9d09-492d-becc-28a413bdea95-001c2d97;Waende;Liftschacht;;;0.188;m3;;Steel ASTM A36 [Tragend] (40 mm);40.0;4.71;1.28;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;4ef5454d-9d09-492d-becc-28a413bdea95-001c2d98;Waende;Liftschacht;;;0.194;m3;;Steel ASTM A36 [Tragend] (40 mm);40.0;4.85;1.34;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;4ef5454d-9d09-492d-becc-28a413bdea95-001c2d99;Waende;Liftschacht;;;0.183;m3;;Steel ASTM A36 [Tragend] (40 mm);40.0;4.56;1.38;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;4ef5454d-9d09-492d-becc-28a413bdea95-001c2d9c;Waende;Liftschacht;;;0.187;m3;;Steel ASTM A36 [Tragend] (40 mm);40.0;4.69;1.28;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;4ef5454d-9d09-492d-becc-28a413bdea95-001c2d9d;Waende;Liftschacht;;;0.193;m3;;Steel ASTM A36 [Tragend] (40 mm);40.0;4.83;1.34;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;4ef5454d-9d09-492d-becc-28a413bdea95-001c2d9e;Waende;Liftschacht;;;0.182;m3;;Steel ASTM A36 [Tragend] (40 mm);40.0;4.54;1.38;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;4ef5454d-9d09-492d-becc-28a413bdea95-001c2da1;Waende;Liftschacht;;;0.188;m3;;Steel ASTM A36 [Tragend] (40 mm);40.0;4.69;1.28;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;4ef5454d-9d09-492d-becc-28a413bdea95-001c2da2;Waende;Liftschacht;;;0.193;m3;;Steel ASTM A36 [Tragend] (40 mm);40.0;4.84;1.34;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;4ef5454d-9d09-492d-becc-28a413bdea95-001c2da3;Waende;Liftschacht;;;0.182;m3;;Steel ASTM A36 [Tragend] (40 mm);40.0;4.55;1.38;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;4ef5454d-9d09-492d-becc-28a413bdea95-001c2da6;Waende;Liftschacht;;;0.194;m3;;Steel ASTM A36 [Tragend] (40 mm);40.0;4.85;1.28;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;4ef5454d-9d09-492d-becc-28a413bdea95-001c2da7;Waende;Liftschacht;;;0.2;m3;;Steel ASTM A36 [Tragend] (40 mm);40.0;5.0;1.34;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;4ef5454d-9d09-492d-becc-28a413bdea95-001c2da8;Waende;Liftschacht;;;0.188;m3;;Steel ASTM A36 [Tragend] (40 mm);40.0;4.7;1.38;C02;Wandkonstruktion;0.95
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c49c9;Waende;Generic - 200mm PlÃ¤ttli;;;4.034;m3;;Unknown Material [Tragend] (200 mm) | Tile, Mosaic, Gray [Finish 1] (5 mm);205.0;19.68;9.340000000000002;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c49ca;Waende;Generic - 200mm;;;4.103;m3;;Unknown Material [Tragend] (200 mm);200.0;20.51;9.340000000000002;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c49f8;Waende;Generic - 200mm PlÃ¤ttli;;;4.034;m3;;Unknown Material [Tragend] (200 mm) | Tile, Mosaic, Gray [Finish 1] (5 mm);205.0;19.68;9.340000000000002;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c49f9;Waende;Generic - 200mm;;;4.103;m3;;Unknown Material [Tragend] (200 mm);200.0;20.51;9.340000000000002;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c49fc;Waende;Generic - 200mm PlÃ¤ttli;;;0.689;m3;;Unknown Material [Tragend] (200 mm) | Tile, Mosaic, Gray [Finish 1] (5 mm);205.0;3.36;4.24;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c49fd;Waende;Generic - 200mm;;;0.55;m3;;Unknown Material [Tragend] (200 mm);200.0;2.75;4.24;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4a11;Waende;Generic - 200mm PlÃ¤ttli double;;;1.418;m3;;Tile, Mosaic, Gray [Finish 1] (5 mm) | Unknown Material [Tragend] (200 mm) | Tile, Mosaic, Gray [Finish 1] (5 mm);210.0;6.75;3.29;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4a12;Waende;Generic - 200mm;;;1.41;m3;;Unknown Material [Tragend] (200 mm);200.0;7.05;3.29;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4a87;Waende;Generic - 150mm PlÃ¤ttli;;;0.5879999999999999;m3;;Tile, Mosaic, Gray [Finish 1] (5 mm) | Unknown Material [Tragend] (150 mm) | Tile, Mosaic, Gray [Finish 1] (5 mm);160.0;3.67;1.75;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4a88;Waende;Generic - 150mm;;;0.573;m3;;Unknown Material [Tragend] (150 mm);150.0;3.82;1.75;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4a8b;Waende;Generic - 150mm PlÃ¤ttli;;;0.571;m3;;Tile, Mosaic, Gray [Finish 1] (5 mm) | Unknown Material [Tragend] (150 mm) | Tile, Mosaic, Gray [Finish 1] (5 mm);160.0;3.57;1.7;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4a8c;Waende;Generic - 150mm;;;0.558;m3;;Unknown Material [Tragend] (150 mm);150.0;3.72;1.7;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4a8f;Waende;Generic - 150mm PlÃ¤ttli;;;0.534;m3;;Tile, Mosaic, Gray [Finish 1] (5 mm) | Unknown Material [Tragend] (150 mm) | Tile, Mosaic, Gray [Finish 1] (5 mm);160.0;3.34;1.74;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4a90;Waende;Generic - 150mm;;;0.524;m3;;Unknown Material [Tragend] (150 mm);150.0;3.49;1.74;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4abd;Waende;Generic - 200mm PlÃ¤ttli;;;0.776;m3;;Unknown Material [Tragend] (200 mm) | Tile, Mosaic, Gray [Finish 1] (5 mm);205.0;3.79;4.24;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4abe;Waende;Generic - 200mm;;;0.634;m3;;Unknown Material [Tragend] (200 mm);200.0;3.17;4.24;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4ac1;Waende;Generic - 200mm PlÃ¤ttli;;;0.776;m3;;Unknown Material [Tragend] (200 mm) | Tile, Mosaic, Gray [Finish 1] (5 mm);205.0;3.79;4.24;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4ac2;Waende;Generic - 200mm;;;0.638;m3;;Unknown Material [Tragend] (200 mm);200.0;3.19;4.24;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4b04;Waende;Generic - 150mm PlÃ¤ttli;;;0.5929999999999999;m3;;Tile, Mosaic, Gray [Finish 1] (5 mm) | Unknown Material [Tragend] (150 mm) | Tile, Mosaic, Gray [Finish 1] (5 mm);160.0;3.7;1.76;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4b05;Waende;Generic - 150mm;;;0.5759999999999998;m3;;Unknown Material [Tragend] (150 mm);150.0;3.84;1.76;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4b08;Waende;Generic - 150mm PlÃ¤ttli;;;0.571;m3;;Tile, Mosaic, Gray [Finish 1] (5 mm) | Unknown Material [Tragend] (150 mm) | Tile, Mosaic, Gray [Finish 1] (5 mm);160.0;3.57;1.7;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4b09;Waende;Generic - 150mm;;;0.557;m3;;Unknown Material [Tragend] (150 mm);150.0;3.71;1.7;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4b0c;Waende;Generic - 150mm PlÃ¤ttli;;;0.539;m3;;Tile, Mosaic, Gray [Finish 1] (5 mm) | Unknown Material [Tragend] (150 mm) | Tile, Mosaic, Gray [Finish 1] (5 mm);160.0;3.37;1.76;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4b0d;Waende;Generic - 150mm;;;0.527;m3;;Unknown Material [Tragend] (150 mm);150.0;3.51;1.76;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4b10;Waende;Generic - 150mm PlÃ¤ttli;;;0.5929999999999999;m3;;Tile, Mosaic, Gray [Finish 1] (5 mm) | Unknown Material [Tragend] (150 mm) | Tile, Mosaic, Gray [Finish 1] (5 mm);160.0;3.7;1.76;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4b11;Waende;Generic - 150mm;;;0.5779999999999998;m3;;Unknown Material [Tragend] (150 mm);150.0;3.85;1.76;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4b14;Waende;Generic - 150mm PlÃ¤ttli;;;0.571;m3;;Tile, Mosaic, Gray [Finish 1] (5 mm) | Unknown Material [Tragend] (150 mm) | Tile, Mosaic, Gray [Finish 1] (5 mm);160.0;3.57;1.7;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4b15;Waende;Generic - 150mm;;;0.559;m3;;Unknown Material [Tragend] (150 mm);150.0;3.72;1.7;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4b18;Waende;Generic - 150mm PlÃ¤ttli;;;0.539;m3;;Tile, Mosaic, Gray [Finish 1] (5 mm) | Unknown Material [Tragend] (150 mm) | Tile, Mosaic, Gray [Finish 1] (5 mm);160.0;3.37;1.76;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4b19;Waende;Generic - 150mm;;;0.528;m3;;Unknown Material [Tragend] (150 mm);150.0;3.52;1.76;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4b2d;Waende;Generic - 200mm PlÃ¤ttli;;;3.951;m3;;Unknown Material [Tragend] (200 mm) | Tile, Mosaic, Gray [Finish 1] (5 mm);205.0;19.27;9.36;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4b2e;Waende;Generic - 200mm;;;4.013;m3;;Unknown Material [Tragend] (200 mm);200.0;20.07;9.36;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4b31;Waende;Generic - 200mm PlÃ¤ttli;;;3.951;m3;;Unknown Material [Tragend] (200 mm) | Tile, Mosaic, Gray [Finish 1] (5 mm);205.0;19.27;9.36;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4b32;Waende;Generic - 200mm;;;4.023;m3;;Unknown Material [Tragend] (200 mm);200.0;20.11;9.36;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4b44;Waende;Generic - 200mm PlÃ¤ttli double;;;1.453;m3;;Tile, Mosaic, Gray [Finish 1] (5 mm) | Unknown Material [Tragend] (200 mm) | Tile, Mosaic, Gray [Finish 1] (5 mm);210.0;6.92;3.29;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4b45;Waende;Generic - 200mm;;;1.374;m3;;Unknown Material [Tragend] (200 mm);200.0;6.87;3.29;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4b48;Waende;Generic - 200mm PlÃ¤ttli double;;;1.453;m3;;Tile, Mosaic, Gray [Finish 1] (5 mm) | Unknown Material [Tragend] (200 mm) | Tile, Mosaic, Gray [Finish 1] (5 mm);210.0;6.92;3.29;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4b49;Waende;Generic - 200mm;;;1.378;m3;;Unknown Material [Tragend] (200 mm);200.0;6.89;3.29;C02;Wandkonstruktion;0.9
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c4c35;Waende;M_HSLU-Fassade;;;0.0;m3;;;;11.22;4.04;E02;Äussere Wandbekleidung über Terrain;0.95
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c504e;Waende;M_HSLU-Fassade;;;0.0;m3;;;;11.22;4.04;E02;Äussere Wandbekleidung über Terrain;0.95
+ARC_Umbau_TRP-T4;be9de5e0-90c2-4435-b1c7-fd1d24c33249-001c5076;Waende;M_HSLU-Fassade;;;0.0;m3;;;;11.22;4.04;E02;Äussere Wandbekleidung über Terrain;0.95
+ARC_Umbau_TRP-T4;8577dff4-3b48-4c13-addd-6f76aa15f362-001c6639;Waende;M_HSLU Innenbereich;;;0.0;m3;;;;11.0;3.05;G01;Trennwand, Innentür, Innentor;0.9
+ARC_Umbau_TRP-T4;8577dff4-3b48-4c13-addd-6f76aa15f362-001c6656;Waende;M_HSLU Innenbereich;;;0.0;m3;;;;11.04;3.05;G01;Trennwand, Innentür, Innentor;0.9
+ARC_Umbau_TRP-T4;8577dff4-3b48-4c13-addd-6f76aa15f362-001c7229;Waende;Generic - 200mm;;;0.375;m3;;Unknown Material [Tragend] (200 mm);200.0;1.99;3.13;C02;Wandkonstruktion;0.85
+ARC_Umbau_TRP-T4;8577dff4-3b48-4c13-addd-6f76aa15f362-001c7488;Waende;Generic - 200mm;;;0.375;m3;;Unknown Material [Tragend] (200 mm);200.0;1.99;3.03;C02;Wandkonstruktion;0.85
+ARC_Umbau_TRP-T4;8577dff4-3b48-4c13-addd-6f76aa15f362-001c74ca;Waende;Generic - 200mm;;;0.375;m3;;Unknown Material [Tragend] (200 mm);200.0;1.99;3.13;C02;Wandkonstruktion;0.85
+ARC_Umbau_TRP-T4;8577dff4-3b48-4c13-addd-6f76aa15f362-001c7a1f;Waende;Generic - 200mm;;;0.4189999999999999;m3;;Unknown Material [Tragend] (200 mm);200.0;2.09;3.13;C02;Wandkonstruktion;0.85
+ARC_Umbau_TRP-T4;26db6ec1-6b59-4b6e-b5ad-220478d87b95-001c8269;Waende;Generic - 200mm;;;0.983;m3;;Unknown Material [Tragend] (200 mm);200.0;4.92;3.16;C02;Wandkonstruktion;0.85
+ELE_Umbau_TRP-T4;30d4469b-6477-4ad4-9900-8388a2f5d452-0019884e;Elektro;T15;Steckdose;;1.0;Stk;B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;30d4469b-6477-4ad4-9900-8388a2f5d452-00198865;Elektro;T15;Steckdose;;1.0;Stk;B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;30d4469b-6477-4ad4-9900-8388a2f5d452-0019886d;Elektro;T15;Steckdose;;1.0;Stk;B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;1986eca3-d104-4789-8a92-1f560a54d8be-0019a069;Elektro;T15;Steckdose;;1.0;Stk;E;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a29e;Elektro;T15;Steckdose;;1.0;Stk;C;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a2d9;Elektro;T15;Steckdose;;1.0;Stk;C;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a41d;Elektro;T15;Steckdose;;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a425;Elektro;T15;Steckdose;;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a47e;Elektro;T15;Steckdose;;1.0;Stk;D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;aab74ab3-f90b-4e9c-b268-d7f6b3dd339f-001a14c1;Elektro;T15;Steckdose;;1.0;Stk;B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;1579e40d-c560-4ee7-b675-5255b769f3f3-001a3a7c;Elektro;3xT13;Steckdose;;1.0;Stk;C;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;1579e40d-c560-4ee7-b675-5255b769f3f3-001a4185;Elektro;3xT13;Steckdose;;1.0;Stk;D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a4ec8;Elektro;3xT13;Steckdose;;1.0;Stk;D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a4ef1;Elektro;3xT13;Steckdose;;1.0;Stk;D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a4f10;Elektro;3xT13;Steckdose;;1.0;Stk;D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a4f70;Elektro;3xT13;Steckdose;;1.0;Stk;D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a522c;Elektro;3xT13;Steckdose;;1.0;Stk;E;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a5230;Elektro;3xT13;Steckdose;;1.0;Stk;E;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a5234;Elektro;3xT13;Steckdose;;1.0;Stk;E;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a523d;Elektro;3xT13;Steckdose;;1.0;Stk;F;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a5241;Elektro;3xT13;Steckdose;;1.0;Stk;F;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a5245;Elektro;3xT13;Steckdose;;1.0;Stk;F;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a52ae;Elektro;3xT13;Steckdose;;1.0;Stk;E;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a531b;Elektro;T15;Steckdose;;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a540b;Elektro;3xT13;Steckdose;;1.0;Stk;F;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a5dbd;Elektro;3xT13;Steckdose;;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a5dc9;Elektro;3xT13;Steckdose;;1.0;Stk;F;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a5e7b;Elektro;3xT13;Steckdose;;1.0;Stk;D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;4c667608-3e9a-4292-b76c-3c59a895b2a6-001a6161;Elektro;3xT13;Steckdose;;1.0;Stk;E;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;aab74ab3-f90b-4e9c-b268-d7f6b3dd339f-001a36ee;Daten;2xRJ45;Ethernet;8.0;1.0;Stk;C;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;1579e40d-c560-4ee7-b675-5255b769f3f3-001a3fcd;Daten;AccessPoint;Ethernet;9.0;1.0;Stk;Decke C;;;;;D02;Gebäudeautomation;0.9
+ELE_Umbau_TRP-T4;1579e40d-c560-4ee7-b675-5255b769f3f3-001a40b0;Daten;AccessPoint;Ethernet;10.0;1.0;Stk;Decke D;;;;;D02;Gebäudeautomation;0.9
+ELE_Umbau_TRP-T4;1579e40d-c560-4ee7-b675-5255b769f3f3-001a4165;Daten;2xRJ45;Ethernet;11.0;1.0;Stk;D;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a5104;Daten;AccessPoint;Ethernet;12.0;1.0;Stk;Decke E;;;;;D02;Gebäudeautomation;0.9
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a5291;Daten;2xRJ45;Ethernet;13.0;1.0;Stk;D;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a52b0;Daten;2xRJ45;Ethernet;14.0;1.0;Stk;E;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a5325;Daten;AccessPoint;Ethernet;15.0;1.0;Stk;Abhangdecke G;;;;;D02;Gebäudeautomation;0.9
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a53ef;Daten;2xRJ45;Ethernet;16.0;1.0;Stk;F;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a5dbe;Daten;2xRJ45;Ethernet;17.0;1.0;Stk;;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a5dca;Daten;2xRJ45;Ethernet;18.0;1.0;Stk;F;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a5e79;Daten;2xRJ45;Ethernet;19.0;1.0;Stk;D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;4c667608-3e9a-4292-b76c-3c59a895b2a6-001a6160;Daten;2xRJ45;Ethernet;20.0;1.0;Stk;E;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;30d4469b-6477-4ad4-9900-8388a2f5d452-00198d63;Sicherheit;Standard;Fire Alarm Strobe Speaker - Wall Mounted;2.0;1.0;Stk;B;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;30d4469b-6477-4ad4-9900-8388a2f5d452-00198d75;Sicherheit;Standard;Fire Alarm Strobe Speaker - Wall Mounted;3.0;1.0;Stk;B;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;30d4469b-6477-4ad4-9900-8388a2f5d452-00198def;Sicherheit;Standard;Fire Alarm Strobe Speaker - Wall Mounted;4.0;1.0;Stk;B;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;30d4469b-6477-4ad4-9900-8388a2f5d452-00198e0a;Sicherheit;Standard;Fire Alarm Strobe Speaker - Wall Mounted;5.0;1.0;Stk;B;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a16f;Sicherheit;Standard;Fire Alarm Strobe Speaker - Wall Mounted;10.0;1.0;Stk;B;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a21d;Sicherheit;Standard;Fire Alarm Strobe Speaker - Wall Mounted;11.0;1.0;Stk;B;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a3b2;Sicherheit;Standard;Fire Alarm Strobe Speaker - Wall Mounted;12.0;1.0;Stk;;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a3b6;Sicherheit;Standard;Fire Alarm Strobe Speaker - Wall Mounted;13.0;1.0;Stk;;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a3ba;Sicherheit;Standard;Fire Alarm Strobe Speaker - Wall Mounted;14.0;1.0;Stk;E;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a3be;Sicherheit;Standard;Fire Alarm Strobe Speaker - Wall Mounted;15.0;1.0;Stk;;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a43e;Sicherheit;Standard;Fire Alarm Strobe Speaker - Wall Mounted;16.0;1.0;Stk;D;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;4a03b771-323d-4e76-b4c5-2d30019a7e5a-001a0416;Sicherheit;Photoelectric;Smoke Detector;17.0;1.0;Stk;Decke B;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;4a03b771-323d-4e76-b4c5-2d30019a7e5a-001a1482;Sicherheit;Photoelectric;Smoke Detector;18.0;1.0;Stk;Decke B;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;1579e40d-c560-4ee7-b675-5255b769f3f3-001a3af3;Sicherheit;Photoelectric;Smoke Detector;19.0;1.0;Stk;Decke C;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;1579e40d-c560-4ee7-b675-5255b769f3f3-001a3b01;Sicherheit;Photoelectric;Smoke Detector;20.0;1.0;Stk;Decke C;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;1579e40d-c560-4ee7-b675-5255b769f3f3-001a3b3f;Sicherheit;Photoelectric;Smoke Detector;21.0;1.0;Stk;Decke C;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;1579e40d-c560-4ee7-b675-5255b769f3f3-001a40bc;Sicherheit;Photoelectric;Smoke Detector;22.0;1.0;Stk;Decke D;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;1579e40d-c560-4ee7-b675-5255b769f3f3-001a40c4;Sicherheit;Photoelectric;Smoke Detector;23.0;1.0;Stk;Decke D;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a4e80;Sicherheit;Standard;Fire Alarm Strobe Speaker - Wall Mounted;24.0;1.0;Stk;D;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a508b;Sicherheit;Photoelectric;Smoke Detector;25.0;1.0;Stk;Decke E;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a5124;Sicherheit;Standard;Fire Alarm Strobe Speaker - Wall Mounted;26.0;1.0;Stk;E;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a5171;Sicherheit;Standard;Fire Alarm Strobe Speaker - Wall Mounted;27.0;1.0;Stk;E;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a51d6;Sicherheit;Photoelectric;Smoke Detector;28.0;1.0;Stk;Decke E;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a51ec;Sicherheit;Photoelectric;Smoke Detector;29.0;1.0;Stk;Decke E;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a5227;Sicherheit;Standard;Fire Alarm Strobe Speaker - Wall Mounted;30.0;1.0;Stk;E;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a5238;Sicherheit;Standard;Fire Alarm Strobe Speaker - Wall Mounted;31.0;1.0;Stk;F;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a5282;Sicherheit;Photoelectric;Smoke Detector;32.0;1.0;Stk;Decke D;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a5331;Sicherheit;Photoelectric;Smoke Detector;33.0;1.0;Stk;Abhangdecke G;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a533f;Sicherheit;Photoelectric;Smoke Detector;34.0;1.0;Stk;Abhangdecke G;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a5347;Sicherheit;Photoelectric;Smoke Detector;35.0;1.0;Stk;Abhangdecke G;;;;;D03;Sicherheitsanlage;0.95
+ELE_Umbau_TRP-T4;30d4469b-6477-4ad4-9900-8388a2f5d452-001997a0;Beleuchtung;Allgemein;Schalter;2.0;1.0;Stk;B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;30d4469b-6477-4ad4-9900-8388a2f5d452-001997ab;Beleuchtung;Allgemein;Schalter;3.0;1.0;Stk;B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;30d4469b-6477-4ad4-9900-8388a2f5d452-0019982d;Beleuchtung;Allgemein;Schalter;4.0;1.0;Stk;B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;1986eca3-d104-4789-8a92-1f560a54d8be-0019a06c;Beleuchtung;Allgemein;Schalter;7.0;1.0;Stk;E;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;1986eca3-d104-4789-8a92-1f560a54d8be-0019a099;Beleuchtung;Allgemein;Schalter;10.0;1.0;Stk;C;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a15e;Beleuchtung;Allgemein;Schalter;11.0;1.0;Stk;B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a1e4;Beleuchtung;Allgemein;Schalter;12.0;1.0;Stk;B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a204;Beleuchtung;Allgemein;Schalter;13.0;1.0;Stk;B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a2c2;Beleuchtung;Allgemein;Schalter;14.0;1.0;Stk;C;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a2e9;Beleuchtung;Allgemein;Schalter;15.0;1.0;Stk;C;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a388;Beleuchtung;Allgemein;Schalter;16.0;1.0;Stk;C;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a3a2;Beleuchtung;Allgemein;Schalter;17.0;1.0;Stk;C;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a3b1;Beleuchtung;Allgemein;Schalter;18.0;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a3b5;Beleuchtung;Allgemein;Schalter;19.0;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a3b9;Beleuchtung;Allgemein;Schalter;20.0;1.0;Stk;E;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a3bd;Beleuchtung;Allgemein;Schalter;21.0;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a3ca;Beleuchtung;Allgemein;Schalter;22.0;1.0;Stk;C;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a41c;Beleuchtung;Allgemein;Schalter;23.0;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a41f;Beleuchtung;Allgemein;Schalter;24.0;1.0;Stk;D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a424;Beleuchtung;Allgemein;Schalter;25.0;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;e89f5ccd-a29d-458b-83c8-2540fda6e846-0019a427;Beleuchtung;Allgemein;Schalter;26.0;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;4a03b771-323d-4e76-b4c5-2d30019a7e5a-001a0116;Beleuchtung;Allgemein;Schalter;27.0;1.0;Stk;B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;aab74ab3-f90b-4e9c-b268-d7f6b3dd339f-001a3682;Beleuchtung;Allgemein;Schalter;28.0;1.0;Stk;C;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;aab74ab3-f90b-4e9c-b268-d7f6b3dd339f-001a368d;Beleuchtung;Allgemein;Schalter;29.0;1.0;Stk;C;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;b1eee911-4591-4e9d-be9b-227fcfa94f45-001a3a42;Beleuchtung;Allgemein;Schalter;30.0;1.0;Stk;C;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;1579e40d-c560-4ee7-b675-5255b769f3f3-001a4006;Beleuchtung;Allgemein;Schalter;31.0;1.0;Stk;D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;1579e40d-c560-4ee7-b675-5255b769f3f3-001a4014;Beleuchtung;Allgemein;Schalter;32.0;1.0;Stk;D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;1579e40d-c560-4ee7-b675-5255b769f3f3-001a4117;Beleuchtung;Allgemein;Schalter;33.0;1.0;Stk;D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a4e83;Beleuchtung;Allgemein;Schalter;34.0;1.0;Stk;D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a4f0e;Beleuchtung;Allgemein;Schalter;35.0;1.0;Stk;D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a4f6f;Beleuchtung;Allgemein;Schalter;36.0;1.0;Stk;D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a5229;Beleuchtung;Allgemein;Schalter;37.0;1.0;Stk;E;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a522f;Beleuchtung;Allgemein;Schalter;38.0;1.0;Stk;E;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a5233;Beleuchtung;Allgemein;Schalter;39.0;1.0;Stk;E;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a523a;Beleuchtung;Allgemein;Schalter;40.0;1.0;Stk;F;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a5240;Beleuchtung;Allgemein;Schalter;41.0;1.0;Stk;F;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a5244;Beleuchtung;Allgemein;Schalter;42.0;1.0;Stk;F;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a531a;Beleuchtung;Allgemein;Schalter;43.0;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a538a;Beleuchtung;Allgemein;Schalter;44.0;1.0;Stk;E;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a5392;Beleuchtung;Allgemein;Schalter;45.0;1.0;Stk;E;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a5d55;Beleuchtung;Allgemein;Schalter;46.0;1.0;Stk;F;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a5d60;Beleuchtung;Allgemein;Schalter;47.0;1.0;Stk;F;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;9112ac9c-9110-43b1-973e-a275f23d6e67-0019ade5;Elektro;Channel Cable Tray;;;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;9112ac9c-9110-43b1-973e-a275f23d6e67-0019adf8;Elektro;Channel Cable Tray;;;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;9112ac9c-9110-43b1-973e-a275f23d6e67-0019ae02;Elektro;Channel Cable Tray;;;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a4e6f;Elektro;SRX42UBWD;Rack;;1.0;Stk;D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;aab74ab3-f90b-4e9c-b268-d7f6b3dd339f-001a39e1;Elektro;Rigid Nonmetallic Conduit (RNC Sch 40);;;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;aab74ab3-f90b-4e9c-b268-d7f6b3dd339f-001a3a1e;Elektro;Rigid Nonmetallic Conduit (RNC Sch 40);;;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;4c667608-3e9a-4292-b76c-3c59a895b2a6-001a605f;Elektro;Rigid Nonmetallic Conduit (RNC Sch 40);;;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;4c667608-3e9a-4292-b76c-3c59a895b2a6-001a6066;Elektro;Rigid Nonmetallic Conduit (RNC Sch 40);;;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;4c667608-3e9a-4292-b76c-3c59a895b2a6-001a60e9;Elektro;Rigid Nonmetallic Conduit (RNC Sch 40);;;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;4c667608-3e9a-4292-b76c-3c59a895b2a6-001a60f2;Elektro;Rigid Nonmetallic Conduit (RNC Sch 40);;;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;4c667608-3e9a-4292-b76c-3c59a895b2a6-001a6162;Elektro;Rigid Nonmetallic Conduit (RNC Sch 40);;;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;4c667608-3e9a-4292-b76c-3c59a895b2a6-001a6163;Elektro;Rigid Nonmetallic Conduit (RNC Sch 40);;;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;4c667608-3e9a-4292-b76c-3c59a895b2a6-001a6166;Elektro;Rigid Nonmetallic Conduit (RNC Sch 40);;;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;4c667608-3e9a-4292-b76c-3c59a895b2a6-001a6167;Elektro;Rigid Nonmetallic Conduit (RNC Sch 40);;;1.0;Stk;;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;30d4469b-6477-4ad4-9900-8388a2f5d452-00199f3f;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;30d4469b-6477-4ad4-9900-8388a2f5d452-00199f53;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;30d4469b-6477-4ad4-9900-8388a2f5d452-00199f5d;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;30d4469b-6477-4ad4-9900-8388a2f5d452-00199f67;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;30d4469b-6477-4ad4-9900-8388a2f5d452-00199f71;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;30d4469b-6477-4ad4-9900-8388a2f5d452-00199f7b;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;30d4469b-6477-4ad4-9900-8388a2f5d452-00199f85;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;30d4469b-6477-4ad4-9900-8388a2f5d452-00199f8f;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;30d4469b-6477-4ad4-9900-8388a2f5d452-00199f99;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;30d4469b-6477-4ad4-9900-8388a2f5d452-00199fa3;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;30d4469b-6477-4ad4-9900-8388a2f5d452-00199fad;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;30d4469b-6477-4ad4-9900-8388a2f5d452-00199fb7;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;03539af1-49a3-4f68-a338-5d657bcf7217-0019a61f;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;03539af1-49a3-4f68-a338-5d657bcf7217-0019ab27;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;03539af1-49a3-4f68-a338-5d657bcf7217-0019ac73;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;F;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;03539af1-49a3-4f68-a338-5d657bcf7217-0019ac89;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;03539af1-49a3-4f68-a338-5d657bcf7217-0019ac8b;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;C;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;03539af1-49a3-4f68-a338-5d657bcf7217-0019ac8d;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;C;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;03539af1-49a3-4f68-a338-5d657bcf7217-0019ac8f;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;03539af1-49a3-4f68-a338-5d657bcf7217-0019ac91;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;03539af1-49a3-4f68-a338-5d657bcf7217-0019ac93;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;E;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;03539af1-49a3-4f68-a338-5d657bcf7217-0019ac95;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;E;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;03539af1-49a3-4f68-a338-5d657bcf7217-0019ac97;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;F;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;1877e21b-318d-40b3-91d4-e4fe4266079e-0019b415;Beleuchtung;20 x 150 x 14;Pendelleuchte;;1.0;Stk;Decke C;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;63c5dde5-6784-4d8b-a2ba-53f197798600-0019b99f;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;63c5dde5-6784-4d8b-a2ba-53f197798600-0019bf63;Beleuchtung;20 x 150 x 14;Pendelleuchte;;1.0;Stk;Decke C;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;63c5dde5-6784-4d8b-a2ba-53f197798600-0019bf83;Beleuchtung;20 x 150 x 14;Pendelleuchte;;1.0;Stk;Decke C;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;63c5dde5-6784-4d8b-a2ba-53f197798600-0019bf8b;Beleuchtung;20 x 150 x 14;Pendelleuchte;;1.0;Stk;Decke C;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;63c5dde5-6784-4d8b-a2ba-53f197798600-0019bf93;Beleuchtung;20 x 150 x 14;Pendelleuchte;;1.0;Stk;Decke C;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;63c5dde5-6784-4d8b-a2ba-53f197798600-0019bf9b;Beleuchtung;20 x 150 x 14;Pendelleuchte;;1.0;Stk;Decke C;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;63c5dde5-6784-4d8b-a2ba-53f197798600-0019bfa3;Beleuchtung;20 x 150 x 20;Pendelleuchte;;1.0;Stk;Decke C;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;63c5dde5-6784-4d8b-a2ba-53f197798600-0019bfaf;Beleuchtung;20 x 150 x 14;Pendelleuchte;;1.0;Stk;Decke C;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;63c5dde5-6784-4d8b-a2ba-53f197798600-0019bfb7;Beleuchtung;20 x 150 x 14;Pendelleuchte;;1.0;Stk;Decke C;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;63c5dde5-6784-4d8b-a2ba-53f197798600-0019bfbf;Beleuchtung;20 x 150 x 14;Pendelleuchte;;1.0;Stk;Decke C;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;63c5dde5-6784-4d8b-a2ba-53f197798600-0019bfc7;Beleuchtung;20 x 150 x 14;Pendelleuchte;;1.0;Stk;Decke C;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;63c5dde5-6784-4d8b-a2ba-53f197798600-0019c0bd;Beleuchtung;20 x 150 x 20;Pendelleuchte;;1.0;Stk;Decke D;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;7388aa47-2584-4577-8fa1-dffb807d0478-0019c194;Beleuchtung;20 x 150 x 20;Pendelleuchte;;1.0;Stk;Decke D;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;7388aa47-2584-4577-8fa1-dffb807d0478-0019c19f;Beleuchtung;20 x 150 x 20;Pendelleuchte;;1.0;Stk;Decke D;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;7388aa47-2584-4577-8fa1-dffb807d0478-0019c1a7;Beleuchtung;20 x 150 x 20;Pendelleuchte;;1.0;Stk;Decke D;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;7388aa47-2584-4577-8fa1-dffb807d0478-0019c1b1;Beleuchtung;20 x 150 x 20;Pendelleuchte;;1.0;Stk;Decke D;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;7388aa47-2584-4577-8fa1-dffb807d0478-0019c1b9;Beleuchtung;20 x 150 x 20;Pendelleuchte;;1.0;Stk;Decke D;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;4d567f2f-c5ef-4fac-a257-eb166ea9ad70-0019c29f;Beleuchtung;20 x 150 x 20;Pendelleuchte;;1.0;Stk;Decke E;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;4d567f2f-c5ef-4fac-a257-eb166ea9ad70-0019c2a1;Beleuchtung;20 x 150 x 20;Pendelleuchte;;1.0;Stk;Decke E;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;4d567f2f-c5ef-4fac-a257-eb166ea9ad70-0019c2a2;Beleuchtung;20 x 150 x 20;Pendelleuchte;;1.0;Stk;Decke E;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;4d567f2f-c5ef-4fac-a257-eb166ea9ad70-0019c2a3;Beleuchtung;20 x 150 x 20;Pendelleuchte;;1.0;Stk;Decke E;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;4d567f2f-c5ef-4fac-a257-eb166ea9ad70-0019c2a4;Beleuchtung;20 x 150 x 20;Pendelleuchte;;1.0;Stk;Decke E;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;4d567f2f-c5ef-4fac-a257-eb166ea9ad70-0019c2a5;Beleuchtung;20 x 150 x 20;Pendelleuchte;;1.0;Stk;Decke E;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;4d567f2f-c5ef-4fac-a257-eb166ea9ad70-0019c2ee;Beleuchtung;20 x 150 x 20;Pendelleuchte;;1.0;Stk;Abhangdecke G;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;4d567f2f-c5ef-4fac-a257-eb166ea9ad70-0019c2f0;Beleuchtung;20 x 150 x 20;Pendelleuchte;;1.0;Stk;Abhangdecke G;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;4d567f2f-c5ef-4fac-a257-eb166ea9ad70-0019c2f1;Beleuchtung;20 x 150 x 20;Pendelleuchte;;1.0;Stk;Abhangdecke G;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;4d567f2f-c5ef-4fac-a257-eb166ea9ad70-0019c2f2;Beleuchtung;20 x 150 x 20;Pendelleuchte;;1.0;Stk;Abhangdecke G;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;4d567f2f-c5ef-4fac-a257-eb166ea9ad70-0019c2f3;Beleuchtung;20 x 150 x 20;Pendelleuchte;;1.0;Stk;Abhangdecke G;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;4d567f2f-c5ef-4fac-a257-eb166ea9ad70-0019c2f4;Beleuchtung;20 x 150 x 20;Pendelleuchte;;1.0;Stk;Decke F;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;4d567f2f-c5ef-4fac-a257-eb166ea9ad70-0019c35f;Beleuchtung;20 x 150 x 20;Pendelleuchte;;1.0;Stk;Abhangdecke G;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;4d567f2f-c5ef-4fac-a257-eb166ea9ad70-0019c368;Beleuchtung;20 x 150 x 20;Pendelleuchte;;1.0;Stk;Abhangdecke G;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;4d567f2f-c5ef-4fac-a257-eb166ea9ad70-0019c370;Beleuchtung;20 x 150 x 20;Pendelleuchte;;1.0;Stk;Abhangdecke G;;;;;D01;Elektroanlage;0.9
+ELE_Umbau_TRP-T4;4d567f2f-c5ef-4fac-a257-eb166ea9ad70-0019c5f9;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;4d567f2f-c5ef-4fac-a257-eb166ea9ad70-0019c658;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;4d567f2f-c5ef-4fac-a257-eb166ea9ad70-0019c660;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;4d567f2f-c5ef-4fac-a257-eb166ea9ad70-0019c66a;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;4d567f2f-c5ef-4fac-a257-eb166ea9ad70-0019c672;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;4d567f2f-c5ef-4fac-a257-eb166ea9ad70-0019c6db;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;4a03b771-323d-4e76-b4c5-2d30019a7e5a-001a10d2;Beleuchtung;Almat DX11021 CG-S;Notlicht;;1.0;Stk;Decke B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;4a03b771-323d-4e76-b4c5-2d30019a7e5a-001a146f;Beleuchtung;Almat DX11021 CG-S;Notlicht;;1.0;Stk;Decke B;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a4fa9;Beleuchtung;Almat DX11021 CG-S;Notlicht;;1.0;Stk;Decke D;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;7de9cdd8-237d-4978-99c6-182092a2d548-001a5019;Beleuchtung;Almat DX11021 CG-S;Notlicht;;1.0;Stk;Decke E;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a52bb;Beleuchtung;Almat DX11021 CG-S;Notlicht;;1.0;Stk;Decke F;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a5e12;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke E;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a5e13;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke E;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a5e14;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke E;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a5e15;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke E;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a5e16;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke E;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a5e17;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke E;;;;;D01;Elektroanlage;0.95
+ELE_Umbau_TRP-T4;2f50bdcb-c417-4715-afdc-ced2f1117333-001a5e2f;Beleuchtung;T5 LED 120;Balkenleuchte;;1.0;Stk;Decke F;;;;;D01;Elektroanlage;0.95
