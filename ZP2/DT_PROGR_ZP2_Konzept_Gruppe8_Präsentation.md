@@ -18,7 +18,7 @@ section { font-size: 30px; }
 ![width:150](LOGO.gif)
 
 # eBKP⁺
-eBKP-H Klassifizierung
+eBKP-H Klassifizierung und Ausmass
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
 Ein pyRevit-Plugin von Nicole und Orlando
 
@@ -100,15 +100,15 @@ Kostenberechnung
 
 ---
 
-![width:1000px](KI_Klassifizierung_Dashboard.png)
+![width:1000px](./image/KI_Klassifizierung_Dashboard.png)
 
 ---
 
-![width:1000px](KI_Monitoring.png)
+![width:1000px](./image/KI_Monitoring.png)
 
 ---
 
-![width:1000px](KI_Response.png)
+![width:1000px](./image/KI_Response.png)
 
 ---
 
