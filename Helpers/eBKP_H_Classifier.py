@@ -26,6 +26,103 @@ except ImportError:
 load_dotenv()
 
 
+class TokenRateLimiter:
+    """
+    Token-basierter Rate Limiter für Anthropic API.
+
+    Trackt Token-Nutzung pro Minute und verhindert Überschreitung des Limits.
+    Kann aus Streamlit Session State lesen (st.session_state.token_limit).
+    """
+
+    def __init__(self, max_tokens_per_minute: int = None):
+        """
+        Initialisiert den Rate Limiter.
+
+        Args:
+            max_tokens_per_minute: Max. Tokens pro Minute (Default: 50.000 für Haiku)
+                                   Falls None, wird versucht aus Session State zu lesen
+        """
+        # Versuche aus Streamlit Session State zu lesen
+        if max_tokens_per_minute is None:
+            try:
+                import streamlit as st
+                max_tokens_per_minute = st.session_state.get("token_limit", 50000)
+            except (ImportError, RuntimeError):
+                # Streamlit nicht verfügbar oder außerhalb eines Scripts
+                max_tokens_per_minute = 50000
+
+        self.max_tokens_per_minute = max_tokens_per_minute
+        self.window_start = None  # Startet beim ersten Call
+        self.tokens_used_in_window = 0
+
+    def wait_if_needed(self, tokens_for_next_batch: int) -> float:
+        """
+        Wartet, falls das Token-Limit überschritten würde.
+
+        Args:
+            tokens_for_next_batch: Geschätzte Tokens für den nächsten Batch
+
+        Returns:
+            Wartezeit in Sekunden (0, falls nicht gewartet wurde)
+        """
+        import time
+
+        # Initialisiere Fenster beim ersten Call
+        if self.window_start is None:
+            self.window_start = time.time()
+            self.tokens_used_in_window = 0
+
+        elapsed = time.time() - self.window_start
+
+        # Fenster zurücksetzen, wenn 60s vergangen
+        if elapsed >= 60:
+            self.window_start = time.time()
+            self.tokens_used_in_window = 0
+            return 0.0
+
+        # Prüfen, ob dieser Batch das Limit überschreiten würde
+        if self.tokens_used_in_window + tokens_for_next_batch > self.max_tokens_per_minute:
+            wait_time = 60 - elapsed
+            time.sleep(wait_time)
+
+            # Fenster zurücksetzen nach Wartezeit
+            self.window_start = time.time()
+            self.tokens_used_in_window = 0
+
+            return wait_time
+
+        # Token zu Fenster hinzufügen
+        self.tokens_used_in_window += tokens_for_next_batch
+        return 0.0
+
+    def get_wait_time(self, tokens_for_next_batch: int) -> float:
+        """
+        Berechnet Wartezeit ohne zu warten.
+
+        Args:
+            tokens_for_next_batch: Geschätzte Tokens für den nächsten Batch
+
+        Returns:
+            Wartezeit in Sekunden (0, falls keine Wartezeit nötig)
+        """
+        import time
+
+        if self.window_start is None:
+            return 0.0
+
+        elapsed = time.time() - self.window_start
+
+        # Fenster ist abgelaufen
+        if elapsed >= 60:
+            return 0.0
+
+        # Prüfen, ob Limit überschritten würde
+        if self.tokens_used_in_window + tokens_for_next_batch > self.max_tokens_per_minute:
+            return 60 - elapsed
+
+        return 0.0
+
+
 class eBKPHClassifier:
     """
     Klassifiziert Bauelemente nach eBKP-H Standard mit Claude AI.
@@ -125,11 +222,14 @@ Aufgabe: Klassifiziere Bauelemente nach eBKP-H Level {levels_str} basierend auf:
 - Familie (z.B. "Basic Wall", "M_Single-Flush")
 - Zusatzinfo (optional)
 
-Regeln:
-1. Gib IMMER den spezifischsten verfügbaren Code zurück (höchstes verfügbares Level)
-2. Falls unsicher zwischen mehreren Codes, wähle den detailliertesten
-3. Confidence: 0.9+ = sicher, 0.7-0.9 = wahrscheinlich, <0.7 = unsicher
-4. Antworte NUR mit dem angeforderten JSON Format, KEIN zusätzlicher Text"""
+WICHTIGE REGELN:
+1. Du DARFST NUR Codes aus diesen Levels verwenden: {", ".join([str(l) for l in sorted(self.max_levels)])}
+2. Höchstes verfügbares Level: {max(self.max_levels)}
+3. Erfinde KEINE Codes außerhalb der verfügbaren Levels!
+4. Gib IMMER den spezifischsten verfügbaren Code zurück (höchstes verfügbares Level)
+5. Falls unsicher zwischen mehreren Codes, wähle den detailliertesten
+6. Confidence: 0.9+ = sicher, 0.7-0.9 = wahrscheinlich, <0.7 = unsicher
+7. Antworte NUR mit dem angeforderten JSON Format, KEIN zusätzlicher Text"""
 
         return prompt
 
@@ -166,7 +266,10 @@ Regeln:
             line = f"{i}. {', '.join(parts)}" if parts else f"{i}. (keine Info)"
             element_lines.append(line)
 
-        prompt = f"""Klassifiziere diese {len(elements)} Bauelemente nach eBKP-H (Level 1+2):
+        # Dynamisch die Levels aus self.max_levels generieren
+        levels_str = "+".join([str(l) for l in sorted(self.max_levels)])
+
+        prompt = f"""Klassifiziere diese {len(elements)} Bauelemente nach eBKP-H (Level {levels_str}):
 
 {chr(10).join(element_lines)}
 
@@ -467,6 +570,279 @@ Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
             print(f"\n✓ Output gespeichert: {output_csv}")
 
         return df
+
+    def _estimate_batch_tokens(self, batch_size: int) -> int:
+        """
+        Schätzt Token-Nutzung für einen Batch.
+
+        Args:
+            batch_size: Anzahl Elemente im Batch
+
+        Returns:
+            Geschätzte Anzahl Tokens (Input + Output)
+        """
+        # System Prompt: ~3000 tokens (bei Caching: ~300)
+        # Pro Element: ~50 tokens Input + ~30 tokens Output
+        system_tokens = 300  # Mit Caching (konservativ)
+        element_tokens = batch_size * (50 + 30)
+
+        return system_tokens + element_tokens
+
+    def _build_single_element_prompt(self, element: Dict[str, str]) -> str:
+        """
+        Baut Prompt für ein einzelnes Element.
+
+        Args:
+            element: Dict mit 'kategorie', 'typ', 'familie', 'zusatzinfo'
+
+        Returns:
+            Prompt-String für Claude
+        """
+        kategorie = element.get('kategorie', '')
+        typ = element.get('typ', '')
+        familie = element.get('familie', '')
+        zusatzinfo = element.get('zusatzinfo', '')
+
+        # Kompakte Element-Beschreibung
+        parts = []
+        if kategorie:
+            parts.append(f"Kat: {kategorie}")
+        if typ:
+            parts.append(f"Typ: {typ}")
+        if familie:
+            parts.append(f"Fam: {familie}")
+        if zusatzinfo:
+            parts.append(f"Info: {zusatzinfo}")
+
+        element_desc = ', '.join(parts) if parts else '(keine Info)'
+
+        # Levels-String
+        levels_str = "+".join([str(l) for l in sorted(self.max_levels)])
+
+        prompt = f"""Klassifiziere dieses Bauelement nach eBKP-H (Level {levels_str}):
+
+{element_desc}
+
+Antworte NUR mit diesem JSON Object (keine Markdown, kein Text davor/danach):
+{{"code":"C02","desc":"Wandkonstruktion","conf":0.95}}"""
+
+        return prompt
+
+    def _parse_single_response(self, response_text: str) -> Dict[str, any]:
+        """
+        Parst JSON Response für ein einzelnes Element.
+
+        Args:
+            response_text: Raw Response Text von API
+
+        Returns:
+            Dict mit 'code', 'desc', 'conf'
+        """
+        try:
+            # Bereinige Response
+            content = response_text.strip()
+
+            if "```json" in content:
+                content = content.split("```json")[1].split("```")[0].strip()
+            elif "```" in content:
+                content = content.split("```")[1].split("```")[0].strip()
+
+            # Finde JSON Object
+            start_idx = content.find('{')
+            end_idx = content.rfind('}') + 1
+            if start_idx >= 0 and end_idx > start_idx:
+                content = content[start_idx:end_idx]
+
+            # Parse JSON
+            result = json.loads(content)
+
+            return {
+                'code': result.get('code') or result.get('bkp_code', 'UNKNOWN'),
+                'desc': result.get('desc') or result.get('description', ''),
+                'conf': float(result.get('conf') or result.get('confidence', 0.5))
+            }
+
+        except (json.JSONDecodeError, Exception) as e:
+            return {'code': 'ERROR', 'desc': f'Parse Error: {str(e)}', 'conf': 0.0}
+
+    def _create_batch_job(self, elements: List[Dict[str, str]]) -> str:
+        """
+        Erstellt einen Anthropic Batch Job.
+
+        Args:
+            elements: Liste von Element-Dicts
+
+        Returns:
+            Batch-ID
+        """
+        import time
+
+        # Batch-Requests erstellen
+        requests = []
+
+        for i, element in enumerate(elements):
+            element_prompt = self._build_single_element_prompt(element)
+
+            requests.append({
+                "custom_id": f"element_{i}",
+                "params": {
+                    "model": "claude-3-5-haiku-20241022",
+                    "max_tokens": 100,
+                    "system": [
+                        {
+                            "type": "text",
+                            "text": self.system_prompt,
+                            "cache_control": {"type": "ephemeral"}
+                        }
+                    ],
+                    "messages": [
+                        {"role": "user", "content": element_prompt}
+                    ]
+                }
+            })
+
+        # Batch erstellen
+        batch = self.client.messages.batches.create(requests=requests)
+
+        return batch.id
+
+    def _download_batch_results(self, batch_id: str) -> List[Dict[str, any]]:
+        """
+        Lädt Batch-Ergebnisse von Anthropic.
+
+        Args:
+            batch_id: Batch-ID
+
+        Returns:
+            Liste von Ergebnis-Dicts (sortiert nach custom_id)
+        """
+        import requests as http_requests
+
+        # Batch-Status abrufen
+        batch = self.client.messages.batches.retrieve(batch_id)
+
+        if batch.processing_status != "ended":
+            raise ValueError(f"Batch noch nicht abgeschlossen. Status: {batch.processing_status}")
+
+        # JSONL-Ergebnisse laden
+        if not batch.results_url:
+            raise ValueError("Batch hat keine results_url")
+
+        response = http_requests.get(batch.results_url)
+        response.raise_for_status()
+
+        # JSONL parsen
+        results = []
+        for line in response.text.splitlines():
+            if not line.strip():
+                continue
+
+            result_obj = json.loads(line)
+            results.append(result_obj)
+
+        # Nach custom_id sortieren (element_0, element_1, ...)
+        results.sort(key=lambda x: int(x['custom_id'].split('_')[1]))
+
+        # Ergebnisse extrahieren und formatieren
+        formatted_results = []
+
+        for result_obj in results:
+            result_type = result_obj['result']['type']
+
+            if result_type == 'succeeded':
+                # Erfolgreiche Klassifizierung
+                message_content = result_obj['result']['message']['content'][0]['text']
+                parsed = self._parse_single_response(message_content)
+                formatted_results.append(parsed)
+
+            elif result_type == 'errored':
+                # API-Fehler
+                error_msg = result_obj['result'].get('error', {}).get('message', 'Unknown error')
+                formatted_results.append({
+                    'code': 'ERROR',
+                    'desc': f'API-Fehler: {error_msg}',
+                    'conf': 0.0
+                })
+
+            elif result_type == 'canceled':
+                formatted_results.append({
+                    'code': 'CANCELED',
+                    'desc': 'Batch abgebrochen',
+                    'conf': 0.0
+                })
+
+            elif result_type == 'expired':
+                formatted_results.append({
+                    'code': 'EXPIRED',
+                    'desc': '24h Timeout',
+                    'conf': 0.0
+                })
+
+        return formatted_results
+
+    def classify_batch_api(
+        self,
+        elements: List[Dict[str, str]],
+        wait_for_completion: bool = True,
+        poll_interval: int = 10,
+        progress_callback: callable = None
+    ) -> tuple[str, List[Dict[str, any]]]:
+        """
+        Klassifiziert Elemente über Anthropic Batch API (für 300+ Elemente).
+
+        Kostenersparnis: 50% günstiger als synchrone API.
+        Keine Rate-Limits.
+
+        Args:
+            elements: Liste von Dicts mit 'kategorie', 'typ', 'familie', 'zusatzinfo'
+            wait_for_completion: Falls True, wartet auf Abschluss (default: True)
+            poll_interval: Polling-Intervall in Sekunden (default: 10)
+            progress_callback: Optional Callback für Status-Updates (status_text, succeeded, total)
+
+        Returns:
+            Tuple (batch_id, results) - results ist Liste von Dicts mit 'code', 'desc', 'conf'
+            Falls wait_for_completion=False, ist results eine leere Liste
+        """
+        import time
+
+        print(f"\n🚀 Batch API: Erstelle Batch für {len(elements)} Elemente...")
+
+        # Batch erstellen
+        batch_id = self._create_batch_job(elements)
+        print(f"✅ Batch erstellt: {batch_id}")
+
+        if not wait_for_completion:
+            return (batch_id, [])
+
+        # Polling
+        print(f"⏳ Warte auf Verarbeitung (alle {poll_interval}s prüfen)...")
+
+        while True:
+            batch = self.client.messages.batches.retrieve(batch_id)
+
+            status = batch.processing_status
+            succeeded = batch.request_counts.succeeded
+            total = len(elements)
+
+            # Progress Callback aufrufen
+            if progress_callback:
+                progress_callback(status, succeeded, total)
+
+            print(f"   Status: {status} - {succeeded}/{total} abgeschlossen", end='\r')
+
+            if status == "ended":
+                print()  # Newline nach letztem Status
+                break
+
+            time.sleep(poll_interval)
+
+        # Ergebnisse laden
+        print(f"📥 Lade Ergebnisse...")
+        results = self._download_batch_results(batch_id)
+
+        print(f"✅ {len(results)} Ergebnisse geladen!")
+
+        return (batch_id, results)
 
 
 # Convenience-Funktion für einfache Nutzung
