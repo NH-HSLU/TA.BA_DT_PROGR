@@ -1,19 +1,20 @@
 # Datenanalyse
-numpy              # Numerische Berechnungen und Arrays
-pandas             # Tabellen-Verarbeitung und Analyse
-matplotlib         # Datenplotting und Visualisierung
+numpy==1.26.4              # Numerische Berechnungen und Arrays
+pandas==2.2.0              # Tabellen-Verarbeitung und Analyse
+matplotlib==3.8.2          # Datenplotting und Visualisierung
 
 # Interaktive Visualisierung
-plotly             # Interaktive Diagramme und Dashboards
+plotly==5.18.0             # Interaktive Diagramme und Dashboards
 
-# BIM/IFC-Projekte
-streamlit          # Interaktive Apps und Dashboards
-ifcopenshell       # Verarbeitung von IFC/BIM-Dateien
 
 # Sonstige Nützliche Tools
-openpyxl           # Verarbeitung von Excel-Dateien (.xlsx)
-python-dotenv      # Laden von Umgebungsvariablen aus .env
-anthropic>=0.40.0  # Anthropic Claude API für KI-Klassifizierung (Batch API Support)
-tqdm               # Progress-Bars für langwierige Operationen
-requests           # HTTP-Requests für Batch API JSONL-Download
-reportlab          # PDF-Generierung für Berichte
+openpyxl==3.1.2            # Verarbeitung von Excel-Dateien (.xlsx)
+python-dotenv==1.0.0       # Laden von Umgebungsvariablen aus .env
+anthropic>=0.40.0,<0.50.0  # Anthropic Claude API für KI-Klassifizierung (Batch API Support)
+tqdm==4.66.1               # Progress-Bars für langwierige Operationen
+requests==2.31.0           # HTTP-Requests für Batch API JSONL-Download
+reportlab==4.0.9           # PDF-Generierung für Berichte
+
+# BIM/IFC-Projekte
+streamlit==1.31.0          # Interaktive Apps und Dashboards
+ifcopenshell==0.7.0        # Verarbeitung von IFC/BIM-Dateien
