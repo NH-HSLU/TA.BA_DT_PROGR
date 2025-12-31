@@ -5,267 +5,222 @@ Haupteinstiegspunkt für Multi-Page Streamlit App
 
 import streamlit as st
 import os
+import sys
 from datetime import datetime
+
+# Importiere lokale Helper
+sys.path.insert(0, os.path.dirname(__file__))
+from helpers.sidebar_navigation import render_sidebar, render_page_footer, render_divider, render_page_header
+from helpers.ebkp_trivia import get_daily_fact
 
 # Seitenkonfiguration
 st.set_page_config(
-    page_title="BKP Suite",
-    page_icon="🏗️",
+    page_title="eBKP-H Suite",
+    page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS (theme-aware, no fixed colors)
+# Render Sidebar
+render_sidebar()
+
+# Globales Stylesheet - Card-Design aus Kostenermittlung
 st.markdown("""
-    <style>
-    .big-title {
+<style>
+    /* Haupttitel Styling */
+    .main-title {
         font-size: 2.5rem;
         font-weight: bold;
         text-align: center;
         margin-bottom: 0.5rem;
     }
-    .subtitle {
+    .main-subtitle {
         text-align: center;
         font-size: 1.1rem;
         opacity: 0.7;
         margin-bottom: 2rem;
     }
-    </style>
+
+    /* Card Container */
+    .workflow-card {
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        margin: 0.5rem 0;
+        transition: transform 0.2s, box-shadow 0.2s;
+        cursor: pointer;
+        color: white;
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .workflow-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    .workflow-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+    }
+    .workflow-card p {
+        font-size: 0.95rem;
+        opacity: 0.95;
+        line-height: 1.5;
+    }
+
+    /* Card Farben (aus Kostenermittlung) */
+    .card-purple { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .card-pink { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+    .card-cyan { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+    .card-green { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+    .card-orange { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+    .card-dark { background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); }
+
+    /* Workflow Steps */
+    .workflow-step {
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        border-left: 4px solid #667eea;
+        margin: 0.5rem 0;
+    }
+    .workflow-step h4 {
+        margin: 0 0 0.5rem 0;
+        color: #667eea;
+    }
+
+    /* Kompakte Info-Boxen */
+    .info-box {
+        padding: 0.8rem;
+        border-radius: 0.3rem;
+        margin: 0.3rem 0;
+        font-size: 0.9rem;
+    }
+</style>
 """, unsafe_allow_html=True)
 
 # Haupttitel
-st.markdown('<p class="big-title">🏗️ BKP Datenverarbeitungs-Suite</p>', unsafe_allow_html=True)
-st.markdown('<p class="subtitle">Automatische BKP-Klassifizierung & Visualisierung für BIM-Daten</p>', unsafe_allow_html=True)
+render_page_header("🏗️ eBKP-H Suite", "Automatische BKP-Klassifizierung für BIM-Daten")
 
-st.markdown("---")
+# Daily Fun Fact
+st.info(f"💡 **Wussten Sie?** {get_daily_fact()}")
 
-# Quick Start Cards
-st.header("🚀 Schnellstart")
+render_divider("section")
 
+# Workflow-Cards (4 Hauptfunktionen)
+st.markdown("### 🚀 Workflow")
+# TODO falsche Pfade für die Seiten anpassen
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
-    st.success("""
-    ### 🏗️ Kostenermittlung
-    Wählen Sie zuerst Ihre Projektphase!
-
-    **→ Gehen Sie zu "Kostenermittlung"**
-
-    - SIA LHO 102 Standard
-    - ±10% bis ±30% Genauigkeit
-    - Beeinflusst BKP-Tiefe
-    """)
+    st.markdown("""
+    <div class="workflow-card card-purple">
+        <h3>1️⃣ Kostenermittlung</h3>
+        <p>Projektphase wählen<br>SIA LHO 102<br>±10% bis ±30%</p>
+    </div>
+    """, unsafe_allow_html=True)
+    if st.button("→ Starten", key="btn_cost", width='stretch'):
+        st.switch_page("pages/01_Kostenermittlung.py")
 
 with col2:
-    st.info("""
-    ### 📊 Daten visualisieren
-    Sie haben bereits BKP-klassifizierte Daten?
-
-    **→ Gehen Sie zu "eBKP-H Auswertung"**
-
-    - CSV hochladen
-    - Kosten nach BKP analysieren
-    - Berichte exportieren
-    """)
+    st.markdown("""
+    <div class="workflow-card card-cyan">
+        <h3>2️⃣ KI-Klassifizierung</h3>
+        <p>CSV hochladen<br>Automatisch klassifizieren<br>Claude AI</p>
+    </div>
+    """, unsafe_allow_html=True)
+    if st.button("→ Starten", key="btn_classify", width='stretch'):
+        st.switch_page("pages/02_KI_Klassifizierung.py")
 
 with col3:
-    st.success("""
-    ### 🤖 KI-Klassifizierung
-    Ihre Daten sind noch nicht klassifiziert?
-
-    **→ Gehen Sie zu "KI Klassifizierung"**
-
-    - CSV hochladen
-    - Automatisch klassifizieren
-    - BKP-Codes bearbeiten
-    - Ergebnisse prüfen
-    """)
+    st.markdown("""
+    <div class="workflow-card card-green">
+        <h3>3️⃣ BKP Bearbeiten</h3>
+        <p>Codes überprüfen<br>Manuell korrigieren<br>Validieren</p>
+    </div>
+    """, unsafe_allow_html=True)
+    if st.button("→ Starten", key="btn_edit", width='stretch'):
+        st.switch_page("pages/03_eBKP-H_Bearbeiten.py")
 
 with col4:
-    st.warning("""
-    ### ⚙️ Einrichten
-    Erstmalige Nutzung der KI?
+    st.markdown("""
+    <div class="workflow-card card-orange">
+        <h3>4️⃣ Auswertung</h3>
+        <p>Hierarchie anzeigen<br>Kosten analysieren<br>Export</p>
+    </div>
+    """, unsafe_allow_html=True)
+    if st.button("→ Starten", key="btn_eval", width='stretch'):
+        st.switch_page("pages/10_eBKP_Auswertung.py")
 
-    **→ Gehen Sie zu "Einstellungen"**
-
-    - API-Key eingeben
-    - Key validieren
-    - Los geht's!
-    """)
+# Workflow Progress Tracker
+render_divider("section")
+st.subheader("📊 Ihr Fortschritt")
 
 
-st.markdown("---")
+def show_workflow_progress():
+    """Visualisiert Workflow-Fortschritt"""
+    steps = [
+        ("1️⃣ Kostenermittlung", 'cost_estimation_config'),
+        ("2️⃣ KI-Klassifizierung", 'classification_results'),
+        ("3️⃣ BKP-Bearbeitung (optional)", 'classification_results'),
+        ("4️⃣ Auswertung", 'classification_results'),
+    ]
 
-# Was ist eBKP-H?
-st.header("💡 Was ist eBKP-H?")
+    def is_step_complete(key):
+        """Prüft ob ein Workflow-Schritt abgeschlossen ist"""
+        if key not in st.session_state:
+            return False
+        value = st.session_state[key]
+        # Für DataFrames: Prüfe ob nicht leer
+        if hasattr(value, 'empty'):
+            return not value.empty
+        # Für Dicts: Prüfe ob 'selected' key True ist
+        if isinstance(value, dict):
+            return value.get('selected', False)
+        # Für andere Typen: Standard Boolean-Check
+        return bool(value)
 
+    completed = sum(1 for _, key in steps if is_step_complete(key))
+
+    cols = st.columns(4)
+    for i, ((name, key), col) in enumerate(zip(steps, cols)):
+        with col:
+            is_complete = is_step_complete(key)
+            if is_complete:
+                st.success(f"✅ {name.split()[0]}")
+            else:
+                st.info(f"○ {name.split()[0]}")
+
+    progress = completed / len(steps)
+    st.progress(progress, text=f"Workflow: {completed}/{len(steps)} Schritte abgeschlossen")
+
+
+show_workflow_progress()
+
+render_divider("section")
+
+# Kompakte Info-Sektion
 col1, col2 = st.columns([1, 1])
 
 with col1:
+    st.markdown("### 💡 eBKP-H")
     st.markdown("""
-    Der **eBKP-H** (erweiterter Baukostenplan - Hochbau) ist der Schweizer Standard
-    für die Strukturierung von Baukosten.
+    Schweizer Standard für Baukostenstrukturierung mit 10.210 Codes über 5 Hierarchie-Levels.
 
-    **Hauptgruppen:**
-    """)
-
-    bkp_data = {
-        "C": ("Bauwerk - Rohbau", "🏗️"),
-        "D": ("Bauwerk - Technik", "⚡"),
-        "E": ("Bauwerk - Ausbau", "🎨"),
-        "F": ("Umgebung", "🌳"),
-        "G": ("Baunebenkosten", "📋")
-    }
-
-    for code, (name, emoji) in bkp_data.items():
-        st.markdown(f"**{emoji} {code}** - {name}")
-
-with col2:
-    st.info("""
-    **Beispiel:**
-
-    Eine **Steckdose** wird klassifiziert als:
-    - Code: `C13`
-    - Beschreibung: Elektroinstallationen - Steckdosen
-
-    Dies ermöglicht:
-    ✓ Kostenauswertung nach Gewerken
-    ✓ Vergleich verschiedener Projekte
-    ✓ Standardisierte Kommunikation
-    """)
-
-st.markdown("---")
-
-# Workflow
-st.header("🔄 So funktioniert's")
-
-col1, col2, col3, col4 = st.columns(4)
-
-with col1:
-    st.markdown("""
-    ### 1️⃣ Kostenermittlung
-    - Projektphase festlegen
-    - Toleranz bestimmen (±10% bis ±30%)
-    - eBKP-Tiefe definieren
+    **Hauptgruppen:** A-G (Grundstück, Vorarbeiten, Rohbau, Technik, Ausbau, Umgebung, Nebenkosten)
     """)
 
 with col2:
+    st.markdown("### 🎯 Features")
     st.markdown("""
-    ### 2️⃣ Daten vorbereiten
-    - Exportieren Sie Daten aus Revit
-    - Als CSV speichern
-    - Spalten: Typ, Kategorie, etc.
+    - **Vollständiger Katalog**: Alle 10.210 eBKP-H Codes
+    - **KI-Klassifizierung**: Claude 3.5 Haiku
+    - **Validierung**: Gegen Schweizer Standard
+    - **Flexibel**: 6 Kostenermittlungsstufen
     """)
 
-with col3:
-    st.markdown("""
-    ### 3️⃣ Klassifizieren
-    **Option A:** Manuelle BKP-Zuordnung
-    **Option B:** KI-Klassifizierung nutzen
-    (schneller & automatisch)
-    """)
-
-with col4:
-    st.markdown("""
-    ### 4️⃣ Auswerten
-    - Hierarchische Ansicht
-    - Kosten nach BKP mit Toleranz
-    - Berichte exportieren
-    """)
-
-st.markdown("---")
-
-# Testdaten
-st.header("🧪 Testdaten verfügbar")
-
-col1, col2 = st.columns(2)
-
-with col1:
-    st.success("""
-    **📁 beispiel_daten.csv**
-
-    40 Einträge mit BKP-Codes zum Testen der Visualisierung
-
-    → Nutzen Sie diese für "eBKP-H Auswertung"
-    """)
-
-with col2:
-    st.success("""
-    **📁 muster_ki_klassifizierung.csv**
-
-    30 Einträge OHNE BKP-Codes zum Testen der KI
-
-    → Nutzen Sie diese für "KI Klassifizierung"
-    """)
 
 # Footer
-st.markdown("---")
-st.caption(f"BKP Datenverarbeitungs-Suite v1.0 | Letztes Update: {datetime.now().strftime('%d.%m.%Y')} | TA.BA_DT_PROGR")
-
-# Sidebar
-with st.sidebar:
-    st.header("📍 Navigation")
-
-    st.markdown("""
-    **Hauptseiten:**
-    - 🏠 Home (diese Seite)
-    - 🏗️ Kostenermittlung
-    - 📊 eBKP-H Auswertung
-    - 🤖 KI Klassifizierung
-    - ✏️ BKP Bearbeiten
-    - ⚙️ Einstellungen
-    """)
-
-    st.markdown("---")
-
-    # Status
-    st.subheader("📊 Status")
-
-    # Testdaten
-    example_files = {
-        'beispiel_daten.csv': 'Processors/beispiel_daten.csv',
-        'muster_ki_klassifizierung.csv': 'Processors/muster_ki_klassifizierung.csv'
-    }
-
-    for name, path in example_files.items():
-        if os.path.exists(path):
-            st.success(f"✓ {name}")
-        else:
-            st.warning(f"✗ {name}")
-
-    st.markdown("---")
-
-    # API Status
-    st.subheader("🔑 API Status")
-
-    # Prüfe Session State
-    if 'api_key' in st.session_state and st.session_state.api_key:
-        if st.session_state.get('api_key_validated', False):
-            st.success("✓ API-Key aktiv")
-        else:
-            st.warning("⚠️ API-Key nicht validiert")
-            st.caption("Gehen Sie zu Einstellungen")
-    else:
-        # Fallback auf Umgebungsvariable
-        env_key = os.getenv('ANTHROPIC_API_KEY')
-        if env_key:
-            st.success("✓ API-Key (.env)")
-        else:
-            st.info("ℹ️ Kein API-Key")
-            st.caption("Für KI-Features erforderlich")
-
-    st.markdown("---")
-
-    with st.expander("ℹ️ Hilfe"):
-        st.markdown("""
-        **Erste Schritte:**
-
-        1. Testen Sie mit Beispieldaten
-        2. Konfigurieren Sie API-Key (optional)
-        3. Laden Sie eigene Daten hoch
-
-        **Support:**
-        - README.md
-        - CLAUDE.md
-        - Processors/README.md
-        """)
+render_page_footer()

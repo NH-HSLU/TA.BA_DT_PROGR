@@ -9,14 +9,20 @@ import os
 from datetime import datetime
 
 # Füge Parent-Verzeichnis zum Path hinzu für Imports
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
 
-from Streamlit.helpers.sia_lho_102_config import (
+from helpers.sia_lho_102_config import (
     COST_ESTIMATION_LEVELS,
     get_level_config,
-    format_tolerance,
-    get_all_levels
+    format_tolerance
 )
+from helpers.sidebar_navigation import render_sidebar, render_page_header, render_divider, render_page_footer
+from helpers.notifications import toast, NotificationType
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+from Helpers.ebkp_reference import load_ebkp_catalog, filter_by_levels
 
 # Seitenkonfiguration
 st.set_page_config(
@@ -24,6 +30,9 @@ st.set_page_config(
     page_icon="🏗️",
     layout="wide"
 )
+
+# Render Sidebar
+render_sidebar()
 
 
 def select_level(level: int):
@@ -43,14 +52,14 @@ def select_level(level: int):
             'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         }
         st.success(f"✅ Ausgewählt: {config['name']} ({format_tolerance(config['tolerance'])})")
+        toast(f"{config['name']} ausgewählt ({format_tolerance(config['tolerance'])})", NotificationType.SUCCESS)
         st.balloons()
 
 
 # Haupttitel
-st.markdown('<p style="font-size: 2.5rem; font-weight: bold; text-align: center;">🏗️ Art der Kostenermittlung</p>', unsafe_allow_html=True)
-st.markdown('<p style="text-align: center; font-size: 1.1rem; opacity: 0.7; margin-bottom: 2rem;">nach SIA LHO 102 Standard</p>', unsafe_allow_html=True)
+render_page_header("🏗️ Art der Kostenermittlung", "nach SIA LHO 102 Standard")
 
-st.markdown("---")
+render_divider("gradient")
 
 # Zeige aktuelle Auswahl (falls vorhanden)
 if 'cost_estimation_config' in st.session_state and st.session_state.cost_estimation_config.get('selected'):
@@ -69,7 +78,7 @@ if 'cost_estimation_config' in st.session_state and st.session_state.cost_estima
         st.metric("📅 Phase", config['phase_code'])
 
     st.info("💡 Sie können Ihre Auswahl jederzeit ändern, indem Sie unten eine andere Stufe wählen.")
-    st.markdown("---")
+    render_divider("section")
 
 # Custom CSS für Card-Styling
 st.markdown("""
@@ -111,7 +120,7 @@ st.info("""
 - **Toleranzbereich**: Wird bei Kostenangaben berücksichtigt
 """)
 
-st.markdown("---")
+render_divider("thick")
 
 # Auswahl der Stufen als Abo-Selector
 st.header("📐 Wählen Sie Ihre Kostenermittlungsstufe")
@@ -141,15 +150,14 @@ for i, config in enumerate(COST_ESTIMATION_LEVELS):
         </div>
         """
         st.markdown(card_html, unsafe_allow_html=True)
-
-        if st.button("Wählen", key=f"btn_{config['level']}", use_container_width=True):
+        if st.button("Wählen", key=f"btn_{config['level']}", width='stretch'):
             st.session_state.selected_for_details = config['level']
 
-st.markdown("---")
+render_divider("section")
 
 # Details-Bereich für ausgewählte Stufe
 if 'selected_for_details' in st.session_state:
-    st.markdown("---")
+    render_divider("dotted")
     selected_config = get_level_config(st.session_state.selected_for_details)
 
     if selected_config:
@@ -168,88 +176,43 @@ if 'selected_for_details' in st.session_state:
             levels_str = ", ".join([f"Level {l}" for l in selected_config['ebkp_levels']])
             st.caption(f"Verwendet eBKP-H CSV Levels: {levels_str}")
 
+            # Zeige Beispiel-Codes für gewähltes Level
+            st.markdown("---")
+            st.markdown("**📚 Beispiel-Codes für diese Stufe:**")
+
+            try:
+                ebkp_catalog = load_ebkp_catalog()
+                if not ebkp_catalog.empty:
+                    filtered = filter_by_levels(ebkp_catalog, selected_config['ebkp_levels'])
+
+                    if len(filtered) > 0:
+                        # Zeige maximal 5 zufällige Beispiele
+                        sample_size = min(5, len(filtered))
+                        example_codes = filtered.sample(sample_size)
+
+                        for _, row in example_codes.iterrows():
+                            st.caption(f"• `{row['Code']}` - {row['Description']} (Level {row['Level']})")
+
+                        st.caption(f"_Insgesamt {len(filtered)} Codes verfügbar für diese Stufe_")
+                    else:
+                        st.caption("Keine Codes für diese Levels gefunden")
+                else:
+                    st.caption("eBKP-H Katalog nicht verfügbar")
+            except Exception as e:
+                st.caption(f"Hinweis: Katalog konnte nicht geladen werden ({str(e)[:50]})")
+
         with col2:
             is_currently_selected = current_level == selected_config['level']
 
             if is_currently_selected:
                 st.success("✅ Aktuell gewählt")
-                if st.button("🔄 Erneut bestätigen", key="confirm_current", use_container_width=True):
+                if st.button("🔄 Erneut bestätigen", key="confirm_current", width='stretch'):
                     select_level(selected_config['level'])
             else:
-                if st.button("✓ Diese Stufe wählen", key="select_from_details", type="primary", use_container_width=True):
+                if st.button("✓ Diese Stufe wählen", key="select_from_details", type="primary", width='stretch'):
                     select_level(selected_config['level'])
                     del st.session_state.selected_for_details
                     st.rerun()
 
-st.markdown("---")
-
-# Nächste Schritte
-st.header("➡️ Nächste Schritte")
-
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.markdown("""
-    ### 1️⃣ Daten vorbereiten
-    - Exportieren Sie Ihre Daten aus Revit
-    - Speichern Sie als CSV
-    """)
-
-with col2:
-    st.markdown("""
-    ### 2️⃣ Klassifizieren
-    - Gehen Sie zu **KI Klassifizierung**
-    - Laden Sie Ihre CSV hoch
-    - Starten Sie die Klassifizierung
-    """)
-
-with col3:
-    st.markdown("""
-    ### 3️⃣ Auswerten
-    - Gehen Sie zu **eBKP-H Auswertung**
-    - Prüfen Sie die Ergebnisse
-    - Exportieren Sie Berichte
-    """)
-
-# Navigation Buttons
-st.markdown("---")
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    if st.button("🏠 Zur Startseite", use_container_width=True):
-        st.switch_page("streamlit_app.py")
-
-with col2:
-    if st.button("🤖 Zur KI Klassifizierung", use_container_width=True):
-        st.switch_page("pages/2_KI_Klassifizierung.py")
-
-with col3:
-    if st.button("📊 Zur eBKP-H Auswertung", use_container_width=True):
-        st.switch_page("pages/1_eBKP_Auswertung.py")
-
-# Sidebar
-with st.sidebar:
-    st.header("ℹ️ Über SIA LHO 102")
-
-    st.markdown("""
-    Die SIA LHO 102 definiert verschiedene Stufen der Kostenermittlung
-    während des Projektablaufs:
-
-    - **TP11**: Strategische Planung
-    - **TP21/22**: Vorstudie
-    - **TP31**: Studium/Vorprojekt
-    - **TP32/33**: Bauprojekt
-    - **TP41, TP51-53**: Ausschreibung/Realisierung
-
-    Jede Stufe hat eine definierte **Toleranz** und erfordert eine
-    entsprechende **Detaillierungstiefe** der BKP-Klassifizierung.
-    """)
-
-    st.markdown("---")
-
-    if 'cost_estimation_config' in st.session_state and st.session_state.cost_estimation_config.get('selected'):
-        config = st.session_state.cost_estimation_config
-        st.success(f"✅ {config['name']}")
-        st.caption(f"Ausgewählt am: {config['timestamp']}")
-    else:
-        st.warning("⚠️ Noch keine Auswahl getroffen")
+# Footer
+render_page_footer()

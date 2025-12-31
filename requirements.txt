@@ -13,5 +13,7 @@ ifcopenshell       # Verarbeitung von IFC/BIM-Dateien
 # Sonstige Nützliche Tools
 openpyxl           # Verarbeitung von Excel-Dateien (.xlsx)
 python-dotenv      # Laden von Umgebungsvariablen aus .env
-anthropic          # Anthropic Claude API für KI-Klassifizierung
+anthropic>=0.40.0  # Anthropic Claude API für KI-Klassifizierung (Batch API Support)
 tqdm               # Progress-Bars für langwierige Operationen
+requests           # HTTP-Requests für Batch API JSONL-Download
+reportlab          # PDF-Generierung für Berichte

@@ -1,0 +1,351 @@
+
+================================================================================
+Timestamp: 2025-12-15 23:09:56
+Batch: 50 Elemente
+Tokens: Input=8513, Output=1398
+
+Prompt:
+Klassifiziere diese 50 Bauelemente nach eBKP-H (Level 1+2):
+
+1. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush-Dbl Acting, Info: 122
+2. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 124
+3. Kat: Tueren, Typ: 0915 x 2134mm 20 Minute Rated, Fam: M_Single-Flush, Info: 125
+4. Kat: Tueren, Typ: 1830 x 2134mm, Fam: M_Double-Flush, Info: 123
+5. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 126
+6. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 129
+7. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 128
+8. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 127
+9. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 130
+10. Kat: Tueren, Typ: M_Curtain Wall Sgl Glass, Fam: M_Curtain Wall Sgl Glass, Info: 130A
+11. Kat: Tueren, Typ: 1730 x 2134mm, Fam: M_Double-Flush, Info: 119A
+12. Kat: Tueren, Typ: 1730 x 2134mm 20 Minute Rated, Fam: M_Double-Flush, Info: 119B
+13. Kat: Tueren, Typ: 1730 x 2134mm 20 Minute Rated, Fam: M_Double-Flush, Info: 118
+14. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 117
+15. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 116
+16. Kat: Tueren, Typ: 1830 x 2134mm, Fam: M_Double-Flush, Info: 115
+17. Kat: Tueren, Typ: M_Curtain Wall Sgl Glass, Fam: M_Curtain Wall Sgl Glass, Info: 114
+18. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 111
+19. Kat: Tueren, Typ: 0915 x 2134mm 20 Minute Rated, Fam: M_Single-Flush, Info: 112
+20. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 110
+21. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 109
+22. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 103
+23. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 104B
+24. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 104A
+25. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 105B
+26. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 105A
+27. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 106B
+28. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 106A
+29. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 108B
+30. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 108A
+31. Kat: Tueren, Typ: M_Curtain Wall Sgl Glass, Fam: M_Curtain Wall Sgl Glass, Info: 132A
+32. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 132B
+33. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 232
+34. Kat: Tueren, Typ: M_Curtain Wall Sgl Glass, Fam: M_Curtain Wall Sgl Glass, Info: 233
+35. Kat: Tueren, Typ: M_Curtain Wall Sgl Glass, Fam: M_Curtain Wall Sgl Glass, Info: 217
+36. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 212
+37. Kat: Tueren, Typ: 0915 x 2134mm 20 Minute Rated, Fam: M_Single-Flush, Info: 214
+38. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 211
+39. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 210
+40. Kat: Tueren, Typ: M_Curtain Wall Sgl Glass, Fam: M_Curtain Wall Sgl Glass, Info: 201
+41. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 326
+42. Kat: Tueren, Typ: M_Curtain Wall Sgl Glass, Fam: M_Curtain Wall Sgl Glass, Info: 327
+43. Kat: Tueren, Typ: M_Curtain Wall Sgl Glass, Fam: M_Curtain Wall Sgl Glass, Info: 312
+44. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 309
+45. Kat: Tueren, Typ: 0915 x 2134mm 20 Minute Rated, Fam: M_Single-Flush, Info: 310
+46. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 308
+47. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 307
+48. Kat: Tueren, Typ: M_Curtain Wall Sgl Glass, Fam: M_Curtain Wall Sgl Glass, Info: 301
+49. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 202
+50. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 203
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+    {"id":1,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":2,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":3,"code":"G01.05","desc":"Innentür (Brandschutz)","conf":0.90},
+    {"id":4,"code":"G01.06","desc":"Innentor","conf":0.90},
+    {"id":5,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":6,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":7,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":8,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":9,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":10,"code":"E03","desc":"Element in Aussenwand","conf":0.85},
+    {"id":11,"code":"G01.06","desc":"Innentor","conf":0.90},
+    {"id":12,"code":"G01.06","desc":"Innentor (Brandschutz)","conf":0.85},
+    {"id":13,"code":"G01.06","desc":"Innentor (Brandschutz)","conf":0.85},
+    {"id":14,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":15,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":16,"code":"G01.06","desc":"Innentor","conf":0.90},
+    {"id":17,"code":"E03","desc":"Element in Aussenwand","conf":0.85},
+    {"id":18,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":19,"code":"G01.05","desc":"Innentür (Brandschutz)","conf":0.90},
+    {"id":20,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":21,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":22,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":23,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":24,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":25,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":26,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":27,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":28,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":29,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":30,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":31,"code":"E03","desc":"Element in Aussenwand","conf":0.85},
+    {"id":32,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":33,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":34,"code":"E03","desc":"Element in Aussenwand","conf":0.85},
+    {"id":35,"code":"E03","desc":"Element in Aussenwand","conf":0.85},
+    {"id":36,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":37,"code":"G01.05","desc":"Innentür (Brandschutz)","conf":0.90},
+    {"id":38,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":39,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":40,"code":"E03","desc":"Element in Aussenwand","conf":0.85},
+    {"id":41,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":42,"code":"E03","desc":"Element in Aussenwand","conf":0.85},
+    {"id":43,"code":"E03","desc":"Element in Aussenwand","conf":0.85},
+    {"id":44,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":45,"code":"G01.05","desc":"Innentür (Brandschutz)","conf":0.90},
+    {"id":46,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":47,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":48,"code":"E03","desc":"Element in Aussenwand","conf":0.85},
+    {"id":49,"code":"G01.05","desc":"Innentür","conf":0.95},
+    {"id":50,"code":"G01.05","desc":"Innentür","conf":0.95}
+]
+================================================================================
+
+================================================================================
+Timestamp: 2025-12-15 23:10:13
+Batch: 50 Elemente
+Tokens: Input=8499, Output=1417
+
+Prompt:
+Klassifiziere diese 50 Bauelemente nach eBKP-H (Level 1+2):
+
+1. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 204
+2. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 205
+3. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 206
+4. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 207
+5. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 208
+6. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 209
+7. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 218
+8. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 219A
+9. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 219B
+10. Kat: Tueren, Typ: 0915 x 2134mm 20 Minute Rated, Fam: M_Single-Flush, Info: 220
+11. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 221
+12. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 222
+13. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 231
+14. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 230
+15. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 229
+16. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 226
+17. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 228
+18. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 225
+19. Kat: Tueren, Typ: 1730 x 2134mm 20 Minute Rated, Fam: M_Double-Flush, Info: 227
+20. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 306
+21. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 305B
+22. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 305A
+23. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 304B
+24. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 304A
+25. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 303B
+26. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 303A
+27. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 302B
+28. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 302A
+29. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 320B
+30. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush Vision, Info: 320A
+31. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush Vision, Info: 319
+32. Kat: Tueren, Typ: 0915 x 2134mm 20 Minute Rated, Fam: M_Single-Flush, Info: 317
+33. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush Vision, Info: 315
+34. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush Vision, Info: 314
+35. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 313A
+36. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 313B
+37. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 316
+38. Kat: Tueren, Typ: 1830 x 2134mm, Fam: M_Double-Glass 1, Info: 321
+39. Kat: Tueren, Typ: 1730 x 2134mm 20 Minute Rated, Fam: M_Double-Flush, Info: 323
+40. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Glass 1, Info: 322
+41. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 324
+42. Kat: Tueren, Typ: 0915 x 2134mm, Fam: M_Single-Flush, Info: 325
+43. Kat: Tueren, Typ: M_Curtain Wall Dbl Glass, Fam: M_Curtain Wall Dbl Glass, Info: 101B
+44. Kat: Tueren, Typ: M_Curtain Wall Dbl Glass, Fam: M_Curtain Wall Dbl Glass, Info: 121
+45. Kat: Tueren, Typ: M_Curtain Wall Dbl Glass, Fam: M_Curtain Wall Dbl Glass, Info: 101A
+46. Kat: Tueren, Typ: M_Curtain Wall Dbl Glass, Fam: M_Curtain Wall Dbl Glass, Info: 101C
+47. Kat: Tueren, Typ: M_Curtain Wall Dbl Glass, Fam: M_Curtain Wall Dbl Glass, Info: 101D
+48. Kat: Tueren, Typ: M_Curtain Wall Dbl Glass, Fam: M_Curtain Wall Dbl Glass, Info: 120
+49. Kat: Tueren, Typ: M_Curtain Wall Sgl Glass, Fam: M_Curtain Wall Sgl Glass, Info: 234
+50. Kat: Tueren, Typ: M_Curtain Wall Sgl Glass, Fam: M_Curtain Wall Sgl Glass, Info: nan
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+{"id":1,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":2,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":3,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":4,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":5,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":6,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":7,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":8,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":9,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":10,"code":"G01.05","desc":"Innentür (Brandschutz)","conf":0.90},
+{"id":11,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":12,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":13,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":14,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":15,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":16,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":17,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":18,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":19,"code":"G01.06","desc":"Innentor","conf":0.90},
+{"id":20,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":21,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":22,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":23,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":24,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":25,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":26,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":27,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":28,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":29,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":30,"code":"G01.05","desc":"Innentür mit Sichtfenster","conf":0.90},
+{"id":31,"code":"G01.05","desc":"Innentür mit Sichtfenster","conf":0.90},
+{"id":32,"code":"G01.05","desc":"Innentür (Brandschutz)","conf":0.90},
+{"id":33,"code":"G01.05","desc":"Innentür mit Sichtfenster","conf":0.90},
+{"id":34,"code":"G01.05","desc":"Innentür mit Sichtfenster","conf":0.90},
+{"id":35,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":36,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":37,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":38,"code":"E03.01","desc":"Fenster (Doppelflügel)","conf":0.85},
+{"id":39,"code":"G01.06","desc":"Innentor (Brandschutz)","conf":0.90},
+{"id":40,"code":"E03.01","desc":"Fenster (Einzelflügel)","conf":0.85},
+{"id":41,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":42,"code":"G01.05","desc":"Innentür","conf":0.95},
+{"id":43,"code":"E03.03","desc":"Vorhangfassade Glas","conf":0.85},
+{"id":44,"code":"E03.03","desc":"Vorhangfassade Glas","conf":0.85},
+{"id":45,"code":"E03.03","desc":"Vorhangfassade Glas","conf":0.85},
+{"id":46,"code":"E03.03","desc":"Vorhangfassade Glas","conf":0.85},
+{"id":47,"code":"E03.03","desc":"Vorhangfassade Glas","conf":0.85},
+{"id":48,"code":"E03.03","desc":"Vorhangfassade Glas","conf":0.85},
+{"id":49,"code":"E03.03","desc":"Vorhangfassade Glas","conf":0.85},
+{"id":50,"code":"E03.03","desc":"Vorhangfassade Glas","conf":0.85}
+]
+================================================================================
+
+================================================================================
+Timestamp: 2025-12-15 23:10:30
+Batch: 50 Elemente
+Tokens: Input=8013, Output=1416
+
+Prompt:
+Klassifiziere diese 50 Bauelemente nach eBKP-H (Level 1+2):
+
+1. Kat: Tueren, Typ: M_Curtain Wall Sgl Glass, Fam: M_Curtain Wall Sgl Glass, Info: 223
+2. Kat: Boeden, Typ: Hollow Core Plank - Concrete Topping, Fam: nan, Info: nan
+3. Kat: Boeden, Typ: Hollow Core Plank - Concrete Topping, Fam: nan, Info: nan
+4. Kat: Boeden, Typ: Standard Timber-Wood Finish, Fam: nan, Info: nan
+5. Kat: Boeden, Typ: Metal Sunscreen, Fam: nan, Info: nan
+6. Kat: Boeden, Typ: Metal Sunscreen, Fam: nan, Info: nan
+7. Kat: Boeden, Typ: Metal Sunscreen, Fam: nan, Info: nan
+8. Kat: Boeden, Typ: Metal Sunscreen, Fam: nan, Info: nan
+9. Kat: Boeden, Typ: Metal Sunscreen, Fam: nan, Info: nan
+10. Kat: Boeden, Typ: Metal Sunscreen, Fam: nan, Info: nan
+11. Kat: Boeden, Typ: Metal Sunscreen, Fam: nan, Info: nan
+12. Kat: Boeden, Typ: Metal Sunscreen, Fam: nan, Info: nan
+13. Kat: Boeden, Typ: Metal Sunscreen, Fam: nan, Info: nan
+14. Kat: Boeden, Typ: Metal Sunscreen, Fam: nan, Info: nan
+15. Kat: Boeden, Typ: Metal Sunscreen, Fam: nan, Info: nan
+16. Kat: Boeden, Typ: Metal Sunscreen, Fam: nan, Info: nan
+17. Kat: Boeden, Typ: Concrete- 100mm, Fam: nan, Info: nan
+18. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+19. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+20. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+21. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+22. Kat: Decken, Typ: Plain, Fam: nan, Info: nan
+23. Kat: Decken, Typ: Plain, Fam: nan, Info: nan
+24. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+25. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+26. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+27. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+28. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+29. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+30. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+31. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+32. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+33. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+34. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+35. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+36. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+37. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+38. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+39. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+40. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+41. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+42. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+43. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+44. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+45. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+46. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+47. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+48. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+49. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+50. Kat: Decken, Typ: 600 x 600mm Grid, Fam: nan, Info: nan
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+{"id":1,"code":"E03.01","desc":"Fenster","conf":0.95},
+{"id":2,"code":"C04.01","desc":"Geschossdecke","conf":0.95},
+{"id":3,"code":"C04.01","desc":"Geschossdecke","conf":0.95},
+{"id":4,"code":"G02.02","desc":"Bodenbelag","conf":0.90},
+{"id":5,"code":"E02.04","desc":"Systemfassade","conf":0.85},
+{"id":6,"code":"E02.04","desc":"Systemfassade","conf":0.85},
+{"id":7,"code":"E02.04","desc":"Systemfassade","conf":0.85},
+{"id":8,"code":"E02.04","desc":"Systemfassade","conf":0.85},
+{"id":9,"code":"E02.04","desc":"Systemfassade","conf":0.85},
+{"id":10,"code":"E02.04","desc":"Systemfassade","conf":0.85},
+{"id":11,"code":"E02.04","desc":"Systemfassade","conf":0.85},
+{"id":12,"code":"E02.04","desc":"Systemfassade","conf":0.85},
+{"id":13,"code":"E02.04","desc":"Systemfassade","conf":0.85},
+{"id":14,"code":"E02.04","desc":"Systemfassade","conf":0.85},
+{"id":15,"code":"E02.04","desc":"Systemfassade","conf":0.85},
+{"id":16,"code":"E02.04","desc":"Systemfassade","conf":0.85},
+{"id":17,"code":"C01.03","desc":"Bodenplatte","conf":0.90},
+{"id":18,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":19,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":20,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":21,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":22,"code":"C04.01","desc":"Geschossdecke","conf":0.95},
+{"id":23,"code":"C04.01","desc":"Geschossdecke","conf":0.95},
+{"id":24,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":25,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":26,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":27,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":28,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":29,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":30,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":31,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":32,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":33,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":34,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":35,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":36,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":37,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":38,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":39,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":40,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":41,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":42,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":43,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":44,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":45,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":46,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":47,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":48,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":49,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90},
+{"id":50,"code":"G04.02","desc":"Deckenbekleidung","conf":0.90}
+]
+================================================================================

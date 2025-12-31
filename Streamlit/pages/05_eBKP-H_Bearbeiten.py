@@ -7,6 +7,21 @@ import streamlit as st
 import pandas as pd
 import re
 from datetime import datetime
+import sys
+import os
+
+# Füge Parent-Verzeichnis zum Path hinzu für Imports
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from helpers.sidebar_navigation import render_sidebar, render_page_header, render_divider, render_page_footer
+from helpers.notifications import toast, NotificationType
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+from Helpers.ebkp_reference import (
+    load_ebkp_catalog,
+    filter_by_levels,
+    get_code_description,
+    validate_bkp_code
+)
 
 # Seitenkonfiguration
 st.set_page_config(
@@ -15,70 +30,28 @@ st.set_page_config(
     layout="wide"
 )
 
-# Bekannte BKP-Codes für Validierung (Auszug)
-VALID_BKP_CODES = {
-    'C': 'Elektroinstallationen',
-    'C1': 'Starkstrom',
-    'C11': 'Starkstromhauptverteilung',
-    'C12': 'Installationsverteilungen',
-    'C13': 'Steckdosen',
-    'C14': 'Leuchten',
-    'C15': 'Sicherheitsbeleuchtung',
-    'C2': 'Schwachstrom',
-    'C21': 'Telefon/Daten',
-    'C22': 'Alarm/Sicherheit',
-    'D': 'Heizung/Lüftung/Klima/Sanitär',
-    'D1': 'Heizung',
-    'D2': 'Lüftung/Klima',
-    'D3': 'Sanitär',
-    'D31': 'Kalt-/Warmwasser',
-    'D32': 'Abwasser',
-    'E': 'Bauwerk - Rohbau',
-    'E1': 'Fundament',
-    'E2': 'Wände/Stützen',
-    'E21': 'Tragende Wände',
-    'E22': 'Trennwände',
-    'E3': 'Decken',
-    'F': 'Bauwerk - Technik',
-    'F1': 'Fenster/Fenstertüren',
-    'F2': 'Aussentüren',
-    'F3': 'Innentüren',
-    'G': 'Baunebenkosten'
-}
+# Render Sidebar
+render_sidebar()
+
+# Lade eBKP-H Katalog aus CSV (10.210 Zeilen)
+ebkp_catalog = load_ebkp_catalog()
+
+# Filtere nach max_levels aus Kostenermittlung (falls vorhanden)
+if 'cost_estimation_config' in st.session_state and st.session_state.cost_estimation_config.get('selected'):
+    config = st.session_state.cost_estimation_config
+    max_levels = config.get('ebkp_levels', [1, 2, 3, 4, 5])
+    ebkp_catalog_filtered = filter_by_levels(ebkp_catalog, max_levels)
+else:
+    ebkp_catalog_filtered = ebkp_catalog
 
 
-def validate_bkp_code(code: str) -> dict:
-    """
-    Validiert einen BKP-Code
-
-    Returns:
-        dict mit 'valid', 'message', 'known_code'
-    """
-    if not code or pd.isna(code):
-        return {'valid': False, 'message': 'Leer', 'known_code': False}
-
-    code = str(code).strip().upper()
-
-    # Prüfe Format: Muss mit C/D/E/F/G beginnen
-    if not re.match(r'^[CDEFG]', code):
-        return {'valid': False, 'message': 'Muss mit C/D/E/F/G beginnen', 'known_code': False}
-
-    # Prüfe ob Code bekannt ist
-    if code in VALID_BKP_CODES:
-        return {'valid': True, 'message': VALID_BKP_CODES[code], 'known_code': True}
-
-    # Code hat gültiges Format, ist aber nicht in der Liste
-    return {'valid': True, 'message': 'Format OK, Code unbekannt', 'known_code': False}
-
-
-# Haupttitel
-st.title("✏️ BKP-Codes Bearbeiten")
-st.markdown("Überprüfen und korrigieren Sie die KI-Klassifizierung vor der Auswertung")
+# Page Header
+render_page_header("✏️ BKP-Codes Bearbeiten", "Überprüfen und korrigieren Sie die KI-Klassifizierung vor der Auswertung")
 
 # Zeige Kostenermittlungsart (falls ausgewählt)
 if 'cost_estimation_config' in st.session_state and st.session_state.cost_estimation_config.get('selected'):
     config = st.session_state.cost_estimation_config
-    st.caption(f"📐 Bearbeitung für: **{config['name']}** (±{config['tolerance']}%) | eBKP-Tiefe: {config['ebkp_depth']}")
+    st.caption(f'<p style="text-align: center;">📐 Bearbeitung für: {config["name"]} (±{config["tolerance"]}%) | eBKP-Tiefe: {config["ebkp_depth"]}</p>', unsafe_allow_html=True)
 
 st.markdown("---")
 
@@ -152,31 +125,30 @@ with st.sidebar:
 
     st.markdown("---")
 
-    # BKP-Referenz
+    # BKP-Referenz (dynamisch aus Katalog)
     with st.expander("📖 BKP-Referenz"):
-        st.markdown("""
-        **C**: Elektroinstallationen
-        - C13: Steckdosen
-        - C14: Leuchten
-        - C21: Telefon/Daten
+        # Zeige Hauptgruppen aus Katalog
+        hauptgruppen = ebkp_catalog[ebkp_catalog['Level'] == 1]
+        if not hauptgruppen.empty:
+            for _, row in hauptgruppen.iterrows():
+                st.markdown(f"**{row['Code']}**: {row['Description']}")
 
-        **D**: HLKS
-        - D1: Heizung
-        - D2: Lüftung/Klima
-        - D3: Sanitär
+                # Zeige ein paar Untergruppen
+                untergruppen = ebkp_catalog[
+                    (ebkp_catalog['Code'].str.startswith(row['Code'])) &
+                    (ebkp_catalog['Level'] == 2)
+                ].head(3)
 
-        **E**: Bauwerk - Rohbau
-        - E1: Fundament
-        - E2: Wände/Stützen
-        - E3: Decken
+                for _, sub_row in untergruppen.iterrows():
+                    st.markdown(f"  - {sub_row['Code']}: {sub_row['Description']}")
 
-        **F**: Bauwerk - Technik
-        - F1: Fenster
-        - F2: Aussentüren
-        - F3: Innentüren
+                if len(ebkp_catalog[(ebkp_catalog['Code'].str.startswith(row['Code'])) & (ebkp_catalog['Level'] == 2)]) > 3:
+                    st.caption(f"  ... und mehr")
+        else:
+            st.info("BKP-Katalog nicht verfügbar")
 
-        **G**: Baunebenkosten
-        """)
+        st.markdown("---")
+        st.caption(f"📊 Gesamt: {len(ebkp_catalog)} Codes im Katalog")
 
 # Daten filtern
 filtered_df = df.copy()
@@ -217,6 +189,38 @@ if show_groups:
 if len(filtered_df) == 0:
     st.info("Keine Elemente entsprechen den Filterkriterien")
     st.stop()
+
+# BKP-Code Nachschlagen Helper
+st.subheader("🔍 BKP-Code Nachschlagen")
+
+with st.expander("Code aus Katalog auswählen", expanded=False):
+    st.caption(f"📚 {len(ebkp_catalog_filtered)} Codes verfügbar (gefiltert nach Kostenermittlungsstufe)")
+
+    col1, col2 = st.columns([1, 2])
+
+    with col1:
+        # Erstelle Dropdown-Optionen
+        code_options = [''] + sorted(ebkp_catalog_filtered['Code'].tolist())
+
+        selected_code = st.selectbox(
+            "Code auswählen",
+            options=code_options,
+            format_func=lambda x: f"{x} - {get_code_description(x, ebkp_catalog)}" if x else "-- Bitte wählen --",
+            key="bkp_code_selector"
+        )
+
+    with col2:
+        if selected_code:
+            description = get_code_description(selected_code, ebkp_catalog)
+            level = ebkp_catalog[ebkp_catalog['Code'] == selected_code]['Level'].iloc[0] if not ebkp_catalog[ebkp_catalog['Code'] == selected_code].empty else 'N/A'
+
+            st.success(f"**{selected_code}**: {description}")
+            st.caption(f"Level: {level}")
+            st.info("💡 Tipp: Kopieren Sie den Code und fügen Sie ihn in die Tabelle unten ein")
+        else:
+            st.info("Wählen Sie einen Code aus der Liste, um Details zu sehen")
+
+st.markdown("---")
 
 # Bearbeitbare Tabelle
 st.subheader("✏️ Elemente bearbeiten")
@@ -268,7 +272,7 @@ edited_df = st.data_editor(
     },
     disabled=display_cols,  # Original-Spalten nicht editierbar
     hide_index=True,
-    use_container_width=True,
+    width='stretch',
     num_rows="fixed"
 )
 
@@ -276,11 +280,11 @@ edited_df = st.data_editor(
 st.markdown("---")
 st.subheader("🔍 Validierung")
 
-# Validiere alle BKP-Codes
+# Validiere alle BKP-Codes gegen den vollständigen Katalog
 validation_results = []
 for idx, row in edited_df.iterrows():
     code = row['BKP_Code']
-    validation = validate_bkp_code(code)
+    validation = validate_bkp_code(code, ebkp_catalog)
     validation_results.append({
         'Index': idx,
         'Code': code,
@@ -339,7 +343,7 @@ with col1:
         st.info("Keine Änderungen vorgenommen")
 
 with col2:
-    if st.button("💾 Speichern", type="primary", use_container_width=True, disabled=not changes_made):
+    if st.button("💾 Speichern", type="primary", width='stretch', disabled=not changes_made):
         # Aktualisiere die Original-Daten
         for idx in filtered_df.index:
             if idx in edited_df.index:
@@ -351,6 +355,7 @@ with col2:
         st.session_state.classification_results = df
 
         st.success("✅ Änderungen gespeichert!")
+        toast("Änderungen gespeichert", NotificationType.SUCCESS)
         st.balloons()
 
         # Kurze Pause für User Feedback
@@ -359,7 +364,7 @@ with col2:
         st.rerun()
 
 with col3:
-    if st.button("↩️ Zurücksetzen", use_container_width=True):
+    if st.button("↩️ Zurücksetzen", width='stretch'):
         st.rerun()
 
 # Navigation
@@ -384,3 +389,7 @@ with col2:
 # Footer-Statistik
 st.markdown("---")
 st.caption(f"Letzte Bearbeitung: {datetime.now().strftime('%d.%m.%Y %H:%M:%S')} | {len(df)} Elemente geladen")
+
+
+# Footer
+render_page_footer()
