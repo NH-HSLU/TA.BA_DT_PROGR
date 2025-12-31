@@ -17,6 +17,15 @@ if parent_dir not in sys.path:
 try:
     from helpers.sidebar_navigation import render_sidebar, render_page_header, render_divider, render_page_footer
     from helpers.notifications import toast, NotificationType
+    from helpers.session_state import (
+        init_session_state,
+        get_state,
+        set_state,
+        DATA_PREPARED,
+        DATA_DEDUP_MAPPING,
+        DATA_UNIQUE_ELEMENTS,
+        DATA_ORIGINAL_UPLOADED
+    )
 except ImportError as e:
     st.error(f"Module konnten nicht importiert werden: {e}")
     st.stop()
@@ -28,18 +37,11 @@ st.set_page_config(
     layout="wide"
 )
 
+# Initialize Session State
+init_session_state()
+
 # Render gemeinsame Sidebar
 render_sidebar()
-
-# Session State initialisieren
-if 'prepared_data' not in st.session_state:
-    st.session_state.prepared_data = None
-if 'dedup_mapping' not in st.session_state:
-    st.session_state.dedup_mapping = None
-if 'unique_elements' not in st.session_state:
-    st.session_state.unique_elements = None
-if 'original_data' not in st.session_state:
-    st.session_state.original_data = None
 
 
 # ============================================================================
@@ -117,48 +119,126 @@ render_divider("section")
 
 
 # ============================================================================
+# Prepared Data Detection
+# ============================================================================
+
+# Check if prepared data already exists in session state
+has_prepared_data = False
+"""(
+    get_state(DATA_PREPARED) is not None and
+    get_state(DATA_ORIGINAL_UPLOADED) is not None
+)"""
+
+if has_prepared_data and not get_state('UI_RELOAD_PREPARED_DATA', False):
+    # Show option to use existing prepared data
+    st.success("✅ **Vorbereitete Daten gefunden!**")
+
+    prepared_df = get_state(DATA_PREPARED)
+    original_df = get_state(DATA_ORIGINAL_UPLOADED)
+
+    st.markdown("""
+    Sie haben bereits vorbereitete Daten in Ihrer aktuellen Sitzung.
+    Wählen Sie eine der folgenden Optionen:
+    """)
+
+    # Show statistics
+    col1, col2 = st.columns(2)
+    with col1:
+        st.metric("Eindeutige Elemente", f"{len(prepared_df):,}".replace(',', "'"))
+    with col2:
+        st.metric("Original-Zeilen", f"{len(original_df):,}".replace(',', "'"))
+
+    # Button to use prepared data
+    col_a, col_b = st.columns(2)
+    with col_a:
+        if st.button("✅ Vorbereitete Daten verwenden", type="primary", use_container_width=True):
+            set_state('UI_RELOAD_PREPARED_DATA', True)
+            st.rerun()
+    with col_b:
+        if st.button("🔄 Neue CSV hochladen", use_container_width=True):
+            # Clear prepared data and reload page
+            set_state(DATA_PREPARED, None)
+            set_state(DATA_ORIGINAL_UPLOADED, None)
+            set_state(DATA_DEDUP_MAPPING, None)
+            set_state(DATA_UNIQUE_ELEMENTS, None)
+            set_state('UI_RELOAD_PREPARED_DATA', None)
+            toast("Vorbereitete Daten gelöscht", NotificationType.INFO)
+            st.rerun()
+
+    # Stop here - don't show file uploader
+    st.stop()
+
+
+# ============================================================================
 # CSV Upload
 # ============================================================================
 
 st.subheader("1️⃣ CSV-Datei hochladen")
 
-col1, col2 = st.columns([2, 1])
+# Check if we're using prepared data or fresh upload
+using_prepared_data = get_state('UI_RELOAD_PREPARED_DATA', False)
 
-with col1:
-    uploaded_file = st.file_uploader(
-        "Wählen Sie eine CSV-Datei",
-        type=['csv'],
-        help="CSV-Export aus pyRevit mit Spalten: Kategorie, Familie, Typ, etc."
-    )
+if not using_prepared_data:
+    # Show file uploader for fresh CSV upload
+    col1, col2 = st.columns([2, 1])
 
-with col2:
-    if uploaded_file:
-        st.success("✅ Datei geladen")
-        file_size = uploaded_file.size / 1024  # KB
-        st.metric("Dateigröße", f"{file_size:.1f} KB")
+    with col1:
+        uploaded_file = st.file_uploader(
+            "Wählen Sie eine CSV-Datei",
+            type=['csv'],
+            help="CSV-Export aus pyRevit mit Spalten: Kategorie, Familie, Typ, etc."
+        )
+
+    with col2:
+        if uploaded_file:
+            st.success("✅ Datei geladen")
+            file_size = uploaded_file.size / 1024  # KB
+            st.metric("Dateigröße", f"{file_size:.1f} KB")
+else:
+    # Using prepared data - simulate upload workflow
+    uploaded_file = "prepared_data"  # Dummy value to trigger workflow
+    st.info("📋 **Vorbereitete Daten werden geladen...**")
 
 if uploaded_file is not None:
     try:
-        # CSV einlesen mit automatischer Encoding-Erkennung
-        df = None
-        encodings = ['utf-8-sig', 'latin1', 'iso-8859-1', 'cp1252']
+        # Check if we're loading from prepared data or fresh upload
+        if using_prepared_data:
+            # Load from session state
+            df = get_state(DATA_ORIGINAL_UPLOADED)
+            if df is None:
+                st.error("❌ Fehler: Keine vorbereiteten Daten gefunden.")
+                st.stop()
+            st.success(f"✅ Vorbereitete Daten geladen: **{len(df)}** Zeilen, **{len(df.columns)}** Spalten")
 
-        for encoding in encodings:
-            try:
-                uploaded_file.seek(0)
-                df = pd.read_csv(uploaded_file, sep=';', encoding=encoding)
-                st.success(f"✅ CSV erfolgreich geladen: **{len(df)}** Zeilen, **{len(df.columns)}** Spalten (Encoding: {encoding})")
-                break
-            except (UnicodeDecodeError, UnicodeError):
-                continue
+            # Clear the reload flag so subsequent reruns behave normally
+            set_state('UI_RELOAD_PREPARED_DATA', None)
 
-        if df is None:
-            st.error("❌ Fehler: Konnte CSV-Datei mit keinem bekannten Encoding laden. "
-                    "Bitte speichern Sie die Datei als UTF-8.")
-            st.stop()
+            # Set a default filename for downloads
+            file_name_base = "vorbereitete_daten.csv"
+        else:
+            # Fresh CSV upload - read from file
+            df = None
+            encodings = ['utf-8-sig', 'latin1', 'iso-8859-1', 'cp1252']
 
-        # Speichere Original-Daten
-        st.session_state.original_data = df.copy()
+            for encoding in encodings:
+                try:
+                    uploaded_file.seek(0)
+                    df = pd.read_csv(uploaded_file, sep=';', encoding=encoding)
+                    st.success(f"✅ CSV erfolgreich geladen: **{len(df)}** Zeilen, **{len(df.columns)}** Spalten (Encoding: {encoding})")
+                    break
+                except (UnicodeDecodeError, UnicodeError):
+                    continue
+
+            if df is None:
+                st.error("❌ Fehler: Konnte CSV-Datei mit keinem bekannten Encoding laden. "
+                        "Bitte speichern Sie die Datei als UTF-8.")
+                st.stop()
+
+            # Speichere Original-Daten (only for fresh uploads)
+            set_state(DATA_ORIGINAL_UPLOADED, df.copy())
+
+            # Set filename for downloads
+            file_name_base = uploaded_file.name
 
         render_divider("section")
 
@@ -229,19 +309,19 @@ if uploaded_file is not None:
                     )
 
                     # In Session State speichern
-                    st.session_state.prepared_data = unique_df
-                    st.session_state.dedup_mapping = index_mapping
-                    st.session_state.unique_elements = unique_elements
+                    set_state(DATA_PREPARED, unique_df)
+                    set_state(DATA_DEDUP_MAPPING, index_mapping)
+                    set_state(DATA_UNIQUE_ELEMENTS, unique_elements)
 
                     toast("Deduplizierung erfolgreich!", NotificationType.SUCCESS)
                     st.rerun()
 
         with col2:
-            if st.session_state.prepared_data is not None:
+            if get_state(DATA_PREPARED) is not None:
                 if st.button("🗑️ Zurücksetzen", width="stretch"):
-                    st.session_state.prepared_data = None
-                    st.session_state.dedup_mapping = None
-                    st.session_state.unique_elements = None
+                    set_state(DATA_PREPARED, None)
+                    set_state(DATA_DEDUP_MAPPING, None)
+                    set_state(DATA_UNIQUE_ELEMENTS, None)
                     toast("Daten zurückgesetzt", NotificationType.INFO)
                     st.rerun()
 
@@ -249,12 +329,12 @@ if uploaded_file is not None:
         # Statistiken anzeigen
         # ============================================================================
 
-        if st.session_state.prepared_data is not None:
+        if get_state(DATA_PREPARED) is not None:
             render_divider("section")
 
             st.subheader("4️⃣ Deduplizierungs-Statistiken")
 
-            unique_df = st.session_state.prepared_data
+            unique_df = get_state(DATA_PREPARED)
             dedup_ratio = len(df) / len(unique_df) if len(unique_df) > 0 else 0
             cost_saving_pct = (1 - 1/dedup_ratio) * 100 if dedup_ratio > 1 else 0
 
@@ -326,7 +406,7 @@ if uploaded_file is not None:
                 st.download_button(
                     label="📥 Deduplizierte Daten",
                     data=csv_unique,
-                    file_name=f"dedupliziert_{uploaded_file.name}",
+                    file_name=f"dedupliziert_{file_name_base}",
                     mime="text/csv",
                     help=f"CSV mit {len(unique_df)} einzigartigen Elementen für KI-Klassifizierung",
                     type="primary",
@@ -340,7 +420,7 @@ if uploaded_file is not None:
 
                 # Füge Mapping-ID hinzu (welches unique Element gehört zu welcher Original-Zeile)
                 mapping_ids = [None] * len(df)
-                for unique_idx, original_indices in st.session_state.dedup_mapping.items():
+                for unique_idx, original_indices in get_state(DATA_DEDUP_MAPPING).items():
                     for orig_idx in original_indices:
                         mapping_ids[orig_idx] = unique_idx
 
@@ -350,7 +430,7 @@ if uploaded_file is not None:
                 st.download_button(
                     label="📥 Original mit Mapping",
                     data=csv_original,
-                    file_name=f"original_mapping_{uploaded_file.name}",
+                    file_name=f"original_mapping_{file_name_base}",
                     mime="text/csv",
                     help=f"Original-Daten ({len(df)} Zeilen) mit Dedup-ID zum späteren Zusammenführen",
                     width="stretch"
@@ -360,7 +440,7 @@ if uploaded_file is not None:
             with col3:
                 # Erstelle Mapping-Tabelle als separate CSV
                 mapping_data = []
-                for unique_idx, original_indices in st.session_state.dedup_mapping.items():
+                for unique_idx, original_indices in get_state(DATA_DEDUP_MAPPING).items():
                     mapping_data.append({
                         'Dedup_ID': unique_idx,
                         'Anzahl_Original': len(original_indices),
@@ -373,7 +453,7 @@ if uploaded_file is not None:
                 st.download_button(
                     label="📥 Mapping-Tabelle",
                     data=csv_mapping,
-                    file_name=f"mapping_{uploaded_file.name}",
+                    file_name=f"mapping_{file_name_base}",
                     mime="text/csv",
                     help="Mapping zwischen Dedup-IDs und Original-Zeilen",
                     width="stretch"
@@ -442,7 +522,7 @@ if uploaded_file is not None:
                 st.markdown("**Mapping-Statistik:** Wie viele Original-Elemente gehören zu jeder einzigartigen Kombination?")
 
                 # Berechne Verteilung
-                mapping_counts = [len(indices) for indices in st.session_state.dedup_mapping.values()]
+                mapping_counts = [len(indices) for indices in get_state(DATA_DEDUP_MAPPING).values()]
                 mapping_df = pd.DataFrame({
                     'Anzahl Original-Elemente': mapping_counts
                 })

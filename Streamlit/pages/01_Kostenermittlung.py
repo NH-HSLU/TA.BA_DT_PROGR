@@ -20,9 +20,16 @@ from helpers.sia_lho_102_config import (
 )
 from helpers.sidebar_navigation import render_sidebar, render_page_header, render_divider, render_page_footer
 from helpers.notifications import toast, NotificationType
+from helpers.session_state import (
+    init_session_state,
+    get_state,
+    set_state,
+    CFG_COST_ESTIMATION_CONFIG,
+    UI_SELECTED_FOR_DETAILS
+)
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from Helpers.ebkp_reference import load_ebkp_catalog, filter_by_levels
+from helpers_shared.ebkp_reference import load_ebkp_catalog, filter_by_levels
 
 # Seitenkonfiguration
 st.set_page_config(
@@ -31,16 +38,19 @@ st.set_page_config(
     layout="wide"
 )
 
+# Initialize Session State
+init_session_state()
+
 # Render Sidebar
 render_sidebar()
 
 
 def select_level(level: int):
-    """Speichert ausgewähltes Level in Session State"""
+    """Speichert ausgewähltes Level in Session State mit set_state"""
     config = get_level_config(level)
 
     if config:
-        st.session_state.cost_estimation_config = {
+        set_state(CFG_COST_ESTIMATION_CONFIG, {
             'selected': True,
             'level': config['level'],
             'name': config['name'],
@@ -50,7 +60,7 @@ def select_level(level: int):
             'project_phase': config['project_phase'],
             'phase_code': config['phase_code'],
             'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        }
+        })
         st.success(f"✅ Ausgewählt: {config['name']} ({format_tolerance(config['tolerance'])})")
         toast(f"{config['name']} ausgewählt ({format_tolerance(config['tolerance'])})", NotificationType.SUCCESS)
         st.balloons()
@@ -62,8 +72,8 @@ render_page_header("🏗️ Art der Kostenermittlung", "nach SIA LHO 102 Standar
 render_divider("gradient")
 
 # Zeige aktuelle Auswahl (falls vorhanden)
-if 'cost_estimation_config' in st.session_state and st.session_state.cost_estimation_config.get('selected'):
-    config = st.session_state.cost_estimation_config
+config = get_state(CFG_COST_ESTIMATION_CONFIG)
+if config and config.get('selected'):
 
     st.success(f"**Aktuelle Auswahl:** {config['name']}")
 
@@ -128,8 +138,9 @@ st.caption("Klicken Sie auf eine Stufe, um Details zu sehen und auszuwählen")
 
 # Prüfe welches Level aktuell ausgewählt ist
 current_level = None
-if 'cost_estimation_config' in st.session_state:
-    current_level = st.session_state.cost_estimation_config.get('level')
+config = get_state(CFG_COST_ESTIMATION_CONFIG)
+if config:
+    current_level = config.get('level')
 
 # Alle 6 Levels nebeneinander als Abo-Selector
 cols = st.columns(6)
@@ -151,14 +162,15 @@ for i, config in enumerate(COST_ESTIMATION_LEVELS):
         """
         st.markdown(card_html, unsafe_allow_html=True)
         if st.button("Wählen", key=f"btn_{config['level']}", width='stretch'):
-            st.session_state.selected_for_details = config['level']
+            set_state(UI_SELECTED_FOR_DETAILS, config['level'])
 
 render_divider("section")
 
 # Details-Bereich für ausgewählte Stufe
-if 'selected_for_details' in st.session_state:
+selected_level = get_state(UI_SELECTED_FOR_DETAILS)
+if selected_level:
     render_divider("dotted")
-    selected_config = get_level_config(st.session_state.selected_for_details)
+    selected_config = get_level_config(selected_level)
 
     if selected_config:
         st.subheader(f"📋 Details: {selected_config['name']}")
@@ -211,7 +223,7 @@ if 'selected_for_details' in st.session_state:
             else:
                 if st.button("✓ Diese Stufe wählen", key="select_from_details", type="primary", width='stretch'):
                     select_level(selected_config['level'])
-                    del st.session_state.selected_for_details
+                    set_state(UI_SELECTED_FOR_DETAILS, None)  # Clear details selection
                     st.rerun()
 
 # Footer

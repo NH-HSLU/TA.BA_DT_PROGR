@@ -12,6 +12,13 @@ from datetime import datetime
 sys.path.insert(0, os.path.dirname(__file__))
 from helpers.sidebar_navigation import render_sidebar, render_page_footer, render_divider, render_page_header
 from helpers.ebkp_trivia import get_daily_fact
+from helpers.session_state import (
+    init_session_state,
+    get_state,
+    has_classification_results,
+    DATA_CLASSIFICATION_RESULTS,
+    CFG_COST_ESTIMATION_CONFIG
+)
 
 # Seitenkonfiguration
 st.set_page_config(
@@ -20,6 +27,9 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# Initialize Session State
+init_session_state()
 
 # Render Sidebar
 render_sidebar()
@@ -132,7 +142,7 @@ with col2:
     </div>
     """, unsafe_allow_html=True)
     if st.button("→ Starten", key="btn_classify", width='stretch'):
-        st.switch_page("pages/02_KI_Klassifizierung.py")
+        st.switch_page("pages/03_KI_Klassifizierung.py")
 
 with col3:
     st.markdown("""
@@ -142,7 +152,7 @@ with col3:
     </div>
     """, unsafe_allow_html=True)
     if st.button("→ Starten", key="btn_edit", width='stretch'):
-        st.switch_page("pages/03_eBKP-H_Bearbeiten.py")
+        st.switch_page("pages/04_eBKP_Bearbeiten.py")
 
 with col4:
     st.markdown("""
@@ -152,7 +162,7 @@ with col4:
     </div>
     """, unsafe_allow_html=True)
     if st.button("→ Starten", key="btn_eval", width='stretch'):
-        st.switch_page("pages/10_eBKP_Auswertung.py")
+        st.switch_page("pages/06_eBKP_Auswertung.py")
 
 # Workflow Progress Tracker
 render_divider("section")
@@ -160,19 +170,19 @@ st.subheader("📊 Ihr Fortschritt")
 
 
 def show_workflow_progress():
-    """Visualisiert Workflow-Fortschritt"""
+    """Visualisiert Workflow-Fortschritt mit zentralem Session State"""
     steps = [
-        ("1️⃣ Kostenermittlung", 'cost_estimation_config'),
-        ("2️⃣ KI-Klassifizierung", 'classification_results'),
-        ("3️⃣ BKP-Bearbeitung (optional)", 'classification_results'),
-        ("4️⃣ Auswertung", 'classification_results'),
+        ("1️⃣ Kostenermittlung", CFG_COST_ESTIMATION_CONFIG),
+        ("2️⃣ KI-Klassifizierung", DATA_CLASSIFICATION_RESULTS),
+        ("3️⃣ BKP-Bearbeitung (optional)", DATA_CLASSIFICATION_RESULTS),
+        ("4️⃣ Auswertung", DATA_CLASSIFICATION_RESULTS),
     ]
 
     def is_step_complete(key):
-        """Prüft ob ein Workflow-Schritt abgeschlossen ist"""
-        if key not in st.session_state:
+        """Prüft ob ein Workflow-Schritt abgeschlossen ist mit get_state"""
+        value = get_state(key)
+        if value is None:
             return False
-        value = st.session_state[key]
         # Für DataFrames: Prüfe ob nicht leer
         if hasattr(value, 'empty'):
             return not value.empty

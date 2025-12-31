@@ -23,9 +23,17 @@ except ImportError:
         return f'± {tolerance}%' if tolerance > 0 else 'exakt'
 
 from helpers.sidebar_navigation import render_sidebar, render_page_header, render_divider, render_page_footer
+from helpers.session_state import (
+    init_session_state,
+    get_state,
+    has_classification_results,
+    validate_dataframe,
+    DATA_CLASSIFICATION_RESULTS,
+    CFG_COST_ESTIMATION_CONFIG
+)
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from Helpers.ebkp_reference import load_ebkp_catalog, get_hauptgruppen
+from helpers_shared.ebkp_reference import load_ebkp_catalog, get_hauptgruppen
 
 # Custom CSS für schönere Tabs
 st.markdown("""
@@ -76,6 +84,9 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# Initialize Session State
+init_session_state()
 
 # Lade eBKP-H Katalog und Hauptgruppen
 ebkp_catalog = load_ebkp_catalog()
@@ -151,7 +162,8 @@ def aggregate_quantities_by_unit(df: pd.DataFrame) -> str:
 
 def render_bkp_hierarchy_markdown(df: pd.DataFrame, hauptgruppe: str) -> str:
     """Generiert Markdown für BKP-Hierarchie mit Summierung"""
-    hauptgruppe_df = df[df['BKP_Hauptgruppe'] == hauptgruppe].copy()
+    # No copy needed - only reading for aggregations
+    hauptgruppe_df = df[df['BKP_Hauptgruppe'] == hauptgruppe]
 
     if hauptgruppe_df.empty:
         return f"*Keine Daten für Hauptgruppe {hauptgruppe}*"
@@ -214,8 +226,8 @@ def display_bkp_hierarchy(df: pd.DataFrame, hauptgruppe: str):
     markdown_output = render_bkp_hierarchy_markdown(df, hauptgruppe)
     st.markdown(markdown_output)
 
-    # Optional: Details-Tabelle als Expander
-    hauptgruppe_df = df[df['BKP_Hauptgruppe'] == hauptgruppe].copy()
+    # Optional: Details-Tabelle als Expander (no copy needed - only displaying)
+    hauptgruppe_df = df[df['BKP_Hauptgruppe'] == hauptgruppe]
     if not hauptgruppe_df.empty:
         with st.expander("📋 Detaildaten anzeigen", expanded=False):
             st.dataframe(hauptgruppe_df, width='stretch', height=300)
@@ -324,7 +336,8 @@ def generate_hierarchy_pdf(df: pd.DataFrame, ebkp_catalog: dict, hauptgruppen: d
 
     for hauptgruppe in hauptgruppen_sorted:
         hauptgruppe_name = hauptgruppen.get(hauptgruppe, 'Unbekannt')
-        hauptgruppe_df = df[df['BKP_Hauptgruppe'] == hauptgruppe].copy()
+        # No copy needed - only reading for aggregations in PDF
+        hauptgruppe_df = df[df['BKP_Hauptgruppe'] == hauptgruppe]
 
         # Level 1: Hauptgruppe
         if has_costs:
@@ -440,8 +453,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Kostenermittlungs-Status
-if 'cost_estimation_config' in st.session_state and st.session_state.cost_estimation_config.get('selected'):
-    config = st.session_state.cost_estimation_config
+config = get_state(CFG_COST_ESTIMATION_CONFIG)
+if config and config.get('selected'):
 
     col1, col2, col3, col4 = st.columns(4)
     with col1:
@@ -456,7 +469,7 @@ if 'cost_estimation_config' in st.session_state and st.session_state.cost_estima
 render_divider("section")
 
 # Daten-Upload oder Auto-Load
-auto_load = 'classification_results' in st.session_state and st.session_state.classification_results is not None
+auto_load = has_classification_results()
 
 if auto_load:
     st.success("✅ Daten aus KI-Klassifizierung geladen", icon="🤖")
@@ -487,14 +500,23 @@ render_divider("section")
 df = None
 
 if use_auto:
-    df = st.session_state.classification_results.copy()
+    df = get_state(DATA_CLASSIFICATION_RESULTS).copy()
+
+    # Validate DataFrame structure
+    is_valid, error = validate_dataframe(df, ['BKP_Code', 'BKP_Beschreibung'])
+    if not is_valid:
+        st.error(f"❌ Daten ungültig: {error}")
+        st.info("Bitte führen Sie die KI-Klassifizierung erneut durch oder überprüfen Sie die Datenstruktur.")
+        st.stop()
+
     st.caption(f"📊 {len(df)} Elemente geladen")
 
 elif uploaded_file:
     try:
         try:
             df = pd.read_csv(uploaded_file, sep=';', encoding='utf-8-sig')
-        except:
+        except (pd.errors.ParserError, UnicodeDecodeError) as e:
+            # Fallback: Try without separator or different encoding
             uploaded_file.seek(0)
             df = pd.read_csv(uploaded_file, encoding='utf-8-sig')
 
@@ -647,7 +669,8 @@ if df is not None:
 
         for hauptgruppe in hauptgruppen_sorted:
             hauptgruppe_name = EBKP_HAUPTGRUPPEN.get(hauptgruppe, 'Unbekannt')
-            hauptgruppe_df = df[df['BKP_Hauptgruppe'] == hauptgruppe].copy()
+            # No copy needed - only reading for aggregations in charts
+            hauptgruppe_df = df[df['BKP_Hauptgruppe'] == hauptgruppe]
 
             # Berechne Hauptgruppen-Total
             # Mengen-Aggregation

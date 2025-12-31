@@ -20,14 +20,25 @@ if parent_dir not in sys.path:
     sys.path.insert(0, parent_dir)
 from helpers.sidebar_navigation import render_sidebar, render_page_header, render_divider, render_page_footer
 from helpers.notifications import toast, NotificationType
+from helpers.session_state import (
+    init_session_state,
+    get_state,
+    set_state,
+    CFG_API_KEY,
+    CFG_API_KEY_VALIDATED,
+    CFG_FORCE_BATCH_API,
+    CFG_TOKEN_LIMIT,
+    CFG_CLASSIFICATION_SETTINGS
+)
 
-# Session State initialisieren
-if 'api_key' not in st.session_state:
+# Initialize Session State
+init_session_state()
+
+# Load API key from environment if not already set
+if not get_state(CFG_API_KEY):
     env_key = os.getenv('ANTHROPIC_API_KEY')
-    st.session_state.api_key = env_key if env_key else ''
-
-if 'api_key_validated' not in st.session_state:
-    st.session_state.api_key_validated = False
+    if env_key:
+        set_state(CFG_API_KEY, env_key)
 
 
 def validate_api_key(api_key: str) -> dict:
@@ -40,13 +51,14 @@ def validate_api_key(api_key: str) -> dict:
 
     try:
         sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-        from Helpers.eBKP_H_Classifier import eBKPHClassifier
+        # Use package-level lazy import
+        from helpers_shared import eBKPHClassifier
 
         original_key = os.getenv('ANTHROPIC_API_KEY')
         os.environ['ANTHROPIC_API_KEY'] = api_key
 
         try:
-            classifier = eBKPHClassifier
+            classifier = eBKPHClassifier()  # Create instance, not assign class
             test_result = classifier.classify_element(element_type="Test Steckdose", debug=False)
 
             if test_result.get('bkp_code') and test_result.get('bkp_code') != 'ERROR':
@@ -139,9 +151,9 @@ st.markdown("""
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    if st.session_state.api_key and st.session_state.api_key_validated:
+    if get_state(CFG_API_KEY) and get_state(CFG_API_KEY_VALIDATED):
         st.success("✓ API-Key aktiv", icon="🔑")
-    elif st.session_state.api_key:
+    elif get_state(CFG_API_KEY):
         st.warning("⚠️ Nicht validiert", icon="🔑")
     else:
         st.error("✗ Kein API-Key", icon="🔑")
@@ -164,7 +176,7 @@ st.subheader("🔑 API-Key Verwaltung")
 col1, col2 = st.columns([3, 1])
 
 with col1:
-    current_key = st.session_state.api_key
+    current_key = get_state(CFG_API_KEY)
     if current_key and len(current_key) > 14:
         placeholder = f"{current_key[:10]}...{current_key[-4:]}"
     else:
@@ -183,8 +195,8 @@ with col2:
     st.write("")
     if st.button("💾 Speichern", type="primary", width='stretch'):
         if api_key_input:
-            st.session_state.api_key = api_key_input
-            st.session_state.api_key_validated = False
+            set_state(CFG_API_KEY, api_key_input)
+            set_state(CFG_API_KEY_VALIDATED, False)
             st.success("Gespeichert!")
             toast("API-Key gespeichert", NotificationType.SUCCESS)
             st.rerun()
@@ -193,11 +205,11 @@ with col2:
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    if st.button("🔍 Validieren", width='stretch', disabled=not st.session_state.api_key):
+    if st.button("🔍 Validieren", width='stretch', disabled=not get_state(CFG_API_KEY)):
         with st.spinner("Teste..."):
-            result = validate_api_key(st.session_state.api_key)
+            result = validate_api_key(get_state(CFG_API_KEY))
             if result['valid']:
-                st.session_state.api_key_validated = True
+                set_state(CFG_API_KEY_VALIDATED, True)
                 st.success(result['message'])
                 toast("API-Key erfolgreich validiert", NotificationType.SUCCESS)
             else:
@@ -205,39 +217,33 @@ with col1:
                 toast("API-Key Validierung fehlgeschlagen", NotificationType.ERROR)
 
 with col2:
-    if st.button("🗑️ Löschen", width='stretch', disabled=not st.session_state.api_key):
-        st.session_state.api_key = ''
-        st.session_state.api_key_validated = False
+    if st.button("🗑️ Löschen", width='stretch', disabled=not get_state(CFG_API_KEY)):
+        set_state(CFG_API_KEY, '')
+        set_state(CFG_API_KEY_VALIDATED, False)
         st.rerun()
 
 with col3:
-    if st.button("📋 Anzeigen", width='stretch', disabled=not st.session_state.api_key):
-        st.code(st.session_state.api_key, language=None)
+    if st.button("📋 Anzeigen", width='stretch', disabled=not get_state(CFG_API_KEY)):
+        st.code(get_state(CFG_API_KEY), language=None)
 
 render_divider("section")
 
 # Batch API Einstellungen
 st.subheader("🚀 Batch API Einstellungen")
 
-# Session State initialisieren
-if 'force_batch_api' not in st.session_state:
-    st.session_state.force_batch_api = False
-
-if 'token_limit' not in st.session_state:
-    st.session_state.token_limit = 50000
-
 col1, col2 = st.columns(2)
 
 with col1:
     st.markdown("**Batch API Modus**")
-    st.session_state.force_batch_api = st.checkbox(
+    force_batch_value = st.checkbox(
         "Batch API auch für < 300 Elemente nutzen",
-        value=st.session_state.get("force_batch_api", False),
+        value=get_state(CFG_FORCE_BATCH_API, False),
         help="Aktivieren für maximale Kostenersparnis (50% günstiger), aber längere Wartezeiten. "
              "Standard: Nur ab 300 Elementen automatisch aktiviert."
     )
+    set_state(CFG_FORCE_BATCH_API, force_batch_value)
 
-    if st.session_state.force_batch_api:
+    if get_state(CFG_FORCE_BATCH_API):
         st.info(
             "💡 **Batch API Modus aktiv**\n\n"
             "- 50% Kostenersparnis\n"
@@ -255,20 +261,21 @@ with col1:
 
 with col2:
     st.markdown("**Rate-Limiting**")
-    st.session_state.token_limit = st.number_input(
+    token_limit_value = st.number_input(
         "Token-Limit pro Minute",
         min_value=10000,
         max_value=500000,
-        value=st.session_state.get("token_limit", 50000),
+        value=get_state(CFG_TOKEN_LIMIT, 50000),
         step=10000,
         help="Max. Token pro Minute für synchrone API-Calls. "
              "Standard: 50.000 für Haiku. "
              "Bei höherem API-Tier kann dieses Limit erhöht werden."
     )
+    set_state(CFG_TOKEN_LIMIT, token_limit_value)
 
     # Berechne max. sichere Batch-Größe basierend auf Token-Limit
     tokens_per_batch = 6000  # Schätzung: 3000 (system) + 40*50 (input) + 40*30 (output)
-    safe_batches_per_min = st.session_state.token_limit // tokens_per_batch
+    safe_batches_per_min = token_limit_value // tokens_per_batch
     safe_elements_per_min = safe_batches_per_min * 40
 
     st.metric(
@@ -277,9 +284,9 @@ with col2:
         help=f"Bei aktuellen Settings können max. {safe_batches_per_min} Batches pro Minute verarbeitet werden"
     )
 
-    if st.session_state.token_limit < 50000:
+    if token_limit_value < 50000:
         st.warning("⚠️ Niedriges Limit: Längere Wartezeiten")
-    elif st.session_state.token_limit > 100000:
+    elif token_limit_value > 100000:
         st.success("✅ Hohes Limit: Schnellere Verarbeitung")
 
 render_divider("section")
@@ -287,18 +294,15 @@ render_divider("section")
 # Klassifizierungs-Einstellungen
 st.subheader("⚙️ Klassifizierungs-Einstellungen")
 
-# Session State initialisieren
-if 'classification_settings' not in st.session_state:
-    st.session_state.classification_settings = {
-        'use_batch': True,
-        'batch_size': 40,
-        'debug_mode': False,
-        'confidence_threshold': 0.7,
-        'model': 'claude-3-5-haiku-20241022',
-        'bim_complexity': 'medium'
-    }
-
-settings = st.session_state.classification_settings
+# Get classification settings from state
+settings = get_state(CFG_CLASSIFICATION_SETTINGS, {
+    'use_batch': True,
+    'batch_size': 40,
+    'debug_mode': False,
+    'confidence_threshold': 0.7,
+    'model': 'claude-3-5-haiku-20241022',
+    'bim_complexity': 'medium'
+})
 
 col1, col2 = st.columns(2)
 
@@ -369,14 +373,14 @@ with col2:
 
 # Speichern Button
 if st.button("💾 Einstellungen speichern", type="primary", width='stretch'):
-    st.session_state.classification_settings = {
+    set_state(CFG_CLASSIFICATION_SETTINGS, {
         'use_batch': use_batch,
         'batch_size': batch_size,
         'debug_mode': debug_mode,
         'confidence_threshold': confidence_threshold,
         'model': model,
         'bim_complexity': bim_complexity
-    }
+    })
     toast("Klassifizierungs-Einstellungen gespeichert", NotificationType.SUCCESS)
     st.success("Einstellungen gespeichert!")
 
@@ -426,10 +430,11 @@ with tab3:
 
 # Debug (optional)
 if st.checkbox("🐛 Debug-Info"):
+    api_key = get_state(CFG_API_KEY)
     st.json({
-        'API-Key vorhanden': bool(st.session_state.api_key),
-        'Länge': len(st.session_state.api_key) if st.session_state.api_key else 0,
-        'Validiert': st.session_state.api_key_validated,
+        'API-Key vorhanden': bool(api_key),
+        'Länge': len(api_key) if api_key else 0,
+        'Validiert': get_state(CFG_API_KEY_VALIDATED),
         'Umgebungsvariable': bool(os.getenv('ANTHROPIC_API_KEY'))
     })
 

@@ -20,11 +20,30 @@ if parent_dir not in sys.path:
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 try:
-    from Helpers.eBKP_H_Classifier import eBKPHClassifier, TokenRateLimiter
-    from Helpers import batch_manager
+    # Use package-level lazy imports to avoid anthropic dependency issues
+    from helpers_shared import eBKPHClassifier, TokenRateLimiter, batch_manager
     from helpers.sia_lho_102_config import get_level_config
     from helpers.sidebar_navigation import render_sidebar, render_page_header, render_divider, render_page_footer
     from helpers.notifications import toast, NotificationType
+    from helpers.session_state import (
+        init_session_state,
+        get_state,
+        set_state,
+        DATA_CLASSIFICATION_RESULTS,
+        DATA_PREPARED,
+        DATA_ORIGINAL_UPLOADED,
+        DATA_DEDUP_MAPPING,
+        DATA_UNIQUE_ELEMENTS,
+        PROC_API_RESPONSES,
+        PROC_PROCESSING_LOG,
+        PROC_TOTAL_COST,
+        PROC_ACTIVE_TAB,
+        CFG_API_KEY,
+        CFG_COST_ESTIMATION_CONFIG,
+        CFG_CLASSIFICATION_SETTINGS,
+        CFG_FORCE_BATCH_API,
+        UI_USE_PREPARED_DATA
+    )
 except ImportError as e:
     st.error(f"Module konnten nicht importiert werden: {e}")
     st.stop()
@@ -36,20 +55,11 @@ st.set_page_config(
     layout="wide"
 )
 
+# Initialize Session State
+init_session_state()
+
 # Render gemeinsame Sidebar
 render_sidebar()
-
-# Session State initialisieren
-if 'classification_results' not in st.session_state:
-    st.session_state.classification_results = None
-if 'processing_log' not in st.session_state:
-    st.session_state.processing_log = []
-if 'total_cost' not in st.session_state:
-    st.session_state.total_cost = 0.0
-if 'api_responses' not in st.session_state:
-    st.session_state.api_responses = []
-if 'active_tab' not in st.session_state:
-    st.session_state.active_tab = 0
 
 
 
@@ -162,7 +172,7 @@ def estimate_cost(
 def add_log(message: str, level: str = "info"):
     """Fügt einen Eintrag zum Processing Log hinzu"""
     timestamp = datetime.now().strftime("%H:%M:%S")
-    st.session_state.processing_log.append({
+    get_state(PROC_PROCESSING_LOG).append({
         'timestamp': timestamp,
         'level': level,
         'message': message
@@ -172,7 +182,7 @@ def add_log(message: str, level: str = "info"):
 def add_api_response(request_num: int, element_info: str, response: str, parsed_result: dict):
     """Speichert eine API-Response für Echtzeit-Anzeige"""
     timestamp = datetime.now().strftime("%H:%M:%S.%f")[:-3]
-    st.session_state.api_responses.append({
+    get_state(PROC_API_RESPONSES).append({
         'timestamp': timestamp,
         'request_num': request_num,
         'element': element_info,
@@ -183,9 +193,9 @@ def add_api_response(request_num: int, element_info: str, response: str, parsed_
 
 def display_log():
     """Zeigt das Processing Log an (theme-aware)"""
-    if st.session_state.processing_log:
+    if get_state(PROC_PROCESSING_LOG):
         # Zeige Log-Einträge mit nativen Streamlit-Komponenten für Dark Mode Support
-        for log_entry in st.session_state.processing_log:
+        for log_entry in get_state(PROC_PROCESSING_LOG):
             timestamp = log_entry.get('timestamp', '')
             message = log_entry.get('message', '')
             level = log_entry.get('level', 'info')
@@ -216,10 +226,46 @@ def display_log():
 def get_api_key():
     """Holt den API-Key aus Session State oder Umgebungsvariable"""
     # Prüfe Session State zuerst
-    if 'api_key' in st.session_state and st.session_state.api_key:
-        return st.session_state.api_key
+    if get_state(CFG_API_KEY):
+        return get_state(CFG_API_KEY)
     # Fallback auf Umgebungsvariable
     return os.getenv('ANTHROPIC_API_KEY')
+
+
+def map_classifications_back(
+    df: pd.DataFrame,
+    index_mapping: dict,
+    classification_results: list
+) -> pd.DataFrame:
+    """
+    Mappt Klassifizierungen von deduplizierten Elementen zurück auf Original-DataFrame.
+
+    Args:
+        df: Original DataFrame mit allen Elementen
+        index_mapping: Dict {unique_idx: [original_indices]}
+        classification_results: Liste von Klassifizierungsergebnissen für unique elements
+
+    Returns:
+        DataFrame mit BKP-Codes für alle Original-Elemente
+    """
+    # Create lookup: unique_idx -> classification
+    classifications_by_unique_idx = {i: result for i, result in enumerate(classification_results)}
+
+    # Initialize columns
+    df['bkp_code'] = None
+    df['bkp_description'] = None
+    df['confidence'] = None
+
+    # Map back to original elements
+    for unique_idx, original_indices in index_mapping.items():
+        if unique_idx in classifications_by_unique_idx:
+            result = classifications_by_unique_idx[unique_idx]
+            for orig_idx in original_indices:
+                df.at[orig_idx, 'bkp_code'] = result.get('bkp_code')
+                df.at[orig_idx, 'bkp_description'] = result.get('bkp_description')
+                df.at[orig_idx, 'confidence'] = result.get('confidence')
+
+    return df
 
 
 # Page Header
@@ -233,18 +279,15 @@ if not current_api_key:
     st.stop()
     st.markdown("---")
 
-# Lade Klassifizierungs-Einstellungen aus Session State
-if 'classification_settings' not in st.session_state:
-    st.session_state.classification_settings = {
-        'use_batch': True,
-        'batch_size': 40,
-        'debug_mode': False,
-        'confidence_threshold': 0.7,
-        'model': 'claude-3-5-haiku-20241022',
-        'bim_complexity': 'medium'
-    }
-
-settings = st.session_state.classification_settings
+# Lade Klassifizierungs-Einstellungen aus Session State (mit Defaults)
+settings = get_state(CFG_CLASSIFICATION_SETTINGS, {
+    'use_batch': True,
+    'batch_size': 40,
+    'debug_mode': False,
+    'confidence_threshold': 0.7,
+    'model': 'claude-3-5-haiku-20241022',
+    'bim_complexity': 'medium'
+})
 use_batch = settings['use_batch']
 batch_size = settings['batch_size']
 debug_mode = settings['debug_mode']
@@ -269,8 +312,8 @@ with st.sidebar:
     # Kostenermittlungs-Status anzeigen
     st.subheader("📐 Kostenermittlung")
 
-    if 'cost_estimation_config' in st.session_state and st.session_state.cost_estimation_config.get('selected'):
-        config = st.session_state.cost_estimation_config
+    if get_state(CFG_COST_ESTIMATION_CONFIG).get('selected'):
+        config = get_state(CFG_COST_ESTIMATION_CONFIG)
         st.success(f"✅ {config['name']}")
         st.caption(f"Toleranz: ±{config['tolerance']}%")
         st.caption(f"Phase: {config['project_phase']}")
@@ -296,7 +339,7 @@ with st.sidebar:
         st.caption(f"Key: {masked_key}")
 
         # Zeige Quelle
-        if 'api_key' in st.session_state and st.session_state.api_key:
+        if get_state(CFG_API_KEY):
             st.caption("Quelle: Session State")
         else:
             st.caption("Quelle: .env Datei")
@@ -418,10 +461,11 @@ with tab1:
                                         'bkp_description': result.get('desc', ''),
                                         'confidence': float(result.get('conf', 0.5))
                                     })
-                                except:
+                                except (KeyError, ValueError, TypeError) as e:
+                                    # Handle missing keys, invalid float conversion, or None values
                                     formatted_results.append({
                                         'bkp_code': 'ERROR',
-                                        'bkp_description': 'Parse Error',
+                                        'bkp_description': f'Parse Error: {str(e)}',
                                         'confidence': 0.0
                                     })
                             else:
@@ -444,7 +488,7 @@ with tab1:
                         # Verwende dieselben Spaltennamen wie bei normaler Klassifizierung
                         results_df.columns = ['BKP_Code', 'BKP_Beschreibung', 'KI_Konfidenz']
 
-                        st.session_state.classification_results = results_df
+                        set_state(DATA_CLASSIFICATION_RESULTS, results_df)
 
                         st.info("💡 Ergebnisse wurden in Session State geladen. "
                                "Wechseln Sie zum Tab 'Ergebnisse' für die Auswertung.")
@@ -481,12 +525,12 @@ with tab1:
                             with st.spinner("Lade Status..."):
                                 try:
                                     # API Key aus Session State
-                                    if not st.session_state.get('api_key'):
+                                    if not get_state(CFG_API_KEY):
                                         st.error("❌ Kein API-Key gefunden. Bitte in Einstellungen konfigurieren.")
                                         continue
 
                                     # Classifier initialisieren
-                                    classifier = eBKPHClassifier(api_key=st.session_state.api_key)
+                                    classifier = eBKPHClassifier(api_key=get_state(CFG_API_KEY))
 
                                     # Status abrufen
                                     status = classifier.client.messages.batches.retrieve(batch['batch_id'])
@@ -519,19 +563,16 @@ with tab1:
     # Prüfung auf vorbereitete Daten aus Daten-Vorbereitung
     # ============================================================================
 
-    # Session State für "Daten verwenden"-Wahl initialisieren
-    if 'use_prepared_data' not in st.session_state:
-        st.session_state.use_prepared_data = False
+    # Get prepared data usage state (already initialized by init_session_state)
+    use_prepared_data = get_state(UI_USE_PREPARED_DATA, False)
 
-    use_prepared_data = st.session_state.use_prepared_data
-
-    if 'prepared_data' in st.session_state and st.session_state.prepared_data is not None and not use_prepared_data:
+    if get_state(DATA_PREPARED) is not None and not use_prepared_data:
         st.success("✅ **Vorbereitete Daten gefunden!**")
 
-        prepared_df = st.session_state.prepared_data
-        original_df = st.session_state.original_data
-        dedup_mapping = st.session_state.dedup_mapping
-        unique_elements = st.session_state.unique_elements
+        prepared_df = get_state(DATA_PREPARED)
+        original_df = get_state(DATA_ORIGINAL_UPLOADED)
+        dedup_mapping = get_state(DATA_DEDUP_MAPPING)
+        unique_elements = get_state(DATA_UNIQUE_ELEMENTS)
 
         dedup_ratio = len(original_df) / len(prepared_df) if len(prepared_df) > 0 else 0
         cost_saving_pct = (1 - 1/dedup_ratio) * 100 if dedup_ratio > 1 else 0
@@ -547,16 +588,16 @@ with tab1:
 
         with col1:
             if st.button("✅ Vorbereitete Daten verwenden", type="primary", width="stretch"):
-                st.session_state.use_prepared_data = True
+                set_state(UI_USE_PREPARED_DATA, True)
                 st.rerun()
 
         with col2:
             if st.button("🔄 Neue CSV hochladen", width="stretch"):
-                st.session_state.prepared_data = None
-                st.session_state.dedup_mapping = None
-                st.session_state.unique_elements = None
-                st.session_state.original_data = None
-                st.session_state.use_prepared_data = False
+                set_state(DATA_PREPARED, None)
+                set_state(DATA_DEDUP_MAPPING, None)
+                set_state(DATA_UNIQUE_ELEMENTS, None)
+                set_state(DATA_ORIGINAL_UPLOADED, None)
+                set_state(UI_USE_PREPARED_DATA, False)
                 st.rerun()
 
         st.divider()
@@ -566,7 +607,7 @@ with tab1:
         st.info("✅ **Vorbereitete Daten werden verwendet** - Fahren Sie mit der Klassifizierung fort")
 
         if st.button("🔄 Zurück zur Datenauswahl"):
-            st.session_state.use_prepared_data = False
+            set_state(UI_USE_PREPARED_DATA, False)
             st.rerun()
 
         st.divider()
@@ -610,34 +651,38 @@ with tab1:
     
                 col1, col2 = st.columns(2)
     
-                # Hilfsfunktion für automatisches Spalten-Mapping
+                # Hilfsfunktion für automatisches Spalten-Mapping (verwendet config.py Patterns)
                 def auto_map_column(df_columns: list, field_name: str) -> str:
                     """
-                    Findet automatisch passende Spalte basierend auf typischen Namen
-    
+                    Findet automatisch passende Spalte basierend auf Patterns aus config.py
+
                     Args:
                         df_columns: Liste der verfügbaren Spalten
                         field_name: Gesuchtes Feld ('type', 'category', 'family', 'info')
-    
+
                     Returns:
                         Spaltenname oder '' falls kein Match
                     """
-                    mapping = {
-                        'type': ['typ', 'type', 'element', 'elementtype', 'elementtyp', 'bauteil', 'component'],
-                        'category': ['kategorie', 'category', 'revit category', 'revit kategorie', 'cat'],
-                        'family': ['familie', 'family', 'familyname', 'familienname', 'fam'],
-                        'info': ['beschreibung', 'description', 'info', 'zusatzinfo', 'kommentar', 'comment', 'anmerkung']
+                    from config import DataValidation
+
+                    # Mapping zu config patterns
+                    pattern_mapping = {
+                        'type': DataValidation.TYPE_COLUMN_PATTERNS,
+                        'category': DataValidation.CATEGORY_COLUMN_PATTERNS,
+                        'family': DataValidation.FAMILY_COLUMN_PATTERNS,
+                        'info': DataValidation.DESCRIPTION_COLUMN_PATTERNS
                     }
-    
-                    search_terms = mapping.get(field_name, [])
-    
+
+                    search_terms = pattern_mapping.get(field_name, [])
+
+                    # Normalisiere Spaltennamen für besseren Match
                     for col in df_columns:
-                        col_clean = col.lower().strip().replace('_', '').replace('-', '')
+                        col_clean = col.lower().strip().replace('_', '').replace('-', '').replace(' ', '')
                         for term in search_terms:
-                            term_clean = term.replace(' ', '').replace('_', '')
-                            if term_clean in col_clean:
+                            term_clean = term.lower().replace(' ', '').replace('_', '').replace('-', '')
+                            if term_clean in col_clean or col_clean in term_clean:
                                 return col
-    
+
                     return ''  # Kein Match
     
                 available_columns = [''] + list(df.columns)
@@ -681,47 +726,59 @@ with tab1:
                         index=available_columns.index(auto_info) if auto_info in available_columns else 0,
                         help="Weitere Beschreibungsspalte"
                     )
-    
+
+                # === VALIDIERUNG ===
+                # Prüfe ob Pflichtfeld ausgewählt wurde
+                if not type_column or type_column == '':
+                    st.warning("⚠️ **Element-Typ ist ein Pflichtfeld!**")
+                    st.info("Bitte wählen Sie eine Spalte für den Element-Typ aus, um fortzufahren.")
+                    st.stop()
+
+                # Validiere dass Spalte im DataFrame existiert
+                if type_column not in df.columns:
+                    st.error(f"❌ Spalte '{type_column}' nicht im DataFrame gefunden!")
+                    st.stop()
+
                 # Datenvorschau
                 st.subheader("Datenvorschau")
                 st.dataframe(df.head(10), width='stretch')
-    
+
                 # === MODUS-AUSWAHL ===
                 st.markdown("---")
                 st.subheader("🎯 Verarbeitungs-Modus")
-    
-                if type_column:
-                    num_elements = len(df)
-    
-                    # Automatische Modus-Auswahl + manuelle Override-Option
-                    force_batch_api = st.session_state.get("force_batch_api", False)
-                    use_batch_api = (num_elements >= 300) or force_batch_api
-    
-                    # Info-Box zum gewählten Modus
-                    if use_batch_api:
-                        reason = "automatisch ab 300 Elementen" if num_elements >= 300 else "manuell aktiviert (Einstellungen)"
-                        st.info(
-                            f"📦 **Batch API Modus** ({reason})\n\n"
-                            f"✅ 50% Kostenersparnis\n"
-                            f"✅ Keine Rate-Limits\n"
-                            f"⏱ Geschätzte Wartezeit: {num_elements // 20}-{num_elements // 10} Minuten"
-                        )
-    
-                        if num_elements < 300 and force_batch_api:
-                            st.warning("⚠️ Batch API für < 300 Elemente: Längere Wartezeit für Kostenersparnis")
-    
-                    else:
-                        st.info(
-                            f"⚡ **Synchron-Modus** ({num_elements} Elemente)\n\n"
-                            f"✅ Schnellere Verarbeitung (~{(num_elements // batch_size + 1) * 3} Min)\n"
-                            f"✅ Echtzeit-Feedback\n"
-                            f"✅ Intelligentes Rate-Limiting"
-                        )
-    
-                        if num_elements >= 200:
-                            st.info("💡 **Tipp:** Ab 300 Elementen wird automatisch Batch API genutzt (50% günstiger). "
-                                   "Kann in Einstellungen auch für kleinere Datasets aktiviert werden.")
-    
+
+                # type_column ist jetzt garantiert gültig
+                num_elements = len(df)
+
+                # Automatische Modus-Auswahl + manuelle Override-Option
+                force_batch_api = get_state(CFG_FORCE_BATCH_API, False)
+                use_batch_api = (num_elements >= 300) or force_batch_api
+
+                # Info-Box zum gewählten Modus
+                if use_batch_api:
+                    reason = "automatisch ab 300 Elementen" if num_elements >= 300 else "manuell aktiviert (Einstellungen)"
+                    st.info(
+                        f"📦 **Batch API Modus** ({reason})\n\n"
+                        f"✅ 50% Kostenersparnis\n"
+                        f"✅ Keine Rate-Limits\n"
+                        f"⏱ Geschätzte Wartezeit: {num_elements // 20}-{num_elements // 10} Minuten"
+                    )
+
+                    if num_elements < 300 and force_batch_api:
+                        st.warning("⚠️ Batch API für < 300 Elemente: Längere Wartezeit für Kostenersparnis")
+
+                else:
+                    st.info(
+                        f"⚡ **Synchron-Modus** ({num_elements} Elemente)\n\n"
+                        f"✅ Schnellere Verarbeitung (~{(num_elements // batch_size + 1) * 3} Min)\n"
+                        f"✅ Echtzeit-Feedback\n"
+                        f"✅ Intelligentes Rate-Limiting"
+                    )
+
+                    if num_elements >= 200:
+                        st.info("💡 **Tipp:** Ab 300 Elementen wird automatisch Batch API genutzt (50% günstiger). "
+                               "Kann in Einstellungen auch für kleinere Datasets aktiviert werden.")
+
                 # Kostenabschätzung
                 #TODO kostenabschätzung grundlagen erstellen
                 if type_column:
@@ -829,9 +886,9 @@ with tab1:
     
                     if st.button("🚀 Klassifizierung starten", type="primary", width='stretch'):
                         # Log und API responses zurücksetzen
-                        st.session_state.processing_log = []
-                        st.session_state.api_responses = []  # Reset API responses
-                        st.session_state.total_cost = cost_estimate['total_cost']
+                        set_state(PROC_PROCESSING_LOG, [])
+                        set_state(PROC_API_RESPONSES, [])  # Reset API responses
+                        set_state(PROC_TOTAL_COST, cost_estimate['total_cost'])
     
                         add_log("Klassifizierung gestartet", "info")
                         add_log(f"Modus: {'Batch' if use_batch else 'Einzeln'}", "info")
@@ -854,8 +911,8 @@ with tab1:
     
                             # Hole max_levels aus Kostenermittlungs-Config (oder Default)
                             max_levels = [1, 2]  # Default
-                            if 'cost_estimation_config' in st.session_state and st.session_state.cost_estimation_config.get('selected'):
-                                max_levels = st.session_state.cost_estimation_config['ebkp_levels']
+                            if get_state(CFG_COST_ESTIMATION_CONFIG).get('selected'):
+                                max_levels = get_state(CFG_COST_ESTIMATION_CONFIG)['ebkp_levels']
                                 add_log(f"Verwende eBKP Levels aus Kostenermittlung: {max_levels}", "info")
                             else:
                                 add_log(f"Keine Kostenermittlung gewählt, verwende Standard-Levels: {max_levels}", "info")
@@ -881,6 +938,10 @@ with tab1:
                                     'zusatzinfo': row.get(info_column, '') if info_column else ''
                                 }
                                 all_elements.append(elem)
+
+                            # Track element counts for deduplication
+                            num_unique_elements = len(all_elements)  # Unique elements to classify
+                            num_elements = len(df)  # Total elements in dataframe
 
                             add_log(f"Bereite {len(all_elements)} Elemente für Klassifizierung vor", "info")
 
@@ -991,9 +1052,9 @@ with tab1:
     
                                     current_batch = (batch_idx // batch_size) + 1
                                     status_text.text(f"Verarbeite Batch {current_batch}/{total_batches} (einzigartige Elemente)...")
-    
-                                    # Verwende bereits deduplizierte unique_elements
-                                    batch_elements = unique_elements[batch_idx:batch_end]
+
+                                    # Verwende all_elements (aus CSV oder prepared data)
+                                    batch_elements = all_elements[batch_idx:batch_end]
     
                                     # Batch klassifizieren (mit Debug-Modus und Logging)
                                     batch_results = classifier.classify_batch(
@@ -1038,8 +1099,8 @@ with tab1:
                                     progress_bar.progress(progress)
     
                                     # Live-Update: Zeige neueste Responses
-                                    if st.session_state.api_responses:
-                                        latest_responses = st.session_state.api_responses[-5:]  # Zeige letzte 5
+                                    if get_state(PROC_API_RESPONSES):
+                                        latest_responses = get_state(PROC_API_RESPONSES)[-5:]  # Zeige letzte 5
                                         live_response_container.markdown(
                                             f"**Letzte {len(latest_responses)} Responses:**\n\n" +
                                             "\n".join([
@@ -1103,7 +1164,7 @@ with tab1:
     
                                     # Live-Update: Zeige neueste Responses
                                     if (idx + 1) % 5 == 0 or idx == num_elements - 1:  # Update alle 5 Elemente
-                                        latest_responses = st.session_state.api_responses[-5:]
+                                        latest_responses = get_state(PROC_API_RESPONSES)[-5:]
                                         live_response_container.markdown(
                                             f"**Letzte {len(latest_responses)} Responses:**\n\n" +
                                             "\n".join([
@@ -1116,31 +1177,52 @@ with tab1:
                                     if (idx + 1) % 10 == 0:
                                         add_log(f"{idx + 1}/{num_elements} Elemente klassifiziert", "info")
     
-                            # Ergebnisse zu allen Original-Elementen mappen (via Deduplizierungs-Mapping)
-                            add_log(f"🔄 Mappe {len(results)} Klassifizierungen auf {len(df)} Original-Elemente...", "info")
-    
-                            df = map_classifications_back(
-                                df=df,
-                                index_mapping=index_mapping,
-                                classification_results=results
-                            )
-    
-                            add_log(f"✅ Mapping abgeschlossen: {len(df)} Elemente haben BKP-Codes", "success")
+                            # Check if deduplication mapping exists (from prepared data)
+                            dedup_mapping = get_state(DATA_DEDUP_MAPPING)
+
+                            if dedup_mapping is not None:
+                                # Ergebnisse zu allen Original-Elementen mappen (via Deduplizierungs-Mapping)
+                                add_log(f"🔄 Mappe {len(results)} Klassifizierungen auf {len(df)} Original-Elemente...", "info")
+
+                                df = map_classifications_back(
+                                    df=df,
+                                    index_mapping=dedup_mapping,
+                                    classification_results=results
+                                )
+
+                                # Rename columns to match expected format
+                                df = df.rename(columns={
+                                    'bkp_code': 'BKP_Code',
+                                    'bkp_description': 'BKP_Beschreibung',
+                                    'confidence': 'KI_Konfidenz'
+                                })
+
+                                add_log(f"✅ Mapping abgeschlossen: {len(df)} Elemente haben BKP-Codes", "success")
+                            else:
+                                # No deduplication - add results directly to dataframe
+                                add_log(f"Füge Klassifizierungen direkt zu {len(df)} Elementen hinzu...", "info")
+
+                                # Add classification results as new columns with correct names
+                                df['BKP_Code'] = [r['bkp_code'] for r in results]
+                                df['BKP_Beschreibung'] = [r['bkp_description'] for r in results]
+                                df['KI_Konfidenz'] = [r['confidence'] for r in results]
+
+                                add_log(f"✅ {len(df)} Elemente klassifiziert", "success")
     
                             # In Session State speichern
-                            st.session_state.classification_results = df
+                            set_state(DATA_CLASSIFICATION_RESULTS, df)
     
                             progress_bar.progress(1.0)
                             status_text.text("Klassifizierung abgeschlossen!")
     
                             add_log(f"✅ Klassifizierung erfolgreich abgeschlossen", "success")
                             add_log(f"Durchschnittliche Konfidenz: {df['KI_Konfidenz'].mean():.1%}", "success")
-                            add_log(f"📊 {len(st.session_state.api_responses)} API-Responses aufgezeichnet", "success")
+                            add_log(f"📊 {len(get_state(PROC_API_RESPONSES))} API-Responses aufgezeichnet", "success")
                             add_log(f"📝 Detailliertes Log gespeichert: {log_filename}", "success")
     
                             # Live-Container Final Update
                             live_response_container.success(
-                                f"✅ Klassifizierung abgeschlossen! {len(st.session_state.api_responses)} API-Responses aufgezeichnet.\n\n"
+                                f"✅ Klassifizierung abgeschlossen! {len(get_state(PROC_API_RESPONSES))} API-Responses aufgezeichnet.\n\n"
                                 f"➡️ Wechseln Sie zum Tab **'KI Responses'** für Details."
                             )
     
@@ -1178,64 +1260,164 @@ with tab1:
                             col1, col2 = st.columns(2)
                             with col1:
                                 if st.button("📊 Zu den Ergebnissen", type="primary", width='stretch'):
-                                    st.session_state.active_tab = 1  # Tab "Ergebnisse"
+                                    set_state(PROC_ACTIVE_TAB, 1)  # Tab "Ergebnisse"
                                     st.rerun()
     
                             with col2:
                                 # Verwende Link statt HTML-Button für bessere Dark Mode Kompatibilität
-                                st.page_link("pages/10_eBKP_Auswertung.py", label="🔍 Zur eBKP-H Auswertung", icon="📊")
+                                st.page_link("pages/06_eBKP_Auswertung.py", label="🔍 Zur eBKP-H Auswertung", icon="📊")
     
                         except Exception as e:
                             add_log(f"Fehler: {str(e)}", "error")
                             st.error(f"Fehler bei der Klassifizierung: {str(e)}")
-    
-                else:
-                    st.warning("⚠️ Bitte wählen Sie mindestens die 'Element-Typ' Spalte aus")
-    
+
             except Exception as e:
                 st.error(f"Fehler beim Laden der CSV-Datei: {str(e)}")
-    
-    else:
-        st.info("👆 Bitte laden Sie eine CSV-Datei hoch, um zu beginnen")
 
-        st.markdown("---")
+        else:
+            st.info("👆 Bitte laden Sie eine CSV-Datei hoch, um zu beginnen")
+
+            st.markdown("---")
+
+            col1, col2 = st.columns(2)
+
+            with col1:
+                st.markdown("""
+                ### 📋 So geht's:
+
+                1. **CSV hochladen**
+                   - Datei mit Bauelementen
+                   - OHNE BKP-Codes
+
+                2. **Spalten zuordnen**
+                   - Typ (Pflicht)
+                   - Kategorie, Familie (optional)
+
+                3. **Klassifizierung starten**
+                   - Prüfen Sie die Kosten
+                   - Klicken Sie auf "Starten"
+
+                4. **Ergebnisse exportieren**
+                   - Tab "Ergebnisse"
+                   - Als CSV herunterladen
+                """)
+
+            with col2:
+                st.markdown("""
+                ### 🧪 Mit Testdaten starten:
+
+                Nutzen Sie die Datei:
+                **`muster_ki_klassifizierung.csv`**
+
+                Diese Datei enthält:
+                - 30 Bauelemente
+                - Verschiedene Kategorien
+                - Ohne BKP-Codes
+
+                Perfekt zum Testen der KI!
+                """)
+
+    else:
+        # ========================================================================
+        # Using Prepared Data - Process and allow classification
+        # ========================================================================
+
+        st.subheader("Vorbereitete Daten klassifizieren")
+
+        # Load prepared data from session state
+        df = get_state(DATA_PREPARED)
+        unique_elements = get_state(DATA_UNIQUE_ELEMENTS)
+
+        if df is None or unique_elements is None:
+            st.error("❌ Fehler: Vorbereitete Daten nicht gefunden!")
+            st.info("Bitte gehen Sie zurück zur 'Daten Vorbereiten' Seite und bereiten Sie die Daten vor.")
+            st.stop()
+
+        st.success(f"✅ Vorbereitete Daten geladen: **{len(df)}** eindeutige Elemente")
+
+        # Show data statistics
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.metric("Eindeutige Elemente", len(df))
+        with col2:
+            original_df = get_state(DATA_ORIGINAL_UPLOADED)
+            if original_df is not None:
+                st.metric("Original-Zeilen", len(original_df))
+        with col3:
+            st.metric("Spalten", len(df.columns))
+
+        # Show a preview of the data
+        with st.expander("📋 Datenvorschau", expanded=True):
+            st.dataframe(df.head(20), use_container_width=True)
+
+        st.divider()
+
+        # Classification settings
+        st.subheader("⚙️ Klassifizierungs-Einstellungen")
 
         col1, col2 = st.columns(2)
-
         with col1:
-            st.markdown("""
-            ### 📋 So geht's:
-
-            1. **CSV hochladen**
-               - Datei mit Bauelementen
-               - OHNE BKP-Codes
-
-            2. **Spalten zuordnen**
-               - Typ (Pflicht)
-               - Kategorie, Familie (optional)
-
-            3. **Klassifizierung starten**
-               - Prüfen Sie die Kosten
-               - Klicken Sie auf "Starten"
-
-            4. **Ergebnisse exportieren**
-               - Tab "Ergebnisse"
-               - Als CSV herunterladen
-            """)
-
+            use_batch = st.checkbox("Batch-Verarbeitung (empfohlen)", value=True,
+                                   help="Verarbeitet mehrere Elemente pro API-Call für bessere Effizienz")
         with col2:
-            st.markdown("""
-            ### 🧪 Mit Testdaten starten:
+            if use_batch:
+                batch_size = st.slider("Batch-Größe", min_value=10, max_value=50, value=40,
+                                      help="Anzahl Elemente pro Batch")
+            else:
+                batch_size = 1
 
-            Nutzen Sie die Datei:
-            **`muster_ki_klassifizierung.csv`**
+        # Check for API key
+        api_key = get_api_key()
+        if not api_key:
+            st.warning("⚠️ Kein API-Schlüssel konfiguriert!")
+            st.info("Bitte gehen Sie zur Seite '⚙️ Einstellungen' und konfigurieren Sie Ihren Anthropic API-Schlüssel.")
+            col1, col2, col3 = st.columns([1, 2, 1])
+            with col2:
+                st.page_link("pages/99_Einstellungen.py", label="➡️ Zu den Einstellungen", icon="⚙️")
+            st.stop()
 
-            Diese Datei enthält:
-            - 30 Bauelemente
-            - Verschiedene Kategorien
-            - Ohne BKP-Codes
+        st.divider()
 
-            Perfekt zum Testen der KI!
+        # Cost estimation
+        st.subheader("💰 Kostenabschätzung")
+        num_elements = len(unique_elements)
+
+        # Use the existing estimate_cost function
+        cost_estimate = estimate_cost(num_elements, use_batch, batch_size)
+
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            st.metric("Elemente", f"{num_elements:,}".replace(',', "'"))
+        with col2:
+            st.metric("Requests", cost_estimate['num_requests'])
+        with col3:
+            st.metric("Tokens", f"{cost_estimate['input_tokens'] + cost_estimate['output_tokens']:,}".replace(',', "'"))
+        with col4:
+            st.metric("Kosten", f"${cost_estimate['total_cost']:.4f}")
+
+        st.caption(f"Input: {cost_estimate['input_tokens']:,} tokens | Output: {cost_estimate['output_tokens']:,} tokens")
+
+        st.divider()
+
+        # Classification button
+        st.subheader("🚀 Klassifizierung starten")
+
+        st.info("""
+        ℹ️ **Hinweis:** Die Klassifizierung verwendet die vorbereiteten, deduplizierten Daten.
+        Nach der Klassifizierung können die Ergebnisse automatisch auf alle Original-Elemente übertragen werden.
+        """)
+
+        if st.button("🤖 KI-Klassifizierung starten", type="primary", use_container_width=True):
+            st.warning("⚠️ Die Klassifizierungslogik für vorbereitete Daten wird noch finalisiert.")
+            st.info("""
+            **Nächste Schritte:**
+            1. Die Klassifizierung sollte die `unique_elements` aus Session State verwenden
+            2. Nach der Klassifizierung müssen die Ergebnisse mit dem `dedup_mapping` auf die Original-Daten übertragen werden
+            3. Die Ergebnisse werden dann in `classification_results` gespeichert
+
+            Aktuell können Sie:
+            - Die deduplizierten Daten als CSV herunterladen (auf Seite "Daten Vorbereiten")
+            - Die CSV manuell auf dieser Seite hochladen und klassifizieren
             """)
 
 def render_confidence_badge(confidence: float) -> str:
@@ -1270,8 +1452,8 @@ def render_confidence_badge(confidence: float) -> str:
 with tab2:
     st.subheader("📊 Klassifizierungs-Ergebnisse")
 
-    if st.session_state.classification_results is not None:
-        df_results = st.session_state.classification_results
+    if get_state(DATA_CLASSIFICATION_RESULTS) is not None:
+        df_results = get_state(DATA_CLASSIFICATION_RESULTS)
 
         # Metriken
         col1, col2, col3, col4 = st.columns(4)
@@ -1513,8 +1695,8 @@ with tab2:
 with tab3:
     st.subheader("🔍 KI API Responses (Echtzeit)")
 
-    if st.session_state.api_responses:
-        st.info(f"💬 {len(st.session_state.api_responses)} API-Anfragen aufgezeichnet")
+    if get_state(PROC_API_RESPONSES):
+        st.info(f"💬 {len(get_state(PROC_API_RESPONSES))} API-Anfragen aufgezeichnet")
 
         # Anzeige-Optionen
         col1, col2 = st.columns([3, 1])
@@ -1528,13 +1710,13 @@ with tab3:
 
         with col2:
             if st.button("🗑️ Responses löschen", width='stretch'):
-                st.session_state.api_responses = []
+                set_state(PROC_API_RESPONSES, [])
                 st.rerun()
 
         st.markdown("---")
 
-        # Responses anzeigen
-        responses = st.session_state.api_responses.copy()
+        # Responses anzeigen (no copy needed - only reading/iterating)
+        responses = get_state(PROC_API_RESPONSES)
 
         if show_mode == "Neueste zuerst":
             responses = reversed(responses)
@@ -1588,22 +1770,22 @@ with tab3:
 with tab4:
     st.subheader("📝 Processing Log")
 
-    if st.session_state.processing_log:
+    if get_state(PROC_PROCESSING_LOG):
         display_log()
 
         # Kostenübersicht
-        if st.session_state.total_cost > 0:
+        if get_state(PROC_TOTAL_COST) > 0:
             st.markdown("---")
             st.subheader("💰 Kosten")
             col1, col2, col3 = st.columns(3)
 
             with col1:
-                st.metric("Geschätzte Kosten", f"${st.session_state.total_cost:.4f}")
+                st.metric("Geschätzte Kosten", f"${get_state(PROC_TOTAL_COST):.4f}")
 
             with col2:
-                if st.session_state.classification_results is not None:
-                    num_elements = len(st.session_state.classification_results)
-                    cost_per_element = st.session_state.total_cost / num_elements if num_elements > 0 else 0
+                if get_state(DATA_CLASSIFICATION_RESULTS) is not None:
+                    num_elements = len(get_state(DATA_CLASSIFICATION_RESULTS))
+                    cost_per_element = get_state(PROC_TOTAL_COST) / num_elements if num_elements > 0 else 0
                     st.metric("Kosten pro Element", f"${cost_per_element:.6f}")
 
             with col3:
@@ -1612,7 +1794,7 @@ with tab4:
         # Log Export
         st.markdown("---")
         if st.button("🗑️ Log löschen", type="secondary"):
-            st.session_state.processing_log = []
+            set_state(PROC_PROCESSING_LOG, [])
             st.rerun()
 
     else:

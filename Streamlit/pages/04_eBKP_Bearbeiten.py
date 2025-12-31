@@ -14,9 +14,17 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from helpers.sidebar_navigation import render_sidebar, render_page_header, render_divider, render_page_footer
 from helpers.notifications import toast, NotificationType
+from helpers.session_state import (
+    init_session_state,
+    get_state,
+    set_state,
+    has_classification_results,
+    DATA_CLASSIFICATION_RESULTS,
+    CFG_COST_ESTIMATION_CONFIG
+)
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from Helpers.ebkp_reference import (
+from helpers_shared.ebkp_reference import (
     load_ebkp_catalog,
     filter_by_levels,
     get_code_description,
@@ -30,6 +38,9 @@ st.set_page_config(
     layout="wide"
 )
 
+# Initialize Session State
+init_session_state()
+
 # Render Sidebar
 render_sidebar()
 
@@ -37,8 +48,8 @@ render_sidebar()
 ebkp_catalog = load_ebkp_catalog()
 
 # Filtere nach max_levels aus Kostenermittlung (falls vorhanden)
-if 'cost_estimation_config' in st.session_state and st.session_state.cost_estimation_config.get('selected'):
-    config = st.session_state.cost_estimation_config
+config = get_state(CFG_COST_ESTIMATION_CONFIG)
+if config and config.get('selected'):
     max_levels = config.get('ebkp_levels', [1, 2, 3, 4, 5])
     ebkp_catalog_filtered = filter_by_levels(ebkp_catalog, max_levels)
 else:
@@ -49,14 +60,14 @@ else:
 render_page_header("✏️ BKP-Codes Bearbeiten", "Überprüfen und korrigieren Sie die KI-Klassifizierung vor der Auswertung")
 
 # Zeige Kostenermittlungsart (falls ausgewählt)
-if 'cost_estimation_config' in st.session_state and st.session_state.cost_estimation_config.get('selected'):
-    config = st.session_state.cost_estimation_config
+config = get_state(CFG_COST_ESTIMATION_CONFIG)
+if config and config.get('selected'):
     st.caption(f'<p style="text-align: center;">📐 Bearbeitung für: {config["name"]} (±{config["tolerance"]}%) | eBKP-Tiefe: {config["ebkp_depth"]}</p>', unsafe_allow_html=True)
 
 st.markdown("---")
 
 # Prüfe ob Daten vorhanden sind
-if 'classification_results' not in st.session_state or st.session_state.classification_results is None:
+if not has_classification_results():
     st.warning("⚠️ Keine klassifizierten Daten vorhanden!")
     st.info("""
     **So geht's:**
@@ -68,7 +79,7 @@ if 'classification_results' not in st.session_state or st.session_state.classifi
     st.stop()
 
 # Daten laden
-df = st.session_state.classification_results.copy()
+df = get_state(DATA_CLASSIFICATION_RESULTS).copy()
 
 # Statistiken
 st.subheader("📊 Übersicht")
@@ -150,8 +161,8 @@ with st.sidebar:
         st.markdown("---")
         st.caption(f"📊 Gesamt: {len(ebkp_catalog)} Codes im Katalog")
 
-# Daten filtern
-filtered_df = df.copy()
+# Daten filtern (no copy needed - filtering creates new DataFrames)
+filtered_df = df
 
 # Filter anwenden
 if conf_filter == "Nur niedrige Konfidenz":
@@ -352,7 +363,7 @@ with col2:
                 df.loc[idx, 'Bearbeitet'] = edited_df.loc[idx, 'Bearbeitet']
 
         # Speichere zurück in Session State
-        st.session_state.classification_results = df
+        set_state(DATA_CLASSIFICATION_RESULTS, df)
 
         st.success("✅ Änderungen gespeichert!")
         toast("Änderungen gespeichert", NotificationType.SUCCESS)
@@ -384,7 +395,7 @@ with col1:
 
 with col2:
     # Verwende Streamlit page_link für Dark Mode Kompatibilität
-    st.page_link("pages/1_eBKP_Auswertung.py", label="📊 Zur eBKP-H Auswertung", icon="📊")
+    st.page_link("pages/06_eBKP_Auswertung.py", label="📊 Zur eBKP-H Auswertung", icon="📊")
 
 # Footer-Statistik
 st.markdown("---")

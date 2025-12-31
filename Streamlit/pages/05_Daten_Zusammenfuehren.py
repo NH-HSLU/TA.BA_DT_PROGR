@@ -16,6 +16,12 @@ if parent_dir not in sys.path:
 try:
     from helpers.sidebar_navigation import render_sidebar, render_page_header, render_divider, render_page_footer
     from helpers.notifications import toast, NotificationType
+    from helpers.session_state import (
+        init_session_state,
+        set_state,
+        has_classification_results,
+        DATA_CLASSIFICATION_RESULTS
+    )
 except ImportError as e:
     st.error(f"Module konnten nicht importiert werden: {e}")
     st.stop()
@@ -26,6 +32,9 @@ st.set_page_config(
     page_icon="🔗",
     layout="wide"
 )
+
+# Initialize Session State
+init_session_state()
 
 # Render gemeinsame Sidebar
 render_sidebar()
@@ -247,15 +256,15 @@ if classified_file and original_file:
         with col2:
             # In Session State speichern
             if st.button("💾 Für Auswertung speichern", width="stretch"):
-                st.session_state.classification_results = df_merged
+                set_state(DATA_CLASSIFICATION_RESULTS, df_merged)
                 toast("Daten in Session State gespeichert", NotificationType.SUCCESS)
                 st.success("✅ Gespeichert!")
 
         with col3:
             # Link zur Auswertung
-            if 'classification_results' in st.session_state:
+            if has_classification_results():
                 st.page_link(
-                    "pages/10_eBKP_Auswertung.py",
+                    "pages/06_eBKP_Auswertung.py",
                     label="📊 Zur Auswertung",
                     icon="📊",
                     width="stretch"
