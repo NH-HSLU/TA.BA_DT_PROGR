@@ -64,53 +64,53 @@ STANDARD_KENNWERTE = {
     'Z': {'kennwert': 8.06, 'einheit': '%'},
 
     # Detaillierte Positionen (Level 2+)
-    'A.1': {'kennwert': 20.53, 'einheit': 'CHF/m²'},
-    'A.2': {'kennwert': 469.51, 'einheit': '%'},
-    'B.1': {'kennwert': 29.21, 'einheit': 'CHF/m²'},
-    'B.2': {'kennwert': 72.79, 'einheit': 'CHF/m²'},
-    'B.3': {'kennwert': 18.33, 'einheit': 'CHF/m²'},
-    'B.4': {'kennwert': 50.08, 'einheit': 'CHF/m²'},
-    'B.5': {'kennwert': 21.40, 'einheit': 'CHF/m³'},
-    'B.6': {'kennwert': 197.24, 'einheit': 'CHF/m³'},
-    'B.8': {'kennwert': 28.44, 'einheit': 'CHF/m²'},
-    'C.1': {'kennwert': 232.32, 'einheit': 'CHF/m²'},
-    'C.2': {'kennwert': 156.41, 'einheit': 'CHF/m²'},
-    'C.3': {'kennwert': 59.00, 'einheit': 'CHF/m²'},
-    'C.4': {'kennwert': 147.93, 'einheit': 'CHF/m²'},
-    'C.5': {'kennwert': 1.20, 'einheit': '%'},
-    'D.1': {'kennwert': 158.22, 'einheit': 'CHF/m²'},
-    'D.3': {'kennwert': 18.33, 'einheit': 'CHF/m²'},
-    'D.4': {'kennwert': 11.78, 'einheit': 'CHF/m²'},
-    'D.5': {'kennwert': 158.18, 'einheit': 'CHF/m²'},
-    'D.6': {'kennwert': 94.11, 'einheit': 'CHF/m²'},
-    'D.7': {'kennwert': 37.08, 'einheit': 'CHF/m³h'},
-    'D.8': {'kennwert': 3254.30, 'einheit': 'CHF/St'},
-    'D.9': {'kennwert': 53300.00, 'einheit': 'CHF/St'},
-    'E.1': {'kennwert': 113.33, 'einheit': 'CHF/m²'},
-    'E.2': {'kennwert': 71.22, 'einheit': 'CHF/m²'},
-    'E.3': {'kennwert': 1101.77, 'einheit': 'CHF/m'},
-    'F.1': {'kennwert': 94.15, 'einheit': 'CHF/m²'},
-    'F.2': {'kennwert': 1777.77, 'einheit': 'CHF/m²'},
-    'G.1': {'kennwert': 673.21, 'einheit': 'CHF/m²'},
-    'G.2': {'kennwert': 100.37, 'einheit': 'CHF/m²'},
-    'G.3': {'kennwert': 57.59, 'einheit': 'CHF/m²'},
-    'G.4': {'kennwert': 44.71, 'einheit': 'CHF/m²'},
-    'G.5': {'kennwert': 186.99, 'einheit': 'CHF/m²'},
-    'G.6': {'kennwert': 25.41, 'einheit': 'CHF/m²'},
-    'H.7': {'kennwert': 318.46, 'einheit': 'CHF/m²'},
-    'I.1': {'kennwert': 122.12, 'einheit': 'CHF/m²'},
-    'I.3': {'kennwert': 59.68, 'einheit': 'CHF/m²'},
-    'I.4': {'kennwert': 235.42, 'einheit': 'CHF/m²'},
-    'I.5': {'kennwert': 33.58, 'einheit': 'CHF/m²'},
-    'I.6': {'kennwert': 124.39, 'einheit': 'CHF/m²'},
-    'I.7': {'kennwert': 17.67, 'einheit': 'CHF/m²'},
-    'J.1': {'kennwert': 61.39, 'einheit': 'CHF/m²'},
-    'V.1': {'kennwert': 15.52, 'einheit': '%'},
-    'V.3': {'kennwert': 2.15, 'einheit': '%'},
-    'W.1': {'kennwert': 44.00, 'einheit': 'CHF/m²'},
-    'W.2': {'kennwert': 22.00, 'einheit': 'CHF/m²'},
-    'W.4': {'kennwert': 22.00, 'einheit': 'CHF/m²'},
-    'Z.1': {'kennwert': 8.06, 'einheit': '%'},
+    'A01': {'kennwert': 20.53, 'einheit': 'CHF/m²'},
+    'A02': {'kennwert': 469.51, 'einheit': '%'},
+    'B01': {'kennwert': 29.21, 'einheit': 'CHF/m²'},
+    'B02': {'kennwert': 72.79, 'einheit': 'CHF/m²'},
+    'B03': {'kennwert': 18.33, 'einheit': 'CHF/m²'},
+    'B04': {'kennwert': 50.08, 'einheit': 'CHF/m²'},
+    'B05': {'kennwert': 21.40, 'einheit': 'CHF/m³'},
+    'B06': {'kennwert': 197.24, 'einheit': 'CHF/m³'},
+    'B08': {'kennwert': 28.44, 'einheit': 'CHF/m²'},
+    'C01': {'kennwert': 232.32, 'einheit': 'CHF/m²'},
+    'C02': {'kennwert': 156.41, 'einheit': 'CHF/m²'},
+    'C03': {'kennwert': 59.00, 'einheit': 'CHF/m²'},
+    'C04': {'kennwert': 147.93, 'einheit': 'CHF/m²'},
+    'C05': {'kennwert': 1.20, 'einheit': '%'},
+    'D01': {'kennwert': 158.22, 'einheit': 'CHF/m²'},
+    'D03': {'kennwert': 18.33, 'einheit': 'CHF/m²'},
+    'D04': {'kennwert': 11.78, 'einheit': 'CHF/m²'},
+    'D05': {'kennwert': 158.18, 'einheit': 'CHF/m²'},
+    'D06': {'kennwert': 94.11, 'einheit': 'CHF/m²'},
+    'D07': {'kennwert': 37.08, 'einheit': 'CHF/m³h'},
+    'D08': {'kennwert': 3254.30, 'einheit': 'CHF/St'},
+    'D09': {'kennwert': 100, 'einheit': 'CHF/m²'},
+    'E01': {'kennwert': 113.33, 'einheit': 'CHF/m²'},
+    'E02': {'kennwert': 71.22, 'einheit': 'CHF/m²'},
+    'E03': {'kennwert': 1101.77, 'einheit': 'CHF/m'},
+    'F01': {'kennwert': 94.15, 'einheit': 'CHF/m²'},
+    'F02': {'kennwert': 1777.77, 'einheit': 'CHF/m²'},
+    'G01': {'kennwert': 673.21, 'einheit': 'CHF/m²'},
+    'G02': {'kennwert': 100.37, 'einheit': 'CHF/m²'},
+    'G03': {'kennwert': 57.59, 'einheit': 'CHF/m²'},
+    'G04': {'kennwert': 44.71, 'einheit': 'CHF/m²'},
+    'G05': {'kennwert': 186.99, 'einheit': 'CHF/m²'},
+    'G06': {'kennwert': 25.41, 'einheit': 'CHF/m²'},
+    'H07': {'kennwert': 318.46, 'einheit': 'CHF/m²'},
+    'I01': {'kennwert': 122.12, 'einheit': 'CHF/m²'},
+    'I03': {'kennwert': 59.68, 'einheit': 'CHF/m²'},
+    'I04': {'kennwert': 235.42, 'einheit': 'CHF/m²'},
+    'I05': {'kennwert': 33.58, 'einheit': 'CHF/m²'},
+    'I06': {'kennwert': 124.39, 'einheit': 'CHF/m²'},
+    'I07': {'kennwert': 17.67, 'einheit': 'CHF/m²'},
+    'J01': {'kennwert': 61.39, 'einheit': 'CHF/m²'},
+    'V01': {'kennwert': 15.52, 'einheit': '%'},
+    'V03': {'kennwert': 2.15, 'einheit': '%'},
+    'W01': {'kennwert': 44.00, 'einheit': 'CHF/m²'},
+    'W02': {'kennwert': 22.00, 'einheit': 'CHF/m²'},
+    'W04': {'kennwert': 22.00, 'einheit': 'CHF/m²'},
+    'Z01': {'kennwert': 8.06, 'einheit': '%'},
 }
 
 
@@ -133,12 +133,59 @@ def calculate_cost_with_tolerance(betrag: float, tolerance: int) -> tuple:
 
 
 def get_kennwert_for_code(ebkp_code: str) -> dict:
-    """Holt Kennwert für einen eBKP-H Code oder gibt Standardwerte zurück"""
-    # Exakte Übereinstimmung
-    if ebkp_code in STANDARD_KENNWERTE:
-        return STANDARD_KENNWERTE[ebkp_code]
+    """
+    Holt Kennwert für einen eBKP-H Code mit hierarchischer Fallback-Logik.
 
-    # Fallback: Standard CHF/m²
+    Hierarchie: D01.01 → D01 → D
+    Beispiele:
+    - D01.01 → sucht D01.01, D01 ✅ (158.22 CHF/m²), D
+    - D99 → sucht D99, D ✅ (609.47 CHF/m²)
+    - B05.99 → sucht B05.99, B05 ✅ (21.40 CHF/m³ - inkl. Einheit!)
+
+    Args:
+        ebkp_code: eBKP-H Code (z.B. "D01.01", "B03", "C")
+
+    Returns:
+        Dict mit 'kennwert' und 'einheit'. Nutzt übergeordneten Level bei fehlenden Codes.
+    """
+    if not ebkp_code or pd.isna(ebkp_code):
+        return {'kennwert': 0.00, 'einheit': 'CHF/m²'}
+
+    code = str(ebkp_code).strip()
+
+    # 1. Exakte Übereinstimmung (schnellster Pfad)
+    if code in STANDARD_KENNWERTE:
+        return STANDARD_KENNWERTE[code]
+
+    # 2. Hierarchische Suche
+    hierarchies = []
+
+    # Level 1: Original (D01.01)
+    hierarchies.append(code)
+
+    # Level 2: Ohne letzte Punkt-Sektion (D01.01 → D01)
+    if '.' in code:
+        hierarchies.append('.'.join(code.split('.')[:-1]))
+
+    # Level 3: Erste 3 Zeichen (D01 → D01, falls länger)
+    if len(code) >= 3:
+        hierarchies.append(code[:3])
+
+    # Level 4: Hauptgruppe (D01 → D)
+    hierarchies.append(code[0])
+
+    # Suche in Hierarchie (vom spezifischsten zum allgemeinsten)
+    for level in hierarchies:
+        if level in STANDARD_KENNWERTE:
+            return STANDARD_KENNWERTE[level]
+
+    # 3. Fallback: Einheit vom Hauptgruppen-Level (oder Standard)
+    hauptgruppe = code[0].upper()
+    if hauptgruppe in STANDARD_KENNWERTE:
+        default_einheit = STANDARD_KENNWERTE[hauptgruppe]['einheit']
+        return {'kennwert': 0.00, 'einheit': default_einheit}
+
+    # 4. Absoluter Fallback
     return {'kennwert': 0.00, 'einheit': 'CHF/m²'}
 
 
@@ -353,6 +400,24 @@ if data_source == "Session State (KI-Klassifizierung)":
 
     # Lade classification_results
     df_classified = get_state(DATA_CLASSIFICATION_RESULTS).copy()
+
+    # Spaltennamen-Mapping von Session State
+    # KI-Klassifizierung liefert: BKP_Code, BKP_Beschreibung, KI_Konfidenz
+    # Kostenberechnung erwartet: eBKP-H Code, eBKP-H Beschreibung
+    required_mapping = {
+        'BKP_Code': 'eBKP-H Code',
+        'BKP_Beschreibung': 'eBKP-H Beschreibung'
+    }
+
+    # Prüfe welche Spalten umbenannt werden müssen
+    columns_to_rename = {old: new for old, new in required_mapping.items()
+                         if old in df_classified.columns}
+
+    if columns_to_rename:
+        df_classified = df_classified.rename(columns=columns_to_rename)
+        mapped_cols = ', '.join([f'{old}→{new}' for old, new in columns_to_rename.items()])
+        st.info(f"ℹ️ Spaltennamen automatisch angepasst: {mapped_cols}")
+
     st.success(f"✅ Daten aus Session State geladen: {len(df_classified)} Positionen")
 
 else:
@@ -489,13 +554,25 @@ st.divider()
 # Vorbereitung der Kostentabelle
 st.subheader("📊 Kostenberechnung mit Kennwerten")
 
-# Prüfe welche Spalten vorhanden sind
+# Prüfe welche Spalten vorhanden sind (unterstützt beide Formate)
 required_columns = ['eBKP-H Code', 'eBKP-H Beschreibung']
-if not all(col in df_classified.columns for col in required_columns):
+legacy_columns = ['BKP_Code', 'BKP_Beschreibung']
+
+has_required = all(col in df_classified.columns for col in required_columns)
+has_legacy = all(col in df_classified.columns for col in legacy_columns)
+
+if not (has_required or has_legacy):
     st.error("❌ Die erforderlichen Spalten fehlen in den Klassifizierungsdaten")
-    st.info(f"Benötigt: {required_columns}")
+    st.info(f"Benötigt: {required_columns} ODER {legacy_columns}")
     st.info(f"Vorhanden: {list(df_classified.columns)}")
     st.stop()
+
+# Falls Legacy-Format: Mapping durchführen (sollte bereits in Zeile 404-419 erfolgt sein)
+if has_legacy and not has_required:
+    df_classified = df_classified.rename(columns={
+        'BKP_Code': 'eBKP-H Code',
+        'BKP_Beschreibung': 'eBKP-H Beschreibung'
+    })
 
 # Gruppiere nach eBKP-H Code und summiere Mengen
 # Prüfe ob Menge-Spalte existiert
@@ -686,6 +763,107 @@ with st.expander("📋 Detaillierte Aufschlüsselung", expanded=False):
         use_container_width=True,
         hide_index=True
     )
+
+st.divider()
+
+# Visualisierungen
+st.subheader("📊 Kostenvisualisierung")
+
+# Nur Positionen mit Betrag > 0 für Visualisierung
+df_viz = edited_df[edited_df['Betrag CHF'] > 0].copy()
+
+if len(df_viz) > 0:
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown("#### Kostenverteilung nach Hauptgruppen")
+
+        # Extrahiere Hauptgruppe (erster Buchstabe des eBKP-H Codes)
+        df_viz['Hauptgruppe'] = df_viz['eBKP-H Code'].astype(str).str[0]
+
+        # Gruppiere nach Hauptgruppe
+        hauptgruppen_kosten = df_viz.groupby('Hauptgruppe')['Betrag CHF'].sum().reset_index()
+        hauptgruppen_kosten = hauptgruppen_kosten.sort_values('Betrag CHF', ascending=False)
+
+        # Erstelle Pie Chart mit plotly
+        import plotly.express as px
+
+        fig_pie = px.pie(
+            hauptgruppen_kosten,
+            values='Betrag CHF',
+            names='Hauptgruppe',
+            title='',
+            color_discrete_sequence=px.colors.qualitative.Set3,
+            hole=0.4  # Donut Chart
+        )
+
+        fig_pie.update_traces(
+            textposition='inside',
+            textinfo='percent+label',
+            hovertemplate='<b>%{label}</b><br>Betrag: CHF %{value:,.2f}<br>Anteil: %{percent}<extra></extra>'
+        )
+
+        fig_pie.update_layout(
+            showlegend=True,
+            height=400,
+            margin=dict(t=20, b=20, l=20, r=20)
+        )
+
+        st.plotly_chart(fig_pie, use_container_width=True)
+
+        # Legende mit Beträgen
+        st.caption("**Hauptgruppen-Übersicht:**")
+        for _, row in hauptgruppen_kosten.iterrows():
+            prozent = (row['Betrag CHF'] / hauptgruppen_kosten['Betrag CHF'].sum()) * 100
+            st.caption(f"• **{row['Hauptgruppe']}**: {format_currency(row['Betrag CHF'])} ({prozent:.1f}%)")
+
+    with col2:
+        st.markdown("#### Top 10 teuerste Positionen")
+
+        # Top 10 teuerste Positionen
+        top_10 = df_viz.nlargest(10, 'Betrag CHF')[['eBKP-H Code', 'Beschreibung', 'Betrag CHF']].copy()
+
+        # Kürze lange Beschreibungen für bessere Lesbarkeit
+        top_10['Beschreibung_kurz'] = top_10['Beschreibung'].astype(str).str[:30] + '...'
+        top_10['Label'] = top_10['eBKP-H Code'].astype(str) + ' - ' + top_10['Beschreibung_kurz']
+
+        # Erstelle Bar Chart mit plotly
+        fig_bar = px.bar(
+            top_10,
+            x='Betrag CHF',
+            y='Label',
+            orientation='h',
+            title='',
+            color='Betrag CHF',
+            color_continuous_scale='Blues',
+            text='Betrag CHF'
+        )
+
+        fig_bar.update_traces(
+            texttemplate='CHF %{text:,.0f}',
+            textposition='outside',
+            hovertemplate='<b>%{y}</b><br>Betrag: CHF %{x:,.2f}<extra></extra>'
+        )
+
+        fig_bar.update_layout(
+            showlegend=False,
+            height=400,
+            xaxis_title="Betrag (CHF)",
+            yaxis_title="",
+            yaxis={'categoryorder': 'total ascending'},
+            margin=dict(t=20, b=20, l=20, r=20),
+            coloraxis_showscale=False
+        )
+
+        st.plotly_chart(fig_bar, use_container_width=True)
+
+        # Zusätzliche Info
+        total_top10 = top_10['Betrag CHF'].sum()
+        anteil = (total_top10 / zwischensumme * 100) if zwischensumme > 0 else 0
+        st.caption(f"💡 Die Top 10 Positionen machen **{anteil:.1f}%** der Baukosten aus ({format_currency(total_top10)})")
+
+else:
+    st.info("ℹ️ Keine Kostendaten für Visualisierung vorhanden. Bitte tragen Sie Mengen ein.")
 
 st.divider()
 
