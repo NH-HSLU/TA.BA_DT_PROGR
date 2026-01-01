@@ -305,10 +305,16 @@ st.sidebar.info("💡 **Hinweis**: Kennwerte können in der Tabelle bearbeitet w
 # Datenquelle wählen: Session State oder Excel-Upload
 st.subheader("📂 Datenquelle")
 
+# Initialisiere Session State für Datenquelle
+if 'cost_data_source' not in st.session_state:
+    st.session_state.cost_data_source = "Session State (KI-Klassifizierung)"
+
 data_source = st.radio(
     "Wählen Sie die Datenquelle:",
     options=["Session State (KI-Klassifizierung)", "Excel-Datei hochladen"],
-    help="Nutzen Sie Session State für KI-klassifizierte Daten oder laden Sie eine vorhandene Excel-Datei hoch"
+    help="Nutzen Sie Session State für KI-klassifizierte Daten oder laden Sie eine vorhandene Excel-Datei hoch",
+    index=0 if st.session_state.cost_data_source == "Session State (KI-Klassifizierung)" else 1,
+    key="cost_data_source"
 )
 
 df_classified = None
@@ -407,12 +413,31 @@ else:
             # Umbenennen der Spalten
             df_classified = df_uploaded.rename(columns=column_mapping).copy()
 
+            # Speichere in Session State
+            st.session_state.uploaded_cost_data = df_classified.copy()
+            st.session_state.uploaded_filename = uploaded_file.name
+
             st.info(f"✅ Spalten-Mapping: {code_col} → eBKP-H Code, {desc_col} → eBKP-H Beschreibung")
 
         except Exception as e:
             st.error(f"❌ Fehler beim Laden der Datei: {str(e)}")
             st.info("💡 Tipp: Stellen Sie sicher, dass die CSV-Datei UTF-8 codiert ist und Semikolon oder Komma als Trennzeichen verwendet.")
             st.stop()
+    elif 'uploaded_cost_data' in st.session_state:
+        # Verwende bereits hochgeladene Daten aus Session State
+        df_classified = st.session_state.uploaded_cost_data.copy()
+
+        col_info, col_clear = st.columns([4, 1])
+        with col_info:
+            st.success(f"✅ Gespeicherte Datei verwendet: {st.session_state.uploaded_filename} ({len(df_classified)} Zeilen)")
+        with col_clear:
+            if st.button("🗑️ Löschen", help="Gespeicherte Datei aus Session State entfernen"):
+                del st.session_state.uploaded_cost_data
+                del st.session_state.uploaded_filename
+                st.rerun()
+
+        with st.expander("📋 Datenvorschau", expanded=False):
+            st.dataframe(df_classified.head(10), use_container_width=True)
     else:
         st.info("👆 Bitte wählen Sie eine Datei aus")
         st.stop()
