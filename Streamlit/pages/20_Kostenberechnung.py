@@ -5,11 +5,29 @@ Kostenberechnung basierend auf eBKP-H Klassifizierung und Kennwerten
 import streamlit as st
 import pandas as pd
 import sys
+import os
 from pathlib import Path
+from typing import Tuple, List, Dict
 
-# Pfad zum Helpers-Ordner hinzufügen (für eventuelle Erweiterungen)
-helpers_path = Path(__file__).parent.parent / "helpers"
-sys.path.insert(0, str(helpers_path))
+# Füge Parent-Verzeichnis zum Path hinzu für Imports
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
+
+try:
+    from helpers.sidebar_navigation import render_sidebar, render_page_header, render_divider, render_page_footer
+    from helpers.notifications import toast, NotificationType
+    from helpers.session_state import (
+        init_session_state,
+        get_state,
+        set_state,
+        DATA_CLASSIFICATION_RESULTS,
+        CFG_COST_ESTIMATION_CONFIG,
+        has_classification_results
+    )
+except ImportError as e:
+    st.error(f"Module konnten nicht importiert werden: {e}")
+    st.stop()
 
 # Seiten-Konfiguration
 st.set_page_config(
@@ -17,6 +35,12 @@ st.set_page_config(
     page_icon="💰",
     layout="wide"
 )
+
+# Initialize Session State
+init_session_state()
+
+# Render gemeinsame Sidebar
+render_sidebar()
 
 st.title("💰 Kostenberechnung")
 st.caption("Berechnung der Kosten basierend auf eBKP-H Klassifizierung und Kennwerten")
@@ -286,8 +310,8 @@ def generate_pdf(df_cost, zwischensumme, total_betrag, min_betrag, max_betrag, t
 # Sidebar: Kostenermittlungs-Status
 st.sidebar.header("📐 Kostenermittlung")
 
-if 'cost_estimation_config' in st.session_state and st.session_state.cost_estimation_config.get('selected'):
-    config = st.session_state.cost_estimation_config
+config = get_state(CFG_COST_ESTIMATION_CONFIG)
+if config and config.get('selected'):
     st.sidebar.success(f"✓ {config['name']}")
     st.sidebar.caption(f"Toleranz: {format_tolerance(config['tolerance'])}")
     st.sidebar.caption(f"Phase: {config['project_phase']} ({config['phase_code']})")
@@ -321,14 +345,14 @@ df_classified = None
 
 if data_source == "Session State (KI-Klassifizierung)":
     # Prüfe ob classification_results vorhanden sind
-    if 'classification_results' not in st.session_state:
+    if not has_classification_results():
         st.warning("⚠️ Keine Klassifizierungsdaten im Session State vorhanden")
         st.info("Bitte führen Sie zuerst die eBKP-H Klassifizierung durch.")
-        st.page_link("pages/2_KI_Klassifizierung.py", label="→ Zur KI Klassifizierung", icon="🤖")
+        st.page_link("pages/03_KI_Klassifizierung.py", label="→ Zur KI Klassifizierung", icon="🤖")
         st.stop()
 
     # Lade classification_results
-    df_classified = st.session_state.classification_results.copy()
+    df_classified = get_state(DATA_CLASSIFICATION_RESULTS).copy()
     st.success(f"✅ Daten aus Session State geladen: {len(df_classified)} Positionen")
 
 else:
@@ -448,9 +472,8 @@ if df_classified is None or df_classified.empty:
     st.stop()
 
 # Qualitätsindikator Banner
-if 'cost_estimation_config' in st.session_state and st.session_state.cost_estimation_config.get('selected'):
-    config = st.session_state.cost_estimation_config
-
+config = get_state(CFG_COST_ESTIMATION_CONFIG)
+if config and config.get('selected'):
     col1, col2, col3, col4 = st.columns(4)
     with col1:
         st.metric("📐 Kostenermittlungsart", config['name'].split()[0])
@@ -674,14 +697,16 @@ col1, col2, col3 = st.columns(3)
 with col1:
     # CSV Export
     csv = edited_df.to_csv(index=False, encoding='utf-8-sig', sep=';', decimal=',')
-    st.download_button(
+    if st.download_button(
         label="📥 CSV herunterladen",
         data=csv,
         file_name="kostenberechnung_ebkp.csv",
         mime="text/csv",
         help="Export der Kostenberechnung im CSV-Format",
-        use_container_width=True
-    )
+        use_container_width=True,
+        key="download_csv"
+    ):
+        st.balloons()
 
 with col2:
     # Excel Export
@@ -716,35 +741,39 @@ with col2:
             worksheet.column_dimensions['E'].width = 12
             worksheet.column_dimensions['F'].width = 15
 
-        st.download_button(
+        if st.download_button(
             label="📥 Excel herunterladen",
             data=buffer.getvalue(),
             file_name="kostenberechnung_ebkp.xlsx",
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
             help="Export der Kostenberechnung im Excel-Format",
-            use_container_width=True
-        )
+            use_container_width=True,
+            key="download_excel"
+        ):
+            st.balloons()
     except ImportError:
         st.info("Excel-Export nicht verfügbar (openpyxl nicht installiert)")
 
 with col3:
     # PDF Export
     # Hole Kostenermittlungs-Config falls vorhanden
-    config_info = None
-    if 'cost_estimation_config' in st.session_state and st.session_state.cost_estimation_config.get('selected'):
-        config_info = st.session_state.cost_estimation_config
+    config_info = get_state(CFG_COST_ESTIMATION_CONFIG)
+    if config_info and not config_info.get('selected'):
+        config_info = None
 
     pdf_buffer = generate_pdf(edited_df, zwischensumme, total_betrag, min_betrag, max_betrag, tolerance, config_info)
 
     if pdf_buffer:
-        st.download_button(
+        if st.download_button(
             label="📄 PDF herunterladen",
             data=pdf_buffer,
             file_name="kostenberechnung_ebkp.pdf",
             mime="application/pdf",
             help="Export der Kostenberechnung als professionelles PDF-Dokument",
-            use_container_width=True
-        )
+            use_container_width=True,
+            key="download_pdf"
+        ):
+            st.balloons()
     else:
         st.error("PDF-Export nicht verfügbar", icon="❌")
 
