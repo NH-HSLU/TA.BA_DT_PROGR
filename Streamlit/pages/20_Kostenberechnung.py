@@ -23,6 +23,7 @@ try:
         set_state,
         DATA_CLASSIFICATION_RESULTS,
         CFG_COST_ESTIMATION_CONFIG,
+        DATA_PROJEKT_DATEN,
         has_classification_results
     )
 except ImportError as e:
@@ -155,7 +156,7 @@ def aggregate_quantities_by_code(df: pd.DataFrame) -> dict:
     return quantities
 
 
-def generate_pdf(df_cost, zwischensumme, total_betrag, min_betrag, max_betrag, tolerance, config_info=None):
+def generate_pdf(df_cost, zwischensumme, total_betrag, min_betrag, max_betrag, tolerance, config_info=None, projekt_daten=None):
     """Generiert PDF-Dokument der Kostenberechnung"""
     try:
         from reportlab.lib import colors
@@ -201,6 +202,80 @@ def generate_pdf(df_cost, zwischensumme, total_betrag, min_betrag, max_betrag, t
         )
         elements.append(Paragraph(f"Erstellt am: {datetime.now().strftime('%d.%m.%Y %H:%M')}", date_style))
         elements.append(Spacer(1, 1*cm))
+
+        # Projektinformationen (falls vorhanden)
+        if projekt_daten:
+            # Überschrift für Projektinformationen
+            project_header_style = ParagraphStyle(
+                'ProjectHeader',
+                parent=styles['Heading2'],
+                fontSize=14,
+                textColor=colors.HexColor('#1f4788'),
+                spaceAfter=10,
+                spaceBefore=5
+            )
+            elements.append(Paragraph("Projektinformationen", project_header_style))
+
+            # Projektdaten-Tabelle
+            project_data = [
+                ["OBJEKT", ""],
+                ["Projektname:", projekt_daten.objekt.projektname],
+                ["Adresse:", projekt_daten.objekt.adresse],
+                ["PLZ/Ort:", projekt_daten.objekt.plz_ort],
+                ["", ""],
+                ["BAUHERR", ""],
+                ["Name:", projekt_daten.bauherr.name],
+                ["Adresse:", projekt_daten.bauherr.adresse],
+                ["PLZ/Ort:", projekt_daten.bauherr.plz_ort],
+                ["", ""],
+                ["BAUMANAGEMENT", ""],
+                ["Firma:", projekt_daten.baumanagement.firma],
+                ["Kontaktperson:", projekt_daten.baumanagement.kontaktperson],
+                ["Adresse:", projekt_daten.baumanagement.adresse],
+                ["PLZ/Ort:", projekt_daten.baumanagement.plz_ort],
+            ]
+
+            project_table = Table(project_data, colWidths=[5*cm, 12*cm])
+            project_table.setStyle(TableStyle([
+                # Überschriften (OBJEKT, BAUHERR, BAUMANAGEMENT)
+                ('BACKGROUND', (0, 0), (1, 0), colors.HexColor('#366092')),
+                ('BACKGROUND', (0, 5), (1, 5), colors.HexColor('#366092')),
+                ('BACKGROUND', (0, 10), (1, 10), colors.HexColor('#366092')),
+                ('TEXTCOLOR', (0, 0), (1, 0), colors.whitesmoke),
+                ('TEXTCOLOR', (0, 5), (1, 5), colors.whitesmoke),
+                ('TEXTCOLOR', (0, 10), (1, 10), colors.whitesmoke),
+                ('FONTNAME', (0, 0), (1, 0), 'Helvetica-Bold'),
+                ('FONTNAME', (0, 5), (1, 5), 'Helvetica-Bold'),
+                ('FONTNAME', (0, 10), (1, 10), 'Helvetica-Bold'),
+                ('SPAN', (0, 0), (1, 0)),
+                ('SPAN', (0, 5), (1, 5)),
+                ('SPAN', (0, 10), (1, 10)),
+                ('ALIGN', (0, 0), (1, 0), 'CENTER'),
+                ('ALIGN', (0, 5), (1, 5), 'CENTER'),
+                ('ALIGN', (0, 10), (1, 10), 'CENTER'),
+
+                # Datenzeilen
+                ('BACKGROUND', (0, 1), (0, 3), colors.HexColor('#f0f0f0')),
+                ('BACKGROUND', (0, 6), (0, 8), colors.HexColor('#f0f0f0')),
+                ('BACKGROUND', (0, 11), (0, 14), colors.HexColor('#f0f0f0')),
+                ('TEXTCOLOR', (0, 1), (-1, -1), colors.black),
+                ('ALIGN', (0, 1), (0, -1), 'RIGHT'),
+                ('ALIGN', (1, 1), (1, -1), 'LEFT'),
+                ('FONTNAME', (0, 1), (0, -1), 'Helvetica-Bold'),
+                ('FONTSIZE', (0, 0), (-1, -1), 10),
+                ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
+                ('TOPPADDING', (0, 0), (-1, -1), 6),
+                ('LEFTPADDING', (0, 0), (-1, -1), 10),
+                ('RIGHTPADDING', (0, 0), (-1, -1), 10),
+
+                # Trennlinien
+                ('LINEBELOW', (0, 0), (-1, 0), 1, colors.grey),
+                ('LINEBELOW', (0, 5), (-1, 5), 1, colors.grey),
+                ('LINEBELOW', (0, 10), (-1, 10), 1, colors.grey),
+                ('BOX', (0, 0), (-1, -1), 1, colors.grey),
+            ]))
+            elements.append(project_table)
+            elements.append(Spacer(1, 1*cm))
 
         # Kostenermittlungsinfo (falls vorhanden)
         if config_info:
@@ -258,8 +333,27 @@ def generate_pdf(df_cost, zwischensumme, total_betrag, min_betrag, max_betrag, t
         elements.append(Paragraph("Detaillierte Kostenberechnung", styles['Heading2']))
         elements.append(Spacer(1, 0.3*cm))
 
-        # Filtere nur Positionen mit Betrag > 0
+        # Filtere nur Positionen mit Betrag > 0 (keine Nullpositionen im PDF)
         df_with_costs = df_cost[df_cost['Betrag CHF'] > 0].copy()
+
+        # Info-Text wenn Positionen gefiltert wurden
+        total_positions = len(df_cost)
+        positions_with_costs = len(df_with_costs)
+        filtered_count = total_positions - positions_with_costs
+
+        if filtered_count > 0:
+            filter_info_style = ParagraphStyle(
+                'FilterInfo',
+                parent=styles['Normal'],
+                fontSize=9,
+                textColor=colors.grey,
+                spaceAfter=10
+            )
+            elements.append(Paragraph(
+                f"Angezeigt werden {positions_with_costs} von {total_positions} Positionen "
+                f"({filtered_count} Positionen ohne Kosten wurden ausgeblendet)",
+                filter_info_style
+            ))
 
         # Tabellendaten vorbereiten
         table_data = [["eBKP-H", "Beschreibung", "Menge", "Einheit", "Kennwert", "Betrag"]]
@@ -1080,7 +1174,10 @@ with col3:
     if config_info and not config_info.get('selected'):
         config_info = None
 
-    pdf_buffer = generate_pdf(edited_df, zwischensumme, total_betrag, min_betrag, max_betrag, tolerance, config_info)
+    # Lade Projektdaten aus Session State
+    projekt_daten = get_state(DATA_PROJEKT_DATEN)
+
+    pdf_buffer = generate_pdf(edited_df, zwischensumme, total_betrag, min_betrag, max_betrag, tolerance, config_info, projekt_daten)
 
     if pdf_buffer:
         if st.download_button(
@@ -1111,4 +1208,7 @@ if st.button("💾 Kostenberechnung speichern", type="primary", use_container_wi
 
 # Footer
 st.divider()
-st.caption("💡 Hinweis: Diese Kostenberechnung basiert auf Kennwerten und dient als Schätzung. Die tatsächlichen Kosten können abweichen.")
+st.caption("💡 Hinweis: Diese Kostenberechnung basiert auf Kennwerten und dient als Schätzung. Die tatsächlichen Kosten können abweichen. Das Programm übernimmt keine Haftung für die Genauigkeit der Berechnungen.")
+
+# Footer
+render_page_footer()

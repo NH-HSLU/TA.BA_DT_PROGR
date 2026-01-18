@@ -5,6 +5,7 @@ Gemeinsame Sidebar-Navigation für alle Pages
 import streamlit as st
 from datetime import datetime
 import os
+from helpers.session_state import DATA_PROJEKT_DATEN
 
 
 def render_sidebar():
@@ -25,6 +26,23 @@ def render_sidebar():
             <p style="margin: 0; font-size: 0.8rem; opacity: 0.9;">BIM-Klassifizierung</p>
         </div>
         """, unsafe_allow_html=True)
+
+        # Projektname anzeigen (falls vorhanden)
+        projekt_daten = st.session_state.get(DATA_PROJEKT_DATEN)
+        if projekt_daten:
+            st.markdown(f"""
+            <div style="
+                text-align: center;
+                background: linear-gradient(135deg, rgba(67, 174, 123, 0.15) 0%, rgba(56, 249, 215, 0.15) 100%);
+                border-left: 3px solid #43ae7b;
+                padding: 0.5rem;
+                border-radius: 0.3rem;
+                margin-bottom: 1rem;
+            ">
+                <p style="margin: 0; font-size: 0.75rem; opacity: 0.7;">📋 Projekt</p>
+                <p style="margin: 0; font-weight: bold; font-size: 0.9rem;">{projekt_daten.objekt.projektname}</p>
+            </div>
+            """, unsafe_allow_html=True)
 
         # Status-Übersicht
         st.markdown("### 📊 Status")
@@ -56,6 +74,13 @@ def render_sidebar():
             st.success(f"✓ {len(df)} Elemente", icon="📄")
         else:
             st.info("ℹ️ Keine Daten geladen", icon="📄")
+
+        # Projektdaten-Status
+        projekt_daten = st.session_state.get(DATA_PROJEKT_DATEN)
+        if projekt_daten:
+            st.success(f"✓ Projekt erfasst", icon="📋")
+        else:
+            st.info("ℹ️ Kein Projekt erfasst", icon="📋")
 
 
 def render_page_header(title: str, subtitle: str = "", icon: str = ""):
@@ -164,6 +189,7 @@ def render_page_footer(show_version: bool = True, show_date: bool = True):
     if show_date:
         footer_parts.append(f"📅 {date_text}")
     footer_parts.append("🎓 TA.BA_DT_PROGR")
+    footer_parts.append("✍️ Nicole Hitz und Orlando Bassi")
 
     footer_text = " | ".join(footer_parts)
 

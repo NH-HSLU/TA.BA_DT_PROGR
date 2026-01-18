@@ -17,7 +17,8 @@ from helpers.session_state import (
     get_state,
     has_classification_results,
     DATA_CLASSIFICATION_RESULTS,
-    CFG_COST_ESTIMATION_CONFIG
+    CFG_COST_ESTIMATION_CONFIG,
+    DATA_PROJEKT_DATEN
 )
 
 # Seitenkonfiguration
@@ -119,9 +120,23 @@ st.info(f"💡 **Wussten Sie?** {get_daily_fact()}")
 
 render_divider("section")
 
-# Workflow-Cards (4 Hauptfunktionen)
+# Workflow-Cards
 st.markdown("### 🚀 Workflow")
-# TODO falsche Pfade für die Seiten anpassen
+
+# Schritt 0: Projektinformationen (optional, aber empfohlen)
+st.markdown("#### 0️⃣ Projektinformationen (optional)")
+col0 = st.columns([1])[0]
+with col0:
+    st.markdown("""
+    <div class="workflow-card card-green" style="min-height: 120px;">
+        <h3>📋 Projektinformationen</h3>
+        <p>Projekt erfassen<br>Bauherr & Baumanagement<br>Stammdaten verwalten</p>
+    </div>
+    """, unsafe_allow_html=True)
+    if st.button("→ Erfassen", key="btn_project", use_container_width=True):
+        st.switch_page("pages/00_Projektinformationen.py")
+
+st.markdown("#### Hauptworkflow")
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
@@ -172,9 +187,10 @@ st.subheader("📊 Ihr Fortschritt")
 def show_workflow_progress():
     """Visualisiert Workflow-Fortschritt mit zentralem Session State"""
     steps = [
+        ("0️⃣ Projektinformationen (opt.)", DATA_PROJEKT_DATEN),
         ("1️⃣ Kostenermittlung", CFG_COST_ESTIMATION_CONFIG),
         ("2️⃣ KI-Klassifizierung", DATA_CLASSIFICATION_RESULTS),
-        ("3️⃣ BKP-Bearbeitung (optional)", DATA_CLASSIFICATION_RESULTS),
+        ("3️⃣ BKP-Bearbeitung (opt.)", DATA_CLASSIFICATION_RESULTS),
         ("4️⃣ Auswertung", DATA_CLASSIFICATION_RESULTS),
     ]
 
@@ -194,7 +210,12 @@ def show_workflow_progress():
 
     completed = sum(1 for _, key in steps if is_step_complete(key))
 
-    cols = st.columns(4)
+    # Zähle nur Haupt-Schritte (nicht die optionalen)
+    required_steps = [1, 2, 4]  # Indices der Pflicht-Schritte
+    completed_required = sum(1 for i in required_steps if is_step_complete(steps[i][1]))
+
+    # Zeige alle Schritte im Progress, aber markiere optionale
+    cols = st.columns(5)  # Jetzt 5 statt 4
     for i, ((name, key), col) in enumerate(zip(steps, cols)):
         with col:
             is_complete = is_step_complete(key)
@@ -204,7 +225,7 @@ def show_workflow_progress():
                 st.info(f"○ {name.split()[0]}")
 
     progress = completed / len(steps)
-    st.progress(progress, text=f"Workflow: {completed}/{len(steps)} Schritte abgeschlossen")
+    st.progress(progress, text=f"Workflow: {completed}/{len(steps)} Schritte abgeschlossen ({completed_required}/{len(required_steps)} Pflicht)")
 
 
 show_workflow_progress()

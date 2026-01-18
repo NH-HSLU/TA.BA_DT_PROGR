@@ -20,6 +20,7 @@ DATA_ORIGINAL_UPLOADED = 'original_uploaded_data'      # pd.DataFrame
 DATA_PREPARED = 'prepared_data'                        # pd.DataFrame
 DATA_DEDUP_MAPPING = 'dedup_mapping'                   # Dict
 DATA_UNIQUE_ELEMENTS = 'unique_elements'               # pd.DataFrame
+DATA_PROJEKT_DATEN = 'projekt_daten'                   # ProjektDaten object
 
 # Processing States
 PROC_API_RESPONSES = 'api_responses'                   # List[Dict]
@@ -54,6 +55,7 @@ def init_session_state() -> None:
         DATA_PREPARED: None,
         DATA_DEDUP_MAPPING: None,
         DATA_UNIQUE_ELEMENTS: None,
+        DATA_PROJEKT_DATEN: None,
 
         # Processing States
         PROC_API_RESPONSES: [],
@@ -145,6 +147,16 @@ def has_classification_results() -> bool:
     if isinstance(results, pd.DataFrame):
         return not results.empty
     return False
+
+
+def has_project_data() -> bool:
+    """
+    Prüft ob Projektdaten vorhanden sind.
+
+    Returns:
+        True if project data exists
+    """
+    return get_state(DATA_PROJEKT_DATEN) is not None
 
 
 def get_workflow_completion() -> Dict[str, bool]:
