@@ -1,10 +1,10 @@
 # Datenanalyse
-numpy==1.26.4              # Numerische Berechnungen und Arrays
-pandas==2.2.0              # Tabellen-Verarbeitung und Analyse
-matplotlib==3.8.2          # Datenplotting und Visualisierung
+numpy              # Numerische Berechnungen und Arrays
+pandas              # Tabellen-Verarbeitung und Analyse
+matplotlib          # Datenplotting und Visualisierung
 
 # Interaktive Visualisierung
-plotly==5.18.0             # Interaktive Diagramme und Dashboards
+plotly             # Interaktive Diagramme und Dashboards
 
 
 # Sonstige Nützliche Tools

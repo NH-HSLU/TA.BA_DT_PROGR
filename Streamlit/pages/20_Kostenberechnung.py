@@ -45,74 +45,6 @@ render_sidebar()
 st.title("💰 Kostenberechnung")
 st.caption("Berechnung der Kosten basierend auf eBKP-H Klassifizierung und Kennwerten")
 
-# Kennwerte-Dictionary basierend auf den Screenshots
-# Format: {eBKP-H Code: {'kennwert': float, 'einheit': str}}
-STANDARD_KENNWERTE = {
-    # Hauptgruppen (Level 1)
-    'A': {'kennwert': 116.94, 'einheit': 'CHF/m²'},
-    'B': {'kennwert': 581.73, 'einheit': 'CHF/m²'},
-    'C': {'kennwert': 469.77, 'einheit': 'CHF/m²'},
-    'D': {'kennwert': 609.47, 'einheit': 'CHF/m²'},
-    'E': {'kennwert': 259.38, 'einheit': 'CHF/m²'},
-    'F': {'kennwert': 264.61, 'einheit': 'CHF/m²'},
-    'G': {'kennwert': 532.32, 'einheit': 'CHF/m²'},
-    'H': {'kennwert': 187.65, 'einheit': 'CHF/m²'},
-    'I': {'kennwert': 484.68, 'einheit': 'CHF/m²'},
-    'J': {'kennwert': 61.39, 'einheit': 'CHF/m²'},
-    'V': {'kennwert': 17.67, 'einheit': '%'},
-    'W': {'kennwert': 88.01, 'einheit': 'CHF/m²'},
-    'Z': {'kennwert': 8.06, 'einheit': '%'},
-
-    # Detaillierte Positionen (Level 2+)
-    'A01': {'kennwert': 20.53, 'einheit': 'CHF/m²'},
-    'A02': {'kennwert': 469.51, 'einheit': '%'},
-    'B01': {'kennwert': 29.21, 'einheit': 'CHF/m²'},
-    'B02': {'kennwert': 72.79, 'einheit': 'CHF/m²'},
-    'B03': {'kennwert': 18.33, 'einheit': 'CHF/m²'},
-    'B04': {'kennwert': 50.08, 'einheit': 'CHF/m²'},
-    'B05': {'kennwert': 21.40, 'einheit': 'CHF/m³'},
-    'B06': {'kennwert': 197.24, 'einheit': 'CHF/m³'},
-    'B08': {'kennwert': 28.44, 'einheit': 'CHF/m²'},
-    'C01': {'kennwert': 232.32, 'einheit': 'CHF/m²'},
-    'C02': {'kennwert': 156.41, 'einheit': 'CHF/m²'},
-    'C03': {'kennwert': 59.00, 'einheit': 'CHF/m²'},
-    'C04': {'kennwert': 147.93, 'einheit': 'CHF/m²'},
-    'C05': {'kennwert': 1.20, 'einheit': '%'},
-    'D01': {'kennwert': 158.22, 'einheit': 'CHF/m²'},
-    'D03': {'kennwert': 18.33, 'einheit': 'CHF/m²'},
-    'D04': {'kennwert': 11.78, 'einheit': 'CHF/m²'},
-    'D05': {'kennwert': 158.18, 'einheit': 'CHF/m²'},
-    'D06': {'kennwert': 94.11, 'einheit': 'CHF/m²'},
-    'D07': {'kennwert': 37.08, 'einheit': 'CHF/m³h'},
-    'D08': {'kennwert': 3254.30, 'einheit': 'CHF/St'},
-    'D09': {'kennwert': 100, 'einheit': 'CHF/m²'},
-    'E01': {'kennwert': 113.33, 'einheit': 'CHF/m²'},
-    'E02': {'kennwert': 71.22, 'einheit': 'CHF/m²'},
-    'E03': {'kennwert': 1101.77, 'einheit': 'CHF/m'},
-    'F01': {'kennwert': 94.15, 'einheit': 'CHF/m²'},
-    'F02': {'kennwert': 1777.77, 'einheit': 'CHF/m²'},
-    'G01': {'kennwert': 673.21, 'einheit': 'CHF/m²'},
-    'G02': {'kennwert': 100.37, 'einheit': 'CHF/m²'},
-    'G03': {'kennwert': 57.59, 'einheit': 'CHF/m²'},
-    'G04': {'kennwert': 44.71, 'einheit': 'CHF/m²'},
-    'G05': {'kennwert': 186.99, 'einheit': 'CHF/m²'},
-    'G06': {'kennwert': 25.41, 'einheit': 'CHF/m²'},
-    'H07': {'kennwert': 318.46, 'einheit': 'CHF/m²'},
-    'I01': {'kennwert': 122.12, 'einheit': 'CHF/m²'},
-    'I03': {'kennwert': 59.68, 'einheit': 'CHF/m²'},
-    'I04': {'kennwert': 235.42, 'einheit': 'CHF/m²'},
-    'I05': {'kennwert': 33.58, 'einheit': 'CHF/m²'},
-    'I06': {'kennwert': 124.39, 'einheit': 'CHF/m²'},
-    'I07': {'kennwert': 17.67, 'einheit': 'CHF/m²'},
-    'J01': {'kennwert': 61.39, 'einheit': 'CHF/m²'},
-    'V01': {'kennwert': 15.52, 'einheit': '%'},
-    'V03': {'kennwert': 2.15, 'einheit': '%'},
-    'W01': {'kennwert': 44.00, 'einheit': 'CHF/m²'},
-    'W02': {'kennwert': 22.00, 'einheit': 'CHF/m²'},
-    'W04': {'kennwert': 22.00, 'einheit': 'CHF/m²'},
-    'Z01': {'kennwert': 8.06, 'einheit': '%'},
-}
-
 
 def format_currency(value: float) -> str:
     """Formatiert Betrag als Schweizer Franken"""
@@ -132,61 +64,95 @@ def calculate_cost_with_tolerance(betrag: float, tolerance: int) -> tuple:
     return betrag - tolerance_amount, betrag + tolerance_amount
 
 
-def get_kennwert_for_code(ebkp_code: str) -> dict:
+def load_kennwerte_csv(uploaded_file) -> pd.DataFrame:
     """
-    Holt Kennwert für einen eBKP-H Code mit hierarchischer Fallback-Logik.
+    Lädt CSV-Datei mit Kennwerten
 
-    Hierarchie: D01.01 → D01 → D
-    Beispiele:
-    - D01.01 → sucht D01.01, D01 ✅ (158.22 CHF/m²), D
-    - D99 → sucht D99, D ✅ (609.47 CHF/m²)
-    - B05.99 → sucht B05.99, B05 ✅ (21.40 CHF/m³ - inkl. Einheit!)
+    Erwartete Spalten:
+    - A: eBKP-H Code
+    - B: Kostengruppe / Position
+    - C: Kennwert Einheit
+    - D: Kennwert tief CHF/Einheit
+    - E: Kennwert mittel CHF/Einheit
+    - F: Kennwert hoch CHF/Einheit
+    - G: Anmerkungen
+    """
+    try:
+        # Lese CSV mit Semikolon
+        df = pd.read_csv(uploaded_file, sep=';', encoding='utf-8-sig')
+
+        # Erwartete Spaltennamen
+        expected_columns = [
+            'eBKP-H Code',
+            'Kostengruppe / Position',
+            'Kennwert Einheit',
+            'Kennwert tief CHF/Einheit',
+            'Kennwert mittel CHF/Einheit',
+            'Kennwert hoch CHF/Einheit',
+            'Anmerkungen'
+        ]
+
+        # Prüfe ob alle Spalten vorhanden sind
+        if list(df.columns) == expected_columns:
+            # Filtere leere Zeilen (wo eBKP-H Code leer ist)
+            df = df[df['eBKP-H Code'].notna() & (df['eBKP-H Code'] != '')]
+            return df
+        else:
+            st.error("❌ CSV-Datei hat nicht die erwarteten Spalten")
+            st.info(f"Erwartet: {expected_columns}")
+            st.info(f"Gefunden: {list(df.columns)}")
+            return None
+
+    except Exception as e:
+        st.error(f"❌ Fehler beim Laden der CSV-Datei: {str(e)}")
+        return None
+
+
+def aggregate_quantities_by_code(df: pd.DataFrame) -> dict:
+    """
+    Aggregiert Mengen aus klassifizierten Daten nach eBKP-H Code.
+
+    Diese Funktion durchläuft die Modell-Daten einmalig und gruppiert
+    alle Mengen nach ihrem eBKP-H Code. Dies ist deutlich effizienter
+    als für jede Kostenplan-Position die gesamte Liste zu durchsuchen.
 
     Args:
-        ebkp_code: eBKP-H Code (z.B. "D01.01", "B03", "C")
+        df: DataFrame mit klassifizierten Daten (enthält 'eBKP-H Code' und 'Menge')
 
     Returns:
-        Dict mit 'kennwert' und 'einheit'. Nutzt übergeordneten Level bei fehlenden Codes.
+        Dict[str, float]: Dictionary mit eBKP-H Code als Key und summierter Menge als Value
+
+    Example:
+        >>> df = pd.DataFrame({
+        ...     'eBKP-H Code': ['C13.01', 'C13.01', 'D21.03'],
+        ...     'Menge': [5.0, 3.0, 10.0]
+        ... })
+        >>> aggregate_quantities_by_code(df)
+        {'C13.01': 8.0, 'D21.03': 10.0}
     """
-    if not ebkp_code or pd.isna(ebkp_code):
-        return {'kennwert': 0.00, 'einheit': 'CHF/m²'}
+    if df is None or df.empty:
+        return {}
 
-    code = str(ebkp_code).strip()
+    if 'eBKP-H Code' not in df.columns:
+        return {}
 
-    # 1. Exakte Übereinstimmung (schnellster Pfad)
-    if code in STANDARD_KENNWERTE:
-        return STANDARD_KENNWERTE[code]
+    # Entferne Zeilen mit leeren oder ungültigen eBKP-H Codes
+    df_valid = df[df['eBKP-H Code'].notna() & (df['eBKP-H Code'] != '')]
 
-    # 2. Hierarchische Suche
-    hierarchies = []
+    if df_valid.empty:
+        return {}
 
-    # Level 1: Original (D01.01)
-    hierarchies.append(code)
+    # Prüfe ob Menge-Spalte existiert
+    if 'Menge' not in df_valid.columns:
+        return {}
 
-    # Level 2: Ohne letzte Punkt-Sektion (D01.01 → D01)
-    if '.' in code:
-        hierarchies.append('.'.join(code.split('.')[:-1]))
+    # Entferne Zeilen mit ungültigen Mengen
+    df_valid = df_valid[df_valid['Menge'].notna()]
 
-    # Level 3: Erste 3 Zeichen (D01 → D01, falls länger)
-    if len(code) >= 3:
-        hierarchies.append(code[:3])
+    # Gruppiere nach eBKP-H Code und summiere Mengen - O(m) Operation!
+    quantities = df_valid.groupby('eBKP-H Code')['Menge'].sum().to_dict()
 
-    # Level 4: Hauptgruppe (D01 → D)
-    hierarchies.append(code[0])
-
-    # Suche in Hierarchie (vom spezifischsten zum allgemeinsten)
-    for level in hierarchies:
-        if level in STANDARD_KENNWERTE:
-            return STANDARD_KENNWERTE[level]
-
-    # 3. Fallback: Einheit vom Hauptgruppen-Level (oder Standard)
-    hauptgruppe = code[0].upper()
-    if hauptgruppe in STANDARD_KENNWERTE:
-        default_einheit = STANDARD_KENNWERTE[hauptgruppe]['einheit']
-        return {'kennwert': 0.00, 'einheit': default_einheit}
-
-    # 4. Absoluter Fallback
-    return {'kennwert': 0.00, 'einheit': 'CHF/m²'}
+    return quantities
 
 
 def generate_pdf(df_cost, zwischensumme, total_betrag, min_betrag, max_betrag, tolerance, config_info=None):
@@ -354,6 +320,248 @@ def generate_pdf(df_cost, zwischensumme, total_betrag, min_betrag, max_betrag, t
         return None
 
 
+# ================================================================================
+# SCHRITT 1: KENNWERTE-KOSTENPLAN IMPORTIEREN
+# ================================================================================
+
+st.header("📋 Schritt 1: Kostenplan mit Kennwerten importieren")
+
+st.markdown("""
+Laden Sie Ihre eigene Kostenplan-CSV-Datei mit Kennwerten hoch.
+Diese Datei enthält alle eBKP-H Positionen mit den zugehörigen Kennwerten (tief, mittel, hoch).
+""")
+
+# File uploader für Kostenplan
+kennwerte_file = st.file_uploader(
+    "📤 Kostenplan CSV-Datei hochladen",
+    type=['csv'],
+    help="CSV-Datei mit eBKP-H Codes und Kennwerten (tief, mittel, hoch)",
+    key="kennwerte_upload"
+)
+
+df_kennwerte = None
+kennwerte_level = None
+
+if kennwerte_file is not None:
+    # Lade Kennwerte CSV
+    df_kennwerte = load_kennwerte_csv(kennwerte_file)
+
+    if df_kennwerte is not None:
+        st.success(f"✅ Kostenplan erfolgreich geladen: {len(df_kennwerte)} Positionen")
+
+        # Vorschau
+        with st.expander("📊 Kostenplan Vorschau (erste 10 Zeilen)", expanded=False):
+            st.dataframe(df_kennwerte.head(10), use_container_width=True)
+
+        # Auswahl: Tief / Mittel / Hoch
+        st.subheader("🎯 Kennwert-Niveau auswählen")
+
+        # Default: Mittel (falls noch nicht gesetzt)
+        if 'kennwerte_level' not in st.session_state:
+            st.session_state.kennwerte_level = "mittel"
+
+        kennwerte_level = st.session_state.kennwerte_level
+
+        col1, col2, col3 = st.columns(3)
+
+        with col1:
+            button_type_tief = "primary" if kennwerte_level == "tief" else "secondary"
+            if st.button("📉 Tief", use_container_width=True, type=button_type_tief, key="btn_tief"):
+                st.session_state.kennwerte_level = "tief"
+                st.rerun()
+        with col2:
+            button_type_mittel = "primary" if kennwerte_level == "mittel" else "secondary"
+            if st.button("📊 Mittel", use_container_width=True, type=button_type_mittel, key="btn_mittel"):
+                st.session_state.kennwerte_level = "mittel"
+                st.rerun()
+        with col3:
+            button_type_hoch = "primary" if kennwerte_level == "hoch" else "secondary"
+            if st.button("📈 Hoch", use_container_width=True, type=button_type_hoch, key="btn_hoch"):
+                st.session_state.kennwerte_level = "hoch"
+                st.rerun()
+
+        st.info(f"🎯 Ausgewähltes Niveau: **{kennwerte_level.upper()}**")
+
+        # Speichere in Session State
+        st.session_state.df_kennwerte = df_kennwerte.copy()
+
+elif 'df_kennwerte' in st.session_state:
+    # Verwende gespeicherte Kennwerte
+    df_kennwerte = st.session_state.df_kennwerte.copy()
+    kennwerte_level = st.session_state.get('kennwerte_level', 'mittel')
+
+    st.success(f"✅ Gespeicherter Kostenplan verwendet: {len(df_kennwerte)} Positionen")
+    st.info(f"🎯 Ausgewähltes Niveau: **{kennwerte_level.upper()}**")
+
+    col_info, col_clear = st.columns([4, 1])
+    with col_clear:
+        if st.button("🗑️ Kostenplan löschen", help="Gespeicherten Kostenplan entfernen"):
+            del st.session_state.df_kennwerte
+            if 'kennwerte_level' in st.session_state:
+                del st.session_state.kennwerte_level
+            st.rerun()
+else:
+    st.info("👆 Bitte laden Sie zuerst einen Kostenplan mit Kennwerten hoch")
+    st.stop()
+
+st.divider()
+
+# ================================================================================
+# SCHRITT 2: MODELL-DATEN LADEN (OPTIONAL)
+# ================================================================================
+
+st.header("📦 Schritt 2: Modell-Daten laden (optional)")
+
+st.markdown("""
+Laden Sie optional Daten aus dem BIM-Modell, um automatisch Mengen für die Kostenberechnung zu übernehmen.
+Falls keine Modell-Daten vorhanden sind, können Sie die Mengen manuell eingeben.
+""")
+
+# Datenquelle wählen
+if 'model_data_source' not in st.session_state:
+    st.session_state.model_data_source = "Keine (Manuell)"
+
+data_source = st.radio(
+    "Modell-Datenquelle:",
+    options=["Keine (Manuell)", "Session State (KI-Klassifizierung)", "Excel/CSV-Datei hochladen"],
+    help="Wählen Sie, ob Sie Modell-Daten verwenden möchten oder alles manuell eingeben",
+    key="model_data_source"
+)
+
+df_model_data = None
+
+if data_source == "Session State (KI-Klassifizierung)":
+    # Prüfe ob classification_results vorhanden sind
+    if not has_classification_results():
+        st.warning("⚠️ Keine Klassifizierungsdaten im Session State vorhanden")
+        st.info("Bitte führen Sie zuerst die eBKP-H Klassifizierung durch oder wählen Sie eine andere Datenquelle.")
+        st.page_link("pages/03_KI_Klassifizierung.py", label="→ Zur KI Klassifizierung", icon="🤖")
+    else:
+        # Lade classification_results
+        df_model_data = get_state(DATA_CLASSIFICATION_RESULTS).copy()
+
+        # Flexibles Spaltennamen-Mapping für eBKP-H Code
+        # Spalte N (Index 13) oder verschiedene Varianten
+        code_columns = ['BKP_Code', 'BKP Code', 'eBKP-H Code', 'eBKP-H_Code', 'eBKP_Code']
+        code_col = None
+
+        # Prüfe zuerst per Spaltenname
+        for col_name in code_columns:
+            if col_name in df_model_data.columns:
+                code_col = col_name
+                break
+
+        # Falls nicht gefunden: Verwende Spalte N (Index 13)
+        if code_col is None and len(df_model_data.columns) > 13:
+            code_col = df_model_data.columns[13]
+            st.info(f"📍 eBKP-H Code aus Spalte N (Index 13): '{code_col}'")
+
+        # Umbenennen zu Standardname
+        if code_col and code_col != 'eBKP-H Code':
+            df_model_data = df_model_data.rename(columns={code_col: 'eBKP-H Code'})
+
+        # Mapping für Beschreibung
+        desc_columns = ['BKP_Beschreibung', 'BKP Beschreibung', 'eBKP-H Beschreibung', 'eBKP-H_Beschreibung']
+        desc_col = next((col for col in desc_columns if col in df_model_data.columns), None)
+        if desc_col and desc_col != 'eBKP-H Beschreibung':
+            df_model_data = df_model_data.rename(columns={desc_col: 'eBKP-H Beschreibung'})
+
+        # Flexibles Mapping für Menge - verschiedene mögliche Spaltennamen
+        menge_columns = ['Menge', 'menge', 'Anzahl', 'Quantity', 'Amount', 'Fläche', 'Fläche (m²)', 'Area']
+        menge_col = None
+        for col_name in menge_columns:
+            if col_name in df_model_data.columns:
+                menge_col = col_name
+                break
+
+        # Falls Menge-Spalte gefunden: Umbenennen
+        if menge_col and menge_col != 'Menge':
+            df_model_data = df_model_data.rename(columns={menge_col: 'Menge'})
+            st.info(f"📊 Menge-Spalte gefunden und umbenannt: '{menge_col}' → 'Menge'")
+        elif menge_col is None:
+            # Erstelle Menge-Spalte mit Wert 1 (Anzahl = 1 pro Element)
+            df_model_data['Menge'] = 1.0
+            st.warning("⚠️ Keine Menge-Spalte gefunden. Standard-Menge = 1 pro Element gesetzt.")
+
+        st.success(f"✅ Daten aus Session State geladen: {len(df_model_data)} Positionen")
+
+        with st.expander("📋 Modell-Daten Vorschau", expanded=False):
+            st.dataframe(df_model_data.head(10), use_container_width=True)
+            st.caption(f"**Verfügbare Spalten:** {', '.join(df_model_data.columns.tolist())}")
+
+        # Aggregiere und zeige Statistiken über eBKP-H Codes
+        quantities_preview = aggregate_quantities_by_code(df_model_data)
+        if quantities_preview:
+            st.success(f"✅ Mengen aus {len(df_model_data)} Elementen aggregiert")
+            st.info(f"📊 {len(quantities_preview)} eindeutige eBKP-H Codes mit Mengen gefunden")
+
+            with st.expander("🔍 Mengen-Übersicht (Top 10)", expanded=False):
+                top_codes = sorted(quantities_preview.items(), key=lambda x: x[1], reverse=True)[:10]
+                for code, qty in top_codes:
+                    st.caption(f"• **{code}**: {qty:.2f}")
+
+elif data_source == "Excel/CSV-Datei hochladen":
+    # Datei-Upload
+    uploaded_file = st.file_uploader(
+        "📤 Excel- oder CSV-Datei mit Modell-Daten hochladen",
+        type=['xlsx', 'xls', 'csv'],
+        help="Datei mit eBKP-H Codes und Mengen aus dem BIM-Modell",
+        key="model_data_upload"
+    )
+
+    if uploaded_file is not None:
+        try:
+            # Erkenne Dateityp
+            file_extension = uploaded_file.name.split('.')[-1].lower()
+
+            if file_extension in ['xlsx', 'xls']:
+                df_model_data = pd.read_excel(uploaded_file)
+            elif file_extension == 'csv':
+                try:
+                    df_model_data = pd.read_csv(uploaded_file, sep=';', encoding='utf-8-sig')
+                except:
+                    uploaded_file.seek(0)
+                    df_model_data = pd.read_csv(uploaded_file, sep=',', encoding='utf-8-sig')
+
+            # Spaltennamen-Mapping
+            if 'BKP_Code' in df_model_data.columns:
+                df_model_data = df_model_data.rename(columns={'BKP_Code': 'eBKP-H Code'})
+            if 'BKP_Beschreibung' in df_model_data.columns:
+                df_model_data = df_model_data.rename(columns={'BKP_Beschreibung': 'eBKP-H Beschreibung'})
+
+            st.success(f"✅ Modell-Datei erfolgreich geladen: {len(df_model_data)} Zeilen")
+
+            with st.expander("📋 Modell-Daten Vorschau", expanded=False):
+                st.dataframe(df_model_data.head(10), use_container_width=True)
+
+            # Aggregiere und zeige Statistiken über eBKP-H Codes
+            quantities_preview = aggregate_quantities_by_code(df_model_data)
+            if quantities_preview:
+                st.success(f"✅ Mengen aus {len(df_model_data)} Elementen aggregiert")
+                st.info(f"📊 {len(quantities_preview)} eindeutige eBKP-H Codes mit Mengen gefunden")
+
+                with st.expander("🔍 Mengen-Übersicht (Top 10)", expanded=False):
+                    top_codes = sorted(quantities_preview.items(), key=lambda x: x[1], reverse=True)[:10]
+                    for code, qty in top_codes:
+                        st.caption(f"• **{code}**: {qty:.2f}")
+
+        except Exception as e:
+            st.error(f"❌ Fehler beim Laden der Datei: {str(e)}")
+            df_model_data = None
+    else:
+        st.info("👆 Bitte laden Sie eine Datei hoch oder wählen Sie 'Keine (Manuell)'")
+
+else:
+    st.info("ℹ️ Keine Modell-Daten werden verwendet. Alle Mengen müssen manuell eingegeben werden.")
+
+st.divider()
+
+# ================================================================================
+# SCHRITT 3: KOSTENBERECHNUNG
+# ================================================================================
+
+st.header("💰 Schritt 3: Kostenberechnung")
+
 # Sidebar: Kostenermittlungs-Status
 st.sidebar.header("📐 Kostenermittlung")
 
@@ -370,174 +578,10 @@ else:
     tolerance = 10
 
 st.sidebar.divider()
-st.sidebar.info("💡 **Hinweis**: Kennwerte können in der Tabelle bearbeitet werden")
-
-# Hauptbereich
-# Datenquelle wählen: Session State oder Excel-Upload
-st.subheader("📂 Datenquelle")
-
-# Initialisiere Session State für Datenquelle
-if 'cost_data_source' not in st.session_state:
-    st.session_state.cost_data_source = "Session State (KI-Klassifizierung)"
-
-data_source = st.radio(
-    "Wählen Sie die Datenquelle:",
-    options=["Session State (KI-Klassifizierung)", "Excel-Datei hochladen"],
-    help="Nutzen Sie Session State für KI-klassifizierte Daten oder laden Sie eine vorhandene Excel-Datei hoch",
-    index=0 if st.session_state.cost_data_source == "Session State (KI-Klassifizierung)" else 1,
-    key="cost_data_source"
-)
-
-df_classified = None
-
-if data_source == "Session State (KI-Klassifizierung)":
-    # Prüfe ob classification_results vorhanden sind
-    if not has_classification_results():
-        st.warning("⚠️ Keine Klassifizierungsdaten im Session State vorhanden")
-        st.info("Bitte führen Sie zuerst die eBKP-H Klassifizierung durch.")
-        st.page_link("pages/03_KI_Klassifizierung.py", label="→ Zur KI Klassifizierung", icon="🤖")
-        st.stop()
-
-    # Lade classification_results
-    df_classified = get_state(DATA_CLASSIFICATION_RESULTS).copy()
-
-    # Spaltennamen-Mapping von Session State
-    # KI-Klassifizierung liefert: BKP_Code, BKP_Beschreibung, KI_Konfidenz
-    # Kostenberechnung erwartet: eBKP-H Code, eBKP-H Beschreibung
-    required_mapping = {
-        'BKP_Code': 'eBKP-H Code',
-        'BKP_Beschreibung': 'eBKP-H Beschreibung'
-    }
-
-    # Prüfe welche Spalten umbenannt werden müssen
-    columns_to_rename = {old: new for old, new in required_mapping.items()
-                         if old in df_classified.columns}
-
-    if columns_to_rename:
-        df_classified = df_classified.rename(columns=columns_to_rename)
-        mapped_cols = ', '.join([f'{old}→{new}' for old, new in columns_to_rename.items()])
-        st.info(f"ℹ️ Spaltennamen automatisch angepasst: {mapped_cols}")
-
-    st.success(f"✅ Daten aus Session State geladen: {len(df_classified)} Positionen")
-
-else:
-    # Datei-Upload (Excel oder CSV)
-    st.info("📤 Laden Sie eine Excel- oder CSV-Datei mit eBKP-H Zuordnung hoch")
-
-    with st.expander("ℹ️ Erwartetes Format", expanded=False):
-        st.markdown("""
-        Die Datei sollte mindestens folgende Spalten enthalten:
-        - **eBKP-H Code**: z.B. "A", "C.1", "D.3"
-        - **eBKP-H Beschreibung**: Beschreibung der Position
-        - **Menge** (optional): Mengenangabe
-
-        **Unterstützte Formate:**
-        - Excel: `.xlsx`, `.xls`
-        - CSV: `.csv` (Semikolon oder Komma als Trennzeichen)
-
-        Weitere Spalten werden automatisch übernommen.
-        """)
-
-    uploaded_file = st.file_uploader(
-        "Datei auswählen",
-        type=['xlsx', 'xls', 'csv'],
-        help="Unterstützte Formate: .xlsx, .xls, .csv"
-    )
-
-    if uploaded_file is not None:
-        try:
-            # Erkenne Dateityp und lese entsprechend
-            file_extension = uploaded_file.name.split('.')[-1].lower()
-
-            if file_extension in ['xlsx', 'xls']:
-                # Lese Excel-Datei
-                df_uploaded = pd.read_excel(uploaded_file)
-            elif file_extension == 'csv':
-                # Versuche verschiedene CSV-Trennzeichen
-                try:
-                    # Versuche zuerst Semikolon (Schweizer Standard)
-                    df_uploaded = pd.read_csv(uploaded_file, sep=';', encoding='utf-8-sig')
-                except:
-                    # Fallback auf Komma
-                    uploaded_file.seek(0)  # Reset file pointer
-                    df_uploaded = pd.read_csv(uploaded_file, sep=',', encoding='utf-8-sig')
-            else:
-                st.error(f"❌ Nicht unterstütztes Dateiformat: {file_extension}")
-                st.stop()
-
-            # Zeige Vorschau
-            st.success(f"✅ Datei erfolgreich geladen: {len(df_uploaded)} Zeilen")
-
-            with st.expander("📋 Datenvorschau", expanded=True):
-                st.dataframe(df_uploaded.head(10), use_container_width=True)
-
-            # Spaltennamen-Mapping für Flexibilität
-            # Unterstütze sowohl "BKP_Code" als auch "eBKP-H Code"
-            column_mapping = {}
-
-            # Suche nach BKP-Code Spalte (verschiedene Varianten)
-            code_columns = ['eBKP-H Code', 'BKP_Code', 'BKP Code', 'eBKP-H_Code']
-            code_col = next((col for col in code_columns if col in df_uploaded.columns), None)
-
-            if code_col:
-                column_mapping[code_col] = 'eBKP-H Code'
-            else:
-                st.error(f"❌ Keine BKP-Code Spalte gefunden")
-                st.info(f"Gesuchte Spaltennamen: {', '.join(code_columns)}")
-                st.info(f"Gefundene Spalten: {', '.join(df_uploaded.columns.tolist())}")
-                st.stop()
-
-            # Suche nach BKP-Beschreibung Spalte (verschiedene Varianten)
-            desc_columns = ['eBKP-H Beschreibung', 'BKP_Beschreibung', 'BKP Beschreibung', 'eBKP-H_Beschreibung', 'Beschreibung']
-            desc_col = next((col for col in desc_columns if col in df_uploaded.columns), None)
-
-            if desc_col:
-                column_mapping[desc_col] = 'eBKP-H Beschreibung'
-            else:
-                st.error(f"❌ Keine BKP-Beschreibung Spalte gefunden")
-                st.info(f"Gesuchte Spaltennamen: {', '.join(desc_columns)}")
-                st.info(f"Gefundene Spalten: {', '.join(df_uploaded.columns.tolist())}")
-                st.stop()
-
-            # Umbenennen der Spalten
-            df_classified = df_uploaded.rename(columns=column_mapping).copy()
-
-            # Speichere in Session State
-            st.session_state.uploaded_cost_data = df_classified.copy()
-            st.session_state.uploaded_filename = uploaded_file.name
-
-            st.info(f"✅ Spalten-Mapping: {code_col} → eBKP-H Code, {desc_col} → eBKP-H Beschreibung")
-
-        except Exception as e:
-            st.error(f"❌ Fehler beim Laden der Datei: {str(e)}")
-            st.info("💡 Tipp: Stellen Sie sicher, dass die CSV-Datei UTF-8 codiert ist und Semikolon oder Komma als Trennzeichen verwendet.")
-            st.stop()
-    elif 'uploaded_cost_data' in st.session_state:
-        # Verwende bereits hochgeladene Daten aus Session State
-        df_classified = st.session_state.uploaded_cost_data.copy()
-
-        col_info, col_clear = st.columns([4, 1])
-        with col_info:
-            st.success(f"✅ Gespeicherte Datei verwendet: {st.session_state.uploaded_filename} ({len(df_classified)} Zeilen)")
-        with col_clear:
-            if st.button("🗑️ Löschen", help="Gespeicherte Datei aus Session State entfernen"):
-                del st.session_state.uploaded_cost_data
-                del st.session_state.uploaded_filename
-                st.rerun()
-
-        with st.expander("📋 Datenvorschau", expanded=False):
-            st.dataframe(df_classified.head(10), use_container_width=True)
-    else:
-        st.info("👆 Bitte wählen Sie eine Datei aus")
-        st.stop()
-
-# Prüfe ob Daten vorhanden sind
-if df_classified is None or df_classified.empty:
-    st.error("❌ Keine Daten zum Verarbeiten vorhanden")
-    st.stop()
+st.sidebar.info(f"🎯 Kennwert-Niveau: **{kennwerte_level.upper()}**")
+st.sidebar.info("💡 **Hinweis**: Kennwerte und Mengen können in der Tabelle bearbeitet werden")
 
 # Qualitätsindikator Banner
-config = get_state(CFG_COST_ESTIMATION_CONFIG)
 if config and config.get('selected'):
     col1, col2, col3, col4 = st.columns(4)
     with col1:
@@ -549,109 +593,158 @@ if config and config.get('selected'):
     with col4:
         st.metric("🎯 eBKP-Tiefe", config['ebkp_depth'])
 
-st.divider()
+    st.divider()
 
-# Vorbereitung der Kostentabelle
-st.subheader("📊 Kostenberechnung mit Kennwerten")
+# Erstelle Kostenberechnungstabelle
+st.subheader("📊 Kostenberechnungstabelle")
 
-# Prüfe welche Spalten vorhanden sind (unterstützt beide Formate)
-required_columns = ['eBKP-H Code', 'eBKP-H Beschreibung']
-legacy_columns = ['BKP_Code', 'BKP_Beschreibung']
+# Bestimme welche Kennwert-Spalte verwendet werden soll
+kennwert_col = f"Kennwert {kennwerte_level} CHF/Einheit"
 
-has_required = all(col in df_classified.columns for col in required_columns)
-has_legacy = all(col in df_classified.columns for col in legacy_columns)
-
-if not (has_required or has_legacy):
-    st.error("❌ Die erforderlichen Spalten fehlen in den Klassifizierungsdaten")
-    st.info(f"Benötigt: {required_columns} ODER {legacy_columns}")
-    st.info(f"Vorhanden: {list(df_classified.columns)}")
-    st.stop()
-
-# Falls Legacy-Format: Mapping durchführen (sollte bereits in Zeile 404-419 erfolgt sein)
-if has_legacy and not has_required:
-    df_classified = df_classified.rename(columns={
-        'BKP_Code': 'eBKP-H Code',
-        'BKP_Beschreibung': 'eBKP-H Beschreibung'
-    })
-
-# Gruppiere nach eBKP-H Code und summiere Mengen
-# Prüfe ob Menge-Spalte existiert
-if 'Menge' not in df_classified.columns:
-    df_classified['Menge'] = 0.0
-
-# Ersetze NaN-Werte mit 0
-df_classified['Menge'] = df_classified['Menge'].fillna(0.0)
-
-# Zeige Info über Original-Daten
-original_count = len(df_classified)
-
-# Gruppiere nach eBKP-H Code und eBKP-H Beschreibung
-grouped = df_classified.groupby(['eBKP-H Code', 'eBKP-H Beschreibung'], as_index=False).agg({
-    'Menge': 'sum'
-})
-
-# Sortiere alphabetisch nach eBKP-H Code (A, B, C, etc.)
-grouped = grouped.sort_values('eBKP-H Code')
-
-# Info-Meldung
-st.info(f"ℹ️ {original_count} Einzelpositionen wurden zu {len(grouped)} eBKP-H Positionen gruppiert und alphabetisch sortiert.")
-
-# Erstelle Kostentabelle
+# Erstelle DataFrame mit ALLEN Positionen aus dem Kostenplan
 cost_data = []
 
-for idx, row in grouped.iterrows():
-    ebkp_code = row['eBKP-H Code']
-    beschreibung = row['eBKP-H Beschreibung']
+# OPTIMIERUNG: Aggregiere Mengen einmalig VOR der Schleife (O(m) statt O(n*m))
+quantities_by_code = aggregate_quantities_by_code(df_model_data) if df_model_data is not None else {}
 
-    # Hole Kennwert
-    kennwert_info = get_kennwert_for_code(ebkp_code)
+for idx, row in df_kennwerte.iterrows():
+    ebkp_code = row['eBKP-H Code']
+    beschreibung = row['Kostengruppe / Position']
+    einheit = row['Kennwert Einheit'] if pd.notna(row['Kennwert Einheit']) else 'CHF/m²'
+    kennwert = row[kennwert_col] if pd.notna(row[kennwert_col]) else 0.0
+    anmerkung = row['Anmerkungen'] if pd.notna(row['Anmerkungen']) else ''
+
+    # OPTIMIERUNG: Schneller Dictionary-Lookup statt DataFrame-Suche - O(1) statt O(m)
+    menge = quantities_by_code.get(ebkp_code, 0.0)
+
+    # Berechne Betrag
+    betrag = 0.0
+    if menge > 0 and kennwert > 0:
+        if '%' not in str(einheit):
+            betrag = menge * kennwert
 
     cost_data.append({
         'eBKP-H Code': ebkp_code,
         'Beschreibung': beschreibung,
-        'Menge': float(row['Menge']),
-        'Einheit': kennwert_info['einheit'],
-        'Kennwert': float(kennwert_info['kennwert']),
-        'Betrag CHF': 0.0  # Wird berechnet
+        'Menge': float(menge),
+        'Einheit': einheit,
+        'Kennwert': float(kennwert),
+        'Betrag CHF': float(betrag),
+        'Pauschalpreis CHF': 0.0,  # Neue Spalte für Pauschalpreis
+        'Anmerkung': anmerkung
     })
 
 df_cost = pd.DataFrame(cost_data)
 
+# Prüfe ob "Finanzbedarfs" gewählt wurde - dann nur Hauptgruppen anzeigen
+is_finanzbedarfs = False
+if config and config.get('selected'):
+    kostenermittlungsart = config.get('name', '').lower()
+    if 'finanzbedarfs' in kostenermittlungsart or 'finanzbedarf' in kostenermittlungsart:
+        is_finanzbedarfs = True
+        # Filtere nur Hauptgruppen (eBKP-H Codes ohne Punkt)
+        df_cost = df_cost[~df_cost['eBKP-H Code'].astype(str).str.contains('.', regex=False)].copy()
+        st.info(f"ℹ️ Finanzbedarfsermittlung: Es werden nur die {len(df_cost)} Hauptgruppen angezeigt")
+
+# Validierung: Zeige Positionen ohne Modell-Daten
+if quantities_by_code:
+    # Finde Codes mit und ohne Daten
+    codes_with_data = set(code for code, qty in quantities_by_code.items() if qty > 0)
+    codes_in_kostenplan = set(df_cost['eBKP-H Code'].values)
+    codes_without_data = codes_in_kostenplan - codes_with_data
+
+    if codes_without_data:
+        with st.expander(f"⚠️ {len(codes_without_data)} Kostenplan-Positionen ohne Modell-Daten", expanded=False):
+            st.caption("Diese Positionen sind im Kostenplan vorhanden, haben aber keine zugeordneten Mengen aus den Modell-Daten:")
+            for code in sorted(codes_without_data):
+                desc = df_cost[df_cost['eBKP-H Code'] == code]['Beschreibung'].iloc[0]
+                st.caption(f"• **{code}**: {desc}")
+            st.info("💡 Diese Positionen haben Menge = 0. Sie können die Mengen manuell in der Tabelle unten eingeben.")
+
 # Info-Box
 with st.expander("ℹ️ Anleitung", expanded=False):
-    st.markdown("""
+    st.markdown(f"""
     ### Wie funktioniert die Kostenberechnung?
 
-    1. **Kennwerte**: Voreingestellte Kennwerte basieren auf Schweizer Bauökonomie-Standards
-    2. **Menge anpassen**: Tragen Sie die Mengen für jede Position ein
-    3. **Kennwert anpassen**: Bei Bedarf können Sie die Kennwerte überschreiben
-    4. **Automatische Berechnung**: Betrag = Menge × Kennwert
-    5. **Toleranzen**: Basierend auf der gewählten Kostenermittlungsstufe
+    1. **Kostenplan**: {len(df_cost)} Positionen {('(nur Hauptgruppen)' if is_finanzbedarfs else '')} aus Ihrem Kostenplan werden angezeigt
+    2. **Kennwert-Niveau**: Aktuell ausgewählt: **{kennwerte_level.upper()}**
+    3. **Modell-Daten**: {'Daten aus ' + data_source + ' geladen' if df_model_data is not None else 'Keine Modell-Daten - manuelle Eingabe erforderlich'}
+    4. **Menge anpassen**: Tragen Sie die Mengen für jede Position ein (falls nicht aus Modell übernommen)
+    5. **Kennwert anpassen**: Bei Bedarf können Sie die Kennwerte überschreiben
+    6. **Pauschalpreis**: Alternativ können Sie einen Pauschalpreis eingeben (überschreibt Menge × Kennwert)
+    7. **Zeilen löschen**: Nicht benötigte Positionen können gelöscht werden
+    8. **Automatische Berechnung**: Betrag = Menge × Kennwert (oder Pauschalpreis, falls eingegeben)
+    9. **Toleranzen**: Basierend auf der gewählten Kostenermittlungsstufe (±{tolerance}%)
 
     **Einheiten**:
     - CHF/m²: Kosten pro Quadratmeter
     - CHF/m³: Kosten pro Kubikmeter
     - CHF/m: Kosten pro Laufmeter
     - CHF/St: Kosten pro Stück
-    - %: Prozentanteil
+    - %: Prozentanteil (wird auf Zwischensumme angewendet)
+    - Pauschal: Fester Betrag
     """)
 
 st.divider()
 
-# Editierbare Tabelle
-st.subheader("✏️ Mengen und Kennwerte bearbeiten")
+# Editierbare Tabelle oder kompakte Listenansicht
+st.subheader("✏️ Kostenberechnung bearbeiten")
 
-# Konfiguriere Column-Config für bessere Darstellung
+# Initialisiere oder aktualisiere Session State für bearbeitete Daten
+# Prüfe ob sich die Kostenermittlungsstufe ODER die Modell-Daten geändert haben
+num_quantities = len(quantities_by_code) if quantities_by_code else 0
+total_quantity = sum(quantities_by_code.values()) if quantities_by_code else 0
+current_filter_key = f"finanzbedarfs_{is_finanzbedarfs}_quantities_{num_quantities}_{total_quantity:.2f}"
+
+if 'cost_filter_key' not in st.session_state or st.session_state.cost_filter_key != current_filter_key:
+    # Filter oder Daten haben sich geändert - initialisiere neu mit aktuellen Mengen aus df_cost
+    st.session_state.edited_cost_data = df_cost.copy()
+    st.session_state.cost_filter_key = current_filter_key
+    if num_quantities > 0:
+        st.info(f"🔄 Tabelle mit neuen Modell-Daten aktualisiert: {num_quantities} eBKP-H Codes mit Mengen")
+
+# Verwende gespeicherte Daten
+edited_df = st.session_state.edited_cost_data.copy()
+
+# Berechne Beträge INITIAL (berücksichtigt Pauschalpreis)
+for idx in edited_df.index:
+    pauschalpreis = edited_df.loc[idx, 'Pauschalpreis CHF']
+
+    # Falls Pauschalpreis eingegeben: Verwende diesen
+    if pauschalpreis > 0:
+        edited_df.loc[idx, 'Betrag CHF'] = pauschalpreis
+    else:
+        # Sonst: Berechne aus Menge × Kennwert
+        menge = edited_df.loc[idx, 'Menge']
+        kennwert = edited_df.loc[idx, 'Kennwert']
+        einheit = edited_df.loc[idx, 'Einheit']
+
+        # Prozentuale Positionen später auf Zwischensumme anwenden
+        if '%' in str(einheit):
+            edited_df.loc[idx, 'Betrag CHF'] = 0.0
+        else:
+            edited_df.loc[idx, 'Betrag CHF'] = menge * kennwert
+
+# Füge Stern (*) vor Hauptgruppen hinzu und erstelle Display-DataFrame
+df_cost_display = edited_df.copy()
+df_cost_display['Position'] = df_cost_display.apply(
+    lambda row: f"*   {row['eBKP-H Code']}" if '.' not in str(row['eBKP-H Code']) else f"     {row['eBKP-H Code']}",
+    axis=1
+)
+
+# Konfiguriere Column-Config - kompakte Darstellung wie im Screenshot
 column_config = {
-    'eBKP-H Code': st.column_config.TextColumn(
-        'eBKP-H Code',
+    'Position': st.column_config.TextColumn(
+        'Position',
         width='small',
-        disabled=True
+        disabled=True,
+        help="eBKP-H Code (* = Hauptgruppe)"
     ),
     'Beschreibung': st.column_config.TextColumn(
         'Beschreibung',
         width='large',
-        disabled=True
+        disabled=True,
+        help="Kostengruppe / Position"
     ),
     'Menge': st.column_config.NumberColumn(
         'Menge',
@@ -663,45 +756,84 @@ column_config = {
     'Einheit': st.column_config.TextColumn(
         'Einheit',
         width='small',
-        disabled=True
+        disabled=True,
+        help="Einheit"
     ),
     'Kennwert': st.column_config.NumberColumn(
         'Kennwert',
-        width='medium',
+        width='small',
         min_value=0.0,
-        format="%.2f",
-        help="Kennwert für die Kostenberechnung (editierbar)"
+        format="%.2f CHF",
+        help="Kennwert (editierbar)"
     ),
     'Betrag CHF': st.column_config.NumberColumn(
         'Betrag CHF',
         width='medium',
         disabled=True,
-        format="%.2f"
+        format="%.2f",
+        help="Berechnet: Menge × Kennwert"
+    ),
+    'Pauschalpreis CHF': st.column_config.NumberColumn(
+        'Pauschalpreis',
+        width='medium',
+        min_value=0.0,
+        format="%.2f",
+        help="Optional: Pauschalpreis"
     ),
 }
 
-# Editierbare Tabelle
-edited_df = st.data_editor(
-    df_cost,
+# Wähle Spalten für Anzeige
+display_columns = ['Position', 'Beschreibung', 'Menge', 'Einheit', 'Kennwert', 'Betrag CHF', 'Pauschalpreis CHF']
+
+# Editierbare Tabelle mit Lösch-Funktion
+edited_df_display = st.data_editor(
+    df_cost_display[display_columns],
     column_config=column_config,
     use_container_width=True,
     hide_index=True,
-    num_rows="fixed",
+    num_rows="dynamic",  # Ermöglicht Hinzufügen/Löschen von Zeilen
     key="cost_editor"
 )
 
-# Berechne Beträge
-for idx in edited_df.index:
-    menge = edited_df.loc[idx, 'Menge']
-    kennwert = edited_df.loc[idx, 'Kennwert']
-    einheit = edited_df.loc[idx, 'Einheit']
+# Übertrage Änderungen zurück zu edited_df mit allen Spalten
+# Behandle Fall wenn Zeilen gelöscht/hinzugefügt wurden
+if len(edited_df_display) != len(edited_df):
+    # Zeilen wurden geändert - rekonstruiere edited_df aus edited_df_display
+    # Extrahiere eBKP-H Code aus Position-Spalte (entferne Stern und Leerzeichen)
+    edited_df_display['eBKP-H Code'] = edited_df_display['Position'].str.replace('*', '').str.strip()
 
-    # Berechnung basierend auf Einheit
-    if '%' in einheit:
-        # Prozentuale Positionen später auf Zwischensumme anwenden
-        edited_df.loc[idx, 'Betrag CHF'] = 0.0
+    # Füge fehlende Spalten aus df_cost wieder hinzu basierend auf eBKP-H Code
+    edited_df = edited_df_display.copy()
+    edited_df['Anmerkung'] = edited_df['eBKP-H Code'].map(
+        df_cost.set_index('eBKP-H Code')['Anmerkung']
+    ).fillna('')
+
+    # Entferne Position-Spalte (wird nicht mehr benötigt)
+    edited_df = edited_df.drop(columns=['Position'])
+else:
+    # Keine Zeilenänderungen - nur Werte übertragen
+    edited_df['Menge'] = edited_df_display['Menge'].values
+    edited_df['Kennwert'] = edited_df_display['Kennwert'].values
+    edited_df['Pauschalpreis CHF'] = edited_df_display['Pauschalpreis CHF'].values
+
+# Berechne Beträge NEU nach Bearbeitung
+for idx in edited_df.index:
+    pauschalpreis = edited_df.loc[idx, 'Pauschalpreis CHF']
+
+    if pauschalpreis > 0:
+        edited_df.loc[idx, 'Betrag CHF'] = pauschalpreis
     else:
-        edited_df.loc[idx, 'Betrag CHF'] = menge * kennwert
+        menge = edited_df.loc[idx, 'Menge']
+        kennwert = edited_df.loc[idx, 'Kennwert']
+        einheit = edited_df.loc[idx, 'Einheit']
+
+        if '%' in str(einheit):
+            edited_df.loc[idx, 'Betrag CHF'] = 0.0
+        else:
+            edited_df.loc[idx, 'Betrag CHF'] = menge * kennwert
+
+# Speichere bearbeitete Daten zurück in Session State
+st.session_state.edited_cost_data = edited_df.copy()
 
 st.divider()
 
@@ -709,15 +841,23 @@ st.divider()
 st.subheader("💰 Kostenzusammenfassung")
 
 # Berechne Zwischensumme (ohne %-Positionen)
-zwischensumme = edited_df[~edited_df['Einheit'].str.contains('%', na=False)]['Betrag CHF'].sum()
+zwischensumme = edited_df[~edited_df['Einheit'].astype(str).str.contains('%', na=False)]['Betrag CHF'].sum()
 
-# Berechne %-Positionen (V, Z) auf Zwischensumme
-prozent_positionen = edited_df[edited_df['Einheit'].str.contains('%', na=False)]
+# Berechne %-Positionen (V, Z, etc.) auf Zwischensumme
+prozent_positionen = edited_df[edited_df['Einheit'].astype(str).str.contains('%', na=False)]
 prozent_betrag = 0.0
 
 for idx, row in prozent_positionen.iterrows():
-    prozent = row['Kennwert']
-    betrag = zwischensumme * (prozent / 100)
+    pauschalpreis = row['Pauschalpreis CHF']
+
+    if pauschalpreis > 0:
+        # Pauschalpreis verwenden
+        betrag = pauschalpreis
+    else:
+        # Prozentsatz auf Zwischensumme anwenden
+        prozent = row['Kennwert']
+        betrag = zwischensumme * (prozent / 100)
+
     prozent_betrag += betrag
     edited_df.loc[idx, 'Betrag CHF'] = betrag
 
@@ -733,14 +873,14 @@ with col1:
     st.metric(
         "💵 Zwischensumme (Baukosten)",
         format_currency(zwischensumme),
-        help="Summe aller Positionen ohne Planungskosten und Mehrwertsteuer"
+        help="Summe aller Positionen ohne prozentuale Zuschläge"
     )
 
 with col2:
     st.metric(
         "💰 Gesamtkosten",
         format_currency(total_betrag),
-        help="Gesamtsumme inkl. Planungskosten (V) und Mehrwertsteuer (Z)"
+        help="Gesamtsumme inkl. aller Zuschläge (V, W, Z, etc.)"
     )
 
 with col3:
@@ -759,7 +899,7 @@ with st.expander("📋 Detaillierte Aufschlüsselung", expanded=False):
     df_with_costs['Betrag formatiert'] = df_with_costs['Betrag CHF'].apply(format_currency)
 
     st.dataframe(
-        df_with_costs[['eBKP-H Code', 'Beschreibung', 'Menge', 'Einheit', 'Kennwert', 'Betrag formatiert']],
+        df_with_costs[['eBKP-H Code', 'Beschreibung', 'Menge', 'Einheit', 'Kennwert', 'Pauschalpreis CHF', 'Betrag formatiert']],
         use_container_width=True,
         hide_index=True
     )
@@ -863,7 +1003,7 @@ if len(df_viz) > 0:
         st.caption(f"💡 Die Top 10 Positionen machen **{anteil:.1f}%** der Baukosten aus ({format_currency(total_top10)})")
 
 else:
-    st.info("ℹ️ Keine Kostendaten für Visualisierung vorhanden. Bitte tragen Sie Mengen ein.")
+    st.info("ℹ️ Keine Kostendaten für Visualisierung vorhanden. Bitte tragen Sie Mengen ein oder geben Sie Pauschalpreise an.")
 
 st.divider()
 
@@ -918,6 +1058,8 @@ with col2:
             worksheet.column_dimensions['D'].width = 12
             worksheet.column_dimensions['E'].width = 12
             worksheet.column_dimensions['F'].width = 15
+            worksheet.column_dimensions['G'].width = 15
+            worksheet.column_dimensions['H'].width = 30
 
         if st.download_button(
             label="📥 Excel herunterladen",
@@ -934,7 +1076,6 @@ with col2:
 
 with col3:
     # PDF Export
-    # Hole Kostenermittlungs-Config falls vorhanden
     config_info = get_state(CFG_COST_ESTIMATION_CONFIG)
     if config_info and not config_info.get('selected'):
         config_info = None

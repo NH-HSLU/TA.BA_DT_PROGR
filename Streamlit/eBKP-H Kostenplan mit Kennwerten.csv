@@ -1,0 +1,413 @@
+﻿eBKP-H Code;Kostengruppe / Position;Kennwert Einheit;Kennwert tief CHF/Einheit;Kennwert mittel CHF/Einheit;Kennwert hoch CHF/Einheit;Anmerkungen
+;;;;;;
+A;GRUNDSTÜCK;;200;500;800;
+A01;Grundstück, Baurecht;m² Grundfläche;200;500;800;Standortabhängig, Zürich höher
+A01.01;Grundstückserwerb;m² Grundfläche;150;375;600;Regional stark variabel
+A01.02;Baurechterwerb;m² Grundfläche;50;125;200;Je nach Vertragsdauer
+A01.03;Bauwerkserwerb;m² Grundfläche;300;900;1500;Bestandsgebäude
+A01.04;Perimeterbeitrag;m² Grundfläche;10;55;100;Je nach Kommune
+A02;Nebenkosten Grundstück, Baurecht;% der Kosten A01;5;7.5;10;Gebühren, Makler, Notariat
+A02.01;Handänderungssteuer, Gewinnsteuer;% der Kosten;3;4.5;6;Kantonsabhängig
+A02.02;Notariatskosten;% der Kosten;0.5;0.75;1;Ca. 0.5-1% der Kaufsumme
+A02.03;Grundbuchgebür;% der Kosten;0.1;0.225;0.35;Grundbucheintrag: 0.1% (ZH), bis 0.35% andere Kantone, min. 50-200 CHF
+A02.04;Anwaltskosten, Gerichtskosten;Pauschal;1000;3000;5000;"bei Streitigkeiten; Standard Grundstückskauf: 500-1500 CHF"
+A02.05;Vermittlungsprovision;% der Kaufpreis;2;2.5;3;Marklerprovision: Üblicherweise 2-3% des Verkaufpreises
+A02.06;Abfindung, Servitut;Pauschal;2000;26000;50000;sehr variabel: von Rechteauslösung abhängig
+A02.07;Vermessung, Vermarkung;Pauschal;2000;5000;8000;Feldmessergebühren für Neuaufnahme/Grenzfeststellung
+;;;;;;
+B;VORBEREITUNG;;50;100;150;
+B01;Untersuchung, Aufnahme, Messung;% Gesamtbaukosten;0.5;1;1.5;Vorprojekt/Bauprojekt
+B01.01;Baugrunduntersuchung;m² Grundfläche;5;12.5;20;Bohrkerne, Labortests
+B01.02;Bestandsaufnahme;m² Grundfläche;2;5;8;Bestandsvermessung
+B01.03;Umweltmessung;Pauschal;2000;6000;10000;Schadstoffuntersuchung
+B01.04;Überwachung;;;;;
+B02;Baustelleinrichtung;% der Kosten;3;5.5;8;Zäune, Büros, Lagerplatz
+B02.01;Baustellenerschliessung;m² Nutzfläche;10;20;30;Zufahrten, Abstellplätze
+B02.02;Versorgung, Entsorgung;Pauschal;5000;12500;20000;Wasser, Strom, Abfall
+B02.03;Arbeitsraum, Aufenthaltsraum;m² Baustelle;5;10;15;Container, WC-Anlagen
+B02.04;Hebe-,  Verlade-, Transport-, Lagereinrichtung;Pauschal;10000;30000;50000;Kräne, Aufzüge, Lagerplätze
+B02.05;Einrichtung für Materialaufbereitung;m² Baustelle;3000;9000;15000;Betonmischplatz, Schalungslager, Werkstatt
+B02.06;Witterungsbedingte Baumassnahme;% Baukosten;2;3.5;5;Schutzbauten, Dächer, Wärmung
+B02.07;Baustellenorganisation, Sicherheit;% Baukosten;2;3;4;PSA, Signalisation, Absperrungen, Koordination
+B02.08;Schutzmassnahme für Umgebung;% Baukosten;1;2;3;Staubschutz, Lärmschutz, Verkehrsregelung
+B03;Provisorium;;;;;
+B03.01;Provisorisches Rückhaltesystem;m3 oder Stück;200;500;800;Retentionsbecken, mobile Absetzbecken, Versickerungsanlagen
+B03.02;Provisiorische Werkleitung;m Laufmeter;50;175;300;
+B03.03;Provisorisches Gebäude;m²;200;500;800;Container, Büros, Lagerzelte, Wohncontainer
+B03.04;Provisorische Verkehrsanlage;m Laufmeter;100;300;500;Zufahrten, Überbrückungen, Rampen, Parkplätze
+B03.05;Provisorischer Ausbau, Ausstattung;m²;50;175;300;Innenausstattung Container, Mobiliar, sanitäre Anlagen
+B04;Erschliessung durch Werkleitungen;;;;;
+B04.01;Starkstromleitung;m Laufmeter;300;750;1200;"0,4 bis 30kV; Tiefbau + Material + Montage; je anch Durchmesser und Schwierigkeit"
+B04.02;Schwachstromleitung;m Laufmeter;100;250;400;"Telefon, Datenleitung, Glasfaser; niedrige Kosten als Starkstrom"
+B04.03;Fernwärmeleitung;m Laufmeter;500;1000;1500;"Doppelrohr mit Isolierung; CHF 500/m (einfach) bis CHF 1500/m (komplex); inkl. Erdarbeiten"
+B04.04;Fernkälteleitung;m Laufmeter;600;1200;1800;Ähnlich Fernwärme, oft höhere Anforderungen an Isolierung und Dichtheit
+B04.05;Wasserleitung;m Laufmeter;200;500;800;"DN 50-300; CHF 200-450/m (kleine) bis CHF 800-1200/m (grosse Rohre); je anch Durchmesser"
+B04.06;Schmutzwasserleitung;m Laufmeter;300;650;1000;"Kanalisation; CHF 300-600/m (DN 150-300) bis CHF 1000/m (grosse Profile); Tiefbau + Schächte"
+B04.07;Regenwasserleitung;m Laufmeter;250;525;800;"Ähnlich Schmutzwasser, oft etwas günstiger; DN 100-600"
+B04.08;Gasleitung;m Laufmeter;150;375;600;"Niederdruckleitung; einfache Installation; CHF 150-300/m (standard) bis CHF 600/m (Hochdruckleitung)"
+B05;Rodung, Rückbau;;;;;
+B05.01;Fällung, Rodung, Umpflanzung;m² Grundfläche;50;125;200;Rodung / Umpflanzung CHF 50-200/m² Fläche
+B05.02;Nicht kontaminierter Rückbau;m3 Abbruchmaterial;20;30;40;"Abriss ohne Schadstoffe; Entsorgung Bauabfall"
+B05.03;Kontaminierter Rückbau;m3 Abbruchmaterial;100;200;300;Asbest-Entsorgung, spezielle Handhabung erforderlich
+B06;Baugrube;;;;;
+B06.01;Nicht kontaminierter Aushub;m3 Aushubmaterial;50;75;100;"Aushub CHF 15-15/m3 + Entsorgung/Transport CHF 35-55/m3; normal belasteter Boden"
+B06.02;Kontaminierter Aushub;m3 Aushubmaterial;150;225;300;"Bodenbelastete Materialien; spezielle Entsorgung CHF 100-200/m3 zuzüglich Aushub"
+B06.03;Böschungssicherung;m² Böschungsfläche;50;175;300;Filtergeotextil/Kunststofffolie CHF 50-100/m²
+B06.04;Baugrubenabschluss;m Perimeter;100;250;400;Fgrubenbegrenzung, Absperrung, Sicherheit
+B06.05;Materialeinbau;m3 Schüttung;50;75;100;"Aufschüttung, Verdichtung, Einebnung; CHF 50-70/m3 Material + Verdichtung"
+B06.06;Wasserhaltung;Pauschal;5000;17500;30000;Oberflächenentwässerung, Grundwasserhaltung mit Pumpen, Sicherleitungen, Entwässerungsgräben
+B07;Baugrundverbesserung, Bauwerkssicherung;;;;;
+B07.01;Verbesserung Baugrund;m²;100;250;400;Bodenverdichtung, Austausch, Kalkstabilisierung
+B07.02;Pfählung;m Pfahllänge;800;1900;3000;"Rammpfähle CHF 800-2000/m; nach Grösse / Tragfähigkeit"
+B07.03;Unterfangung Bauwerk;m Laufmeter;1500;2750;4000;Fundamentunterfangung mit Micro-Piles, Betoninjektionen
+B07.04;Sicherung Bauwerk;m;500;1250;2000;"Stützwände, Abstützungen, provisorischer Verbau, Bracing-Systeme; abhängig vom Bauwerk-Typ"
+B08;Gerüst;m² Gerüstfläche;15;20;25;Miete + Auf-/Abbau
+B08.01;Fassadengerüst;m² Gerüstfläche;12;16;20;Standard Fassadengerüst (LK 3-4)
+B08.02;Arbeitsgerüst;m² Gerüstfläche;10;14;18;"Leichte bis mittlere Arbeiten; günstiger als Fassadengerüst"
+B08.03;Notdach;m Laufmeter;300;450;600;"Schutzdach/Schutzsystem; ca. 25-33 CHF/lfm Miete für Trägersystem"
+B08.04;Schutzgerüst;m² Gerüstfläche;8;11.5;15;mit Seitenschutz-/Fangnetz und Staubschutz
+B09;Anpassung angrenzendes Bauwerk;m²;100;300;500;Abhängig von Massnahmenprinzip
+B09.01;Bauliche Anpassung angrenzendes Bauwerk;m² betroffene Fläche;150;275;400;"Reperaturen, Verstärkungen, Stützung; je nach Komplexität"
+B09.02;Unterfangung, Sicherung angrenzendes Bauwerk;m Laufmeter;1500;2750;4000;Micro-Piles, Betoninjektionen, temporäre Anker
+B09.03;Verkehrsanlage ausserhalb Grundstück;m Laufmeter;200;600;1000;"Provisorische Umleitung, Markierungen, Beschilderung; je nach Dauer und Umfang"
+;;;;;;
+C;KONSTRUKTION GEBÄUDE;;300;500;700;
+C01;Fundament, Bodenplatte;m² Grundfläche;80;140;200;Abhängig von Baugrund
+C01.01;Unterbau Fundament, Bodenplatte;m² Grundfläche;50;100;150;Gründungstiefe
+C01.02;Fundament;m² Grundfläche;20;40;60;Betonfläche
+C01.03;Bodenplatte;m² Grundfläche;30;55;80;Isolierung, Ausbildung
+C01.04;Erdverbundene Treppe, Rampe;Stück;5000;10000;15000;Pro Element
+C01.05;Erdverbundenes Podest;m²;100;200;300;Betonarbeiten
+C02;Wandkonstruktion;m² Fassadenfläche;200;350;500;Material und Ausführung
+C02.01;Aussenwandkonstruktion;m² Fassadenfläche;150;275;400;Mauerwerk, Beton, Holz
+C02.02;Innenwandkonstruktion;m² Wandfläche;50;100;150;Trennwände
+C03;Stützenkonstruktion;m² Grundfläche;20;40;60;Stahlbeton, Stahl, Holz
+C03.01;Aussenstütze;m² Geschossfläche;8;16.5;25;Je nach Spannweite
+C03.02;Innenstütze;m² Geschossfläche;5;10;15;Material abhängig
+C04;Deckenkonstruktion, Dachkonstruktion;m² Grundfläche;100;200;300;Spannweite, Belastung
+C04.01;Geschossdecke;m² Grundfläche;80;140;200;Stahlbeton, Holz, Stahl
+C04.02;Innen liegende Treppe, Rampe;m² Treppenfläche;1500;2500;3500;Pro Quadratmeter
+C04.03;Innen liegendes Podest;m² Fläche;200;300;400;Tragwerk
+C04.04;Konstruktion Flachdach;m² Grundfläche;50;85;120;Tragwerk nur
+C04.05;Konstruktion geneigtes Dach;m² Dachfläche;60;105;150;Je nach Neigung
+C04.06;Aussen liegende Treppe, Rampe;m² Fläche;200;400;600;Material + Montage
+C04.07;Aussen liegendes Podest;m² Fläche;200;350;500;Tragwerk + Anschluss
+C04.08;Aussen liegende Konstruktion, Vordach;m² Fläche;150;275;400;Material + Montage
+C05;Erschliessende Leistung zu Konstruktion;% der C-Kosten;2;3.5;5;Gerüste, Vorbereitungen
+C05.01;Durchbruch, Schlitz zu Konstruktion;Stück;500;1250;2000;Je nach Grösse
+C05.02;Maschinensockel, Einlage;Stück;1000;3000;5000;Je nach Grösse
+;;;;;;
+D;TECHNIK GEBÄUDE;;200;350;500;
+D01;Elektroanlage;m² Geschossfläche;30;55;80;Installationen
+D01.01;Anlage Erzeugung Starkstrom;kW;800;1150;1500;Transformatoren, Verteiler
+D01.02;Transformation Starkstrom;kW;500;750;1000;Pro kW Leistung
+D01.03;Speicherung Starkstrom;kWh;300;450;600;Batteriesysteme
+D01.04;Installation Starkstrom;m² Grundfläche;15;27.5;40;Kabel, Kanäle, Schalter
+D01.05;Verbraucher Starkstrom: Leuchten;Stück;30;90;150;LED-Leuchten
+D01.06;Verbraucher Starkstrom: Elektrogeräte;m² Grundfläche;5;12.5;20;Diverse Verbraucher
+D01.07;Anlage Erzeugung Schwachstrom;Punkte;100;300;500;Pro Anschlusspunkt
+D01.08;Transformation Schwachstrom;Pauschal;5000;10000;15000;Verteiler, Umwandler
+D01.09;Speicherung Schwachstrom;Stück;500;1250;2000;UPS, Pufferung
+D01.10;Installation Schwachstrom;m² Geschossfläche;8;16.5;25;Leitungsführung, Verkabelung
+D01.11;Verbraucher Schwachstrom;m² Geschossfläche;5;12.5;20;Kommunikation, IT-Verkabelung
+D02;Gebäudeautomation;m² Geschossfläche;40;95;150;Automation und Steuerungstechnik
+D02.01;Managementebene;Pauschal;15000;47500;80000;Zentrale Verwaltung, Server
+D02.02;Automationsebene;m² Grundfläche;15;32.5;50;Dezentrale Steuerung
+D02.03;Feldebene;m² Grundfläche;10;25;40;Sensoren, Aktoren
+D02.04;Raumautomation;m² Grundfläche;20;50;80;Licht, Klima, Beschattung pro Raum
+D02.05;Automationsnetzwerk;Pauschal;10000;30000;50000;Netzwerk-Infrastruktur, Protokolle
+D02.06;Schaltgerätekombination;Stück;2000;5000;8000;Verteiler, Schaltanlagen
+D02.07;Systemintegration;Pauschal;20000;60000;100000;Integration, Test, Inbetriebnahme
+D03;Sicherheitsanlage;m² Geschossfläche;30;65;100;Elektronische Sicherheitssysteme
+D03.01;Einbruchmeldeanlage, Überfallmeldeanlage;m² Grundfläche;8;14;20;Sensoren, Zentrale, Anbindung
+D03.02;Zutrittskontrollanlage;m² Grundfläche;15;32.5;50;Lesegerät, Schlösser, Steuerung
+D03.03;Videoüberwachungsanlage;m² Grundfläche;10;25;40;Kameras, Speichersystem, Monitoring
+D03.04;Schliessanlage;Stück;2000;6000;10000;Elektronisches Schliessystem
+D04;Technische Brandschutzanlage;m² Grundfläche;15;27.5;40;Detektion und Löschanlagen
+D04.01;Brandmeldeanlage;m² Grundfläche;5;10;15;Rauchmelder, Zentrale, Verkabelung
+D04.02;Gaswarnanlage;m² Grundfläche;3;7.5;12;Gassensoren, Warnsystem
+D04.03;Nasslöschanlage;m² Grundfläche;20;50;80;Sprinkleranlagen, Rohre, Ventile
+D04.04;Trockenlöschanlage;m² Grundfläche;25;62.5;100;Pulver-, Inertgas-, Schaumlösch
+D04.05;Löschgerät;Stück;200;400;600;Tragbare Feuerlöscher
+D04.06;Rauch und Wärmebehandlungsanlage;m² Grundfläche;10;25;40;RWA-Anlage, Rauchabteilung
+D04.07;Elektroakustische Lautsprecheranlage;m² Grundfläche;3;7.5;12;Sprechanlage, Verteiler
+D05;Wärmetechnische Anlage;m² Geschossfläche;50;100;150;Heizung, Warmwasser
+D05.01;Wärmequelle, -senke, Brennstofflager;kW Wärmeleistung;100;200;300;Kessel, Wärmepumpe
+D05.02;Wärmeerzeugung;kW;200;350;500;Heizkessel, WP
+D05.03;Wärmespeicherung;Liter;3;5.5;8;Speicher pro Liter
+D05.04;Wärmeverteilung;m² Fläche;20;40;60;Rohre, Verteiler
+D05.05;Wärmeabgabe;m² Heizfläche;50;100;150;Radiatoren, Flächenheizung
+D05.06;Wärmebezug: Investitionsanteil;m² Grundfläche;10;20;30;Anschlussgebühren
+D06;Kältetechnische Anlage;m² Geschossfläche;30;65;100;Kühlung, Klimatisierung
+D06.01;Kältequelle, -senke, Brennstofflager;kW Kälteleistung;150;275;400;Kälteerzeugung
+D06.02;Kälteerzeugung;kW;300;500;700;Kältemaschinen
+D06.03;Kältespeicherung;Liter;5;10;15;Pro Liter Volumen
+D06.04;Kälteverteilung;m² Grundfläche;15;27.5;40;Rohre, Kanäle
+D06.05;Kälteabgabe;m² Fläche;40;80;120;Klimaanlage, Kühldecken
+D06.06;Kältebezug: Investitionsanteil;m² Grundfläche;5;12.5;20;Anschlussgebühren
+D07;Lufttechnische Anlage;m² Geschossfläche;40;80;120;Lüftung, Klimatisierung
+D07.01;Aussenluftversorgung, Fortluftführung;m²/h Volumen;50;125;200;Pro m³/h Kapazität
+D07.02;Luftaufbereitung;m³/h Stundensatz;100;200;300;Filter, Wärmeaustausch
+D07.03;Luftwärmespeicherung;m³;30;55;80;Wärmespeicher
+D07.04;Luftverteilung;m² Grundfläche;15;32.5;50;Kanäle, Verteilgeräte
+D07.06;Luftabgabe;m² Grundfläche;10;25;40;Auslässe, Verteiler
+D07.06;Luft: Investitionsanteil;m² Grundfläche;5;10;15;Anschlussgebühren
+D08;Wassertechnische Anlage;m² Geschossfläche;20;40;60;Wasserversorgung
+D08.01;Wasserversorgung;m² Grundfläche;5;10;15;Anschlussgebühren
+D08.02;Wasserbehandlung;m³/Tag;500;1250;2000;Filter, Desinfektion
+D08.03;Wasserspeicher;Liter;2;4;6;Pro Liter Volumen
+D08.04;Wasserverteilung;m² Grundfläche;10;20;30;Rohre, Ventile
+D08.06;Wasser: Armatur, Apparat;m² Grundfläche;20;40;60;Armaturen, Installationen
+D08.06;Wasser: Installationselement;m² Grundfläche;5;10;15;Montagematerial
+D09;Abwassertechnische Anlage;m² Grundfläche;15;32.5;50;Abwasserableitung
+D09.01;Abwasserentsorgung;m² Grundfläche;5;12.5;20;Kanalisationskosten
+D09.02;Abwasserbehandlung;m³/Tag;300;650;1000;Klärtechnik
+D09.03;Abwasserspeicher;m³;200;500;800;Sammelgruben, Tanks
+D09.04;Abwassersammlung;m Laufmeter;150;275;400;Interne Rohrleitungen, Schächte, Sammelgruben
+D09.05;Abwasser: Armatur, Apparat;Stück;300;650;1000;Ventile, Siphons, Klappenrückläufer
+D10;Gastechnische Anlage;m² Geschossfläche;10;25;40;Gasversorgung/Lagerung
+D10.01;Gasversorgung;m² Grundfläche;3;6.5;10;Anschlussgebühren
+D10.02;Gasbehandlung;m³/h;50;125;200;Druckregelung
+D10.03;Gasspeicherung;m³;100;250;400;Gasbehälter
+D10.04;Gasverteilung;m² Grundfläche;5;10;15;Rohrleitungen
+D10.05;Gas: Armatur, Apparat;Stück;200;500;800;Pro Anschluss
+D11;Anlage für Spezialmedien;m² Geschossfläche;30;90;150;Medizingase, Vakuum, etc.
+D11.01;Spezialmedien: Versorgung, Entsorgung;Punkte;500;1250;2000;Pro Anschluss
+D11.02;Spezialmedien: Aufbereitung;Pauschal;5000;27500;50000;Je nach Medium
+D11.03;Spezialmedien: Speicherung;m³;500;1750;3000;Speicherbehälter
+D11.04;Spezialmedien: Verteilung;m² Grundfläche;20;60;100;Rohre, Ventile
+D11.05;Spezialmedien: Armatur, Apparat;Stück;500;2750;5000;Spezial-Armaturen
+D12;Beförderungsanlage;Stück;30000;115000;200000;Aufzüge, Fahrtreppen
+D12.01;Personenaufzug;Stück;40000;95000;150000;Pro Aufzug
+D12.02;Lasten- und Serviceaufzug;Stück;35000;77500;120000;Pro Aufzug
+D12.03;Spezialaufzug;Stück;50000;175000;300000;Fahrstuhl, Plattform
+D12.04;Fahrrtreppe;Stück;80000;165000;250000;Pro Treppe
+D12.05;Fahrsteig;m² Lauffläche;3000;5500;8000;Pro Quadratmeter
+D12.06;Hebeeinrichtung, Verladestationen;Stück;20000;60000;100000;Hebebühnen, Rampen
+;;;;;;
+E;ÄUSSERE WANDBEKLEIDUNG GEBÄUDE;;200;350;500;
+E01;Äussere Wandbekleidung unter Terrain;m² Wandfläche;80;165;250;Isolierung, Schutz
+E01.01;Wandbekleidung unter Terrain;m² Wandfläche;60;130;200;Material + Montage
+E01.02;Aussenwärmedämmung unter Terrain;m² Wandfläche;40;80;120;Isolation
+E01.03;Schutzschicht unter Terrain;m² Wandfläche;20;40;60;Schutzfolien, -platten
+E02;Äussere Wandbekleidung über Terrain;m² Fassadenfläche;150;325;500;Material und Montage
+E02.01;Äussere Beschichtung;m² Fassadenfläche;80;190;300;Fassadenmaterial
+E02.02;Äussenwärmedämmsystem;m² Fassadenfläche;50;115;180;Isolierung mit Befestigung
+E02.03;Fassadenbekleidung;m² Fassadenfläche;40;145;250;Holz, Stein, Metall, etc.
+E02.04;Systemfassade;m² Fläche;80;165;250;Fassadensysteme (Pfosten-Riegel, Fassadenpaneele, vorgehängte Fassaden)
+E02.05;Fassadenbekleidung Untersicht;m² Fläche;30;90;150;Unterseite Dachüberstand
+E02.06;Aussen liegende Absturzicherung;m² Fläche;100;250;400;Geländer, Netze
+E03;Element in Aussenwand;m² Wandfläche;50;125;200;Fenster, Türen, Lüftungen
+E03.01;Fenster;m² Fensterfläche;400;800;1200;Je nach Ausführung/Verglasung
+E03.02;Aussentiir;m² Türöffnung;800;1900;3000;Material und Beschlag
+E03.03;Aussentür;m² Türöffnung;500;1250;2000;Tore, Garagentüren
+E03.04;Sonnenschutz, Wetterschutz;m² Fläche;100;250;400;Jalousien, Markisen
+E03.05;Absturzicherung;m² Fläche;80;190;300;Geländer
+;;;;;;
+F;BEDACHUNG GEBÄUDE;;100;225;350;
+F01;Dachhaut;m² Dachfläche;80;190;300;Material und Verarbeitung
+F01.01;Dachabdichtung unter Terrain;m² Dachfläche;40;95;150;Bitumen, Kunststoff, etc.
+F01.02;Bedachung Flachdach;m² Dachfläche;50;125;200;Flachdachbelag
+F01.03;Bedachung geneigtes Dach;m² Dachfläche;60;155;250;Ziegel, Schiefer, Metall
+F01.04;Systemdach;m² Dachfläche;80;190;300;Komplettlösungen
+F02;Element zu Dach;m² Dachfläche;40;95;150;Lukarnen, Fenster, Lüftungen
+F02.01;Element zu Flachdach;Stück;1000;3000;5000;Pro Element
+F02.02;Element zu geneigtem Dach;Stück;1500;3750;6000;Pro Element (Dachfenster)
+F02.03;Schutzanlage zu Dach;m² Dachfläche;50;125;200;Absturzsicherung, Geländer
+;;;;;;
+G;AUSBAU GEBÄUDE;;150;275;400;
+G01;Trennwand, Innentür, Innentür;m Längenmass;150;275;400;Material + Montage
+G01.01;Fest stehende Trennwand;m² Wandfläche;80;165;250;Verschiedene Materialien
+G01.02;Bewegliche Trennwand;m² Wandfläche;150;325;500;Schiebewand, Falttüren
+G01.03;Schachtfront;m² Fläche;100;250;400;Verkleidung
+G01.04;Innenfenster;m² Fläche;200;400;600;Innenfenster, Verglasungen
+G01.05;Innentür;Stück;500;1250;2000;Pro Tür
+G01.06;Innentür;Stück;500;1250;2000;Pro Tür
+G02;Bodenbelag;m² Fläche;50;175;300;Material und Verarbeitung
+G02.01;Unterkonstraktion zu Bodenbelag;m² Fläche;20;40;60;Unterbau, Träger
+G02.02;Bodenbelag;m² Fläche;40;145;250;Holz, Linoleum, Stein, Teppich
+G03;Wandbekleidung;m² Fläche;40;120;200;Innen Wandbekleidung
+G03.01;Unterkonstraktion zu Wandbekleidung;m² Fläche;15;32.5;50;Tragsystem
+G03.02;Wandbekleidung;m² Fläche;30;115;200;Tapete, Farbe, Holz, Stein
+G04;Deckenbekleidung;m² Fläche;40;120;200;Abhängig von System
+G04.01;Unterkonstraktion zu Deckenbekleidung;m² Fläche;15;32.5;50;Tragwerk
+G04.02;Deckenbekleidung;m² Fläche;30;115;200;Gipskarton, Holz, Akustik
+G05;Einbauten, Schutzeinrichtung zu Ausbau;m Längenmass;200;600;1000;Regalböden, Schränke, etc.
+G05.01;Einbauschrank, Regal, Ablage;m Längenmass;150;475;800;Pro Laufmeter
+G05.02;Einbauküche;m Längenmass;500;1250;2000;Komplette Ausstattung
+G05.03;Innerer Fensterausbau;m² Fläche;100;250;400;Sohlbänke, Verkleidung
+G05.04;Innerer Abschluss;m² Fläche;80;190;300;Fensternischen
+G05.05;Absturz-, Anprallschutzeinrichtung;m Längenmass;100;300;500;Schutzgeländer
+G05.06;Sonderbauteil;Stück;1000;5500;10000;Je nach Element
+G05.07;Kleinbauteil, Schutzraumeinrichtung;m² Fläche;50;175;300;Regale, Einrichtung
+G06;Ergänzende Leistung zu Ausbau;m² Fläche;20;60;100;Malerarbeiten, Anstrich, Reinigung, Trocknung
+G06.01;Durchbruch, Schlitz zu Ausbau;Stück;500;1250;2000;Nach Grösse
+G06.02;Abschottung;m Längenmass;100;250;400;Brandschutz
+G06.03;Reinigung;m² Fläche;5;12.5;20;Abschlussreinigung
+G06.04;Trocknung;m² Fläche;10;20;30;Trocknungskosten
+;;;;;;
+H;NUTZUNGSSPEZIFISCHE ANLAGE GEBÄUDE;;50;275;500;
+H01;Produktionsanlage;m² Geschossfläche;100;300;500;Je nach Branche
+H01.01;Produktionsanlage: Versorgung, Entsorgung;Pauschal;10000;55000;100000;Anschlüsse
+H01.02;Produktionsanlage: Aufbereitung;Pauschal;20000;110000;200000;Vorbereitung
+H01.03;Produktionsanlage: Speicherung;m³;100;550;1000;Pro Kubikmeter
+H01.04;Produktionsanlage: Verteilung;m² Grundfläche;20;60;100;Leitungswege
+H01.05;Produktionsanlage: Armatur, Apparat;Stück;500;5250;10000;Pro Anlagehteil
+H02;Laboranlage;m² Geschossfläche;150;325;500;Forschung, Diagnostik, Analyse
+H02.01;Laboranlage: Versorgung, Entsorgung;Pauschal;15000;47500;80000;Wasser (hochrein), Abluft, Chemikalienabfuhr
+H02.02;Laboranlage: Aufbereitung;Pauschal;20000;70000;120000;Luftfilterung, Wasseraufbereitung, Sterilisation
+H02.03;Laboranlage: Speicherung;m3;200;500;800;Chemikalienlagerschränke, Kühlzellen, Tiefgefriergeräte
+H02.04;Laboranlage: Verteilung;m Längenmass;100;250;400;Rohrleitungen, Absauganlagen, Verkabelung
+H02.05;Laboranlage: Armatur, Apparat;Stück;2000;8500;15000;Laborgeräte, Haube, Pipettierautomaten
+H03;Grossküche;m² Geschossfläche;120;260;400;Institutionelle oder kommerzielle Küchen
+H03.01;Grossküche: Versorgung, Entsorgung;Pauschal;10000;30000;50000;Wasser, Strom, Gasanschluss, Abfall
+H03.02;Grossküche: Aufbereitung;Pauschal;15000;47500;80000;Dampferzeuger, Abluftanlage, Abwasserbehandlung
+H03.03;Grossküche: Lagerung;m³;150;375;600;Kühlzellen, Tiefkühlzellen, Lagerschränke
+H03.04;Grossküche: Verteilung;m Längenmass;80;190;300;Transportbehälter, Speiseaufzug, Wärmebehälter
+H03.05;Grossküche: Armatur, Apparat;Stück;1500;5750;10000;Kochgeräte, Spülmaschine, Fritteuse
+H04;Wäscherei-, Reinigungsanlage;m² Geschossfläche;100;225;350;Industrielle Wäschereiausstattung
+H04.01;Wäscherei-, Reinigungsanlage: Versorgung, Entsorgung;Pauschal;12000;36000;60000;Wasser, Strom, Dampf, Abwasser
+H04.02;Wäscherei-, Reinigungsanlage: Aufbereitung;Pauschal;18000;59000;100000;Dampfkessel, Wasseraufbereitung, Trockner
+H04.03;Wäscherei-, Reinigungsanlage: Speicherung;m³;100;300;500;Wäschebehälter, Chemikalienlagerschränke
+H04.04;Wäscherei-, Reinigungsanlage: Verteilung;m Längenmass;80;165;250;Rohrleitungen, Dampfleitungen, Transportwagen
+H04.05;Wäscherei-, Reinigungsanlage: Armatur, Apparat;Stück;1500;4750;8000;Waschmaschinen, Mangel, Falter, Bügelsystem
+H05;Anlage für Gesundheit;m² Grundfläche;50;175;300;Medizinische Einrichtungen
+H05.01;Gerät für Vitalzeichenüberwachung;Stück;5000;27500;50000;Überwachungsgeräte
+H05.02;Einrichtung für Diagnostik;Stück;10000;105000;200000;Messgeräte
+H05.03;Gerät für Behandlung, Pflege;Stück;3000;51500;100000;Medizinische Geräte
+H05.04;Medizinisches Kälte-, Wärmegerät;Stück;2000;26000;50000;Spezialisierte Kühlung/Heizung
+H05.05;Mess-, Analysestechnik;Stück;5000;52500;100000;Laborgeräte
+H05.06;Reinigung, Desinfektion, Sterilisation;m² Grundfläche;20;60;100;Spezialanlagen
+H05.07;Medizinische Einrichtung, Ausstattung;m² Grundfläche;30;90;150;Möbel, Ausstattung
+H05.08;Medizinischer Beleuchtungskörper;Stück;500;1750;3000;OP-Leuchten, etc.
+H05.09;Medizinische Textilien;m² Fläche;100;300;500;Gardinen, Tücher
+H05.10;Medizinisches Kleinzinventar;m² Grundfläche;20;50;80;Kleinteile
+H05.11;Medizinisches Betriebsmittel;m² Grundfläche;15;37.5;60;Verbrauchsmaterial
+H05.12;Medizinisches Betriebsmittel;m² Grundfläche;15;37.5;60;Verbrauchsmaterial
+H06;Anlage für Bildung, Kultur;m² Grundfläche;30;115;200;Schulen, Museen, Kulturzentren
+H06.01;Bildung, Kultur: Versorgung, Entsorgung;m² Grundfläche;10;30;50;Infrastruktur
+H06.02;Bildung, Kultur: Apparat;Stück;500;5250;10000;Einrichtungen
+H06.03;Bildung, Kultur: Steuerung;m² Grundfläche;5;17.5;30;Regelungstechnik
+H06.04;Bildung, Kultur: Einbauten;m² Grundfläche;50;175;300;Möbel, Gestelle
+H07;Sportanlage, Freizeitanlage;m² Grundfläche;50;225;400;Sporthallen, Schwimmbäder
+H07.01;Sportanlage, Freizeitanlage: Versorgung;m² Grundfläche;15;47.5;80;Wasser, Strom
+H07.02;Sportanlage, Freizeitanlage: Apparat;Stück;2000;51000;100000;Geräte, Ausrüstung
+H07.03;Sportanlage, Freizeitanlage: Steuerung;m² Grundfläche;5;22.5;40;Regelungen
+H07.04;Sportanlage, Freizeitanlage: Einbauten;m² Grundfläche;30;140;250;Tribünen, Umkleide
+;;;;;;
+I;UMGEBUNG GEBÄUDE;;100;300;500;
+I01;Umgebungsgestaltung;m² Grundfläche;20;85;150;Aussengestaltung
+I01.01;Geländepassung;m² Grundfläche;10;45;80;Terrain anpassen
+I01.02;Tiefe liegende Entwässerung;m Längenmass;50;175;300;Dränagen, Gräben
+I02;Bauwerk in der Umgebung;m² Grundfläche;30;115;200;Rampen, Wege, Mauern
+I02.01;Böschungsverbau;m² Fläche;50;175;300;Mauern, Stützen
+I02.02;Stützmauer;m³ Volumen;200;500;800;Materialkosten
+I02.03;Frei stehende Wand;m² Fläche;100;250;400;Trennwand aussen
+I02.04;Treppe, Rampe;Stück;5000;17500;30000;Pro Element
+I02.05;Kleinbauwerk;Stück;2000;26000;50000;Unterstand, Pergola
+I02.06;Unterirdisches Bauwerk;m³;500;1750;3000;Tiefgarage pro m³
+I02.07;Absturz-, Anprallschutzeinrichtung für Umgebung;m² Fläche;150;;500;Schutzgeländer, Netze, Fallschutz
+I02.08;Einfriedung;m Laufmeter;80;190;300;Zaun, Hecke, Mauer inkl. Tor, Pforte
+I03;Grünfläche;;;;;
+I03.01;Vegetationstragschicht;m² Fläche;30;65;100;Bodenaufbau, Humus, Drainage
+I03.02;Saatfläche;m² Fläche;5;12.5;20;Ansaat, Rasenverlegung
+I03.03;Flächenbepflanzung, Hecke;m² Fläche;50;125;200;Flächig gepflanzte Beete oder Heckenpflanzung
+I03.04;Vertikale Begrünung;m² Fläche;150;375;600;Fassadenbegrünung, Grünwände, Fachwerk-Systeme
+I03.05;Einzelbepflanzung;Stück;150;325;500;Einzelne Bäume oder Sträucher
+I03.06;Einfassung, Abschluss Grünfläche;m Längenmass;50;125;200;Beetkanten, Abgrenzungen
+I03.07;Naturnahe Wasserfläche;m²;100;250;400;Biotope, Teiche, naturnahe Gestaltung
+I03.08;Ingenieurbiologische Massnahme;m² Fläche;80;190;300;Biotechnische Sicherung, Begrünung Böschungen
+I03.09;Pflegemassnahme bis Übergabe;m² Fläche;5;10;15;Ansaatpflege, Etablierungsphase
+I04;Hartfläche;;;;;
+I04.01;Fundations-, Tragschicht;m² Fläche;20;40;60;Unterlagerbau, Verdichtung
+I04.02;Einfassung, Abschluss Hartfläche;m Längenmass;30;65;100;Bordsteine, Einfassungen
+I04.03;Deckschicht;m² Fläche;50;150;250;Asphalt, Betonpflaster, Natursteinen, Holzbelag
+I04.04;Bodenmarkierung;m Längenmass;10;20;30;Markierungen, Farbanstriche
+I05;Technik Umgebung;;;;;
+I05.01;Elektroanlage Starkstrom für Umgebung;m² Grundfläche;10;25;40;Aussen-Stromversorgung, Steckdosen, Beleuchtung
+I05.02;Elektroanlage Schwachstrom für Umgebung;m² Grundfläche;5;12.5;20;Aussen-Kommunikation, IT-Verkabelung, Signale
+I05.03;Wärmeanlage für Umgebung;m² Grundfläche;20;50;80;Aussenbeheizung, Terrassenheizer, Frostschutz
+I05.04;Kälteanlage für Umgebung;m² Grundfläche;15;37.5;60;Aussen-Kühlung, Nebelsysteme
+I05.05;Sanitäre Anlage für Umgebung;Stück;5000;17500;30000;Aussen-Toiletten, Brunnen, Fontänen
+I05.06;Oberflächenentwässerung für Umgebung;m²;20;50;80;Abwasserleitungen, Gullys, Versickerung
+I05.07;Transportanlage für Umgebung;Pauschal;20000;85000;150000;Aufzugsysteme aussen, Seilbahnen
+I05.08;Perimeterschutz;m²;50;175;300;Sicherheitszäune, Schranken, Kameras aussen
+I06;Ausstattung Umgebung;;;;;
+I06.01;Mobile Ausstattung für Umgebung;Stück;500;2750;5000;Benches, Mülleimer, Parkbänke
+I06.02;Fixierte Ausstattung für Umgebung;Stück;2000;8500;15000;Eingebaute Sitzbänke, Rankgerüste, Pergolen
+I06.03;Spiel-, Sportgerät für Umgebung;Stück;3000;16500;30000;Spielgeräte, Sportausrüstung
+I06.04;Abfallentsorgungseinrichtung für Umgebung;Stück;800;2900;5000;Mülleimer, Separatsammlungs-Boxen
+;;;;;;
+J;AUSSTATTUNG GEBÄUDE;;100;200;300;
+J01;Mobiliar;m² Grundfläche;50;175;300;Möbelausstattung
+J01.01;Allgemeines Mobiliar;m² Grundfläche;30;90;150;Standard Büromöbel, Tische, Stühle
+J01.02;Nutzungsspezifisches Mobiliar;m² Grundfläche;50;225;400;Spital-/Schuleinrichtungen, Spezialeinbauten
+J01.03;Mobile Leuchte;Stück;200;850;1500;Lampen, Leuchten
+J01.04;Signaletik;Stück;500;1750;3000;Beschilderung, Leitsysteme
+J02;Kleininventar;m² Grundfläche;30;90;150;Kleinere Einrichtungsgegenstände
+J02.01;Allgemeines Kleininventar;m² Grundfläche;15;47.5;80;Geschirr, Besteck, Textilien allgemein
+J02.02;Nutzungsspezifisches Kleininventar;m² Grundfläche;20;85;150;Spezialausrüstung nach Nutzung
+J02.03;Mobiles Gerät;Stück;500;5250;10000;Tragbare Geräte, Werkzeuge
+J03;Textilien;m² Grundfläche;20;60;100;Vorhänge, Gardinen, Läufer
+J03.01;Allgemeine Textilien;m² Grundfläche;10;30;50;Standard Vorhänge, Teppiche
+J03.02;Nutzungsspezifische Textilien;m² Grundfläche;15;57.5;100;Spezialvorhänge, OP-Textilien, etc.
+J04;Kunst am Bau;Pauschal;20000;260000;500000;Kunstintegration
+J04.01;Kunstobjekt;Stück;10000;255000;500000;Skulpturen, Installationen
+J04.02;Künstlerisch gestaltetes Bauteil;m²;100;550;1000;Künstlerisch gestaltete Fassaden, Wände
+;;;;;;
+V;PLANUNGSKOSTEN;;80;115;150;
+V01;Planer;% Erstellungskosten;8;11.5;15;Je nach Projektumfang
+V01.01;Architekt;% Erstellungskosten;6;9;12;Planung und Koordination
+V01.02;Landschaftsarchitekt;% Umgebungskosten;3;5.5;8;Grünflächengestaltung
+V01.03;Bauingenieur;% Erstellungskosten;3;5;7;Tragwerksplanung
+V01.04;Fachingeneur Gebäudetechnik;% Erstellungskosten;4;6;8;TGA-Planung
+V01.05;Spezialist;% Erstellungskosten;2;3.5;5;Spezialplanung
+V01.06;Generalplaner, Planergemeinschaft;% Erstellungskosten;8;11;14;"Koordinationen mehrerer Planer; Gesamtverantwortung"
+V01.07;Nebenkosten zu Planerleistungen;% Erstellungskosten;5;10;15;Gebühren, Versciherungen, Reisekosten, Software-Lizenzen, Bürokosten anteilig
+V02;Unternehmer;% Erstellungskosten;5;8.5;12;Bauleitung
+V02.01;Beratung zur Planung;% Kosten;2;3.5;5;Kostenmanagement
+V02.02;Vorbereitung zur Bewirtschaftung;% Kosten;1;2;3;Übergabe, Schulung
+V03;Auftraggeber;% Erstellungskosten;2;3.5;5;Projektleitung intern
+V03.01;Auswahlverfahren;Pauschal;5000;27500;50000;Bewerbungsverfahren
+V03.02;Eigenümer;% Kosten;1;2;3;Verwaltung
+V03.03;Betreiber;% Kosten;1;1.5;2;Vorbereitung
+V03.04;Nutzer;% Kosten;0.5;1;1.5;Mitsprache, Beratung
+V03.05;Berater;% Kosten;1;2;3;Externe Beratung
+V03.06;Anwalt, Experte, Gericht;% Kosten;1;3;5;Rechtliche Begleitung
+V03.07;Plattform, Projektraum;Pauschal;2000;11000;20000;IT-Infrastruktur
+;;;;;;
+W;NEBENKOSTEN ZU ERSTELLUNG;;40;70;100;
+W01;Bewilligung, Gebühr;% Erstellungskosten;1;2;3;Baubewilligung, Gebühren
+W01.01;Bewilligung;Pauschal;5000;27500;50000;Je nach Kanton
+W01.02;Gebühr;Pauschal;3000;16500;30000;Registrierungen, Gebühren
+W02;Versicherung, Garantie;% Erstellungskosten;0.5;1.25;2;Versicherungen während Bau
+W02.01;Versicherung;% Kosten;0.3;0.9;1.5;Bauherrenhaftpflicht, Feuer
+W02.02;Garantie;% Kosten;0.2;0.6;1;Gewährleistung
+W02.03;Rückversicherung;% Kosten;0.1;0.3;0.5;Versicherungsrückkauf
+W03;Kapitalkosten;% Kosten oder CHF/Jahr;3;5.5;8;Finanzierungszinsen
+W03.01;Kapitalkosten zu Grundstück;% Grundstückkosten;3;4.5;6;Zinsen auf Grundstück
+W03.02;Kapitalkosten zu Erstellung;% Erstellungskosten;3;5.5;8;Bauzinsen
+W04;Bewirtung, Öffentlichkeitsarbeit, Entschädigung;% Erstellungskosten;0.5;1.25;2;PR, Veranstaltungen
+W04.01;Bewirtungskosten;Pauschal;5000;27500;50000;Events, Bewirtung
+W04.02;Öffentlichkeitsarbeit;Pauschal;3000;16500;30000;Marketing, Kommunikation
+W04.03;Entschädigung;Pauschal;2000;11000;20000;Ausgleich für Unannehmlichkeiten
+W05;Inbetriebnahme Bauwerk;m² Geschossfläche;5;17.5;30;Inbetriebnahme, Testen
+W05.01;Inbetriebnahme Bauwerk;m² Geschossfläche;5;17.5;30;Inbetriebnahme, Testen
+W06;Vermietung, Verkauf;% Verkaufserlös;3;5.5;8;Makler, Verwaltung
+W06.01;Vergütung zu Erstvermietung;% Erlös;2;3.5;5;Maklergebühren
+W06.02;Nebenkosten zu Verkauf;% Erlös;2;3;4;Makler, Notar, Gebühren
+W06.03;Vergütung zu Verkauf;% Erlös;1;2;3;Verkaufsprovisionen
+W06.04;Nebenkosten zu Verkauf;% Erlös;0.5;1.25;2;Verwaltungsgebühren
+W07;Betriebserfolg;% Betriebskosten;5;10;15;Gewinn bei Bewirtschaft.
+W07.01;Betriebsaufwand;% Betriebserlös;60;70;80;Personalkosten, Unterh.
+W07.02;Betriebsergebnis;% Betriebserlös;5;10;15;Reiner Gewinn
+;;;;;;
+Y;RESERVE, TEUERUNG;;50;100;150;
+Y01;Reserve;% Erstellungskosten;5;10;15;Projektreserve
+Y01.01;Reserve;% Kosten;5;10;15;Unvorhergesehenes
+Y02;Teuerung;% pro Jahr;2;3;4;Preissteigerung
+Y02.01;Teuerung;% pro Jahr;2;3;4;Inflationsausgleich
+;;;;;;
+Z;MEHRWERTSTEUER;;8.1;8.1;8.1;
+Z01;Mehrwertsteuer;% der Kosten;8.1;8.1;8.1;Schweizer MWST 2026
+Z01.01;Mehrwertsteuer;% der Kosten;8.1;8.1;8.1;Standard MWST-Satz
