@@ -2,12 +2,38 @@
 Kostenberechnung basierend auf eBKP-H Klassifizierung und Kennwerten
 """
 
+from __future__ import annotations
 import streamlit as st
 import pandas as pd
 import sys
 import os
 from pathlib import Path
 from typing import Tuple, List, Dict
+
+
+from dataclasses import asdict
+from datetime import datetime
+from io import BytesIO
+from typing import Any
+
+try:
+    from reportlab.lib import colors
+    from reportlab.lib.pagesizes import A4
+    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+    from reportlab.lib.units import cm
+    from reportlab.platypus import (
+        SimpleDocTemplate,
+        Table,
+        TableStyle,
+        Paragraph,
+        Spacer,
+        PageBreak,
+        KeepTogether,
+    )
+except ImportError:
+    raise ImportError(
+        "reportlab ist erforderlich. Installieren Sie es mit: pip install reportlab"
+    )
 
 # Füge Parent-Verzeichnis zum Path hinzu für Imports
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -156,263 +182,573 @@ def aggregate_quantities_by_code(df: pd.DataFrame) -> dict:
     return quantities
 
 
-def generate_pdf(df_cost, zwischensumme, total_betrag, min_betrag, max_betrag, tolerance, config_info=None, projekt_daten=None):
-    """Generiert PDF-Dokument der Kostenberechnung"""
-    try:
-        from reportlab.lib import colors
-        from reportlab.lib.pagesizes import A4
-        from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-        from reportlab.lib.units import cm
-        from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, PageBreak
-        from reportlab.pdfbase import pdfmetrics
-        from reportlab.pdfbase.ttfonts import TTFont
-        from io import BytesIO
-        from datetime import datetime
+"""
+pdf_generator.py
 
-        # PDF-Buffer erstellen
-        buffer = BytesIO()
-        doc = SimpleDocTemplate(buffer, pagesize=A4, rightMargin=2*cm, leftMargin=2*cm,
-                              topMargin=2*cm, bottomMargin=2*cm)
+Modul zur Generierung von professionellen PDF-Berichten für Kostenberechnungen.
+Umfasst Layout, Tabellen-Formatierung und Projektinformationen im BKP-Stil.
 
-        # Container für PDF-Elemente
-        elements = []
-        styles = getSampleStyleSheet()
+Dependencies:
+    - reportlab: PDF-Generierung
+    - io: In-Memory-Buffer
 
-        # Titelstil
-        title_style = ParagraphStyle(
-            'CustomTitle',
-            parent=styles['Heading1'],
-            fontSize=24,
-            textColor=colors.HexColor('#1f4788'),
-            spaceAfter=30,
-            alignment=1  # Zentriert
-        )
+Author: Digital Construction Team
+Date: 2026-01-18
+"""
 
-        # Titel
-        elements.append(Paragraph("Kostenberechnung eBKP-H", title_style))
-        elements.append(Spacer(1, 0.5*cm))
 
-        # Datum
-        date_style = ParagraphStyle(
-            'DateStyle',
-            parent=styles['Normal'],
+
+
+# ==========================
+# Konstanten & Farben
+# ==========================
+
+# Farbschema für das Layout (professionell, ähnlich dem Bild)
+COLOR_PRIMARY_HEADER = "#1f4788"  # Dunkles Blau für Haupttitel
+COLOR_SECONDARY_HEADER = "#366092"  # Mittleres Blau für Tabellenkopf
+COLOR_ACCENT = "#d4e6f1"  # Helles Blau für Hervorhebungen
+COLOR_BACKGROUND_ALT = "#f9f9f9"  # Sehr helles Grau für Zeilenalternation
+COLOR_TEXT_DARK = "#1a1a1a"  # Dunkles Grau für Text
+COLOR_TEXT_LIGHT = "#666666"  # Mittleres Grau für Zusatztext
+
+# Abstände (in cm)
+MARGIN_TOP = 1.5
+MARGIN_BOTTOM = 1.5
+MARGIN_LEFT = 1.5
+MARGIN_RIGHT = 1.5
+SPACING_SECTION = 0.8
+SPACING_SUBSECTION = 0.3
+
+
+# ==========================
+# Hilfsfunktionen
+# ==========================
+
+def format_currency(value: float) -> str:
+    """
+    Formatiert einen numerischen Wert als CHF-Währung.
+
+    Args:
+        value: Numerischer Wert in CHF
+
+    Returns:
+        Formatierter String im Format "XX'XXX.XX CHF"
+    """
+    if pd.isna(value) or value is None:
+        return "–"
+    return f"{value:,.2f}".replace(",", "'") + " CHF"
+
+
+def format_percentage(value: float) -> str:
+    """
+    Formatiert einen Dezimalwert als Prozentsatz.
+
+    Args:
+        value: Dezimalwert (z.B. 0.0225 für 2.25%)
+
+    Returns:
+        Formatierter Prozentsatz mit 2 Dezimalstellen (z.B. "2.25%")
+    """
+    if pd.isna(value) or value is None:
+        return "–"
+    return f"{value * 100:.2f}%"
+
+
+def get_custom_styles() -> dict[str, ParagraphStyle]:
+    """
+    Definiert ein konsistentes, professionelles Style-Set für alle
+    Textabschnitte im PDF.
+
+    Returns:
+        Dictionary mit benannten ParagraphStyle-Objekten
+    """
+    base_styles = getSampleStyleSheet()
+
+    custom_styles = {
+        "title": ParagraphStyle(
+            "CustomTitle",
+            parent=base_styles["Heading1"],
+            fontSize=28,
+            textColor=colors.HexColor(COLOR_PRIMARY_HEADER),
+            spaceAfter=8,
+            spaceBefore=0,
+            alignment=0,  # Links
+            fontName="Helvetica-Bold",
+        ),
+        "subtitle": ParagraphStyle(
+            "CustomSubtitle",
+            parent=base_styles["Normal"],
+            fontSize=11,
+            textColor=colors.HexColor(COLOR_TEXT_LIGHT),
+            spaceAfter=20,
+            alignment=0,
+        ),
+        "heading_section": ParagraphStyle(
+            "HeadingSection",
+            parent=base_styles["Heading2"],
+            fontSize=14,
+            textColor=colors.HexColor(COLOR_SECONDARY_HEADER),
+            spaceAfter=12,
+            spaceBefore=8,
+            fontName="Helvetica-Bold",
+        ),
+        "heading_subsection": ParagraphStyle(
+            "HeadingSubsection",
+            parent=base_styles["Heading3"],
+            fontSize=11,
+            textColor=colors.HexColor(COLOR_SECONDARY_HEADER),
+            spaceAfter=8,
+            spaceBefore=4,
+            fontName="Helvetica-Bold",
+        ),
+        "normal": ParagraphStyle(
+            "CustomNormal",
+            parent=base_styles["Normal"],
             fontSize=10,
-            textColor=colors.grey,
-            alignment=1
-        )
-        elements.append(Paragraph(f"Erstellt am: {datetime.now().strftime('%d.%m.%Y %H:%M')}", date_style))
-        elements.append(Spacer(1, 1*cm))
-
-        # Projektinformationen (falls vorhanden)
-        if projekt_daten:
-            # Überschrift für Projektinformationen
-            project_header_style = ParagraphStyle(
-                'ProjectHeader',
-                parent=styles['Heading2'],
-                fontSize=14,
-                textColor=colors.HexColor('#1f4788'),
-                spaceAfter=10,
-                spaceBefore=5
-            )
-            elements.append(Paragraph("Projektinformationen", project_header_style))
-
-            # Projektdaten-Tabelle
-            project_data = [
-                ["OBJEKT", ""],
-                ["Projektname:", projekt_daten.objekt.projektname],
-                ["Adresse:", projekt_daten.objekt.adresse],
-                ["PLZ/Ort:", projekt_daten.objekt.plz_ort],
-                ["", ""],
-                ["BAUHERR", ""],
-                ["Name:", projekt_daten.bauherr.name],
-                ["Adresse:", projekt_daten.bauherr.adresse],
-                ["PLZ/Ort:", projekt_daten.bauherr.plz_ort],
-                ["", ""],
-                ["BAUMANAGEMENT", ""],
-                ["Firma:", projekt_daten.baumanagement.firma],
-                ["Kontaktperson:", projekt_daten.baumanagement.kontaktperson],
-                ["Adresse:", projekt_daten.baumanagement.adresse],
-                ["PLZ/Ort:", projekt_daten.baumanagement.plz_ort],
-            ]
-
-            project_table = Table(project_data, colWidths=[5*cm, 12*cm])
-            project_table.setStyle(TableStyle([
-                # Überschriften (OBJEKT, BAUHERR, BAUMANAGEMENT)
-                ('BACKGROUND', (0, 0), (1, 0), colors.HexColor('#366092')),
-                ('BACKGROUND', (0, 5), (1, 5), colors.HexColor('#366092')),
-                ('BACKGROUND', (0, 10), (1, 10), colors.HexColor('#366092')),
-                ('TEXTCOLOR', (0, 0), (1, 0), colors.whitesmoke),
-                ('TEXTCOLOR', (0, 5), (1, 5), colors.whitesmoke),
-                ('TEXTCOLOR', (0, 10), (1, 10), colors.whitesmoke),
-                ('FONTNAME', (0, 0), (1, 0), 'Helvetica-Bold'),
-                ('FONTNAME', (0, 5), (1, 5), 'Helvetica-Bold'),
-                ('FONTNAME', (0, 10), (1, 10), 'Helvetica-Bold'),
-                ('SPAN', (0, 0), (1, 0)),
-                ('SPAN', (0, 5), (1, 5)),
-                ('SPAN', (0, 10), (1, 10)),
-                ('ALIGN', (0, 0), (1, 0), 'CENTER'),
-                ('ALIGN', (0, 5), (1, 5), 'CENTER'),
-                ('ALIGN', (0, 10), (1, 10), 'CENTER'),
-
-                # Datenzeilen
-                ('BACKGROUND', (0, 1), (0, 3), colors.HexColor('#f0f0f0')),
-                ('BACKGROUND', (0, 6), (0, 8), colors.HexColor('#f0f0f0')),
-                ('BACKGROUND', (0, 11), (0, 14), colors.HexColor('#f0f0f0')),
-                ('TEXTCOLOR', (0, 1), (-1, -1), colors.black),
-                ('ALIGN', (0, 1), (0, -1), 'RIGHT'),
-                ('ALIGN', (1, 1), (1, -1), 'LEFT'),
-                ('FONTNAME', (0, 1), (0, -1), 'Helvetica-Bold'),
-                ('FONTSIZE', (0, 0), (-1, -1), 10),
-                ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
-                ('TOPPADDING', (0, 0), (-1, -1), 6),
-                ('LEFTPADDING', (0, 0), (-1, -1), 10),
-                ('RIGHTPADDING', (0, 0), (-1, -1), 10),
-
-                # Trennlinien
-                ('LINEBELOW', (0, 0), (-1, 0), 1, colors.grey),
-                ('LINEBELOW', (0, 5), (-1, 5), 1, colors.grey),
-                ('LINEBELOW', (0, 10), (-1, 10), 1, colors.grey),
-                ('BOX', (0, 0), (-1, -1), 1, colors.grey),
-            ]))
-            elements.append(project_table)
-            elements.append(Spacer(1, 1*cm))
-
-        # Kostenermittlungsinfo (falls vorhanden)
-        if config_info:
-            info_data = [
-                ["Kostenermittlungsart:", config_info.get('name', 'N/A')],
-                ["Toleranz:", f"± {config_info.get('tolerance', 0)}%"],
-                ["Projektphase:", f"{config_info.get('project_phase', 'N/A')} ({config_info.get('phase_code', 'N/A')})"],
-                ["eBKP-Tiefe:", config_info.get('ebkp_depth', 'N/A')]
-            ]
-
-            info_table = Table(info_data, colWidths=[5*cm, 10*cm])
-            info_table.setStyle(TableStyle([
-                ('BACKGROUND', (0, 0), (0, -1), colors.HexColor('#f0f0f0')),
-                ('TEXTCOLOR', (0, 0), (-1, -1), colors.black),
-                ('ALIGN', (0, 0), (0, -1), 'RIGHT'),
-                ('ALIGN', (1, 0), (1, -1), 'LEFT'),
-                ('FONTNAME', (0, 0), (0, -1), 'Helvetica-Bold'),
-                ('FONTSIZE', (0, 0), (-1, -1), 10),
-                ('BOTTOMPADDING', (0, 0), (-1, -1), 8),
-                ('TOPPADDING', (0, 0), (-1, -1), 8),
-                ('GRID', (0, 0), (-1, -1), 1, colors.grey),
-            ]))
-            elements.append(info_table)
-            elements.append(Spacer(1, 1*cm))
-
-        # Kostenzusammenfassung
-        elements.append(Paragraph("Kostenzusammenfassung", styles['Heading2']))
-        elements.append(Spacer(1, 0.3*cm))
-
-        summary_data = [
-            ["Position", "Betrag"],
-            ["Zwischensumme (Baukosten)", format_currency(zwischensumme)],
-            ["Gesamtkosten", format_currency(total_betrag)],
-            ["Toleranzbereich", f"{format_currency(min_betrag)} - {format_currency(max_betrag)}"]
-        ]
-
-        summary_table = Table(summary_data, colWidths=[10*cm, 5*cm])
-        summary_table.setStyle(TableStyle([
-            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#366092')),
-            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
-            ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
-            ('ALIGN', (1, 0), (1, -1), 'RIGHT'),
-            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-            ('FONTSIZE', (0, 0), (-1, 0), 12),
-            ('BOTTOMPADDING', (0, 0), (-1, -1), 10),
-            ('TOPPADDING', (0, 0), (-1, -1), 10),
-            ('BACKGROUND', (0, 2), (-1, 2), colors.HexColor('#d4e6f1')),
-            ('FONTNAME', (0, 2), (-1, 2), 'Helvetica-Bold'),
-            ('GRID', (0, 0), (-1, -1), 1, colors.grey),
-        ]))
-        elements.append(summary_table)
-        elements.append(Spacer(1, 1.5*cm))
-
-        # Detaillierte Positionen
-        elements.append(Paragraph("Detaillierte Kostenberechnung", styles['Heading2']))
-        elements.append(Spacer(1, 0.3*cm))
-
-        # Filtere nur Positionen mit Betrag > 0 (keine Nullpositionen im PDF)
-        df_with_costs = df_cost[df_cost['Betrag CHF'] > 0].copy()
-
-        # Info-Text wenn Positionen gefiltert wurden
-        total_positions = len(df_cost)
-        positions_with_costs = len(df_with_costs)
-        filtered_count = total_positions - positions_with_costs
-
-        if filtered_count > 0:
-            filter_info_style = ParagraphStyle(
-                'FilterInfo',
-                parent=styles['Normal'],
-                fontSize=9,
-                textColor=colors.grey,
-                spaceAfter=10
-            )
-            elements.append(Paragraph(
-                f"Angezeigt werden {positions_with_costs} von {total_positions} Positionen "
-                f"({filtered_count} Positionen ohne Kosten wurden ausgeblendet)",
-                filter_info_style
-            ))
-
-        # Tabellendaten vorbereiten
-        table_data = [["eBKP-H", "Beschreibung", "Menge", "Einheit", "Kennwert", "Betrag"]]
-
-        for _, row in df_with_costs.iterrows():
-            table_data.append([
-                str(row['eBKP-H Code']),
-                str(row['Beschreibung'])[:50],  # Kürze lange Beschreibungen
-                f"{row['Menge']:.2f}",
-                str(row['Einheit']),
-                f"{row['Kennwert']:.2f}",
-                format_currency(row['Betrag CHF'])
-            ])
-
-        # Erstelle Tabelle
-        detail_table = Table(table_data, colWidths=[2*cm, 6*cm, 2*cm, 2*cm, 2.5*cm, 2.5*cm])
-        detail_table.setStyle(TableStyle([
-            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#366092')),
-            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
-            ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
-            ('ALIGN', (2, 0), (-1, -1), 'RIGHT'),
-            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-            ('FONTSIZE', (0, 0), (-1, 0), 9),
-            ('FONTSIZE', (0, 1), (-1, -1), 8),
-            ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
-            ('TOPPADDING', (0, 0), (-1, -1), 6),
-            ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
-            ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, colors.HexColor('#f9f9f9')]),
-        ]))
-        elements.append(detail_table)
-
-        # Footer
-        elements.append(Spacer(1, 2*cm))
-        footer_style = ParagraphStyle(
-            'Footer',
-            parent=styles['Normal'],
+            textColor=colors.HexColor(COLOR_TEXT_DARK),
+            alignment=0,
+        ),
+        "small": ParagraphStyle(
+            "SmallText",
+            parent=base_styles["Normal"],
             fontSize=8,
-            textColor=colors.grey,
-            alignment=1
-        )
-        elements.append(Paragraph(
-            "Diese Kostenberechnung basiert auf Kennwerten und dient als Schätzung. "
-            "Die tatsächlichen Kosten können abweichen.",
-            footer_style
-        ))
+            textColor=colors.HexColor(COLOR_TEXT_LIGHT),
+            alignment=0,
+        ),
+        "footer": ParagraphStyle(
+            "FooterText",
+            parent=base_styles["Normal"],
+            fontSize=8,
+            textColor=colors.HexColor(COLOR_TEXT_LIGHT),
+            alignment=1,  # Zentriert
+            spaceAfter=4,
+        ),
+    }
+    return custom_styles
 
-        # PDF generieren
+
+# ==========================
+# Tabellen-Generierung
+# ==========================
+
+def create_project_info_table(projekt_daten: Any) -> Table:
+    """
+    Erzeugt eine formatierte Tabelle mit Projektinformationen
+    (Objekt, Bauherr, Baumanagement).
+
+    Args:
+        projekt_daten: ProjektDaten-Objekt mit objekt, bauherr, baumanagement
+
+    Returns:
+        ReportLab Table mit Projekt-Metadaten
+    """
+    # Daten vorbereiten
+    project_data = [
+        # OBJEKT-Bereich
+        ["OBJEKT", "Projektname", projekt_daten.objekt.projektname],
+        ["", "Adresse", projekt_daten.objekt.adresse],
+        ["", "PLZ/Ort", projekt_daten.objekt.plz_ort],
+        # BAUHERR-Bereich
+        ["BAUHERR", "Name", projekt_daten.bauherr.name],
+        ["", "Adresse", projekt_daten.bauherr.adresse],
+        ["", "PLZ/Ort", projekt_daten.bauherr.plz_ort],
+        # BAUMANAGEMENT-Bereich
+        ["BAUMANAGEMENT", "Firma", projekt_daten.baumanagement.firma],
+        ["", "Kontaktperson", projekt_daten.baumanagement.kontaktperson],
+        ["", "Adresse", projekt_daten.baumanagement.adresse],
+        ["", "PLZ/Ort", projekt_daten.baumanagement.plz_ort],
+    ]
+
+    table = Table(project_data, colWidths=[4 * cm, 3 * cm, 11.5 * cm])
+
+    table.setStyle(
+        TableStyle(
+            [
+                # Textfarben und Schriftarten
+                ("TEXTCOLOR", (0, 0), (-1, -1), colors.HexColor(COLOR_TEXT_DARK)),
+                ("FONTNAME", (0, 0), (0, -1), "Helvetica-Bold"),  # Erste Spalte (Kategorien) fett
+                ("FONTNAME", (1, 0), (-1, -1), "Helvetica"),       # Rest normal
+                ("FONTSIZE", (0, 0), (-1, -1), 9),
+
+                # Ausrichtung
+                ("ALIGN", (0, 0), (-1, -1), "LEFT"),
+                ("VALIGN", (0, 0), (-1, -1), "TOP"),
+
+                # Padding
+                ("LEFTPADDING", (0, 0), (-1, -1), 8),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 8),
+                ("TOPPADDING", (0, 0), (-1, -1), 6),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
+
+                # Rahmen um die drei Gruppen
+                ("BOX", (0, 0), (-1, 2), 1.5, colors.HexColor(COLOR_SECONDARY_HEADER)),  # OBJEKT (Zeilen 0-2)
+                ("BOX", (0, 3), (-1, 5), 1.5, colors.HexColor(COLOR_SECONDARY_HEADER)),  # BAUHERR (Zeilen 3-5)
+                ("BOX", (0, 6), (-1, 9), 1.5, colors.HexColor(COLOR_SECONDARY_HEADER)),  # BAUMANAGEMENT (Zeilen 6-9)
+            ]
+        )
+    )
+    return table
+
+
+def create_cost_summary_table(zwischensumme: float, total_betrag: float,
+                               min_betrag: float, max_betrag: float) -> Table:
+    """
+    Erzeugt eine Kostenzusammenfassungs-Tabelle mit Zwischen- und
+    Endsummen sowie Toleranzbereich.
+
+    Args:
+        zwischensumme: Zwischensumme (Baukosten)
+        total_betrag: Gesamtbetrag
+        min_betrag: Minimalbetrag (Toleranzbereich)
+        max_betrag: Maximalbetrag (Toleranzbereich)
+
+    Returns:
+        ReportLab Table mit Kostenzusammenfassung
+    """
+    summary_data = [
+        ["POSITION", "BETRAG CHF"],
+        ["Zwischensumme (Baukosten)", format_currency(zwischensumme)],
+        ["Gesamtkosten", format_currency(total_betrag)],
+        ["Toleranzbereich (min)", format_currency(min_betrag)],
+        ["Toleranzbereich (max)", format_currency(max_betrag)],
+    ]
+
+    table = Table(summary_data, colWidths=[12 * cm, 6.5 * cm])
+
+    table.setStyle(
+        TableStyle(
+            [
+                # Kopfzeile
+                ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor(COLOR_SECONDARY_HEADER)),
+                ("TEXTCOLOR", (0, 0), (-1, 0), colors.whitesmoke),
+                ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+                ("FONTSIZE", (0, 0), (-1, 0), 10),
+                ("ALIGN", (0, 0), (0, 0), "LEFT"),
+                ("ALIGN", (1, 0), (1, 0), "RIGHT"),
+                ("BOTTOMPADDING", (0, 0), (-1, 0), 8),
+                ("TOPPADDING", (0, 0), (-1, 0), 8),
+                # Datenzeilen
+                ("BACKGROUND", (0, 1), (-1, 1), colors.white),
+                ("BACKGROUND", (0, 2), (-1, 2), colors.HexColor(COLOR_ACCENT)),
+                ("BACKGROUND", (0, 3), (-1, 4), colors.HexColor(COLOR_BACKGROUND_ALT)),
+                ("TEXTCOLOR", (0, 1), (-1, -1), colors.HexColor(COLOR_TEXT_DARK)),
+                ("FONTNAME", (0, 1), (-1, -1), "Helvetica"),
+                ("FONTNAME", (0, 2), (-1, 2), "Helvetica-Bold"),
+                ("FONTSIZE", (0, 0), (-1, -1), 9),
+                ("ALIGN", (0, 1), (0, -1), "LEFT"),
+                ("ALIGN", (1, 1), (1, -1), "RIGHT"),
+                ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+                ("LEFTPADDING", (0, 0), (-1, -1), 8),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 8),
+                ("TOPPADDING", (0, 0), (-10, -1), 6),
+                ("BOTTOMPADDING", (0, 0), (-10, -1), 6),
+                # Gitter
+                # ("GRID", (0, 0), (-1, -1), 5, colors.HexColor("#cccccc")),
+            ]
+        )
+    )
+    return table
+
+
+def create_detail_table(df_cost: pd.DataFrame) -> tuple[Table, int]:
+    """
+    Erzeugt eine detaillierte Kostenberechnung-Tabelle mit allen Positionen,
+    ähnlich dem BKP-Format aus dem eingereichten Bild.
+
+    Args:
+        df_cost: DataFrame mit Spalten:
+                 ['eBKP-H Code', 'Beschreibung', 'Menge', 'Einheit',
+                  'Kennwert', 'Betrag CHF', '%']
+
+    Returns:
+        Tuple aus (Table-Objekt, Anzahl Positionen mit Kosten)
+    """
+    # Filtere nur Positionen mit Betrag > 0
+    df_with_costs = df_cost[df_cost["Betrag CHF"] > 0].copy()
+    df_with_costs = df_with_costs.reset_index(drop=True)
+
+    # Tabellenheader
+    table_data = [
+        [
+            "eBKP-H",
+            "Beschreibung",
+            "Menge",
+            "Einheit",
+            "Kennwert",
+            "Betrag CHF",
+            "%",
+        ]
+    ]
+
+    # Datenzellen
+    for _, row in df_with_costs.iterrows():
+        # Beschreibung kürzen falls zu lang
+        beschreibung = str(row.get("Beschreibung", ""))[:60]
+
+        menge = f"{row.get('Menge', 0):.2f}".rstrip("0").rstrip(".")
+        einheit = str(row.get("Einheit", ""))
+        kennwert = f"{row.get('Kennwert', 0):.2f}".rstrip("0").rstrip(".")
+        betrag = format_currency(row.get("Betrag CHF", 0))
+        prozent = format_percentage(row.get("%", 0))
+
+        table_data.append(
+            [
+                str(row.get("eBKP-H Code", "")),
+                beschreibung,
+                menge,
+                einheit,
+                kennwert,
+                betrag,
+                prozent,
+            ]
+        )
+
+    # Tabelle mit optimalen Spaltenbreiten
+    table = Table(
+        table_data,
+        colWidths=[1.5 * cm, 7.5 * cm, 1.5 * cm, 2.7 * cm, 1.5 * cm, 2.5 * cm, 1.3 * cm],
+    )
+
+    # Stil für Zeilen-Alternation
+    row_colors = [
+        colors.white,
+        colors.HexColor(COLOR_BACKGROUND_ALT),
+    ]
+
+    style_list = [
+        # Kopfzeile
+        ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor(COLOR_SECONDARY_HEADER)),
+        ("TEXTCOLOR", (0, 0), (-1, 0), colors.whitesmoke),
+        ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+        ("FONTSIZE", (0, 0), (-1, 0), 9),
+        ("ALIGN", (0, 0), (-1, 0), "CENTER"),
+        ("VALIGN", (0, 0), (-1, 0), "MIDDLE"),
+        ("BOTTOMPADDING", (0, 0), (-1, 0), 8),
+        ("TOPPADDING", (0, 0), (-1, 0), 8),
+    ]
+
+    # Zeilen-Alternation
+    for row_idx in range(1, len(table_data)):
+        color = row_colors[row_idx % 2]
+        style_list.append(
+            ("BACKGROUND", (0, row_idx), (-1, row_idx), color)
+        )
+
+    # Allgemeine Datenzeilen-Styles
+    style_list.extend(
+        [
+            ("TEXTCOLOR", (0, 1), (-1, -1), colors.HexColor(COLOR_TEXT_DARK)),
+            ("FONTNAME", (0, 1), (-1, -1), "Helvetica"),
+            ("FONTSIZE", (0, 1), (-1, -1), 8),
+            # Rechtsausrichtung für numerische Spalten
+            ("ALIGN", (0, 1), (0, -1), "CENTER"),  # Code
+            ("ALIGN", (1, 1), (1, -1), "LEFT"),    # Beschreibung
+            ("ALIGN", (2, 1), (2, -1), "RIGHT"),   # Menge
+            ("ALIGN", (3, 1), (3, -1), "CENTER"),  # Einheit
+            ("ALIGN", (4, 1), (4, -1), "RIGHT"),   # Kennwert
+            ("ALIGN", (5, 1), (5, -1), "RIGHT"),   # Betrag
+            ("ALIGN", (6, 1), (6, -1), "RIGHT"),   # Prozent
+            ("VALIGN", (0, 1), (-1, -1), "MIDDLE"),
+            ("LEFTPADDING", (0, 0), (-1, -1), 6),
+            ("RIGHTPADDING", (0, 0), (-1, -1), 6),
+            ("TOPPADDING", (0, 0), (-10, -1), 5),
+            ("BOTTOMPADDING", (0, 0), (-10, -1), 5),
+            # Gitter
+            # ("GRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#e0e0e0")),
+        ]
+    )
+
+    table.setStyle(TableStyle(style_list))
+    return table, len(df_with_costs)
+
+
+# ==========================
+# PDF-Generierung (Hauptfunktion)
+# ==========================
+
+def generate_pdf(
+    df_cost: pd.DataFrame,
+    zwischensumme: float,
+    total_betrag: float,
+    min_betrag: float,
+    max_betrag: float,
+    tolerance: float,
+    config_info: dict[str, Any] | None = None,
+    projekt_daten: Any | None = None,
+) -> BytesIO | None:
+    """
+    Generiert ein professionelles PDF-Dokument der Kostenberechnung
+    im BKP-Stil mit Projektinformationen, Kostenzusammenfassung und
+    detaillierter Positionalaufschlüsselung.
+
+    Args:
+        df_cost: DataFrame mit Kostenpositionen
+        zwischensumme: Zwischensumme (Baukosten) in CHF
+        total_betrag: Gesamtbetrag in CHF
+        min_betrag: Minimalbetrag Toleranzbereich in CHF
+        max_betrag: Maximalbetrag Toleranzbereich in CHF
+        tolerance: Toleranzprozentsatz (z.B. 20 für ±20%)
+        config_info: Optional – Dictionary mit Kostenermittlungs-Konfiguration
+                     Keys: 'name', 'tolerance', 'project_phase', 'phase_code', 'ebkp_depth'
+        projekt_daten: Optional – ProjektDaten-Objekt mit Objekt-, Bauherr- und
+                       Baumanagement-Informationen
+
+    Returns:
+        BytesIO-Buffer mit PDF-Inhalt, oder None bei Fehler
+    """
+    try:
+        # PDF-Konfiguration
+        buffer = BytesIO()
+        doc = SimpleDocTemplate(
+            buffer,
+            pagesize=A4,
+            rightMargin=MARGIN_RIGHT * cm,
+            leftMargin=MARGIN_LEFT * cm,
+            topMargin=MARGIN_TOP * cm,
+            bottomMargin=MARGIN_BOTTOM * cm,
+        )
+
+        # Elemente für Dokument
+        elements = []
+        styles = get_custom_styles()
+
+        # =========================================================
+        # TITEL & DATUM
+        # =========================================================
+        elements.append(Paragraph("Kostenberechnung eBKP-H", styles["title"]))
+        elements.append(
+            Paragraph(
+                f"Erstellt am {datetime.now().strftime('%d.%m.%Y um %H:%M Uhr')}",
+                styles["subtitle"],
+            )
+        )
+        elements.append(Spacer(1, SPACING_SECTION * cm))
+
+        # =========================================================
+        # PROJEKTINFORMATIONEN (falls vorhanden)
+        # =========================================================
+        if projekt_daten:
+            elements.append(
+                Paragraph("Projektinformationen", styles["heading_section"])
+            )
+            project_table = create_project_info_table(projekt_daten)
+            elements.append(project_table)
+            elements.append(Spacer(1, SPACING_SECTION * cm))
+
+        # =========================================================
+        # KOSTENERMITTLUNGS-KONFIGURATION (falls vorhanden)
+        # =========================================================
+        if config_info:
+            elements.append(
+                Paragraph("Kostenermittlung & Parameter", styles["heading_section"])
+            )
+
+            config_data = [
+                [
+                    "Parameter",
+                    "Wert",
+                ],
+                [
+                    "Kostenermittlungsart",
+                    config_info.get("name", "N/A"),
+                ],
+                [
+                    "Toleranz",
+                    f"± {config_info.get('tolerance', 0)}%",
+                ],
+                [
+                    "Projektphase",
+                    f"{config_info.get('project_phase', 'N/A')} "
+                    f"({config_info.get('phase_code', 'N/A')})",
+                ],
+                [
+                    "eBKP-Klassifizierungstiefe",
+                    config_info.get("ebkp_depth", "N/A"),
+                ],
+            ]
+
+            config_table = Table(config_data, colWidths=[6 * cm, 10 * cm])
+            config_table.setStyle(
+                TableStyle(
+                    [
+                        # Kopfzeile
+                        ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor(COLOR_SECONDARY_HEADER)),
+                        ("TEXTCOLOR", (0, 0), (-1, 0), colors.whitesmoke),
+                        ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+                        ("FONTSIZE", (0, 0), (-1, 0), 9),
+                        ("BOTTOMPADDING", (0, 0), (-1, 0), 6),
+                        ("TOPPADDING", (0, 0), (-1, 0), 6),
+                        # Datenzeilen
+                        ("BACKGROUND", (0, 1), (0, -1), colors.HexColor(COLOR_ACCENT)),
+                        ("BACKGROUND", (1, 1), (-1, -1), colors.white),
+                        ("TEXTCOLOR", (0, 1), (-1, -1), colors.HexColor(COLOR_TEXT_DARK)),
+                        ("FONTNAME", (0, 1), (0, -1), "Helvetica-Bold"),
+                        ("FONTSIZE", (0, 1), (-1, -1), 9),
+                        ("ALIGN", (0, 1), (0, -1), "LEFT"),
+                        ("ALIGN", (1, 1), (1, -1), "LEFT"),
+                        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+                        ("LEFTPADDING", (0, 0), (-1, -1), 6),
+                        ("RIGHTPADDING", (0, 0), (-1, -1), 6),
+                        ("TOPPADDING", (0, 0), (-1, -1), 4),
+                        ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
+                        ("GRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#cccccc")),
+                    ]
+                )
+            )
+            elements.append(config_table)
+            elements.append(Spacer(1, SPACING_SECTION * cm))
+
+        # =========================================================
+        # KOSTENZUSAMMENFASSUNG
+        # =========================================================
+        elements.append(
+            Paragraph("Kostenzusammenfassung", styles["heading_section"])
+        )
+        summary_table = create_cost_summary_table(
+            zwischensumme, total_betrag, min_betrag, max_betrag
+        )
+        elements.append(summary_table)
+        elements.append(Spacer(1, SPACING_SECTION * cm))
+
+        # =========================================================
+        # DETAILLIERTE KOSTENBERECHNUNG
+        # =========================================================
+        elements.append(
+            Paragraph("Detaillierte Kostenberechnung", styles["heading_section"])
+        )
+
+        detail_table, positions_with_costs = create_detail_table(df_cost)
+
+        elements.append(detail_table)
+        elements.append(Spacer(1, SPACING_SECTION * cm))
+
+        # =========================================================
+        # FOOTER
+        # =========================================================
+        footer_text = (
+            "Diese Kostenberechnung basiert auf Kennwerten und dient als Schätzung. "
+            "Die tatsächlichen Kosten können abweichen. Das Programm eBKP+ übernimmt "
+            "keine Haftung. Stand: {0}".format(
+                datetime.now().strftime("%d.%m.%Y")
+            )
+        )
+        elements.append(Paragraph(footer_text, styles["footer"]))
+
+        # =========================================================
+        # PDF GENERIEREN
+        # =========================================================
         doc.build(elements)
         buffer.seek(0)
         return buffer
 
-    except ImportError as e:
-        st.error(f"❌ PDF-Export nicht verfügbar: {str(e)}")
+    except ImportError as error:
+        st.error(f"❌ PDF-Export nicht verfügbar: {str(error)}")
         st.info("Bitte installieren Sie reportlab: `pip install reportlab`")
         return None
-    except Exception as e:
-        st.error(f"❌ Fehler bei PDF-Generierung: {str(e)}")
-        return None
 
+    except Exception as error:
+        st.error(f"❌ Fehler bei PDF-Generierung: {str(error)}")
+        return None
 
 # ================================================================================
 # SCHRITT 1: KENNWERTE-KOSTENPLAN IMPORTIEREN
