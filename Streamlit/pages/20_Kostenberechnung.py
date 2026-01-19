@@ -182,23 +182,6 @@ def aggregate_quantities_by_code(df: pd.DataFrame) -> dict:
     return quantities
 
 
-"""
-pdf_generator.py
-
-Modul zur Generierung von professionellen PDF-Berichten für Kostenberechnungen.
-Umfasst Layout, Tabellen-Formatierung und Projektinformationen im BKP-Stil.
-
-Dependencies:
-    - reportlab: PDF-Generierung
-    - io: In-Memory-Buffer
-
-Author: Digital Construction Team
-Date: 2026-01-18
-"""
-
-
-
-
 # ==========================
 # Konstanten & Farben
 # ==========================
