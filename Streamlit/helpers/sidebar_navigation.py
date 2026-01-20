@@ -5,27 +5,54 @@ Gemeinsame Sidebar-Navigation für alle Pages
 import streamlit as st
 from datetime import datetime
 import os
+import base64
 from helpers.session_state import DATA_PROJEKT_DATEN
+
+
+def get_base64_image(path):
+    """Konvertiert ein Bild zu Base64"""
+    with open(path, "rb") as f:
+        return base64.b64encode(f.read()).decode()
 
 
 def render_sidebar():
     """Rendert die einheitliche Sidebar-Navigation für alle Pages"""
 
     with st.sidebar:
-        # Logo/Titel - Prominent mit Gradient
-        st.markdown("""
-        <div style="
-            text-align: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-        ">
-            <h2 style="margin: 0; font-size: 1.5rem;">🏗️ eBKP-H Suite</h2>
-            <p style="margin: 0; font-size: 0.8rem; opacity: 0.9;">BIM-Klassifizierung</p>
-        </div>
-        """, unsafe_allow_html=True)
+        # Pfade zu den Logos (im übergeordneten Ordner)
+        logo_dir = os.path.dirname(os.path.dirname(__file__))
+        logo_hell = os.path.join(logo_dir, "Logo_hell.png")
+        logo_dunkel = os.path.join(logo_dir, "Logo_dunkel.png")
+
+        # Theme-abhängiges Logo anzeigen
+        if os.path.exists(logo_hell) and os.path.exists(logo_dunkel):
+            b64_hell = get_base64_image(logo_hell)
+            b64_dunkel = get_base64_image(logo_dunkel)
+
+            st.markdown(f"""
+            <style>
+                .sidebar-logo {{ width: 100%; max-width: 400px; }}
+                .sidebar-logo-light {{ display: block; }}
+                .sidebar-logo-dark {{ display: none; }}
+            </style>
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <img src="data:image/png;base64,{b64_hell}" class="sidebar-logo sidebar-logo-light" alt="Logo">
+                <img src="data:image/png;base64,{b64_dunkel}" class="sidebar-logo sidebar-logo-dark" alt="Logo">
+            </div>
+            <script>
+                function updateSidebarLogo() {{
+                    const isDark = window.parent.document.querySelector('[data-testid="stAppViewContainer"]')
+                        ?.style.backgroundColor.includes('14, 17, 23') ||
+                        window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    document.querySelectorAll('.sidebar-logo-light').forEach(el => el.style.display = isDark ? 'none' : 'block');
+                    document.querySelectorAll('.sidebar-logo-dark').forEach(el => el.style.display = isDark ? 'block' : 'none');
+                }}
+                updateSidebarLogo();
+                new MutationObserver(updateSidebarLogo).observe(window.parent.document.body, {{attributes: true, subtree: true}});
+            </script>
+            """, unsafe_allow_html=True)
+        else:
+            st.warning("Logo_hell.png und Logo_dunkel.png nicht gefunden")
 
         # Projektname anzeigen (falls vorhanden)
         projekt_daten = st.session_state.get(DATA_PROJEKT_DATEN)
@@ -185,7 +212,7 @@ def render_page_footer(show_version: bool = True, show_date: bool = True):
     # Footer Content
     footer_parts = []
     if show_version:
-        footer_parts.append(f"🏗️ eBKP-H Suite {version_text}")
+        footer_parts.append(f"🏗️ eBKP-H⁺ {version_text}")
     if show_date:
         footer_parts.append(f"📅 {date_text}")
     footer_parts.append("🎓 TA.BA_DT_PROGR")

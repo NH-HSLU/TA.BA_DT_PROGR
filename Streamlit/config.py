@@ -1,5 +1,5 @@
 """
-Zentrale Konfigurationsdatei für die eBKP-H Suite.
+Zentrale Konfigurationsdatei für die eBKP-H+.
 
 Alle Hardcoded Values werden hier definiert für einfache Wartung.
 """
