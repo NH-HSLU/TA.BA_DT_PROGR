@@ -296,15 +296,16 @@ def render_kennwerte_section(default_kennwerte_df: pd.DataFrame) -> pd.DataFrame
         col1, col2 = st.columns(2)
 
         with col1:
-            # Download komplette Standard-Kennwerte
-            full_csv = default_kennwerte_df.to_csv(index=False, sep=';', encoding='utf-8')
-            st.download_button(
-                "📥 Standard-Kennwerte herunterladen",
-                data=full_csv,
-                file_name="eBKP-H_Kennwerte_Standard.csv",
-                mime="text/csv",
-                help="Kompletter Standard-Katalog als Basis"
-            )
+            # Download komplette Standard-Kennwerte direkt aus Datei
+            csv_path = Path(__file__).parent.parent / 'eBKP-H Kostenplan mit Kennwerten.csv'
+            with open(csv_path, 'rb') as f:
+                st.download_button(
+                    "📥 Standard-Kennwerte herunterladen",
+                    data=f,
+                    file_name="eBKP-H_Kennwerte_Standard.csv",
+                    mime="text/csv",
+                    help="Kompletter Standard-Katalog als Basis"
+                )
 
         # Upload eigene Kennwerte
         uploaded_kennwerte = st.file_uploader(
@@ -622,7 +623,7 @@ def render_config_section() -> str:
     """Konfigurationsbereich für Kostenstufen-Auswahl."""
     st.subheader("⚙️ Einstellungen")
 
-    col1, col2, col3 = st.columns(3)
+    col1, col2 = st.columns(2)
 
     with col1:
         cost_level = st.selectbox(
@@ -643,15 +644,6 @@ def render_config_section() -> str:
             st.info("Kostenermittlungsart nicht gewählt")
             tolerance = 0
 
-    with col3:
-        st.checkbox(
-            "Projektspezifische Kennwerte",
-            value=False,
-            disabled=True,
-            help="Ermöglicht Anpassung der Standard-Kennwerte (coming soon)",
-            key='use_project_rates'
-        )
-
     return cost_level
 
 
@@ -670,8 +662,11 @@ def render_quantity_input_section(df: pd.DataFrame) -> pd.DataFrame:
             if has_unit:
                 display_cols.append('Einheit')
 
+            # Sortiere nach BKP-Code und zeige alle Elemente
+            df_sorted = df[display_cols].sort_values('BKP_Code').reset_index(drop=True)
+
             edited_df = st.data_editor(
-                df[display_cols].head(50),
+                df_sorted,
                 column_config={
                     'Menge': st.column_config.NumberColumn(
                         'Menge',
@@ -682,12 +677,15 @@ def render_quantity_input_section(df: pd.DataFrame) -> pd.DataFrame:
                     'BKP_Beschreibung': st.column_config.TextColumn('Beschreibung', disabled=True),
                 },
                 hide_index=True,
-                key='quantity_editor'
+                key='quantity_editor',
+                height=400
             )
-            # Update df mit bearbeiteten Werten
-            for col in ['Menge']:
-                if col in edited_df.columns:
-                    df.loc[df.index[:len(edited_df)], col] = edited_df[col].values
+            # Update df mit bearbeiteten Werten (via BKP_Code Mapping)
+            for _, row in edited_df.iterrows():
+                mask = df['BKP_Code'] == row['BKP_Code']
+                if 'BKP_Beschreibung' in row:
+                    mask = mask & (df['BKP_Beschreibung'] == row['BKP_Beschreibung'])
+                df.loc[mask, 'Menge'] = row['Menge']
     else:
         st.warning("⚠️ Keine Mengenangaben in den Daten gefunden.")
         st.info("Bitte geben Sie globale Projektflächen ein:")
@@ -725,28 +723,28 @@ def render_results_section(results_df: pd.DataFrame, summaries: Dict[str, float]
     # === Kostenübersicht ===
     col1, col2, col3, col4 = st.columns(4)
 
+    # with col1:
+    #     st.metric(
+    #         "Bauwerkskosten",
+    #         format_currency(summaries['bauwerkskosten']),
+    #         help="Kosten C-G: Konstruktion, Technik, Ausbau, Bedachung, Ausbau Gebäude"
+    #     )
+
+    # with col2:
+    #     st.metric(
+    #         "Erstellungskosten",
+    #         format_currency(summaries['erstellungskosten']),
+    #         help="B + Bauwerkskosten + H, I, J + Zuschläge V, W"
+    #     )
+
+    # with col3:
+    #     st.metric(
+    #         "Anlagekosten",
+    #         format_currency(summaries['anlagekosten']),
+    #         help="A + Erstellungskosten + Zuschläge Y, Z"
+    #     )
+
     with col1:
-        st.metric(
-            "Bauwerkskosten",
-            format_currency(summaries['bauwerkskosten']),
-            help="Kosten C-G: Konstruktion, Technik, Ausbau, Bedachung, Ausbau Gebäude"
-        )
-
-    with col2:
-        st.metric(
-            "Erstellungskosten",
-            format_currency(summaries['erstellungskosten']),
-            help="B + Bauwerkskosten + H, I, J + Zuschläge V, W"
-        )
-
-    with col3:
-        st.metric(
-            "Anlagekosten",
-            format_currency(summaries['anlagekosten']),
-            help="A + Erstellungskosten + Zuschläge Y, Z"
-        )
-
-    with col4:
         total = summaries['total']
         if tolerance > 0:
             min_val, _ = calculate_cost_with_tolerance(total, tolerance)
@@ -755,7 +753,7 @@ def render_results_section(results_df: pd.DataFrame, summaries: Dict[str, float]
             delta_str = None
 
         st.metric(
-            "Total",
+            "**Gesamtkosten**",
             format_currency(total),
             delta=delta_str
         )
@@ -781,18 +779,18 @@ def render_results_section(results_df: pd.DataFrame, summaries: Dict[str, float]
         hg_name = EBKP_MAIN_GROUPS.get(hg, 'Unbekannt')
 
         # Bestimme Kostengruppen-Zugehörigkeit
-        if hg in ['C', 'D', 'E', 'F', 'G']:
-            badge = "🏗️ Bauwerkskosten"
-        elif hg in ['B', 'H', 'I', 'J', 'V', 'W']:
-            badge = "🔧 Erstellungskosten"
-        elif hg in ['A', 'Y', 'Z']:
-            badge = "💰 Anlagekosten"
-        else:
-            badge = ""
+        # if hg in ['C', 'D', 'E', 'F', 'G']:
+        #     badge = "🏗️ Bauwerkskosten"
+        # elif hg in ['B', 'H', 'I', 'J', 'V', 'W']:
+        #     badge = "🔧 Erstellungskosten"
+        # elif hg in ['A', 'Y', 'Z']:
+        #     badge = "💰 Anlagekosten"
+        # else:
+        #     badge = ""
 
         with st.expander(
-            f"**{hg}** - {hg_name}: {format_currency(hg_total)} ({hg_count} Positionen) {badge}",
-            expanded=hg_total > 0
+            f"**{hg}** - {hg_name}: {format_currency(hg_total)} ({hg_count} Positionen)",
+            expanded=False
         ):
             display_cols = ['BKP_Code', 'BKP_Beschreibung', 'Menge', 'Matched_Code', 'Match_Level', 'Einzelkosten']
             display_cols = [c for c in display_cols if c in hg_df.columns]
@@ -1005,7 +1003,7 @@ def create_pdf_cost_summary_table(summaries: Dict[str, float], tolerance: int = 
         min_val, max_val = total, total
 
     summary_data = [
-        ["POSITION", "BETRAG CHF"],
+        ["Position", "Betrag CHF"],
         ["Bauwerkskosten (C-G)", format_currency(summaries.get('bauwerkskosten', 0))],
         ["Erstellungskosten (B-W)", format_currency(summaries.get('erstellungskosten', 0))],
         ["Anlagekosten (Total)", format_currency(summaries.get('anlagekosten', 0))],
@@ -1067,8 +1065,8 @@ def create_pdf_detail_table(results_df: pd.DataFrame) -> Tuple[Table, int]:
 
     if df_with_costs.empty:
         # Leere Tabelle zurückgeben
-        table_data = [["eBKP-H", "Beschreibung", "Menge", "Einheit", "Kosten CHF"]]
-        table = Table(table_data, colWidths=[2 * cm, 8 * cm, 2 * cm, 3 * cm, 3.5 * cm])
+        table_data = [["eBKP-H", "Beschreibung", "Kosten CHF"]]
+        table = Table(table_data, colWidths=[2 * cm, 8 * cm, 6.5 * cm])
         table.setStyle(TableStyle([
             ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor(COLOR_SECONDARY_HEADER)),
             ("TEXTCOLOR", (0, 0), (-1, 0), colors.whitesmoke),
@@ -1094,8 +1092,8 @@ def create_pdf_detail_table(results_df: pd.DataFrame) -> Tuple[Table, int]:
         [
             "eBKP-H",
             "Beschreibung",
-            "Menge",
-            "Einheit",
+            # "Menge",
+            # "Einheit",
             "Kosten CHF",
         ]
     ]
@@ -1105,16 +1103,16 @@ def create_pdf_detail_table(results_df: pd.DataFrame) -> Tuple[Table, int]:
         # Beschreibung kürzen falls zu lang
         beschreibung = str(row.get("BKP_Beschreibung", ""))[:50]
 
-        menge = f"{row.get('Menge', 0):.2f}".rstrip("0").rstrip(".")
-        einheit = str(row.get("Einheit_Kennwert", ""))[:15]
+        # menge = f"{row.get('Menge', 0):.2f}".rstrip("0").rstrip(".")
+        # einheit = str(row.get("Einheit_Kennwert", ""))[:15]
         kosten = format_currency(row.get("Einzelkosten", 0))
 
         table_data.append(
             [
                 str(row.get("BKP_Code", ""))[:10],
                 beschreibung,
-                menge,
-                einheit,
+                # menge,
+                # einheit,
                 kosten,
             ]
         )
@@ -1122,7 +1120,7 @@ def create_pdf_detail_table(results_df: pd.DataFrame) -> Tuple[Table, int]:
     # Tabelle mit optimalen Spaltenbreiten (5 Spalten ohne Match)
     table = Table(
         table_data,
-        colWidths=[2 * cm, 8 * cm, 2 * cm, 3 * cm, 3.5 * cm],
+        colWidths=[2 * cm, 8 * cm, 6.5 * cm],
     )
 
     # Stil für Zeilen-Alternation
@@ -1219,7 +1217,7 @@ def generate_cost_report_pdf(
         # =========================================================
         # Logo und Titel nebeneinander in einer Tabelle
         title_content = [
-            [Paragraph("Kostenberechnung eBKP-H", styles["title"])]
+            [Paragraph("Kostenberechnung", styles["title"])]
         ]
         subtitle_content = Paragraph(
             f"Erstellt am {datetime.now().strftime('%d.%m.%Y um %H:%M Uhr')}",
@@ -1229,7 +1227,7 @@ def generate_cost_report_pdf(
         # Versuche Logo zu laden
         if LOGO_PATH.exists():
             try:
-                logo = Image(str(LOGO_PATH), width=3 * cm, height=3 * cm)
+                logo = Image(str(LOGO_PATH), width=6 * cm, height=1.4 * cm)
                 logo.hAlign = 'RIGHT'
 
                 # Titel-Tabelle mit Logo rechts
@@ -1249,10 +1247,10 @@ def generate_cost_report_pdf(
                 elements.append(header_table)
             except Exception:
                 # Fallback: Nur Titel ohne Logo
-                elements.append(Paragraph("Kostenberechnung eBKP-H", styles["title"]))
+                elements.append(Paragraph("Kostenberechnung", styles["title"]))
         else:
             # Kein Logo vorhanden
-            elements.append(Paragraph("Kostenberechnung eBKP-H", styles["title"]))
+            elements.append(Paragraph("Kostenberechnung", styles["title"]))
 
         elements.append(subtitle_content)
         elements.append(Spacer(1, SPACING_SECTION * cm))
@@ -1284,7 +1282,7 @@ def generate_cost_report_pdf(
                 ["eBKP-Klassifizierungstiefe", config.get("ebkp_depth", "N/A")],
             ]
 
-            config_table = Table(config_data, colWidths=[6 * cm, 10 * cm])
+            config_table = Table(config_data, colWidths=[6 * cm, 12.5 * cm])
             config_table.setStyle(
                 TableStyle(
                     [
@@ -1326,19 +1324,16 @@ def generate_cost_report_pdf(
         elements.append(Spacer(1, SPACING_SECTION * cm))
 
         # =========================================================
-        # DETAILLIERTE KOSTENBERECHNUNG
+        # Zusammenfassung nach Hauptgruppen
         # =========================================================
         elements.append(
-            Paragraph("Detaillierte Kostenberechnung", styles["heading_section"])
+            Paragraph("Zusammenfassung nach Hauptgruppen", styles["heading_section"])
         )
 
         detail_table, positions_with_costs = create_pdf_detail_table(results_df)
 
         elements.append(detail_table)
         elements.append(Spacer(1, SPACING_SUBSECTION * cm))
-        elements.append(
-            Paragraph(f"Total: {positions_with_costs} Positionen mit Kosten", styles["small"])
-        )
         elements.append(Spacer(1, SPACING_SECTION * cm))
 
         # =========================================================
@@ -1403,7 +1398,7 @@ def generate_cost_report_pdf(
             if len(hg_aggregated) > 15:
                 group_table_data.append(['...', f'und {len(hg_aggregated) - 15} weitere', '', ''])
 
-            group_table = Table(group_table_data, colWidths=[2.5 * cm, 8 * cm, 2 * cm, 3.5 * cm])
+            group_table = Table(group_table_data, colWidths=[2 * cm, 8 * cm, 3 * cm, 3.5 * cm])
             group_table.setStyle(TableStyle([
                 ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor(COLOR_ACCENT)),
                 ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
@@ -1426,7 +1421,7 @@ def generate_cost_report_pdf(
         elements.append(Spacer(1, SPACING_SECTION * cm))
         footer_text = (
             "Diese Kostenberechnung basiert auf Kennwerten und dient als Schätzung. "
-            "Die tatsächlichen Kosten können abweichen. Das Programm eBKP+ übernimmt "
+            "Die tatsächlichen Kosten können abweichen. Die Entwickler von eBKP-H+ übernehmen "
             f"keine Haftung. Stand: {datetime.now().strftime('%d.%m.%Y')}"
         )
         elements.append(Paragraph(footer_text, styles["footer"]))
@@ -1648,7 +1643,7 @@ if use_custom:
 else:
     st.caption("📋 Berechnung mit **Standard-Kennwerten**")
 
-if st.button("💵 Kosten berechnen", type="primary", use_container_width=True):
+if st.button("💵 Kosten berechnen", type="primary", width="stretch"):
     with st.spinner("Berechne Kosten mit hierarchischem Lookup..."):
         project_areas = get_state('project_areas')
 

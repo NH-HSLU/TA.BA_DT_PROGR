@@ -107,7 +107,7 @@ with col1:
         margin=dict(t=50, b=20, l=20, r=20)
     )
 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 with col2:
     render_content_box("""

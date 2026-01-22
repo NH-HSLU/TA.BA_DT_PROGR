@@ -43,7 +43,7 @@ with col2:
     st.markdown("<br>", unsafe_allow_html=True)
 
     # Button zum Starten der App
-    if st.button("🚀 eBKP-H⁺ starten", type="primary", use_container_width=True):
+    if st.button("🚀 eBKP-H⁺ starten", type="primary", width="stretch"):
         # Pfad zur Hauptapp
         streamlit_app = os.path.abspath(os.path.join(parent_dir, '..', 'Streamlit', 'streamlit_app.py'))
 

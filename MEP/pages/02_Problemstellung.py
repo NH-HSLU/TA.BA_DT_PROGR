@@ -100,7 +100,7 @@ fig.update_layout(
 
 fig.update_yaxes(type='log')  # Logarithmische Skala wegen grossem Unterschied
 
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, width="stretch")
 
 st.caption("*Geschätzte Werte basierend auf durchschnittlicher Bearbeitungszeit")
 

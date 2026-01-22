@@ -23,7 +23,7 @@ from helpers.session_state import (
 
 # Seitenkonfiguration
 st.set_page_config(
-    page_title="Dashboard - eBKP-H Suite",
+    page_title="eBKP-H⁺",
     page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -82,12 +82,12 @@ st.markdown("""
     }
 
     /* Card Farben (aus Kostenermittlung) */
-    .card-purple { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-    .card-pink { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
-    .card-cyan { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
-    .card-green { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
-    .card-orange { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
-    .card-dark { background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); }
+    .card-purple { background: linear-gradient(135deg, #3b4ea3 0%, #543474 100%); }
+    .card-pink { background: linear-gradient(135deg, #9c57a3 0%, #a33443 100%); }
+    .card-cyan { background: linear-gradient(135deg, #397bb6 0%, #00bbc5 100%); }
+    .card-green { background: linear-gradient(135deg, #32af5c 0%, #2ab69c 100%); }
+    .card-orange { background: linear-gradient(135deg, #a13f5d 0%, #af9b28 100%); }
+    .card-dark { background: linear-gradient(135deg, #219c9c 0%, #330867 100%); }
 
     /* Workflow Steps */
     .workflow-step {
@@ -115,120 +115,62 @@ st.markdown("""
 # Haupttitel
 render_page_header("📊 Dashboard", "Workflow-Übersicht und Fortschritt")
 
-# Daily Fun Fact
-st.info(f"💡 **Wussten Sie?** {get_daily_fact()}")
-
 render_divider("section")
 
 # Workflow-Cards
 st.markdown("### 🚀 Workflow")
 
-# Schritt 0: Projektinformationen (optional, aber empfohlen)
-st.markdown("#### 0️⃣ Projektinformationen (optional)")
-col0 = st.columns([1])[0]
-with col0:
+col1, col2, col3, col4, col5 = st.columns(5)
+
+with col1:
     st.markdown("""
-    <div class="workflow-card card-green" style="min-height: 120px;">
-        <h3>📋 Projektinformationen</h3>
+    <div class="workflow-card card-pink">
+        <h3>0️⃣ Projektinformationen</h3>
         <p>Projekt erfassen<br>Bauherr & Baumanagement<br>Stammdaten verwalten</p>
     </div>
     """, unsafe_allow_html=True)
-    if st.button("→ Erfassen", key="btn_project", use_container_width=True):
+    if st.button("→ Erfassen", key="btn_project", width="stretch"):
         st.switch_page("pages/00_Projektinformationen.py")
 
-st.markdown("#### Hauptworkflow")
-col1, col2, col3, col4 = st.columns(4)
-
-with col1:
+with col2:
     st.markdown("""
     <div class="workflow-card card-purple">
         <h3>1️⃣ Kostenermittlung</h3>
         <p>Projektphase wählen<br>SIA LHO 102<br>±10% bis ±30%</p>
     </div>
     """, unsafe_allow_html=True)
-    if st.button("→ Starten", key="btn_cost", use_container_width=True):
+    if st.button("→ Starten", key="btn_cost", width="stretch"):
         st.switch_page("pages/01_Kostenermittlung.py")
 
-with col2:
+with col3:
     st.markdown("""
     <div class="workflow-card card-cyan">
         <h3>2️⃣ KI-Klassifizierung</h3>
         <p>CSV hochladen<br>Automatisch klassifizieren<br>Claude AI</p>
     </div>
     """, unsafe_allow_html=True)
-    if st.button("→ Starten", key="btn_classify", use_container_width=True):
+    if st.button("→ Starten", key="btn_classify", width="stretch"):
         st.switch_page("pages/03_KI_Klassifizierung.py")
 
-with col3:
+with col4:
     st.markdown("""
     <div class="workflow-card card-green">
         <h3>3️⃣ BKP Bearbeiten</h3>
         <p>Codes überprüfen<br>Manuell korrigieren<br>Validieren</p>
     </div>
     """, unsafe_allow_html=True)
-    if st.button("→ Starten", key="btn_edit", use_container_width=True):
+    if st.button("→ Starten", key="btn_edit", width="stretch"):
         st.switch_page("pages/04_eBKP_Bearbeiten.py")
 
-with col4:
+with col5:
     st.markdown("""
     <div class="workflow-card card-orange">
         <h3>4️⃣ Auswertung</h3>
         <p>Hierarchie anzeigen<br>Kosten analysieren<br>Export</p>
     </div>
     """, unsafe_allow_html=True)
-    if st.button("→ Starten", key="btn_eval", use_container_width=True):
+    if st.button("→ Starten", key="btn_eval", width="stretch"):
         st.switch_page("pages/06_eBKP_Auswertung.py")
-
-# Workflow Progress Tracker
-render_divider("section")
-st.subheader("📊 Ihr Fortschritt")
-
-
-def show_workflow_progress():
-    """Visualisiert Workflow-Fortschritt mit zentralem Session State"""
-    steps = [
-        ("0️⃣ Projektinformationen (opt.)", DATA_PROJEKT_DATEN),
-        ("1️⃣ Kostenermittlung", CFG_COST_ESTIMATION_CONFIG),
-        ("2️⃣ KI-Klassifizierung", DATA_CLASSIFICATION_RESULTS),
-        ("3️⃣ BKP-Bearbeitung (opt.)", DATA_CLASSIFICATION_RESULTS),
-        ("4️⃣ Auswertung", DATA_CLASSIFICATION_RESULTS),
-    ]
-
-    def is_step_complete(key):
-        """Prüft ob ein Workflow-Schritt abgeschlossen ist mit get_state"""
-        value = get_state(key)
-        if value is None:
-            return False
-        # Für DataFrames: Prüfe ob nicht leer
-        if hasattr(value, 'empty'):
-            return not value.empty
-        # Für Dicts: Prüfe ob 'selected' key True ist
-        if isinstance(value, dict):
-            return value.get('selected', False)
-        # Für andere Typen: Standard Boolean-Check
-        return bool(value)
-
-    completed = sum(1 for _, key in steps if is_step_complete(key))
-
-    # Zähle nur Haupt-Schritte (nicht die optionalen)
-    required_steps = [1, 2, 4]  # Indices der Pflicht-Schritte
-    completed_required = sum(1 for i in required_steps if is_step_complete(steps[i][1]))
-
-    # Zeige alle Schritte im Progress, aber markiere optionale
-    cols = st.columns(5)  # Jetzt 5 statt 4
-    for i, ((name, key), col) in enumerate(zip(steps, cols)):
-        with col:
-            is_complete = is_step_complete(key)
-            if is_complete:
-                st.success(f"✅ {name.split()[0]}")
-            else:
-                st.info(f"○ {name.split()[0]}")
-
-    progress = completed / len(steps)
-    st.progress(progress, text=f"Workflow: {completed}/{len(steps)} Schritte abgeschlossen ({completed_required}/{len(required_steps)} Pflicht)")
-
-
-show_workflow_progress()
 
 render_divider("section")
 

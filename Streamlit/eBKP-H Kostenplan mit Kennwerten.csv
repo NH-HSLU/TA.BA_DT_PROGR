@@ -30,13 +30,13 @@ B02.05;Einrichtung für Materialaufbereitung;m² Baustelle;3000;9000;15000;Beton
 B02.06;Witterungsbedingte Baumassnahme;% Baukosten;2;3.5;5;Schutzbauten, Dächer, Wärmung
 B02.07;Baustellenorganisation, Sicherheit;% Baukosten;2;3;4;PSA, Signalisation, Absperrungen, Koordination
 B02.08;Schutzmassnahme für Umgebung;% Baukosten;1;2;3;Staubschutz, Lärmschutz, Verkehrsregelung
-B03;Provisorium;;;;;
-B03.01;Provisorisches Rückhaltesystem;m3 oder Stück;200;500;800;Retentionsbecken, mobile Absetzbecken, Versickerungsanlagen
+B03;Provisorium;Stück;300;600;900;
+B03.01;Provisorisches Rückhaltesystem;Stück;200;500;800;Retentionsbecken, mobile Absetzbecken, Versickerungsanlagen
 B03.02;Provisiorische Werkleitung;m Laufmeter;50;175;300;
 B03.03;Provisorisches Gebäude;m²;200;500;800;Container, Büros, Lagerzelte, Wohncontainer
 B03.04;Provisorische Verkehrsanlage;m Laufmeter;100;300;500;Zufahrten, Überbrückungen, Rampen, Parkplätze
 B03.05;Provisorischer Ausbau, Ausstattung;m²;50;175;300;Innenausstattung Container, Mobiliar, sanitäre Anlagen
-B04;Erschliessung durch Werkleitungen;;;;;
+B04;Erschliessung durch Werkleitungen;m Laufmeter;200;600;1000;
 B04.01;Starkstromleitung;m Laufmeter;300;750;1200;"0,4 bis 30kV; Tiefbau + Material + Montage; je anch Durchmesser und Schwierigkeit"
 B04.02;Schwachstromleitung;m Laufmeter;100;250;400;"Telefon, Datenleitung, Glasfaser; niedrige Kosten als Starkstrom"
 B04.03;Fernwärmeleitung;m Laufmeter;500;1000;1500;"Doppelrohr mit Isolierung; CHF 500/m (einfach) bis CHF 1500/m (komplex); inkl. Erdarbeiten"

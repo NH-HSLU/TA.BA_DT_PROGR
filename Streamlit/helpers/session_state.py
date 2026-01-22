@@ -21,6 +21,10 @@ DATA_PREPARED = 'prepared_data'                        # pd.DataFrame
 DATA_DEDUP_MAPPING = 'dedup_mapping'                   # Dict
 DATA_UNIQUE_ELEMENTS = 'unique_elements'               # pd.DataFrame
 DATA_PROJEKT_DATEN = 'projekt_daten'                   # ProjektDaten object
+DATA_COST_RESULTS = 'cost_results_df'                  # pd.DataFrame mit Kostenberechnung
+DATA_COST_SUMMARIES = 'cost_summaries'                 # Dict mit Kostenzusammenfassungen
+DATA_CUSTOM_KENNWERTE = 'custom_kennwerte'             # pd.DataFrame mit benutzerdefinierten Kennwerten
+CFG_USE_CUSTOM_KENNWERTE = 'use_custom_kennwerte'      # bool: Eigene Kennwerte verwenden
 
 # Processing States
 PROC_API_RESPONSES = 'api_responses'                   # List[Dict]
@@ -35,6 +39,7 @@ CFG_TOKEN_LIMIT = 'token_limit'                        # int
 CFG_FORCE_BATCH_API = 'force_batch_api'                # bool
 CFG_COST_ESTIMATION_CONFIG = 'cost_estimation_config'  # Dict
 CFG_CLASSIFICATION_SETTINGS = 'classification_settings' # Dict
+CFG_SELECTED_COST_LEVEL = 'selected_cost_level'        # str: 'tief', 'mittel', 'hoch'
 
 # UI States
 UI_SELECTED_WORKFLOW_STEP = 'selected_workflow_step'   # int
@@ -56,6 +61,10 @@ def init_session_state() -> None:
         DATA_DEDUP_MAPPING: None,
         DATA_UNIQUE_ELEMENTS: None,
         DATA_PROJEKT_DATEN: None,
+        DATA_COST_RESULTS: None,
+        DATA_COST_SUMMARIES: None,
+        DATA_CUSTOM_KENNWERTE: None,
+        CFG_USE_CUSTOM_KENNWERTE: False,
 
         # Processing States
         PROC_API_RESPONSES: [],
@@ -77,6 +86,7 @@ def init_session_state() -> None:
             'model': 'claude-3-5-haiku-20241022',
             'bim_complexity': 'medium'
         },
+        CFG_SELECTED_COST_LEVEL: 'mittel',
 
         # UI States
         UI_SELECTED_WORKFLOW_STEP: 0,

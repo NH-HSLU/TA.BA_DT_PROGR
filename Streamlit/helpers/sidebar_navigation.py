@@ -17,7 +17,7 @@ def get_base64_image(path):
 
 def render_sidebar():
     """Rendert die einheitliche Sidebar-Navigation für alle Pages"""
-
+    st.logo("Streamlit/Logo_square.png",size="large")
     with st.sidebar:
         # Pfade zu den Logos (im übergeordneten Ordner)
         logo_dir = os.path.dirname(os.path.dirname(__file__))
@@ -53,7 +53,6 @@ def render_sidebar():
             """, unsafe_allow_html=True)
         else:
             st.warning("Logo_hell.png und Logo_dunkel.png nicht gefunden")
-
         # Projektname anzeigen (falls vorhanden)
         projekt_daten = st.session_state.get(DATA_PROJEKT_DATEN)
         if projekt_daten:
@@ -90,7 +89,7 @@ def render_sidebar():
         # Kostenermittlung-Status
         if 'cost_estimation_config' in st.session_state and st.session_state.cost_estimation_config.get('selected'):
             config = st.session_state.cost_estimation_config
-            st.success(f"✓ {config['name'][:20]}...", icon="🏗️")
+            st.success(f"✓ {config['name'][:20]}", icon="🏗️")
             st.caption(f"Toleranz: ±{config['tolerance']}% | Level: {config['ebkp_depth']}")
         else:
             st.info("ℹ️ Keine Stufe gewählt", icon="🏗️")

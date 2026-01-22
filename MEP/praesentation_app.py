@@ -95,5 +95,5 @@ st.markdown("""
 st.markdown("<br>", unsafe_allow_html=True)
 col1, col2, col3 = st.columns([1, 2, 1])
 with col2:
-    if st.button("▶ Präsentation starten", type="primary", use_container_width=True):
+    if st.button("▶ Präsentation starten", type="primary", width="stretch"):
         st.switch_page("pages/01_Projektueberblick.py")

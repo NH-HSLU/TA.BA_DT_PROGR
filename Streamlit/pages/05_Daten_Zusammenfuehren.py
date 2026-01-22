@@ -41,18 +41,8 @@ render_sidebar()
 
 # Page Header
 render_page_header("🔗 Daten Zusammenführen", "Klassifizierte und Original-Daten verbinden")
+st.divider()
 
-st.markdown("""
-**Funktion:** Führt die klassifizierten deduplizierten Daten mit Ihren Original-Daten zusammen.
-
-**Workflow:**
-1. Klassifizierte deduplizierte Daten hochladen (mit BKP-Codes)
-2. Original-Daten mit Mapping hochladen (`_Dedup_ID` Spalte)
-3. Automatische Zusammenführung
-4. Ergebnis überprüfen und zur Auswertung gehen
-""")
-
-render_divider("section")
 
 # ============================================================================
 # Upload Section
@@ -289,10 +279,7 @@ if classified_file and original_file:
 else:
     st.info("👆 Bitte laden Sie beide CSV-Dateien hoch, um zu beginnen.")
 
-    st.markdown("---")
-
-    st.markdown("""
-    ### 📋 Welche Dateien benötige ich?
+    st.expander("📄 Welche Dateien benötige ich?", expanded=False).markdown("""
 
     **1. Klassifizierte deduplizierte Daten:**
     - Aus der **"🤖 KI-Klassifizierung"** Seite

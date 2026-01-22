@@ -111,7 +111,7 @@ st.markdown(logo_html, unsafe_allow_html=True)
 col1, col2, col3 = st.columns([1, 2, 1])
 
 with col1:
-    if st.button("← Zurück", key="nav_prev", use_container_width=True):
+    if st.button("← Zurück", key="nav_prev", width="stretch"):
         st.switch_page("pages/11_Zusammenfassung.py")
 
 with col2:
@@ -122,5 +122,5 @@ with col2:
     """, unsafe_allow_html=True)
 
 with col3:
-    if st.button("🏠 Zum Anfang", key="nav_home", use_container_width=True):
+    if st.button("🏠 Zum Anfang", key="nav_home", width="stretch"):
         st.switch_page("praesentation_app.py")

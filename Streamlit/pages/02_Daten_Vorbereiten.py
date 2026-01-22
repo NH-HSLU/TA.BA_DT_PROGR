@@ -124,10 +124,6 @@ render_divider("section")
 
 # Check if prepared data already exists in session state
 has_prepared_data = False
-"""(
-    get_state(DATA_PREPARED) is not None and
-    get_state(DATA_ORIGINAL_UPLOADED) is not None
-)"""
 
 if has_prepared_data and not get_state('UI_RELOAD_PREPARED_DATA', False):
     # Show option to use existing prepared data
@@ -151,11 +147,11 @@ if has_prepared_data and not get_state('UI_RELOAD_PREPARED_DATA', False):
     # Button to use prepared data
     col_a, col_b = st.columns(2)
     with col_a:
-        if st.button("✅ Vorbereitete Daten verwenden", type="primary", use_container_width=True):
+        if st.button("✅ Vorbereitete Daten verwenden", type="primary", width="stretch"):
             set_state('UI_RELOAD_PREPARED_DATA', True)
             st.rerun()
     with col_b:
-        if st.button("🔄 Neue CSV hochladen", use_container_width=True):
+        if st.button("🔄 Neue CSV hochladen", width="stretch"):
             # Clear prepared data and reload page
             set_state(DATA_PREPARED, None)
             set_state(DATA_ORIGINAL_UPLOADED, None)

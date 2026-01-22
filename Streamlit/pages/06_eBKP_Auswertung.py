@@ -621,7 +621,6 @@ if df is not None:
                         st.metric(
                             label=f"{hauptgruppe} - {hauptgruppe_name}",
                             value=value,
-                            delta=delta_label
                         )
 
         render_divider("section")
@@ -786,7 +785,7 @@ if df is not None:
                     names='BKP_Hauptgruppe',
                     title="Verteilung nach Hauptgruppen"
                 )
-                st.plotly_chart(fig_pie, width='stretch')
+                st.plotly_chart(fig_pie, width="stretch")
 
             with col2:
                 fig_bar = px.bar(
@@ -795,7 +794,7 @@ if df is not None:
                     y='Anzahl',
                     title="Anzahl Elemente pro Hauptgruppe"
                 )
-                st.plotly_chart(fig_bar, width='stretch')
+                st.plotly_chart(fig_bar, width="stretch")
 
         # Kosten-Diagramme (falls vorhanden)
         if 'Kosten' in df.columns:
@@ -811,7 +810,7 @@ if df is not None:
                     y='Kosten',
                     title="Kosten nach Hauptgruppen"
                 )
-                st.plotly_chart(fig_kosten, width='stretch')
+                st.plotly_chart(fig_kosten, width="stretch")
 
     with tab3:
         # Export
