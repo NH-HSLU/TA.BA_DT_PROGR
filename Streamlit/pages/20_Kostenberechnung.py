@@ -1,5 +1,15 @@
 """
 Kostenberechnung basierend auf eBKP-H Klassifizierung und Kennwerten
+
+Berechnet Kosten mit hierarchischem Lookup:
+1. Exakter Match (z.B. E02.02)
+2. Untergruppe (z.B. E02)
+3. Hauptgruppe (z.B. E)
+
+Kostengruppen:
+- Bauwerkskosten: C + D + E + F + G
+- Erstellungskosten: B + Bauwerkskosten + H + I + J + V + W
+- Anlagekosten: A + Erstellungskosten + Y + Z
 """
 
 from __future__ import annotations
@@ -8,13 +18,10 @@ import pandas as pd
 import sys
 import os
 from pathlib import Path
-from typing import Tuple, List, Dict
-
-
+from typing import Tuple, List, Dict, Optional, Any
 from dataclasses import asdict
 from datetime import datetime
 from io import BytesIO
-from typing import Any
 
 try:
     from reportlab.lib import colors
@@ -29,16 +36,24 @@ try:
         Spacer,
         PageBreak,
         KeepTogether,
+        Image,
     )
+    REPORTLAB_AVAILABLE = True
 except ImportError:
-    raise ImportError(
-        "reportlab ist erforderlich. Installieren Sie es mit: pip install reportlab"
-    )
+    REPORTLAB_AVAILABLE = False
+
+# Pfad zum Logo
+LOGO_PATH = Path(__file__).parent.parent / 'Logo_dunkel.png'
 
 # Füge Parent-Verzeichnis zum Path hinzu für Imports
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if parent_dir not in sys.path:
     sys.path.insert(0, parent_dir)
+
+# Füge helpers_shared zum Path hinzu
+helpers_shared_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'helpers_shared'))
+if helpers_shared_dir not in sys.path:
+    sys.path.insert(0, helpers_shared_dir)
 
 try:
     from helpers.sidebar_navigation import render_sidebar, render_page_header, render_divider, render_page_footer
@@ -50,11 +65,43 @@ try:
         DATA_CLASSIFICATION_RESULTS,
         CFG_COST_ESTIMATION_CONFIG,
         DATA_PROJEKT_DATEN,
+        DATA_CUSTOM_KENNWERTE,
+        CFG_USE_CUSTOM_KENNWERTE,
         has_classification_results
     )
 except ImportError as e:
     st.error(f"Module konnten nicht importiert werden: {e}")
     st.stop()
+
+try:
+    from ebkp_reference import (
+        get_kennwert_hierarchical,
+        parse_unit_type,
+        EBKP_MAIN_GROUPS
+    )
+except ImportError as e:
+    st.error(f"ebkp_reference konnte nicht importiert werden: {e}")
+    st.stop()
+
+# ============================================================================
+# PDF STYLING KONSTANTEN
+# ============================================================================
+
+# Farbschema für das PDF-Layout (professionell)
+COLOR_PRIMARY_HEADER = "#1f4788"     # Dunkles Blau für Haupttitel
+COLOR_SECONDARY_HEADER = "#366092"   # Mittleres Blau für Tabellenkopf
+COLOR_ACCENT = "#d4e6f1"             # Helles Blau für Hervorhebungen
+COLOR_BACKGROUND_ALT = "#f9f9f9"     # Sehr helles Grau für Zeilenalternation
+COLOR_TEXT_DARK = "#1a1a1a"          # Dunkles Grau für Text
+COLOR_TEXT_LIGHT = "#666666"         # Mittleres Grau für Zusatztext
+
+# Abstände für PDF (in cm)
+MARGIN_TOP = 1.5
+MARGIN_BOTTOM = 1.5
+MARGIN_LEFT = 1.5
+MARGIN_RIGHT = 1.5
+SPACING_SECTION = 0.8
+SPACING_SUBSECTION = 0.3
 
 # Seiten-Konfiguration
 st.set_page_config(
@@ -69,175 +116,734 @@ init_session_state()
 # Render gemeinsame Sidebar
 render_sidebar()
 
-st.title("💰 Kostenberechnung")
-st.caption("Berechnung der Kosten basierend auf eBKP-H Klassifizierung und Kennwerten")
-
+# ============================================================================
+# HILFSFUNKTIONEN
+# ============================================================================
 
 def format_currency(value: float) -> str:
-    """Formatiert Betrag als Schweizer Franken"""
+    """Formatiert Betrag als Schweizer Franken."""
+    if pd.isna(value):
+        return "0.00 CHF"
     return f"{value:,.2f} CHF".replace(',', "'")
 
 
 def format_tolerance(tolerance: int) -> str:
-    """Formatiert Toleranz als Prozentangabe"""
+    """Formatiert Toleranz als Prozentangabe."""
     return f"± {tolerance}%"
 
 
-def calculate_cost_with_tolerance(betrag: float, tolerance: int) -> tuple:
-    """Berechnet Min/Max basierend auf Toleranz"""
+def calculate_cost_with_tolerance(betrag: float, tolerance: int) -> Tuple[float, float]:
+    """Berechnet Min/Max basierend auf Toleranz."""
     if tolerance == 0:
         return betrag, betrag
     tolerance_amount = betrag * (tolerance / 100)
     return betrag - tolerance_amount, betrag + tolerance_amount
 
 
-def load_kennwerte_csv(uploaded_file) -> pd.DataFrame:
-    """
-    Lädt CSV-Datei mit Kennwerten
+@st.cache_data
+def load_kennwerte_from_file() -> pd.DataFrame:
+    """Lädt die Kennwerte CSV aus dem Standardverzeichnis."""
+    csv_path = Path(__file__).parent.parent / 'eBKP-H Kostenplan mit Kennwerten.csv'
 
-    Erwartete Spalten:
-    - A: eBKP-H Code
-    - B: Kostengruppe / Position
-    - C: Kennwert Einheit
-    - D: Kennwert tief CHF/Einheit
-    - E: Kennwert mittel CHF/Einheit
-    - F: Kennwert hoch CHF/Einheit
-    - G: Anmerkungen
-    """
+    if not csv_path.exists():
+        st.error(f"Kennwerte-Datei nicht gefunden: {csv_path}")
+        return pd.DataFrame()
+
     try:
-        # Lese CSV mit Semikolon
-        df = pd.read_csv(uploaded_file, sep=';', encoding='utf-8-sig')
-
-        # Erwartete Spaltennamen
-        expected_columns = [
-            'eBKP-H Code',
-            'Kostengruppe / Position',
-            'Kennwert Einheit',
-            'Kennwert tief CHF/Einheit',
-            'Kennwert mittel CHF/Einheit',
-            'Kennwert hoch CHF/Einheit',
-            'Anmerkungen'
-        ]
-
-        # Prüfe ob alle Spalten vorhanden sind
-        if list(df.columns) == expected_columns:
-            # Filtere leere Zeilen (wo eBKP-H Code leer ist)
-            df = df[df['eBKP-H Code'].notna() & (df['eBKP-H Code'] != '')]
-            return df
-        else:
-            st.error("❌ CSV-Datei hat nicht die erwarteten Spalten")
-            st.info(f"Erwartet: {expected_columns}")
-            st.info(f"Gefunden: {list(df.columns)}")
-            return None
-
+        df = pd.read_csv(csv_path, sep=';', encoding='utf-8-sig')
+        # Filtere leere Zeilen
+        df = df[df['eBKP-H Code'].notna() & (df['eBKP-H Code'] != '')]
+        return df
     except Exception as e:
-        st.error(f"❌ Fehler beim Laden der CSV-Datei: {str(e)}")
-        return None
+        st.error(f"Fehler beim Laden der Kennwerte: {e}")
+        return pd.DataFrame()
 
 
-def aggregate_quantities_by_code(df: pd.DataFrame) -> dict:
+# Erwartete Spalten für Kennwerte CSV
+KENNWERTE_REQUIRED_COLUMNS = ['eBKP-H Code', 'Kennwert Einheit']
+KENNWERTE_COST_COLUMNS = ['Kennwert tief CHF/Einheit', 'Kennwert mittel CHF/Einheit', 'Kennwert hoch CHF/Einheit']
+KENNWERTE_OPTIONAL_COLUMNS = ['Kostengruppe / Position', 'Anmerkungen']
+
+
+def validate_kennwerte_csv(df: pd.DataFrame) -> Tuple[bool, str, pd.DataFrame]:
     """
-    Aggregiert Mengen aus klassifizierten Daten nach eBKP-H Code.
-
-    Diese Funktion durchläuft die Modell-Daten einmalig und gruppiert
-    alle Mengen nach ihrem eBKP-H Code. Dies ist deutlich effizienter
-    als für jede Kostenplan-Position die gesamte Liste zu durchsuchen.
+    Validiert eine benutzerdefinierte Kennwerte-CSV.
 
     Args:
-        df: DataFrame mit klassifizierten Daten (enthält 'eBKP-H Code' und 'Menge')
+        df: DataFrame aus hochgeladener CSV
 
     Returns:
-        Dict[str, float]: Dictionary mit eBKP-H Code als Key und summierter Menge als Value
-
-    Example:
-        >>> df = pd.DataFrame({
-        ...     'eBKP-H Code': ['C13.01', 'C13.01', 'D21.03'],
-        ...     'Menge': [5.0, 3.0, 10.0]
-        ... })
-        >>> aggregate_quantities_by_code(df)
-        {'C13.01': 8.0, 'D21.03': 10.0}
+        Tuple aus (ist_valid, fehlermeldung, normalisierter_df)
     """
-    if df is None or df.empty:
-        return {}
+    if df.empty:
+        return False, "CSV ist leer", df
 
-    if 'eBKP-H Code' not in df.columns:
-        return {}
+    # Prüfe erforderliche Spalten
+    missing_required = [col for col in KENNWERTE_REQUIRED_COLUMNS if col not in df.columns]
+    if missing_required:
+        return False, f"Fehlende Pflichtspalten: {', '.join(missing_required)}", df
 
-    # Entferne Zeilen mit leeren oder ungültigen eBKP-H Codes
-    df_valid = df[df['eBKP-H Code'].notna() & (df['eBKP-H Code'] != '')]
+    # Prüfe Kostenspalten (mindestens eine muss vorhanden sein)
+    available_cost_cols = [col for col in KENNWERTE_COST_COLUMNS if col in df.columns]
+    if not available_cost_cols:
+        return False, f"Mindestens eine Kostenspalte erforderlich: {', '.join(KENNWERTE_COST_COLUMNS)}", df
 
-    if df_valid.empty:
-        return {}
+    # Normalisiere DataFrame
+    df_normalized = df.copy()
 
-    # Prüfe ob Menge-Spalte existiert
-    if 'Menge' not in df_valid.columns:
-        return {}
+    # Filtere leere Zeilen
+    df_normalized = df_normalized[df_normalized['eBKP-H Code'].notna() & (df_normalized['eBKP-H Code'] != '')]
 
-    # Entferne Zeilen mit ungültigen Mengen
-    df_valid = df_valid[df_valid['Menge'].notna()]
+    # Füge fehlende Kostenspalten mit 0 hinzu
+    for col in KENNWERTE_COST_COLUMNS:
+        if col not in df_normalized.columns:
+            df_normalized[col] = 0.0
 
-    # Gruppiere nach eBKP-H Code und summiere Mengen - O(m) Operation!
-    quantities = df_valid.groupby('eBKP-H Code')['Menge'].sum().to_dict()
+    # Füge fehlende optionale Spalten hinzu
+    for col in KENNWERTE_OPTIONAL_COLUMNS:
+        if col not in df_normalized.columns:
+            df_normalized[col] = ''
 
-    return quantities
+    # Konvertiere Kostenspalten zu numerisch
+    for col in KENNWERTE_COST_COLUMNS:
+        df_normalized[col] = pd.to_numeric(df_normalized[col], errors='coerce').fillna(0.0)
 
-
-# ==========================
-# Konstanten & Farben
-# ==========================
-
-# Farbschema für das Layout (professionell, ähnlich dem Bild)
-COLOR_PRIMARY_HEADER = "#1f4788"  # Dunkles Blau für Haupttitel
-COLOR_SECONDARY_HEADER = "#366092"  # Mittleres Blau für Tabellenkopf
-COLOR_ACCENT = "#d4e6f1"  # Helles Blau für Hervorhebungen
-COLOR_BACKGROUND_ALT = "#f9f9f9"  # Sehr helles Grau für Zeilenalternation
-COLOR_TEXT_DARK = "#1a1a1a"  # Dunkles Grau für Text
-COLOR_TEXT_LIGHT = "#666666"  # Mittleres Grau für Zusatztext
-
-# Abstände (in cm)
-MARGIN_TOP = 1.5
-MARGIN_BOTTOM = 1.5
-MARGIN_LEFT = 1.5
-MARGIN_RIGHT = 1.5
-SPACING_SECTION = 0.8
-SPACING_SUBSECTION = 0.3
+    return True, f"✅ {len(df_normalized)} Kennwerte-Einträge validiert", df_normalized
 
 
-# ==========================
-# Hilfsfunktionen
-# ==========================
-
-def format_currency(value: float) -> str:
+def render_kennwerte_section(default_kennwerte_df: pd.DataFrame) -> pd.DataFrame:
     """
-    Formatiert einen numerischen Wert als CHF-Währung.
+    Rendert den Kennwerte-Verwaltungsbereich.
 
     Args:
-        value: Numerischer Wert in CHF
+        default_kennwerte_df: Standard-Kennwerte aus der Datei
 
     Returns:
-        Formatierter String im Format "XX'XXX.XX CHF"
+        DataFrame mit den zu verwendenden Kennwerten
     """
-    if pd.isna(value) or value is None:
-        return "–"
-    return f"{value:,.2f}".replace(",", "'") + " CHF"
+    st.subheader("📊 Kennwerte-Katalog")
+
+    # Aktuellen Status prüfen
+    use_custom = get_state(CFG_USE_CUSTOM_KENNWERTE, False)
+    custom_kennwerte = get_state(DATA_CUSTOM_KENNWERTE)
+
+    # Tabs für Standard vs. Eigene Kennwerte
+    tab_default, tab_custom = st.tabs([
+        "📋 Standard-Kennwerte",
+        "📤 Eigene Kennwerte importieren"
+    ])
+
+    with tab_default:
+        col1, col2 = st.columns([3, 1])
+        with col1:
+            st.info(f"📚 {len(default_kennwerte_df)} Standard-Kennwerte aus eBKP-H Katalog")
+        with col2:
+            if use_custom and custom_kennwerte is not None:
+                if st.button("🔄 Standard verwenden", help="Zurück zu Standard-Kennwerten"):
+                    set_state(CFG_USE_CUSTOM_KENNWERTE, False)
+                    set_state('cost_results_df', None)
+                    set_state('cost_summaries', None)
+                    st.rerun()
+
+        with st.expander("Standard-Kennwerte anzeigen", expanded=False):
+            # Zeige Filteroptionen
+            hauptgruppen = sorted(default_kennwerte_df['eBKP-H Code'].apply(
+                lambda x: str(x)[0] if pd.notna(x) and x else ''
+            ).unique())
+            hauptgruppen = [h for h in hauptgruppen if h]
+
+            selected_hg = st.multiselect(
+                "Nach Hauptgruppe filtern",
+                options=hauptgruppen,
+                default=[],
+                key='filter_default_hg'
+            )
+
+            if selected_hg:
+                filtered_df = default_kennwerte_df[default_kennwerte_df['eBKP-H Code'].apply(
+                    lambda x: str(x)[0] in selected_hg if pd.notna(x) and x else False
+                )]
+            else:
+                filtered_df = default_kennwerte_df
+
+            st.dataframe(
+                filtered_df[['eBKP-H Code', 'Kostengruppe / Position', 'Kennwert Einheit',
+                            'Kennwert tief CHF/Einheit', 'Kennwert mittel CHF/Einheit',
+                            'Kennwert hoch CHF/Einheit']],
+                hide_index=True,
+                height=300
+            )
+
+    with tab_custom:
+        st.markdown("""
+        **Eigene Kennwerte verwenden:**
+
+        Laden Sie Ihre büro-spezifischen Kennwerte hoch. Die CSV muss folgende Spalten enthalten:
+
+        | Spalte | Erforderlich | Beschreibung |
+        |--------|--------------|--------------|
+        | `eBKP-H Code` | ✅ | z.B. C02.01, D01, E |
+        | `Kennwert Einheit` | ✅ | z.B. m² Fläche, Stück, % |
+        | `Kennwert tief CHF/Einheit` | ⚡ | Minimum-Kosten |
+        | `Kennwert mittel CHF/Einheit` | ⚡ | Durchschnitts-Kosten |
+        | `Kennwert hoch CHF/Einheit` | ⚡ | Maximum-Kosten |
+        | `Kostengruppe / Position` | ❌ | Beschreibung (optional) |
+
+        ⚡ = Mindestens eine Kostenspalte erforderlich
+        """)
+
+        # Download Template Button
+        col1, col2 = st.columns(2)
+
+        with col1:
+            # Download komplette Standard-Kennwerte
+            full_csv = default_kennwerte_df.to_csv(index=False, sep=';', encoding='utf-8')
+            st.download_button(
+                "📥 Standard-Kennwerte herunterladen",
+                data=full_csv,
+                file_name="eBKP-H_Kennwerte_Standard.csv",
+                mime="text/csv",
+                help="Kompletter Standard-Katalog als Basis"
+            )
+
+        # Upload eigene Kennwerte
+        uploaded_kennwerte = st.file_uploader(
+            "Eigene Kennwerte-CSV hochladen",
+            type=['csv'],
+            help="CSV mit Ihren büro-spezifischen Kennwerten",
+            key='kennwerte_uploader'
+        )
+
+        if uploaded_kennwerte:
+            try:
+                # Versuche verschiedene Trennzeichen
+                content = uploaded_kennwerte.getvalue().decode('utf-8-sig')
+                sep = ';' if ';' in content[:1000] else ','
+
+                uploaded_kennwerte.seek(0)
+                df_upload = pd.read_csv(uploaded_kennwerte, sep=sep, encoding='utf-8-sig')
+
+                # Validiere
+                is_valid, message, df_normalized = validate_kennwerte_csv(df_upload)
+
+                if is_valid:
+                    st.success(message)
+
+                    with st.expander("Vorschau der importierten Kennwerte", expanded=True):
+                        st.dataframe(
+                            df_normalized[['eBKP-H Code', 'Kostengruppe / Position', 'Kennwert Einheit',
+                                          'Kennwert tief CHF/Einheit', 'Kennwert mittel CHF/Einheit',
+                                          'Kennwert hoch CHF/Einheit']].head(20),
+                            hide_index=True
+                        )
+
+                    # Vergleich mit Standard
+                    custom_codes = set(df_normalized['eBKP-H Code'].unique())
+                    default_codes = set(default_kennwerte_df['eBKP-H Code'].unique())
+                    overlap = custom_codes & default_codes
+                    new_codes = custom_codes - default_codes
+
+                    col1, col2, col3 = st.columns(3)
+                    with col1:
+                        st.metric("Eigene Einträge", len(custom_codes))
+                    with col2:
+                        st.metric("Überschrieben", len(overlap), help="Codes die Standard-Kennwerte ersetzen")
+                    with col3:
+                        st.metric("Neue Codes", len(new_codes), help="Codes die nicht im Standard sind")
+
+                    # Aktivieren Button
+                    if st.button("✅ Eigene Kennwerte aktivieren", type="primary"):
+                        set_state(DATA_CUSTOM_KENNWERTE, df_normalized)
+                        set_state(CFG_USE_CUSTOM_KENNWERTE, True)
+                        set_state('cost_results_df', None)
+                        set_state('cost_summaries', None)
+                        st.success("✅ Eigene Kennwerte aktiviert!")
+                        st.rerun()
+                else:
+                    st.error(message)
+                    st.info(f"Gefundene Spalten: {list(df_upload.columns)}")
+
+            except Exception as e:
+                st.error(f"❌ Fehler beim Laden: {e}")
+
+        # Zeige aktive eigene Kennwerte
+        if use_custom and custom_kennwerte is not None:
+            st.divider()
+            st.success(f"🟢 **Eigene Kennwerte aktiv** ({len(custom_kennwerte)} Einträge)")
+
+            with st.expander("Aktive eigene Kennwerte anzeigen"):
+                st.dataframe(
+                    custom_kennwerte[['eBKP-H Code', 'Kostengruppe / Position', 'Kennwert Einheit',
+                                     'Kennwert tief CHF/Einheit', 'Kennwert mittel CHF/Einheit',
+                                     'Kennwert hoch CHF/Einheit']],
+                    hide_index=True,
+                    height=300
+                )
+
+            if st.button("🗑️ Eigene Kennwerte löschen", type="secondary"):
+                set_state(DATA_CUSTOM_KENNWERTE, None)
+                set_state(CFG_USE_CUSTOM_KENNWERTE, False)
+                set_state('cost_results_df', None)
+                set_state('cost_summaries', None)
+                st.rerun()
+
+    # Rückgabe der aktiven Kennwerte
+    if use_custom and custom_kennwerte is not None:
+        return custom_kennwerte
+    return default_kennwerte_df
 
 
-def format_percentage(value: float) -> str:
+# ============================================================================
+# KOSTENBERECHNUNG ENGINE
+# ============================================================================
+
+def calculate_element_cost(
+    bkp_code: str,
+    quantity: float,
+    kennwerte_df: pd.DataFrame,
+    cost_level: str = 'mittel',
+    reference_costs: Optional[Dict[str, float]] = None
+) -> Dict[str, Any]:
     """
-    Formatiert einen Dezimalwert als Prozentsatz.
+    Berechnet Kosten für ein einzelnes Element mit hierarchischem Lookup.
 
     Args:
-        value: Dezimalwert (z.B. 0.0225 für 2.25%)
+        bkp_code: eBKP-H Code
+        quantity: Menge (Fläche, Länge, Stück, etc.)
+        kennwerte_df: Kennwerte-Referenz DataFrame
+        cost_level: 'tief', 'mittel', 'hoch'
+        reference_costs: Dict mit Basiskosten für Prozent-Berechnungen
 
     Returns:
-        Formatierter Prozentsatz mit 2 Dezimalstellen (z.B. "2.25%")
+        Dict mit cost, unit_cost, unit, matched_code, match_level, calculation_type
     """
-    if pd.isna(value) or value is None:
-        return "–"
-    return f"{value * 100:.2f}%"
+    kennwert = get_kennwert_hierarchical(bkp_code, kennwerte_df, cost_level)
+
+    if kennwert is None:
+        return {
+            'cost': 0.0,
+            'unit_cost': 0.0,
+            'unit': 'N/A',
+            'matched_code': None,
+            'match_level': 'none',
+            'calculation_type': 'no_match',
+            'description': ''
+        }
+
+    unit_info = parse_unit_type(kennwert['unit'])
+    unit_cost = kennwert['value']
+
+    if unit_info['type'] == 'percentage' or unit_info['type'] == 'percentage_yearly':
+        # Berechnung basierend auf Referenzkosten
+        base = 0.0
+        if reference_costs:
+            percentage_base = unit_info.get('percentage_base', 'total')
+            base = reference_costs.get(percentage_base, reference_costs.get('total', 0))
+        cost = base * (unit_cost / 100) * max(1, quantity)
+        calc_type = f"percentage_{unit_info.get('percentage_base', 'total')}"
+    elif unit_info['type'] == 'lump_sum':
+        # Pauschal: Einheitspreis mal Anzahl (meist 1)
+        cost = unit_cost * max(1, quantity)
+        calc_type = 'lump_sum'
+    else:
+        # Standard: Menge mal Einheitspreis
+        cost = quantity * unit_cost
+        calc_type = unit_info['type']
+
+    return {
+        'cost': cost,
+        'unit_cost': unit_cost,
+        'unit': kennwert['unit'],
+        'matched_code': kennwert['code'],
+        'match_level': kennwert['level_matched'],
+        'calculation_type': calc_type,
+        'description': kennwert['description']
+    }
 
 
-def get_custom_styles() -> dict[str, ParagraphStyle]:
+def calculate_cost_hierarchy_sum(df: pd.DataFrame, groups: List[str]) -> float:
+    """
+    Berechnet Summe der Kosten für bestimmte Hauptgruppen.
+
+    Args:
+        df: DataFrame mit 'BKP_Code' und 'Einzelkosten' Spalten
+        groups: Liste der Hauptgruppen (z.B. ['C', 'D', 'E', 'F', 'G'])
+
+    Returns:
+        Summe der Kosten für Elemente in den angegebenen Gruppen
+    """
+    if df.empty or 'Einzelkosten' not in df.columns:
+        return 0.0
+
+    mask = df['BKP_Code'].apply(
+        lambda x: str(x)[0].upper() in groups if pd.notna(x) and x else False
+    )
+    return df.loc[mask, 'Einzelkosten'].sum()
+
+
+def calculate_all_costs(
+    df: pd.DataFrame,
+    kennwerte_df: pd.DataFrame,
+    cost_level: str = 'mittel',
+    quantity_column: str = 'Menge',
+    project_areas: Optional[Dict[str, float]] = None
+) -> Tuple[pd.DataFrame, Dict[str, float]]:
+    """
+    Berechnet Kosten für alle Elemente im DataFrame.
+
+    Zwei-Pass-Berechnung:
+    1. Pass: Direkte Kosten (nicht-prozentual)
+    2. Pass: Prozentuale Kosten basierend auf Pass-1-Summen
+
+    Args:
+        df: DataFrame mit BKP_Code und optional Mengen
+        kennwerte_df: Kennwerte-Referenz DataFrame
+        cost_level: 'tief', 'mittel', 'hoch'
+        quantity_column: Name der Mengenspalte
+        project_areas: Globale Projektflächen falls keine Mengen vorhanden
+
+    Returns:
+        Tuple aus:
+        - DataFrame mit zusätzlichen Kostenspalten
+        - Dict mit Kostenzusammenfassungen nach Hierarchie
+    """
+    df = df.copy()
+
+    # Initialisiere Kostenspalten
+    df['Einzelkosten'] = 0.0
+    df['Berechnungsart'] = ''
+    df['Matched_Code'] = ''
+    df['Match_Level'] = ''
+    df['Einheit_Kennwert'] = ''
+
+    # Stelle sicher dass Mengenspalte existiert
+    if quantity_column not in df.columns:
+        df[quantity_column] = 1.0
+        # Verwende project_areas falls vorhanden
+        if project_areas:
+            default_area = project_areas.get('geschossflaeche', 1.0)
+            df[quantity_column] = default_area
+
+    # Listen für Pass 2 (prozentuale Kosten)
+    percentage_rows = []
+
+    # === PASS 1: Nicht-prozentuale Kosten ===
+    for idx, row in df.iterrows():
+        bkp_code = row.get('BKP_Code', '')
+        if not bkp_code or pd.isna(bkp_code):
+            continue
+
+        # Bestimme Menge
+        quantity = row.get(quantity_column, 1.0)
+        if pd.isna(quantity) or quantity == 0:
+            quantity = 1.0
+
+        # Hole Kennwert
+        kennwert = get_kennwert_hierarchical(bkp_code, kennwerte_df, cost_level)
+
+        if kennwert is None:
+            df.at[idx, 'Match_Level'] = 'none'
+            continue
+
+        unit_info = parse_unit_type(kennwert['unit'])
+
+        # Prozentuale Kosten für Pass 2 sammeln
+        if unit_info['type'] in ['percentage', 'percentage_yearly']:
+            percentage_rows.append((idx, kennwert, unit_info, quantity))
+            df.at[idx, 'Einheit_Kennwert'] = kennwert['unit']
+            df.at[idx, 'Matched_Code'] = kennwert['code']
+            continue
+
+        # Berechne direkte Kosten
+        result = calculate_element_cost(bkp_code, quantity, kennwerte_df, cost_level)
+        df.at[idx, 'Einzelkosten'] = result['cost']
+        df.at[idx, 'Berechnungsart'] = result['calculation_type']
+        df.at[idx, 'Matched_Code'] = result['matched_code'] or ''
+        df.at[idx, 'Match_Level'] = result['match_level']
+        df.at[idx, 'Einheit_Kennwert'] = result['unit']
+
+    # Berechne Zwischensummen für Prozent-Basis
+    bauwerkskosten = calculate_cost_hierarchy_sum(df, ['C', 'D', 'E', 'F', 'G'])
+    erstellungskosten_basis = calculate_cost_hierarchy_sum(df, ['B', 'H', 'I', 'J'])
+    grundstueck_kosten = calculate_cost_hierarchy_sum(df, ['A'])
+    umgebungskosten = calculate_cost_hierarchy_sum(df, ['I'])
+    c_kosten = calculate_cost_hierarchy_sum(df, ['C'])
+
+    reference_costs = {
+        'bauwerkskosten': bauwerkskosten,
+        'baukosten': bauwerkskosten,
+        'erstellungskosten': bauwerkskosten + erstellungskosten_basis,
+        'referenz_kosten': df['Einzelkosten'].sum(),
+        'total': df['Einzelkosten'].sum(),
+        'umgebungskosten': umgebungskosten,
+        'grundstueck': grundstueck_kosten,
+        'a01_kosten': grundstueck_kosten,
+        'c_kosten': c_kosten,
+        'verkaufspreis': df['Einzelkosten'].sum() * 1.1,  # Schätzung
+        'betriebskosten': df['Einzelkosten'].sum() * 0.05  # Schätzung
+    }
+
+    # === PASS 2: Prozentuale Kosten ===
+    for idx, kennwert, unit_info, quantity in percentage_rows:
+        percentage_base = unit_info.get('percentage_base', 'total')
+        base = reference_costs.get(percentage_base, reference_costs['total'])
+        cost = base * (kennwert['value'] / 100)
+
+        df.at[idx, 'Einzelkosten'] = cost
+        df.at[idx, 'Berechnungsart'] = f"percentage_{percentage_base}"
+        df.at[idx, 'Match_Level'] = kennwert['level_matched']
+
+    # === Berechne finale Zusammenfassungen ===
+    bauwerkskosten_final = calculate_cost_hierarchy_sum(df, ['C', 'D', 'E', 'F', 'G'])
+
+    # Erstellungskosten = B + Bauwerkskosten + H + I + J + V + W
+    erstellungskosten_components = calculate_cost_hierarchy_sum(df, ['B', 'H', 'I', 'J', 'V', 'W'])
+    erstellungskosten_final = bauwerkskosten_final + erstellungskosten_components
+
+    # Anlagekosten = A + Erstellungskosten + Y + Z
+    anlagekosten_components = calculate_cost_hierarchy_sum(df, ['A', 'Y', 'Z'])
+    anlagekosten_final = erstellungskosten_final + anlagekosten_components
+
+    summaries = {
+        'bauwerkskosten': bauwerkskosten_final,
+        'erstellungskosten': erstellungskosten_final,
+        'anlagekosten': anlagekosten_final,
+        'total': df['Einzelkosten'].sum()
+    }
+
+    return df, summaries
+
+
+# ============================================================================
+# UI KOMPONENTEN
+# ============================================================================
+
+def render_config_section() -> str:
+    """Konfigurationsbereich für Kostenstufen-Auswahl."""
+    st.subheader("⚙️ Einstellungen")
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        cost_level = st.selectbox(
+            "Kostenstufe",
+            options=['tief', 'mittel', 'hoch'],
+            index=1,
+            help="tief = Minimum, mittel = Durchschnitt, hoch = Maximum",
+            key='cost_level_select'
+        )
+        set_state('selected_cost_level', cost_level)
+
+    with col2:
+        config = get_state(CFG_COST_ESTIMATION_CONFIG)
+        if config:
+            tolerance = config.get('tolerance', 0)
+            st.metric("Toleranz", format_tolerance(tolerance))
+        else:
+            st.info("Kostenermittlungsart nicht gewählt")
+            tolerance = 0
+
+    with col3:
+        st.checkbox(
+            "Projektspezifische Kennwerte",
+            value=False,
+            disabled=True,
+            help="Ermöglicht Anpassung der Standard-Kennwerte (coming soon)",
+            key='use_project_rates'
+        )
+
+    return cost_level
+
+
+def render_quantity_input_section(df: pd.DataFrame) -> pd.DataFrame:
+    """Bereich für Mengeneingabe/-bearbeitung."""
+    st.subheader("📐 Mengenangaben")
+
+    has_quantity = 'Menge' in df.columns
+    has_unit = 'Einheit' in df.columns
+
+    if has_quantity and df['Menge'].notna().sum() > 0:
+        st.success(f"✅ Mengen aus Klassifizierung übernommen ({df['Menge'].notna().sum()} Positionen)")
+
+        if st.checkbox("Mengen bearbeiten", key='edit_quantities'):
+            display_cols = ['BKP_Code', 'BKP_Beschreibung', 'Menge']
+            if has_unit:
+                display_cols.append('Einheit')
+
+            edited_df = st.data_editor(
+                df[display_cols].head(50),
+                column_config={
+                    'Menge': st.column_config.NumberColumn(
+                        'Menge',
+                        min_value=0,
+                        format="%.2f"
+                    ),
+                    'BKP_Code': st.column_config.TextColumn('BKP Code', disabled=True),
+                    'BKP_Beschreibung': st.column_config.TextColumn('Beschreibung', disabled=True),
+                },
+                hide_index=True,
+                key='quantity_editor'
+            )
+            # Update df mit bearbeiteten Werten
+            for col in ['Menge']:
+                if col in edited_df.columns:
+                    df.loc[df.index[:len(edited_df)], col] = edited_df[col].values
+    else:
+        st.warning("⚠️ Keine Mengenangaben in den Daten gefunden.")
+        st.info("Bitte geben Sie globale Projektflächen ein:")
+
+        col1, col2 = st.columns(2)
+        with col1:
+            grundflaeche = st.number_input("Grundfläche (m²)", min_value=0.0, value=500.0, key='grundflaeche')
+            geschossflaeche = st.number_input("Geschossfläche (m²)", min_value=0.0, value=1000.0, key='geschossflaeche')
+        with col2:
+            fassadenflaeche = st.number_input("Fassadenfläche (m²)", min_value=0.0, value=800.0, key='fassadenflaeche')
+            dachflaeche = st.number_input("Dachfläche (m²)", min_value=0.0, value=500.0, key='dachflaeche')
+
+        set_state('project_areas', {
+            'grundflaeche': grundflaeche,
+            'geschossflaeche': geschossflaeche,
+            'fassadenflaeche': fassadenflaeche,
+            'dachflaeche': dachflaeche
+        })
+
+        # Setze Default-Mengen basierend auf Einheit
+        if 'Menge' not in df.columns:
+            df['Menge'] = 1.0
+
+    return df
+
+
+def render_results_section(results_df: pd.DataFrame, summaries: Dict[str, float]):
+    """Zeigt Berechnungsergebnisse an."""
+    st.subheader("📊 Ergebnisse")
+
+    # Toleranz holen
+    config = get_state(CFG_COST_ESTIMATION_CONFIG)
+    tolerance = config.get('tolerance', 0) if config else 0
+
+    # === Kostenübersicht ===
+    col1, col2, col3, col4 = st.columns(4)
+
+    with col1:
+        st.metric(
+            "Bauwerkskosten",
+            format_currency(summaries['bauwerkskosten']),
+            help="Kosten C-G: Konstruktion, Technik, Ausbau, Bedachung, Ausbau Gebäude"
+        )
+
+    with col2:
+        st.metric(
+            "Erstellungskosten",
+            format_currency(summaries['erstellungskosten']),
+            help="B + Bauwerkskosten + H, I, J + Zuschläge V, W"
+        )
+
+    with col3:
+        st.metric(
+            "Anlagekosten",
+            format_currency(summaries['anlagekosten']),
+            help="A + Erstellungskosten + Zuschläge Y, Z"
+        )
+
+    with col4:
+        total = summaries['total']
+        if tolerance > 0:
+            min_val, _ = calculate_cost_with_tolerance(total, tolerance)
+            delta_str = f"± {format_currency(total - min_val)}"
+        else:
+            delta_str = None
+
+        st.metric(
+            "Total",
+            format_currency(total),
+            delta=delta_str
+        )
+
+    render_divider("section")
+
+    # === Aufgliederung nach Hauptgruppen ===
+    st.subheader("📋 Aufgliederung nach Hauptgruppen")
+
+    # Füge Hauptgruppe hinzu
+    results_df['Hauptgruppe'] = results_df['BKP_Code'].apply(
+        lambda x: str(x)[0].upper() if pd.notna(x) and x else 'Unbekannt'
+    )
+
+    # Gruppiere nach Hauptgruppe
+    for hg in sorted(results_df['Hauptgruppe'].unique()):
+        if hg == 'Unbekannt' or hg not in EBKP_MAIN_GROUPS:
+            continue
+
+        hg_df = results_df[results_df['Hauptgruppe'] == hg]
+        hg_total = hg_df['Einzelkosten'].sum()
+        hg_count = len(hg_df)
+        hg_name = EBKP_MAIN_GROUPS.get(hg, 'Unbekannt')
+
+        # Bestimme Kostengruppen-Zugehörigkeit
+        if hg in ['C', 'D', 'E', 'F', 'G']:
+            badge = "🏗️ Bauwerkskosten"
+        elif hg in ['B', 'H', 'I', 'J', 'V', 'W']:
+            badge = "🔧 Erstellungskosten"
+        elif hg in ['A', 'Y', 'Z']:
+            badge = "💰 Anlagekosten"
+        else:
+            badge = ""
+
+        with st.expander(
+            f"**{hg}** - {hg_name}: {format_currency(hg_total)} ({hg_count} Positionen) {badge}",
+            expanded=hg_total > 0
+        ):
+            display_cols = ['BKP_Code', 'BKP_Beschreibung', 'Menge', 'Matched_Code', 'Match_Level', 'Einzelkosten']
+            display_cols = [c for c in display_cols if c in hg_df.columns]
+
+            st.dataframe(
+                hg_df[display_cols],
+                column_config={
+                    'Einzelkosten': st.column_config.NumberColumn(
+                        'Kosten CHF',
+                        format="%.2f"
+                    ),
+                    'Match_Level': st.column_config.TextColumn('Lookup'),
+                },
+                hide_index=True
+            )
+
+
+def render_export_section(results_df: pd.DataFrame, summaries: Dict[str, float]):
+    """Export-Optionen."""
+    st.subheader("📤 Export")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        # CSV Export
+        csv = results_df.to_csv(index=False, sep=';', encoding='utf-8-sig')
+        st.download_button(
+            "📄 CSV herunterladen",
+            data=csv,
+            file_name=f"Kostenberechnung_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
+            mime="text/csv"
+        )
+
+    with col2:
+        # PDF Export
+        if REPORTLAB_AVAILABLE:
+            if st.button("📑 PDF generieren"):
+                with st.spinner("PDF wird erstellt..."):
+                    pdf_buffer = generate_cost_report_pdf(results_df, summaries)
+                    if pdf_buffer:
+                        st.download_button(
+                            "📥 PDF herunterladen",
+                            data=pdf_buffer,
+                            file_name=f"Kostenberechnung_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf",
+                            mime="application/pdf"
+                        )
+        else:
+            st.warning("ReportLab nicht installiert. PDF-Export nicht verfügbar.")
+
+
+def get_pdf_custom_styles() -> Dict[str, ParagraphStyle]:
     """
     Definiert ein konsistentes, professionelles Style-Set für alle
     Textabschnitte im PDF.
@@ -310,14 +916,9 @@ def get_custom_styles() -> dict[str, ParagraphStyle]:
     return custom_styles
 
 
-# ==========================
-# Tabellen-Generierung
-# ==========================
-
-def create_project_info_table(projekt_daten: Any) -> Table:
+def create_pdf_project_info_table(projekt_daten: Any) -> Table:
     """
-    Erzeugt eine formatierte Tabelle mit Projektinformationen
-    (Objekt, Bauherr, Baumanagement).
+    Erzeugt eine formatierte Tabelle mit Projektinformationen.
 
     Args:
         projekt_daten: ProjektDaten-Objekt mit objekt, bauherr, baumanagement
@@ -325,75 +926,91 @@ def create_project_info_table(projekt_daten: Any) -> Table:
     Returns:
         ReportLab Table mit Projekt-Metadaten
     """
-    # Daten vorbereiten
+    # Daten vorbereiten - mit sicheren Attributzugriffen
+    objekt = getattr(projekt_daten, 'objekt', None)
+    bauherr = getattr(projekt_daten, 'bauherr', None)
+    baumanagement = getattr(projekt_daten, 'baumanagement', None)
+
     project_data = [
         # OBJEKT-Bereich
-        ["OBJEKT", "Projektname", projekt_daten.objekt.projektname],
-        ["", "Adresse", projekt_daten.objekt.adresse],
-        ["", "PLZ/Ort", projekt_daten.objekt.plz_ort],
-        # BAUHERR-Bereich
-        ["BAUHERR", "Name", projekt_daten.bauherr.name],
-        ["", "Adresse", projekt_daten.bauherr.adresse],
-        ["", "PLZ/Ort", projekt_daten.bauherr.plz_ort],
-        # BAUMANAGEMENT-Bereich
-        ["BAUMANAGEMENT", "Firma", projekt_daten.baumanagement.firma],
-        ["", "Kontaktperson", projekt_daten.baumanagement.kontaktperson],
-        ["", "Adresse", projekt_daten.baumanagement.adresse],
-        ["", "PLZ/Ort", projekt_daten.baumanagement.plz_ort],
+        ["OBJEKT", "Projektname", getattr(objekt, 'projektname', 'N/A') if objekt else 'N/A'],
+        ["", "Adresse", getattr(objekt, 'adresse', '') if objekt else ''],
+        ["", "PLZ/Ort", getattr(objekt, 'plz_ort', '') if objekt else ''],
     ]
+
+    if bauherr:
+        project_data.extend([
+            # BAUHERR-Bereich
+            ["BAUHERR", "Name", getattr(bauherr, 'name', '') if bauherr else ''],
+            ["", "Adresse", getattr(bauherr, 'adresse', '') if bauherr else ''],
+            ["", "PLZ/Ort", getattr(bauherr, 'plz_ort', '') if bauherr else ''],
+        ])
+
+    if baumanagement:
+        project_data.extend([
+            # BAUMANAGEMENT-Bereich
+            ["BAUMANAGEMENT", "Firma", getattr(baumanagement, 'firma', '') if baumanagement else ''],
+            ["", "Kontaktperson", getattr(baumanagement, 'kontaktperson', '') if baumanagement else ''],
+            ["", "Adresse", getattr(baumanagement, 'adresse', '') if baumanagement else ''],
+            ["", "PLZ/Ort", getattr(baumanagement, 'plz_ort', '') if baumanagement else ''],
+        ])
 
     table = Table(project_data, colWidths=[4 * cm, 3 * cm, 11.5 * cm])
 
-    table.setStyle(
-        TableStyle(
-            [
-                # Textfarben und Schriftarten
-                ("TEXTCOLOR", (0, 0), (-1, -1), colors.HexColor(COLOR_TEXT_DARK)),
-                ("FONTNAME", (0, 0), (0, -1), "Helvetica-Bold"),  # Erste Spalte (Kategorien) fett
-                ("FONTNAME", (1, 0), (-1, -1), "Helvetica"),       # Rest normal
-                ("FONTSIZE", (0, 0), (-1, -1), 9),
+    style_commands = [
+        # Textfarben und Schriftarten
+        ("TEXTCOLOR", (0, 0), (-1, -1), colors.HexColor(COLOR_TEXT_DARK)),
+        ("FONTNAME", (0, 0), (0, -1), "Helvetica-Bold"),
+        ("FONTNAME", (1, 0), (-1, -1), "Helvetica"),
+        ("FONTSIZE", (0, 0), (-1, -1), 9),
+        # Ausrichtung
+        ("ALIGN", (0, 0), (-1, -1), "LEFT"),
+        ("VALIGN", (0, 0), (-1, -1), "TOP"),
+        # Padding
+        ("LEFTPADDING", (0, 0), (-1, -1), 8),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 8),
+        ("TOPPADDING", (0, 0), (-1, -1), 6),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
+        # Rahmen um OBJEKT-Bereich
+        ("BOX", (0, 0), (-1, 2), 1.5, colors.HexColor(COLOR_SECONDARY_HEADER)),
+    ]
 
-                # Ausrichtung
-                ("ALIGN", (0, 0), (-1, -1), "LEFT"),
-                ("VALIGN", (0, 0), (-1, -1), "TOP"),
+    # Dynamische Rahmen basierend auf vorhandenen Daten
+    if bauherr:
+        style_commands.append(("BOX", (0, 3), (-1, 5), 1.5, colors.HexColor(COLOR_SECONDARY_HEADER)))
+    if baumanagement:
+        start_row = 6 if bauherr else 3
+        style_commands.append(("BOX", (0, start_row), (-1, start_row + 3), 1.5, colors.HexColor(COLOR_SECONDARY_HEADER)))
 
-                # Padding
-                ("LEFTPADDING", (0, 0), (-1, -1), 8),
-                ("RIGHTPADDING", (0, 0), (-1, -1), 8),
-                ("TOPPADDING", (0, 0), (-1, -1), 6),
-                ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
-
-                # Rahmen um die drei Gruppen
-                ("BOX", (0, 0), (-1, 2), 1.5, colors.HexColor(COLOR_SECONDARY_HEADER)),  # OBJEKT (Zeilen 0-2)
-                ("BOX", (0, 3), (-1, 5), 1.5, colors.HexColor(COLOR_SECONDARY_HEADER)),  # BAUHERR (Zeilen 3-5)
-                ("BOX", (0, 6), (-1, 9), 1.5, colors.HexColor(COLOR_SECONDARY_HEADER)),  # BAUMANAGEMENT (Zeilen 6-9)
-            ]
-        )
-    )
+    table.setStyle(TableStyle(style_commands))
     return table
 
 
-def create_cost_summary_table(zwischensumme: float, total_betrag: float,
-                               min_betrag: float, max_betrag: float) -> Table:
+def create_pdf_cost_summary_table(summaries: Dict[str, float], tolerance: int = 0) -> Table:
     """
     Erzeugt eine Kostenzusammenfassungs-Tabelle mit Zwischen- und
     Endsummen sowie Toleranzbereich.
 
     Args:
-        zwischensumme: Zwischensumme (Baukosten)
-        total_betrag: Gesamtbetrag
-        min_betrag: Minimalbetrag (Toleranzbereich)
-        max_betrag: Maximalbetrag (Toleranzbereich)
+        summaries: Dict mit Kostenwerten (bauwerkskosten, erstellungskosten, anlagekosten, total)
+        tolerance: Toleranzprozentsatz
 
     Returns:
         ReportLab Table mit Kostenzusammenfassung
     """
+    total = summaries.get('total', summaries.get('anlagekosten', 0))
+    if tolerance > 0:
+        min_val, max_val = calculate_cost_with_tolerance(total, tolerance)
+    else:
+        min_val, max_val = total, total
+
     summary_data = [
         ["POSITION", "BETRAG CHF"],
-        ["Zwischensumme (Baukosten)", format_currency(zwischensumme)],
-        ["Gesamtkosten", format_currency(total_betrag)],
-        ["Toleranzbereich (min)", format_currency(min_betrag)],
-        ["Toleranzbereich (max)", format_currency(max_betrag)],
+        ["Bauwerkskosten (C-G)", format_currency(summaries.get('bauwerkskosten', 0))],
+        ["Erstellungskosten (B-W)", format_currency(summaries.get('erstellungskosten', 0))],
+        ["Anlagekosten (Total)", format_currency(summaries.get('anlagekosten', 0))],
+        ["Toleranzbereich (min)", format_currency(min_val)],
+        ["Toleranzbereich (max)", format_currency(max_val)],
     ]
 
     table = Table(summary_data, colWidths=[12 * cm, 6.5 * cm])
@@ -411,44 +1028,66 @@ def create_cost_summary_table(zwischensumme: float, total_betrag: float,
                 ("BOTTOMPADDING", (0, 0), (-1, 0), 8),
                 ("TOPPADDING", (0, 0), (-1, 0), 8),
                 # Datenzeilen
-                ("BACKGROUND", (0, 1), (-1, 1), colors.white),
-                ("BACKGROUND", (0, 2), (-1, 2), colors.HexColor(COLOR_ACCENT)),
-                ("BACKGROUND", (0, 3), (-1, 4), colors.HexColor(COLOR_BACKGROUND_ALT)),
+                ("BACKGROUND", (0, 1), (-1, 2), colors.white),
+                ("BACKGROUND", (0, 3), (-1, 3), colors.HexColor(COLOR_ACCENT)),
+                ("BACKGROUND", (0, 4), (-1, 5), colors.HexColor(COLOR_BACKGROUND_ALT)),
                 ("TEXTCOLOR", (0, 1), (-1, -1), colors.HexColor(COLOR_TEXT_DARK)),
                 ("FONTNAME", (0, 1), (-1, -1), "Helvetica"),
-                ("FONTNAME", (0, 2), (-1, 2), "Helvetica-Bold"),
+                ("FONTNAME", (0, 3), (-1, 3), "Helvetica-Bold"),
                 ("FONTSIZE", (0, 0), (-1, -1), 9),
                 ("ALIGN", (0, 1), (0, -1), "LEFT"),
                 ("ALIGN", (1, 1), (1, -1), "RIGHT"),
                 ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
                 ("LEFTPADDING", (0, 0), (-1, -1), 8),
                 ("RIGHTPADDING", (0, 0), (-1, -1), 8),
-                ("TOPPADDING", (0, 0), (-10, -1), 6),
-                ("BOTTOMPADDING", (0, 0), (-10, -1), 6),
-                # Gitter
-                # ("GRID", (0, 0), (-1, -1), 5, colors.HexColor("#cccccc")),
+                ("TOPPADDING", (0, 0), (-1, -1), 6),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
             ]
         )
     )
     return table
 
 
-def create_detail_table(df_cost: pd.DataFrame) -> tuple[Table, int]:
+def create_pdf_detail_table(results_df: pd.DataFrame) -> Tuple[Table, int]:
     """
-    Erzeugt eine detaillierte Kostenberechnung-Tabelle mit allen Positionen,
-    ähnlich dem BKP-Format aus dem eingereichten Bild.
+    Erzeugt eine detaillierte Kostenberechnung-Tabelle mit aggregierten Positionen.
+
+    Jeder eBKP-H Code erscheint nur einmal mit summierten Mengen und Kosten.
 
     Args:
-        df_cost: DataFrame mit Spalten:
-                 ['eBKP-H Code', 'Beschreibung', 'Menge', 'Einheit',
-                  'Kennwert', 'Betrag CHF', '%']
+        results_df: DataFrame mit Spalten:
+                 ['BKP_Code', 'BKP_Beschreibung', 'Menge', 'Einheit_Kennwert',
+                  'Einzelkosten', 'Match_Level']
 
     Returns:
-        Tuple aus (Table-Objekt, Anzahl Positionen mit Kosten)
+        Tuple aus (Table-Objekt, Anzahl eindeutige Positionen mit Kosten)
     """
-    # Filtere nur Positionen mit Betrag > 0
-    df_with_costs = df_cost[df_cost["Betrag CHF"] > 0].copy()
-    df_with_costs = df_with_costs.reset_index(drop=True)
+    # Filtere nur Positionen mit Einzelkosten > 0
+    df_with_costs = results_df[results_df.get("Einzelkosten", pd.Series([0])) > 0].copy()
+
+    if df_with_costs.empty:
+        # Leere Tabelle zurückgeben
+        table_data = [["eBKP-H", "Beschreibung", "Menge", "Einheit", "Kosten CHF"]]
+        table = Table(table_data, colWidths=[2 * cm, 8 * cm, 2 * cm, 3 * cm, 3.5 * cm])
+        table.setStyle(TableStyle([
+            ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor(COLOR_SECONDARY_HEADER)),
+            ("TEXTCOLOR", (0, 0), (-1, 0), colors.whitesmoke),
+            ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+        ]))
+        return table, 0
+
+    # === AGGREGATION: Gruppiere nach BKP_Code ===
+    # Für jede Position: Summiere Menge und Einzelkosten, behalte erste Beschreibung/Einheit
+    aggregated = df_with_costs.groupby('BKP_Code', as_index=False).agg({
+        'BKP_Beschreibung': 'first',
+        'Menge': 'sum',
+        'Einheit_Kennwert': 'first',
+        'Einzelkosten': 'sum',
+        'Match_Level': 'first'
+    })
+
+    # Sortiere nach BKP_Code
+    aggregated = aggregated.sort_values('BKP_Code').reset_index(drop=True)
 
     # Tabellenheader
     table_data = [
@@ -457,39 +1096,33 @@ def create_detail_table(df_cost: pd.DataFrame) -> tuple[Table, int]:
             "Beschreibung",
             "Menge",
             "Einheit",
-            "Kennwert",
-            "Betrag CHF",
-            "%",
+            "Kosten CHF",
         ]
     ]
 
-    # Datenzellen
-    for _, row in df_with_costs.iterrows():
+    # Datenzellen aus aggregierten Daten
+    for _, row in aggregated.iterrows():
         # Beschreibung kürzen falls zu lang
-        beschreibung = str(row.get("Beschreibung", ""))[:60]
+        beschreibung = str(row.get("BKP_Beschreibung", ""))[:50]
 
         menge = f"{row.get('Menge', 0):.2f}".rstrip("0").rstrip(".")
-        einheit = str(row.get("Einheit", ""))
-        kennwert = f"{row.get('Kennwert', 0):.2f}".rstrip("0").rstrip(".")
-        betrag = format_currency(row.get("Betrag CHF", 0))
-        prozent = format_percentage(row.get("%", 0))
+        einheit = str(row.get("Einheit_Kennwert", ""))[:15]
+        kosten = format_currency(row.get("Einzelkosten", 0))
 
         table_data.append(
             [
-                str(row.get("eBKP-H Code", "")),
+                str(row.get("BKP_Code", ""))[:10],
                 beschreibung,
                 menge,
                 einheit,
-                kennwert,
-                betrag,
-                prozent,
+                kosten,
             ]
         )
 
-    # Tabelle mit optimalen Spaltenbreiten
+    # Tabelle mit optimalen Spaltenbreiten (5 Spalten ohne Match)
     table = Table(
         table_data,
-        colWidths=[1.5 * cm, 7.5 * cm, 1.5 * cm, 2.7 * cm, 1.5 * cm, 2.5 * cm, 1.3 * cm],
+        colWidths=[2 * cm, 8 * cm, 2 * cm, 3 * cm, 3.5 * cm],
     )
 
     # Stil für Zeilen-Alternation
@@ -523,62 +1156,43 @@ def create_detail_table(df_cost: pd.DataFrame) -> tuple[Table, int]:
             ("TEXTCOLOR", (0, 1), (-1, -1), colors.HexColor(COLOR_TEXT_DARK)),
             ("FONTNAME", (0, 1), (-1, -1), "Helvetica"),
             ("FONTSIZE", (0, 1), (-1, -1), 8),
-            # Rechtsausrichtung für numerische Spalten
-            ("ALIGN", (0, 1), (0, -1), "CENTER"),  # Code
-            ("ALIGN", (1, 1), (1, -1), "LEFT"),    # Beschreibung
-            ("ALIGN", (2, 1), (2, -1), "RIGHT"),   # Menge
-            ("ALIGN", (3, 1), (3, -1), "CENTER"),  # Einheit
-            ("ALIGN", (4, 1), (4, -1), "RIGHT"),   # Kennwert
-            ("ALIGN", (5, 1), (5, -1), "RIGHT"),   # Betrag
-            ("ALIGN", (6, 1), (6, -1), "RIGHT"),   # Prozent
+            # Ausrichtung für Spalten
+            ("ALIGN", (0, 1), (0, -1), "CENTER"),   # Code
+            ("ALIGN", (1, 1), (1, -1), "LEFT"),     # Beschreibung
+            ("ALIGN", (2, 1), (2, -1), "RIGHT"),    # Menge
+            ("ALIGN", (3, 1), (3, -1), "CENTER"),   # Einheit
+            ("ALIGN", (4, 1), (4, -1), "RIGHT"),    # Kosten
             ("VALIGN", (0, 1), (-1, -1), "MIDDLE"),
             ("LEFTPADDING", (0, 0), (-1, -1), 6),
             ("RIGHTPADDING", (0, 0), (-1, -1), 6),
-            ("TOPPADDING", (0, 0), (-10, -1), 5),
-            ("BOTTOMPADDING", (0, 0), (-10, -1), 5),
-            # Gitter
-            # ("GRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#e0e0e0")),
+            ("TOPPADDING", (0, 0), (-1, -1), 5),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
         ]
     )
 
     table.setStyle(TableStyle(style_list))
-    return table, len(df_with_costs)
+    return table, len(aggregated)
 
 
-# ==========================
-# PDF-Generierung (Hauptfunktion)
-# ==========================
-
-def generate_pdf(
-    df_cost: pd.DataFrame,
-    zwischensumme: float,
-    total_betrag: float,
-    min_betrag: float,
-    max_betrag: float,
-    tolerance: float,
-    config_info: dict[str, Any] | None = None,
-    projekt_daten: Any | None = None,
-) -> BytesIO | None:
+def generate_cost_report_pdf(
+    results_df: pd.DataFrame,
+    summaries: Dict[str, float]
+) -> BytesIO:
     """
     Generiert ein professionelles PDF-Dokument der Kostenberechnung
     im BKP-Stil mit Projektinformationen, Kostenzusammenfassung und
     detaillierter Positionalaufschlüsselung.
 
     Args:
-        df_cost: DataFrame mit Kostenpositionen
-        zwischensumme: Zwischensumme (Baukosten) in CHF
-        total_betrag: Gesamtbetrag in CHF
-        min_betrag: Minimalbetrag Toleranzbereich in CHF
-        max_betrag: Maximalbetrag Toleranzbereich in CHF
-        tolerance: Toleranzprozentsatz (z.B. 20 für ±20%)
-        config_info: Optional – Dictionary mit Kostenermittlungs-Konfiguration
-                     Keys: 'name', 'tolerance', 'project_phase', 'phase_code', 'ebkp_depth'
-        projekt_daten: Optional – ProjektDaten-Objekt mit Objekt-, Bauherr- und
-                       Baumanagement-Informationen
+        results_df: DataFrame mit Kostenpositionen
+        summaries: Dict mit Kostenwerten
 
     Returns:
         BytesIO-Buffer mit PDF-Inhalt, oder None bei Fehler
     """
+    if not REPORTLAB_AVAILABLE:
+        return None
+
     try:
         # PDF-Konfiguration
         buffer = BytesIO()
@@ -593,61 +1207,81 @@ def generate_pdf(
 
         # Elemente für Dokument
         elements = []
-        styles = get_custom_styles()
+        styles = get_pdf_custom_styles()
+
+        # Hole Konfiguration
+        config = get_state(CFG_COST_ESTIMATION_CONFIG)
+        tolerance = config.get('tolerance', 0) if config else 0
+        projekt_daten = get_state(DATA_PROJEKT_DATEN)
 
         # =========================================================
-        # TITEL & DATUM
+        # TITEL & LOGO
         # =========================================================
-        elements.append(Paragraph("Kostenberechnung eBKP-H", styles["title"]))
-        elements.append(
-            Paragraph(
-                f"Erstellt am {datetime.now().strftime('%d.%m.%Y um %H:%M Uhr')}",
-                styles["subtitle"],
-            )
+        # Logo und Titel nebeneinander in einer Tabelle
+        title_content = [
+            [Paragraph("Kostenberechnung eBKP-H", styles["title"])]
+        ]
+        subtitle_content = Paragraph(
+            f"Erstellt am {datetime.now().strftime('%d.%m.%Y um %H:%M Uhr')}",
+            styles["subtitle"],
         )
+
+        # Versuche Logo zu laden
+        if LOGO_PATH.exists():
+            try:
+                logo = Image(str(LOGO_PATH), width=3 * cm, height=3 * cm)
+                logo.hAlign = 'RIGHT'
+
+                # Titel-Tabelle mit Logo rechts
+                header_table = Table(
+                    [[title_content[0][0], logo]],
+                    colWidths=[14 * cm, 4 * cm]
+                )
+                header_table.setStyle(TableStyle([
+                    ('ALIGN', (0, 0), (0, 0), 'LEFT'),
+                    ('ALIGN', (1, 0), (1, 0), 'RIGHT'),
+                    ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+                    ('LEFTPADDING', (0, 0), (-1, -1), 0),
+                    ('RIGHTPADDING', (0, 0), (-1, -1), 0),
+                    ('TOPPADDING', (0, 0), (-1, -1), 0),
+                    ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
+                ]))
+                elements.append(header_table)
+            except Exception:
+                # Fallback: Nur Titel ohne Logo
+                elements.append(Paragraph("Kostenberechnung eBKP-H", styles["title"]))
+        else:
+            # Kein Logo vorhanden
+            elements.append(Paragraph("Kostenberechnung eBKP-H", styles["title"]))
+
+        elements.append(subtitle_content)
         elements.append(Spacer(1, SPACING_SECTION * cm))
 
         # =========================================================
         # PROJEKTINFORMATIONEN (falls vorhanden)
         # =========================================================
-        if projekt_daten:
+        if projekt_daten and hasattr(projekt_daten, 'objekt'):
             elements.append(
                 Paragraph("Projektinformationen", styles["heading_section"])
             )
-            project_table = create_project_info_table(projekt_daten)
+            project_table = create_pdf_project_info_table(projekt_daten)
             elements.append(project_table)
             elements.append(Spacer(1, SPACING_SECTION * cm))
 
         # =========================================================
         # KOSTENERMITTLUNGS-KONFIGURATION (falls vorhanden)
         # =========================================================
-        if config_info:
+        if config and config.get('selected'):
             elements.append(
                 Paragraph("Kostenermittlung & Parameter", styles["heading_section"])
             )
 
             config_data = [
-                [
-                    "Parameter",
-                    "Wert",
-                ],
-                [
-                    "Kostenermittlungsart",
-                    config_info.get("name", "N/A"),
-                ],
-                [
-                    "Toleranz",
-                    f"± {config_info.get('tolerance', 0)}%",
-                ],
-                [
-                    "Projektphase",
-                    f"{config_info.get('project_phase', 'N/A')} "
-                    f"({config_info.get('phase_code', 'N/A')})",
-                ],
-                [
-                    "eBKP-Klassifizierungstiefe",
-                    config_info.get("ebkp_depth", "N/A"),
-                ],
+                ["Parameter", "Wert"],
+                ["Kostenermittlungsart", config.get("name", "N/A")],
+                ["Toleranz", f"± {config.get('tolerance', 0)}%"],
+                ["Projektphase", f"{config.get('project_phase', 'N/A')} ({config.get('phase_code', 'N/A')})"],
+                ["eBKP-Klassifizierungstiefe", config.get("ebkp_depth", "N/A")],
             ]
 
             config_table = Table(config_data, colWidths=[6 * cm, 10 * cm])
@@ -687,9 +1321,7 @@ def generate_pdf(
         elements.append(
             Paragraph("Kostenzusammenfassung", styles["heading_section"])
         )
-        summary_table = create_cost_summary_table(
-            zwischensumme, total_betrag, min_betrag, max_betrag
-        )
+        summary_table = create_pdf_cost_summary_table(summaries, tolerance)
         elements.append(summary_table)
         elements.append(Spacer(1, SPACING_SECTION * cm))
 
@@ -700,20 +1332,102 @@ def generate_pdf(
             Paragraph("Detaillierte Kostenberechnung", styles["heading_section"])
         )
 
-        detail_table, positions_with_costs = create_detail_table(df_cost)
+        detail_table, positions_with_costs = create_pdf_detail_table(results_df)
 
         elements.append(detail_table)
+        elements.append(Spacer(1, SPACING_SUBSECTION * cm))
+        elements.append(
+            Paragraph(f"Total: {positions_with_costs} Positionen mit Kosten", styles["small"])
+        )
         elements.append(Spacer(1, SPACING_SECTION * cm))
+
+        # =========================================================
+        # AUFGLIEDERUNG NACH HAUPTGRUPPEN
+        # =========================================================
+        elements.append(PageBreak())
+        elements.append(
+            Paragraph("Aufgliederung nach Hauptgruppen", styles["heading_section"])
+        )
+
+        # Füge Hauptgruppe hinzu
+        results_df_copy = results_df.copy()
+        results_df_copy['Hauptgruppe'] = results_df_copy['BKP_Code'].apply(
+            lambda x: str(x)[0].upper() if pd.notna(x) and x else 'X'
+        )
+
+        for hg in sorted(results_df_copy['Hauptgruppe'].unique()):
+            if hg == 'X' or hg not in EBKP_MAIN_GROUPS:
+                continue
+
+            hg_df = results_df_copy[results_df_copy['Hauptgruppe'] == hg]
+            hg_total = hg_df['Einzelkosten'].sum()
+            hg_name = EBKP_MAIN_GROUPS.get(hg, 'Unbekannt')
+
+            if hg_total == 0:
+                continue
+
+            # Aggregiere Positionen innerhalb der Hauptgruppe
+            hg_aggregated = hg_df.groupby('BKP_Code', as_index=False).agg({
+                'BKP_Beschreibung': 'first',
+                'Menge': 'sum',
+                'Einzelkosten': 'sum'
+            }).sort_values('BKP_Code')
+
+            # Kostengruppen-Badge
+            if hg in ['C', 'D', 'E', 'F', 'G']:
+                badge = "(Bauwerkskosten)"
+            elif hg in ['B', 'H', 'I', 'J', 'V', 'W']:
+                badge = "(Erstellungskosten)"
+            elif hg in ['A', 'Y', 'Z']:
+                badge = "(Anlagekosten)"
+            else:
+                badge = ""
+
+            elements.append(
+                Paragraph(
+                    f"<b>{hg} - {hg_name}</b>: {format_currency(hg_total)} ({len(hg_aggregated)} Positionen) {badge}",
+                    styles["heading_subsection"]
+                )
+            )
+
+            # Mini-Tabelle für diese Gruppe (aggregiert)
+            group_table_data = [['Code', 'Beschreibung', 'Menge', 'Kosten CHF']]
+            for _, row in hg_aggregated.head(15).iterrows():  # Max 15 eindeutige Positionen pro Gruppe
+                group_table_data.append([
+                    str(row.get('BKP_Code', ''))[:10],
+                    str(row.get('BKP_Beschreibung', ''))[:40],
+                    f"{row.get('Menge', 1):.1f}",
+                    format_currency(row.get('Einzelkosten', 0))
+                ])
+
+            if len(hg_aggregated) > 15:
+                group_table_data.append(['...', f'und {len(hg_aggregated) - 15} weitere', '', ''])
+
+            group_table = Table(group_table_data, colWidths=[2.5 * cm, 8 * cm, 2 * cm, 3.5 * cm])
+            group_table.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor(COLOR_ACCENT)),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('FONTSIZE', (0, 0), (-1, -1), 8),
+                ('ALIGN', (-1, 0), (-1, -1), 'RIGHT'),
+                ('ALIGN', (2, 0), (2, -1), 'RIGHT'),
+                ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+                ('LEFTPADDING', (0, 0), (-1, -1), 4),
+                ('RIGHTPADDING', (0, 0), (-1, -1), 4),
+                ('TOPPADDING', (0, 0), (-1, -1), 3),
+                ('BOTTOMPADDING', (0, 0), (-1, -1), 3),
+            ]))
+
+            elements.append(group_table)
+            elements.append(Spacer(1, SPACING_SUBSECTION * cm))
 
         # =========================================================
         # FOOTER
         # =========================================================
+        elements.append(Spacer(1, SPACING_SECTION * cm))
         footer_text = (
             "Diese Kostenberechnung basiert auf Kennwerten und dient als Schätzung. "
             "Die tatsächlichen Kosten können abweichen. Das Programm eBKP+ übernimmt "
-            "keine Haftung. Stand: {0}".format(
-                datetime.now().strftime("%d.%m.%Y")
-            )
+            f"keine Haftung. Stand: {datetime.now().strftime('%d.%m.%Y')}"
         )
         elements.append(Paragraph(footer_text, styles["footer"]))
 
@@ -724,810 +1438,243 @@ def generate_pdf(
         buffer.seek(0)
         return buffer
 
-    except ImportError as error:
-        st.error(f"❌ PDF-Export nicht verfügbar: {str(error)}")
-        st.info("Bitte installieren Sie reportlab: `pip install reportlab`")
-        return None
-
     except Exception as error:
         st.error(f"❌ Fehler bei PDF-Generierung: {str(error)}")
         return None
 
-# ================================================================================
-# SCHRITT 1: KENNWERTE-KOSTENPLAN IMPORTIEREN
-# ================================================================================
 
-st.header("📋 Schritt 1: Kostenplan mit Kennwerten importieren")
+# ============================================================================
+# HAUPTSEITE
+# ============================================================================
 
-st.markdown("""
-Laden Sie Ihre eigene Kostenplan-CSV-Datei mit Kennwerten hoch.
-Diese Datei enthält alle eBKP-H Positionen mit den zugehörigen Kennwerten (tief, mittel, hoch).
-""")
+def normalize_bkp_columns(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Normalisiert BKP-Spaltennamen auf Standard-Format.
 
-# File uploader für Kostenplan
-kennwerte_file = st.file_uploader(
-    "📤 Kostenplan CSV-Datei hochladen",
-    type=['csv'],
-    help="CSV-Datei mit eBKP-H Codes und Kennwerten (tief, mittel, hoch)",
-    key="kennwerte_upload"
-)
+    Unterstützt verschiedene Spaltennamen:
+    - BKP_Code, eBKP_Code, eBKP-H Code, bkp_code, Code
+    - BKP_Beschreibung, eBKP_Beschreibung, Beschreibung, Description
+    """
+    df = df.copy()
 
-df_kennwerte = None
-kennwerte_level = None
+    # BKP Code normalisieren
+    code_columns = ['BKP_Code', 'eBKP_Code', 'eBKP-H Code', 'bkp_code', 'Code', 'code', 'eBKP-H_Code']
+    for col in code_columns:
+        if col in df.columns and 'BKP_Code' not in df.columns:
+            df['BKP_Code'] = df[col]
+            break
 
-if kennwerte_file is not None:
-    # Lade Kennwerte CSV
-    df_kennwerte = load_kennwerte_csv(kennwerte_file)
+    # Beschreibung normalisieren
+    desc_columns = ['BKP_Beschreibung', 'eBKP_Beschreibung', 'Beschreibung', 'Description', 'description', 'Kostengruppe / Position']
+    for col in desc_columns:
+        if col in df.columns and 'BKP_Beschreibung' not in df.columns:
+            df['BKP_Beschreibung'] = df[col]
+            break
 
-    if df_kennwerte is not None:
-        st.success(f"✅ Kostenplan erfolgreich geladen: {len(df_kennwerte)} Positionen")
+    # Menge normalisieren
+    qty_columns = ['Menge', 'menge', 'Quantity', 'quantity', 'Anzahl', 'anzahl', 'Count']
+    for col in qty_columns:
+        if col in df.columns and 'Menge' not in df.columns:
+            df['Menge'] = pd.to_numeric(df[col], errors='coerce').fillna(1.0)
+            break
 
-        # Vorschau
-        with st.expander("📊 Kostenplan Vorschau (erste 10 Zeilen)", expanded=False):
-            st.dataframe(df_kennwerte.head(10), use_container_width=True)
+    return df
 
-        # Auswahl: Tief / Mittel / Hoch
-        st.subheader("🎯 Kennwert-Niveau auswählen")
 
-        # Default: Mittel (falls noch nicht gesetzt)
-        if 'kennwerte_level' not in st.session_state:
-            st.session_state.kennwerte_level = "mittel"
+def render_data_source_section() -> Optional[pd.DataFrame]:
+    """
+    Rendert den Datenquellen-Bereich mit Tabs für verschiedene Import-Optionen.
 
-        kennwerte_level = st.session_state.kennwerte_level
+    Returns:
+        DataFrame mit BKP-Codes oder None
+    """
+    st.subheader("📂 Datenquelle")
 
-        col1, col2, col3 = st.columns(3)
+    # Prüfe ob bereits Daten geladen sind
+    has_existing_data = has_classification_results()
 
+    if has_existing_data:
+        existing_df = get_state(DATA_CLASSIFICATION_RESULTS)
+        col1, col2 = st.columns([3, 1])
         with col1:
-            button_type_tief = "primary" if kennwerte_level == "tief" else "secondary"
-            if st.button("📉 Tief", use_container_width=True, type=button_type_tief, key="btn_tief"):
-                st.session_state.kennwerte_level = "tief"
-                st.rerun()
+            st.success(f"✅ {len(existing_df)} klassifizierte Elemente aus Session geladen")
         with col2:
-            button_type_mittel = "primary" if kennwerte_level == "mittel" else "secondary"
-            if st.button("📊 Mittel", use_container_width=True, type=button_type_mittel, key="btn_mittel"):
-                st.session_state.kennwerte_level = "mittel"
-                st.rerun()
-        with col3:
-            button_type_hoch = "primary" if kennwerte_level == "hoch" else "secondary"
-            if st.button("📈 Hoch", use_container_width=True, type=button_type_hoch, key="btn_hoch"):
-                st.session_state.kennwerte_level = "hoch"
+            if st.button("🗑️ Daten löschen", help="Aktuelle Daten löschen und neue laden"):
+                set_state(DATA_CLASSIFICATION_RESULTS, None)
+                set_state('cost_results_df', None)
+                set_state('cost_summaries', None)
                 st.rerun()
 
-        st.info(f"🎯 Ausgewähltes Niveau: **{kennwerte_level.upper()}**")
+    # Tabs für verschiedene Datenquellen
+    tab_session, tab_upload = st.tabs([
+        "📊 Aus KI-Klassifizierung",
+        "📤 CSV importieren"
+    ])
 
-        # Speichere in Session State
-        st.session_state.df_kennwerte = df_kennwerte.copy()
+    with tab_session:
+        if has_existing_data:
+            st.info("Daten aus der KI-Klassifizierung werden verwendet.")
+            # Zeige Vorschau
+            with st.expander("Datenvorschau", expanded=False):
+                preview_cols = [c for c in ['BKP_Code', 'BKP_Beschreibung', 'Menge', 'Einheit'] if c in existing_df.columns]
+                if preview_cols:
+                    st.dataframe(existing_df[preview_cols].head(10), hide_index=True)
+                else:
+                    st.dataframe(existing_df.head(10), hide_index=True)
+        else:
+            st.warning("Keine Daten aus der KI-Klassifizierung vorhanden.")
+            st.info("Führen Sie zuerst die KI-Klassifizierung durch oder importieren Sie eine CSV-Datei.")
 
-elif 'df_kennwerte' in st.session_state:
-    # Verwende gespeicherte Kennwerte
-    df_kennwerte = st.session_state.df_kennwerte.copy()
-    kennwerte_level = st.session_state.get('kennwerte_level', 'mittel')
+    with tab_upload:
+        st.markdown("""
+        **CSV-Anforderungen:**
+        - Trennzeichen: Semikolon (;) oder Komma (,)
+        - Encoding: UTF-8
+        - Erforderliche Spalte: `BKP_Code` (oder `eBKP_Code`, `eBKP-H Code`)
+        - Optional: `BKP_Beschreibung`, `Menge`, `Einheit`
+        """)
 
-    st.success(f"✅ Gespeicherter Kostenplan verwendet: {len(df_kennwerte)} Positionen")
-    st.info(f"🎯 Ausgewähltes Niveau: **{kennwerte_level.upper()}**")
+        uploaded_file = st.file_uploader(
+            "CSV mit BKP-Codes hochladen",
+            type=['csv'],
+            help="CSV-Datei mit klassifizierten BKP-Codes",
+            key='csv_uploader'
+        )
 
-    col_info, col_clear = st.columns([4, 1])
-    with col_clear:
-        if st.button("🗑️ Kostenplan löschen", help="Gespeicherten Kostenplan entfernen"):
-            del st.session_state.df_kennwerte
-            if 'kennwerte_level' in st.session_state:
-                del st.session_state.kennwerte_level
-            st.rerun()
-else:
-    st.info("👆 Bitte laden Sie zuerst einen Kostenplan mit Kennwerten hoch")
+        if uploaded_file:
+            try:
+                # Versuche verschiedene Trennzeichen
+                content = uploaded_file.getvalue().decode('utf-8-sig')
+                if ';' in content[:1000]:
+                    sep = ';'
+                else:
+                    sep = ','
+
+                uploaded_file.seek(0)
+                df_upload = pd.read_csv(uploaded_file, sep=sep, encoding='utf-8-sig')
+
+                # Normalisiere Spaltennamen
+                df_upload = normalize_bkp_columns(df_upload)
+
+                if 'BKP_Code' not in df_upload.columns:
+                    st.error("❌ Keine BKP-Code Spalte gefunden!")
+                    st.info(f"Gefundene Spalten: {list(df_upload.columns)}")
+                    st.info("Bitte stellen Sie sicher, dass eine der folgenden Spalten vorhanden ist: BKP_Code, eBKP_Code, eBKP-H Code, Code")
+                    return None
+
+                # Zeige Vorschau
+                st.success(f"✅ {len(df_upload)} Zeilen erkannt")
+
+                with st.expander("Datenvorschau", expanded=True):
+                    preview_cols = [c for c in ['BKP_Code', 'BKP_Beschreibung', 'Menge', 'Einheit'] if c in df_upload.columns]
+                    if preview_cols:
+                        st.dataframe(df_upload[preview_cols].head(10), hide_index=True)
+                    else:
+                        st.dataframe(df_upload.head(10), hide_index=True)
+
+                    # Zeige Spalten-Info
+                    st.caption(f"Spalten: {', '.join(df_upload.columns)}")
+
+                # Lade-Button
+                if st.button("📥 Daten für Kostenberechnung laden", type="primary"):
+                    set_state(DATA_CLASSIFICATION_RESULTS, df_upload)
+                    set_state('cost_results_df', None)
+                    set_state('cost_summaries', None)
+                    st.success("✅ Daten erfolgreich geladen!")
+                    st.rerun()
+
+            except Exception as e:
+                st.error(f"❌ Fehler beim Laden der CSV: {e}")
+                return None
+
+    # Rückgabe der aktuellen Daten
+    if has_classification_results():
+        return get_state(DATA_CLASSIFICATION_RESULTS).copy()
+    return None
+
+
+st.title("💰 Kostenberechnung")
+st.caption("Berechnung der Kosten basierend auf eBKP-H Klassifizierung und Kennwerten")
+
+# Lade Standard-Kennwerte
+default_kennwerte_df = load_kennwerte_from_file()
+
+if default_kennwerte_df.empty:
+    st.error("Standard-Kennwerte konnten nicht geladen werden.")
     st.stop()
 
-st.divider()
+render_divider("section")
 
-# ================================================================================
-# SCHRITT 2: MODELL-DATEN LADEN (OPTIONAL)
-# ================================================================================
+# === Kennwerte-Katalog (Standard oder Eigene) ===
+kennwerte_df = render_kennwerte_section(default_kennwerte_df)
 
-st.header("📦 Schritt 2: Modell-Daten laden (optional)")
-
-st.markdown("""
-Laden Sie optional Daten aus dem BIM-Modell, um automatisch Mengen für die Kostenberechnung zu übernehmen.
-Falls keine Modell-Daten vorhanden sind, können Sie die Mengen manuell eingeben.
-""")
-
-# Datenquelle wählen
-if 'model_data_source' not in st.session_state:
-    st.session_state.model_data_source = "Keine (Manuell)"
-
-data_source = st.radio(
-    "Modell-Datenquelle:",
-    options=["Keine (Manuell)", "Session State (KI-Klassifizierung)", "Excel/CSV-Datei hochladen"],
-    help="Wählen Sie, ob Sie Modell-Daten verwenden möchten oder alles manuell eingeben",
-    key="model_data_source"
-)
-
-df_model_data = None
-
-if data_source == "Session State (KI-Klassifizierung)":
-    # Prüfe ob classification_results vorhanden sind
-    if not has_classification_results():
-        st.warning("⚠️ Keine Klassifizierungsdaten im Session State vorhanden")
-        st.info("Bitte führen Sie zuerst die eBKP-H Klassifizierung durch oder wählen Sie eine andere Datenquelle.")
-        st.page_link("pages/03_KI_Klassifizierung.py", label="→ Zur KI Klassifizierung", icon="🤖")
-    else:
-        # Lade classification_results
-        df_model_data = get_state(DATA_CLASSIFICATION_RESULTS).copy()
-
-        # Flexibles Spaltennamen-Mapping für eBKP-H Code
-        # Spalte N (Index 13) oder verschiedene Varianten
-        code_columns = ['BKP_Code', 'BKP Code', 'eBKP-H Code', 'eBKP-H_Code', 'eBKP_Code']
-        code_col = None
-
-        # Prüfe zuerst per Spaltenname
-        for col_name in code_columns:
-            if col_name in df_model_data.columns:
-                code_col = col_name
-                break
-
-        # Falls nicht gefunden: Verwende Spalte N (Index 13)
-        if code_col is None and len(df_model_data.columns) > 13:
-            code_col = df_model_data.columns[13]
-            st.info(f"📍 eBKP-H Code aus Spalte N (Index 13): '{code_col}'")
-
-        # Umbenennen zu Standardname
-        if code_col and code_col != 'eBKP-H Code':
-            df_model_data = df_model_data.rename(columns={code_col: 'eBKP-H Code'})
-
-        # Mapping für Beschreibung
-        desc_columns = ['BKP_Beschreibung', 'BKP Beschreibung', 'eBKP-H Beschreibung', 'eBKP-H_Beschreibung']
-        desc_col = next((col for col in desc_columns if col in df_model_data.columns), None)
-        if desc_col and desc_col != 'eBKP-H Beschreibung':
-            df_model_data = df_model_data.rename(columns={desc_col: 'eBKP-H Beschreibung'})
-
-        # Flexibles Mapping für Menge - verschiedene mögliche Spaltennamen
-        menge_columns = ['Menge', 'menge', 'Anzahl', 'Quantity', 'Amount', 'Fläche', 'Fläche (m²)', 'Area']
-        menge_col = None
-        for col_name in menge_columns:
-            if col_name in df_model_data.columns:
-                menge_col = col_name
-                break
-
-        # Falls Menge-Spalte gefunden: Umbenennen
-        if menge_col and menge_col != 'Menge':
-            df_model_data = df_model_data.rename(columns={menge_col: 'Menge'})
-            st.info(f"📊 Menge-Spalte gefunden und umbenannt: '{menge_col}' → 'Menge'")
-        elif menge_col is None:
-            # Erstelle Menge-Spalte mit Wert 1 (Anzahl = 1 pro Element)
-            df_model_data['Menge'] = 1.0
-            st.warning("⚠️ Keine Menge-Spalte gefunden. Standard-Menge = 1 pro Element gesetzt.")
-
-        st.success(f"✅ Daten aus Session State geladen: {len(df_model_data)} Positionen")
-
-        with st.expander("📋 Modell-Daten Vorschau", expanded=False):
-            st.dataframe(df_model_data.head(10), use_container_width=True)
-            st.caption(f"**Verfügbare Spalten:** {', '.join(df_model_data.columns.tolist())}")
-
-        # Aggregiere und zeige Statistiken über eBKP-H Codes
-        quantities_preview = aggregate_quantities_by_code(df_model_data)
-        if quantities_preview:
-            st.success(f"✅ Mengen aus {len(df_model_data)} Elementen aggregiert")
-            st.info(f"📊 {len(quantities_preview)} eindeutige eBKP-H Codes mit Mengen gefunden")
-
-            with st.expander("🔍 Mengen-Übersicht (Top 10)", expanded=False):
-                top_codes = sorted(quantities_preview.items(), key=lambda x: x[1], reverse=True)[:10]
-                for code, qty in top_codes:
-                    st.caption(f"• **{code}**: {qty:.2f}")
-
-elif data_source == "Excel/CSV-Datei hochladen":
-    # Datei-Upload
-    uploaded_file = st.file_uploader(
-        "📤 Excel- oder CSV-Datei mit Modell-Daten hochladen",
-        type=['xlsx', 'xls', 'csv'],
-        help="Datei mit eBKP-H Codes und Mengen aus dem BIM-Modell",
-        key="model_data_upload"
-    )
-
-    if uploaded_file is not None:
-        try:
-            # Erkenne Dateityp
-            file_extension = uploaded_file.name.split('.')[-1].lower()
-
-            if file_extension in ['xlsx', 'xls']:
-                df_model_data = pd.read_excel(uploaded_file)
-            elif file_extension == 'csv':
-                try:
-                    df_model_data = pd.read_csv(uploaded_file, sep=';', encoding='utf-8-sig')
-                except:
-                    uploaded_file.seek(0)
-                    df_model_data = pd.read_csv(uploaded_file, sep=',', encoding='utf-8-sig')
-
-            # Spaltennamen-Mapping
-            if 'BKP_Code' in df_model_data.columns:
-                df_model_data = df_model_data.rename(columns={'BKP_Code': 'eBKP-H Code'})
-            if 'BKP_Beschreibung' in df_model_data.columns:
-                df_model_data = df_model_data.rename(columns={'BKP_Beschreibung': 'eBKP-H Beschreibung'})
-
-            st.success(f"✅ Modell-Datei erfolgreich geladen: {len(df_model_data)} Zeilen")
-
-            with st.expander("📋 Modell-Daten Vorschau", expanded=False):
-                st.dataframe(df_model_data.head(10), use_container_width=True)
-
-            # Aggregiere und zeige Statistiken über eBKP-H Codes
-            quantities_preview = aggregate_quantities_by_code(df_model_data)
-            if quantities_preview:
-                st.success(f"✅ Mengen aus {len(df_model_data)} Elementen aggregiert")
-                st.info(f"📊 {len(quantities_preview)} eindeutige eBKP-H Codes mit Mengen gefunden")
-
-                with st.expander("🔍 Mengen-Übersicht (Top 10)", expanded=False):
-                    top_codes = sorted(quantities_preview.items(), key=lambda x: x[1], reverse=True)[:10]
-                    for code, qty in top_codes:
-                        st.caption(f"• **{code}**: {qty:.2f}")
-
-        except Exception as e:
-            st.error(f"❌ Fehler beim Laden der Datei: {str(e)}")
-            df_model_data = None
-    else:
-        st.info("👆 Bitte laden Sie eine Datei hoch oder wählen Sie 'Keine (Manuell)'")
-
+# Zeige aktiven Status
+use_custom = get_state(CFG_USE_CUSTOM_KENNWERTE, False)
+if use_custom:
+    st.success(f"🟢 **Eigene Kennwerte aktiv** - {len(kennwerte_df)} Einträge")
 else:
-    st.info("ℹ️ Keine Modell-Daten werden verwendet. Alle Mengen müssen manuell eingegeben werden.")
+    st.info(f"📚 Standard-Kennwerte - {len(kennwerte_df)} Einträge")
 
-st.divider()
+render_divider("section")
 
-# ================================================================================
-# SCHRITT 3: KOSTENBERECHNUNG
-# ================================================================================
+# === Datenquelle ===
+df = render_data_source_section()
 
-st.header("💰 Schritt 3: Kostenberechnung")
+if df is None:
+    st.info("👆 Bitte laden Sie Daten über eine der obigen Optionen.")
+    st.stop()
 
-# Sidebar: Kostenermittlungs-Status
-st.sidebar.header("📐 Kostenermittlung")
+# Zeige geladene Daten-Info
+st.success(f"✅ {len(df)} Elemente bereit für Kostenberechnung")
 
-config = get_state(CFG_COST_ESTIMATION_CONFIG)
-if config and config.get('selected'):
-    st.sidebar.success(f"✓ {config['name']}")
-    st.sidebar.caption(f"Toleranz: {format_tolerance(config['tolerance'])}")
-    st.sidebar.caption(f"Phase: {config['project_phase']} ({config['phase_code']})")
-    st.sidebar.caption(f"eBKP-Tiefe: {config['ebkp_depth']}")
-    tolerance = config['tolerance']
+render_divider("section")
+
+# === Konfiguration ===
+cost_level = render_config_section()
+
+render_divider("section")
+
+# === Mengen ===
+df = render_quantity_input_section(df)
+
+render_divider("section")
+
+# === Berechnung ===
+st.subheader("🧮 Berechnung")
+
+# Info über verwendete Kennwerte
+if use_custom:
+    st.caption("🟢 Berechnung mit **eigenen Kennwerten**")
 else:
-    st.sidebar.warning("⚠️ Keine Kostenermittlungsstufe ausgewählt")
-    st.sidebar.caption("Standard: ±10% (Kostenvoranschlag)")
-    tolerance = 10
+    st.caption("📋 Berechnung mit **Standard-Kennwerten**")
 
-st.sidebar.divider()
-st.sidebar.info(f"🎯 Kennwert-Niveau: **{kennwerte_level.upper()}**")
-st.sidebar.info("💡 **Hinweis**: Kennwerte und Mengen können in der Tabelle bearbeitet werden")
+if st.button("💵 Kosten berechnen", type="primary", use_container_width=True):
+    with st.spinner("Berechne Kosten mit hierarchischem Lookup..."):
+        project_areas = get_state('project_areas')
 
-# Qualitätsindikator Banner
-if config and config.get('selected'):
-    col1, col2, col3, col4 = st.columns(4)
-    with col1:
-        st.metric("📐 Kostenermittlungsart", config['name'].split()[0])
-    with col2:
-        st.metric("⚖️ Toleranz", format_tolerance(config['tolerance']))
-    with col3:
-        st.metric("📋 Phase", config['phase_code'])
-    with col4:
-        st.metric("🎯 eBKP-Tiefe", config['ebkp_depth'])
-
-    st.divider()
-
-# Erstelle Kostenberechnungstabelle
-st.subheader("📊 Kostenberechnungstabelle")
-
-# Bestimme welche Kennwert-Spalte verwendet werden soll
-kennwert_col = f"Kennwert {kennwerte_level} CHF/Einheit"
-
-# Erstelle DataFrame mit ALLEN Positionen aus dem Kostenplan
-cost_data = []
-
-# OPTIMIERUNG: Aggregiere Mengen einmalig VOR der Schleife (O(m) statt O(n*m))
-quantities_by_code = aggregate_quantities_by_code(df_model_data) if df_model_data is not None else {}
-
-for idx, row in df_kennwerte.iterrows():
-    ebkp_code = row['eBKP-H Code']
-    beschreibung = row['Kostengruppe / Position']
-    einheit = row['Kennwert Einheit'] if pd.notna(row['Kennwert Einheit']) else 'CHF/m²'
-    kennwert = row[kennwert_col] if pd.notna(row[kennwert_col]) else 0.0
-    anmerkung = row['Anmerkungen'] if pd.notna(row['Anmerkungen']) else ''
-
-    # OPTIMIERUNG: Schneller Dictionary-Lookup statt DataFrame-Suche - O(1) statt O(m)
-    menge = quantities_by_code.get(ebkp_code, 0.0)
-
-    # Berechne Betrag
-    betrag = 0.0
-    if menge > 0 and kennwert > 0:
-        if '%' not in str(einheit):
-            betrag = menge * kennwert
-
-    cost_data.append({
-        'eBKP-H Code': ebkp_code,
-        'Beschreibung': beschreibung,
-        'Menge': float(menge),
-        'Einheit': einheit,
-        'Kennwert': float(kennwert),
-        'Betrag CHF': float(betrag),
-        'Pauschalpreis CHF': 0.0,  # Neue Spalte für Pauschalpreis
-        'Anmerkung': anmerkung
-    })
-
-df_cost = pd.DataFrame(cost_data)
-
-# Prüfe ob "Finanzbedarfs" gewählt wurde - dann nur Hauptgruppen anzeigen
-is_finanzbedarfs = False
-if config and config.get('selected'):
-    kostenermittlungsart = config.get('name', '').lower()
-    if 'finanzbedarfs' in kostenermittlungsart or 'finanzbedarf' in kostenermittlungsart:
-        is_finanzbedarfs = True
-        # Filtere nur Hauptgruppen (eBKP-H Codes ohne Punkt)
-        df_cost = df_cost[~df_cost['eBKP-H Code'].astype(str).str.contains('.', regex=False)].copy()
-        st.info(f"ℹ️ Finanzbedarfsermittlung: Es werden nur die {len(df_cost)} Hauptgruppen angezeigt")
-
-# Validierung: Zeige Positionen ohne Modell-Daten
-if quantities_by_code:
-    # Finde Codes mit und ohne Daten
-    codes_with_data = set(code for code, qty in quantities_by_code.items() if qty > 0)
-    codes_in_kostenplan = set(df_cost['eBKP-H Code'].values)
-    codes_without_data = codes_in_kostenplan - codes_with_data
-
-    if codes_without_data:
-        with st.expander(f"⚠️ {len(codes_without_data)} Kostenplan-Positionen ohne Modell-Daten", expanded=False):
-            st.caption("Diese Positionen sind im Kostenplan vorhanden, haben aber keine zugeordneten Mengen aus den Modell-Daten:")
-            for code in sorted(codes_without_data):
-                desc = df_cost[df_cost['eBKP-H Code'] == code]['Beschreibung'].iloc[0]
-                st.caption(f"• **{code}**: {desc}")
-            st.info("💡 Diese Positionen haben Menge = 0. Sie können die Mengen manuell in der Tabelle unten eingeben.")
-
-# Info-Box
-with st.expander("ℹ️ Anleitung", expanded=False):
-    st.markdown(f"""
-    ### Wie funktioniert die Kostenberechnung?
-
-    1. **Kostenplan**: {len(df_cost)} Positionen {('(nur Hauptgruppen)' if is_finanzbedarfs else '')} aus Ihrem Kostenplan werden angezeigt
-    2. **Kennwert-Niveau**: Aktuell ausgewählt: **{kennwerte_level.upper()}**
-    3. **Modell-Daten**: {'Daten aus ' + data_source + ' geladen' if df_model_data is not None else 'Keine Modell-Daten - manuelle Eingabe erforderlich'}
-    4. **Menge anpassen**: Tragen Sie die Mengen für jede Position ein (falls nicht aus Modell übernommen)
-    5. **Kennwert anpassen**: Bei Bedarf können Sie die Kennwerte überschreiben
-    6. **Pauschalpreis**: Alternativ können Sie einen Pauschalpreis eingeben (überschreibt Menge × Kennwert)
-    7. **Zeilen löschen**: Nicht benötigte Positionen können gelöscht werden
-    8. **Automatische Berechnung**: Betrag = Menge × Kennwert (oder Pauschalpreis, falls eingegeben)
-    9. **Toleranzen**: Basierend auf der gewählten Kostenermittlungsstufe (±{tolerance}%)
-
-    **Einheiten**:
-    - CHF/m²: Kosten pro Quadratmeter
-    - CHF/m³: Kosten pro Kubikmeter
-    - CHF/m: Kosten pro Laufmeter
-    - CHF/St: Kosten pro Stück
-    - %: Prozentanteil (wird auf Zwischensumme angewendet)
-    - Pauschal: Fester Betrag
-    """)
-
-st.divider()
-
-# Editierbare Tabelle oder kompakte Listenansicht
-st.subheader("✏️ Kostenberechnung bearbeiten")
-
-# Initialisiere oder aktualisiere Session State für bearbeitete Daten
-# Prüfe ob sich die Kostenermittlungsstufe ODER die Modell-Daten geändert haben
-num_quantities = len(quantities_by_code) if quantities_by_code else 0
-total_quantity = sum(quantities_by_code.values()) if quantities_by_code else 0
-current_filter_key = f"finanzbedarfs_{is_finanzbedarfs}_quantities_{num_quantities}_{total_quantity:.2f}"
-
-if 'cost_filter_key' not in st.session_state or st.session_state.cost_filter_key != current_filter_key:
-    # Filter oder Daten haben sich geändert - initialisiere neu mit aktuellen Mengen aus df_cost
-    st.session_state.edited_cost_data = df_cost.copy()
-    st.session_state.cost_filter_key = current_filter_key
-    if num_quantities > 0:
-        st.info(f"🔄 Tabelle mit neuen Modell-Daten aktualisiert: {num_quantities} eBKP-H Codes mit Mengen")
-
-# Verwende gespeicherte Daten
-edited_df = st.session_state.edited_cost_data.copy()
-
-# Berechne Beträge INITIAL (berücksichtigt Pauschalpreis)
-for idx in edited_df.index:
-    pauschalpreis = edited_df.loc[idx, 'Pauschalpreis CHF']
-
-    # Falls Pauschalpreis eingegeben: Verwende diesen
-    if pauschalpreis > 0:
-        edited_df.loc[idx, 'Betrag CHF'] = pauschalpreis
-    else:
-        # Sonst: Berechne aus Menge × Kennwert
-        menge = edited_df.loc[idx, 'Menge']
-        kennwert = edited_df.loc[idx, 'Kennwert']
-        einheit = edited_df.loc[idx, 'Einheit']
-
-        # Prozentuale Positionen später auf Zwischensumme anwenden
-        if '%' in str(einheit):
-            edited_df.loc[idx, 'Betrag CHF'] = 0.0
-        else:
-            edited_df.loc[idx, 'Betrag CHF'] = menge * kennwert
-
-# Füge Stern (*) vor Hauptgruppen hinzu und erstelle Display-DataFrame
-df_cost_display = edited_df.copy()
-df_cost_display['Position'] = df_cost_display.apply(
-    lambda row: f"*   {row['eBKP-H Code']}" if '.' not in str(row['eBKP-H Code']) else f"     {row['eBKP-H Code']}",
-    axis=1
-)
-
-# Konfiguriere Column-Config - kompakte Darstellung wie im Screenshot
-column_config = {
-    'Position': st.column_config.TextColumn(
-        'Position',
-        width='small',
-        disabled=True,
-        help="eBKP-H Code (* = Hauptgruppe)"
-    ),
-    'Beschreibung': st.column_config.TextColumn(
-        'Beschreibung',
-        width='large',
-        disabled=True,
-        help="Kostengruppe / Position"
-    ),
-    'Menge': st.column_config.NumberColumn(
-        'Menge',
-        width='small',
-        min_value=0.0,
-        format="%.2f",
-        help="Menge der Position (editierbar)"
-    ),
-    'Einheit': st.column_config.TextColumn(
-        'Einheit',
-        width='small',
-        disabled=True,
-        help="Einheit"
-    ),
-    'Kennwert': st.column_config.NumberColumn(
-        'Kennwert',
-        width='small',
-        min_value=0.0,
-        format="%.2f CHF",
-        help="Kennwert (editierbar)"
-    ),
-    'Betrag CHF': st.column_config.NumberColumn(
-        'Betrag CHF',
-        width='medium',
-        disabled=True,
-        format="%.2f",
-        help="Berechnet: Menge × Kennwert"
-    ),
-    'Pauschalpreis CHF': st.column_config.NumberColumn(
-        'Pauschalpreis',
-        width='medium',
-        min_value=0.0,
-        format="%.2f",
-        help="Optional: Pauschalpreis"
-    ),
-}
-
-# Wähle Spalten für Anzeige
-display_columns = ['Position', 'Beschreibung', 'Menge', 'Einheit', 'Kennwert', 'Betrag CHF', 'Pauschalpreis CHF']
-
-# Editierbare Tabelle mit Lösch-Funktion
-edited_df_display = st.data_editor(
-    df_cost_display[display_columns],
-    column_config=column_config,
-    use_container_width=True,
-    hide_index=True,
-    num_rows="dynamic",  # Ermöglicht Hinzufügen/Löschen von Zeilen
-    key="cost_editor"
-)
-
-# Übertrage Änderungen zurück zu edited_df mit allen Spalten
-# Behandle Fall wenn Zeilen gelöscht/hinzugefügt wurden
-if len(edited_df_display) != len(edited_df):
-    # Zeilen wurden geändert - rekonstruiere edited_df aus edited_df_display
-    # Extrahiere eBKP-H Code aus Position-Spalte (entferne Stern und Leerzeichen)
-    edited_df_display['eBKP-H Code'] = edited_df_display['Position'].str.replace('*', '').str.strip()
-
-    # Füge fehlende Spalten aus df_cost wieder hinzu basierend auf eBKP-H Code
-    edited_df = edited_df_display.copy()
-    edited_df['Anmerkung'] = edited_df['eBKP-H Code'].map(
-        df_cost.set_index('eBKP-H Code')['Anmerkung']
-    ).fillna('')
-
-    # Entferne Position-Spalte (wird nicht mehr benötigt)
-    edited_df = edited_df.drop(columns=['Position'])
-else:
-    # Keine Zeilenänderungen - nur Werte übertragen
-    edited_df['Menge'] = edited_df_display['Menge'].values
-    edited_df['Kennwert'] = edited_df_display['Kennwert'].values
-    edited_df['Pauschalpreis CHF'] = edited_df_display['Pauschalpreis CHF'].values
-
-# Berechne Beträge NEU nach Bearbeitung
-for idx in edited_df.index:
-    pauschalpreis = edited_df.loc[idx, 'Pauschalpreis CHF']
-
-    if pauschalpreis > 0:
-        edited_df.loc[idx, 'Betrag CHF'] = pauschalpreis
-    else:
-        menge = edited_df.loc[idx, 'Menge']
-        kennwert = edited_df.loc[idx, 'Kennwert']
-        einheit = edited_df.loc[idx, 'Einheit']
-
-        if '%' in str(einheit):
-            edited_df.loc[idx, 'Betrag CHF'] = 0.0
-        else:
-            edited_df.loc[idx, 'Betrag CHF'] = menge * kennwert
-
-# Speichere bearbeitete Daten zurück in Session State
-st.session_state.edited_cost_data = edited_df.copy()
-
-st.divider()
-
-# Kostenzusammenfassung
-st.subheader("💰 Kostenzusammenfassung")
-
-# Berechne Zwischensumme (ohne %-Positionen)
-zwischensumme = edited_df[~edited_df['Einheit'].astype(str).str.contains('%', na=False)]['Betrag CHF'].sum()
-
-# Berechne %-Positionen (V, Z, etc.) auf Zwischensumme
-prozent_positionen = edited_df[edited_df['Einheit'].astype(str).str.contains('%', na=False)]
-prozent_betrag = 0.0
-
-for idx, row in prozent_positionen.iterrows():
-    pauschalpreis = row['Pauschalpreis CHF']
-
-    if pauschalpreis > 0:
-        # Pauschalpreis verwenden
-        betrag = pauschalpreis
-    else:
-        # Prozentsatz auf Zwischensumme anwenden
-        prozent = row['Kennwert']
-        betrag = zwischensumme * (prozent / 100)
-
-    prozent_betrag += betrag
-    edited_df.loc[idx, 'Betrag CHF'] = betrag
-
-# Gesamtsumme
-total_betrag = zwischensumme + prozent_betrag
-
-# Berechne Min/Max mit Toleranz
-min_betrag, max_betrag = calculate_cost_with_tolerance(total_betrag, tolerance)
-
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.metric(
-        "💵 Zwischensumme (Baukosten)",
-        format_currency(zwischensumme),
-        help="Summe aller Positionen ohne prozentuale Zuschläge"
-    )
-
-with col2:
-    st.metric(
-        "💰 Gesamtkosten",
-        format_currency(total_betrag),
-        help="Gesamtsumme inkl. aller Zuschläge (V, W, Z, etc.)"
-    )
-
-with col3:
-    st.metric(
-        "⚖️ Toleranzbereich",
-        f"{format_currency(min_betrag)} - {format_currency(max_betrag)}",
-        help=f"Kostenrahmen mit ±{tolerance}% Toleranz"
-    )
-
-# Detaillierte Aufschlüsselung
-with st.expander("📋 Detaillierte Aufschlüsselung", expanded=False):
-    st.markdown("### Positionen mit Beträgen")
-
-    # Zeige nur Positionen mit Betrag > 0
-    df_with_costs = edited_df[edited_df['Betrag CHF'] > 0].copy()
-    df_with_costs['Betrag formatiert'] = df_with_costs['Betrag CHF'].apply(format_currency)
-
-    st.dataframe(
-        df_with_costs[['eBKP-H Code', 'Beschreibung', 'Menge', 'Einheit', 'Kennwert', 'Pauschalpreis CHF', 'Betrag formatiert']],
-        use_container_width=True,
-        hide_index=True
-    )
-
-st.divider()
-
-# Visualisierungen
-st.subheader("📊 Kostenvisualisierung")
-
-# Nur Positionen mit Betrag > 0 für Visualisierung
-df_viz = edited_df[edited_df['Betrag CHF'] > 0].copy()
-
-if len(df_viz) > 0:
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.markdown("#### Kostenverteilung nach Hauptgruppen")
-
-        # Extrahiere Hauptgruppe (erster Buchstabe des eBKP-H Codes)
-        df_viz['Hauptgruppe'] = df_viz['eBKP-H Code'].astype(str).str[0]
-
-        # Gruppiere nach Hauptgruppe
-        hauptgruppen_kosten = df_viz.groupby('Hauptgruppe')['Betrag CHF'].sum().reset_index()
-        hauptgruppen_kosten = hauptgruppen_kosten.sort_values('Betrag CHF', ascending=False)
-
-        # Erstelle Pie Chart mit plotly
-        import plotly.express as px
-
-        fig_pie = px.pie(
-            hauptgruppen_kosten,
-            values='Betrag CHF',
-            names='Hauptgruppe',
-            title='',
-            color_discrete_sequence=px.colors.qualitative.Set3,
-            hole=0.4  # Donut Chart
+        results_df, summaries = calculate_all_costs(
+            df,
+            kennwerte_df,
+            cost_level=cost_level,
+            quantity_column='Menge',
+            project_areas=project_areas
         )
 
-        fig_pie.update_traces(
-            textposition='inside',
-            textinfo='percent+label',
-            hovertemplate='<b>%{label}</b><br>Betrag: CHF %{value:,.2f}<br>Anteil: %{percent}<extra></extra>'
-        )
+        set_state('cost_results_df', results_df)
+        set_state('cost_summaries', summaries)
 
-        fig_pie.update_layout(
-            showlegend=True,
-            height=400,
-            margin=dict(t=20, b=20, l=20, r=20)
-        )
+    st.success("✅ Berechnung abgeschlossen!")
+    st.rerun()
 
-        st.plotly_chart(fig_pie, use_container_width=True)
+# === Ergebnisse anzeigen ===
+results_df = get_state('cost_results_df')
+summaries = get_state('cost_summaries')
 
-        # Legende mit Beträgen
-        st.caption("**Hauptgruppen-Übersicht:**")
-        for _, row in hauptgruppen_kosten.iterrows():
-            prozent = (row['Betrag CHF'] / hauptgruppen_kosten['Betrag CHF'].sum()) * 100
-            st.caption(f"• **{row['Hauptgruppe']}**: {format_currency(row['Betrag CHF'])} ({prozent:.1f}%)")
-
-    with col2:
-        st.markdown("#### Top 10 teuerste Positionen")
-
-        # Top 10 teuerste Positionen
-        top_10 = df_viz.nlargest(10, 'Betrag CHF')[['eBKP-H Code', 'Beschreibung', 'Betrag CHF']].copy()
-
-        # Kürze lange Beschreibungen für bessere Lesbarkeit
-        top_10['Beschreibung_kurz'] = top_10['Beschreibung'].astype(str).str[:30] + '...'
-        top_10['Label'] = top_10['eBKP-H Code'].astype(str) + ' - ' + top_10['Beschreibung_kurz']
-
-        # Erstelle Bar Chart mit plotly
-        fig_bar = px.bar(
-            top_10,
-            x='Betrag CHF',
-            y='Label',
-            orientation='h',
-            title='',
-            color='Betrag CHF',
-            color_continuous_scale='Blues',
-            text='Betrag CHF'
-        )
-
-        fig_bar.update_traces(
-            texttemplate='CHF %{text:,.0f}',
-            textposition='outside',
-            hovertemplate='<b>%{y}</b><br>Betrag: CHF %{x:,.2f}<extra></extra>'
-        )
-
-        fig_bar.update_layout(
-            showlegend=False,
-            height=400,
-            xaxis_title="Betrag (CHF)",
-            yaxis_title="",
-            yaxis={'categoryorder': 'total ascending'},
-            margin=dict(t=20, b=20, l=20, r=20),
-            coloraxis_showscale=False
-        )
-
-        st.plotly_chart(fig_bar, use_container_width=True)
-
-        # Zusätzliche Info
-        total_top10 = top_10['Betrag CHF'].sum()
-        anteil = (total_top10 / zwischensumme * 100) if zwischensumme > 0 else 0
-        st.caption(f"💡 Die Top 10 Positionen machen **{anteil:.1f}%** der Baukosten aus ({format_currency(total_top10)})")
-
-else:
-    st.info("ℹ️ Keine Kostendaten für Visualisierung vorhanden. Bitte tragen Sie Mengen ein oder geben Sie Pauschalpreise an.")
-
-st.divider()
-
-# Export-Funktionen
-st.subheader("💾 Export")
-
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    # CSV Export
-    csv = edited_df.to_csv(index=False, encoding='utf-8-sig', sep=';', decimal=',')
-    if st.download_button(
-        label="📥 CSV herunterladen",
-        data=csv,
-        file_name="kostenberechnung_ebkp.csv",
-        mime="text/csv",
-        help="Export der Kostenberechnung im CSV-Format",
-        use_container_width=True,
-        key="download_csv"
-    ):
-        st.balloons()
-
-with col2:
-    # Excel Export
-    try:
-        from io import BytesIO
-        import openpyxl
-        from openpyxl.styles import Font, PatternFill, Alignment
-
-        # Erstelle Excel-Datei
-        buffer = BytesIO()
-        with pd.ExcelWriter(buffer, engine='openpyxl') as writer:
-            edited_df.to_excel(writer, sheet_name='Kostenberechnung', index=False)
-
-            # Formatierung
-            workbook = writer.book
-            worksheet = writer.sheets['Kostenberechnung']
-
-            # Header formatieren
-            header_fill = PatternFill(start_color="366092", end_color="366092", fill_type="solid")
-            header_font = Font(bold=True, color="FFFFFF")
-
-            for cell in worksheet[1]:
-                cell.fill = header_fill
-                cell.font = header_font
-                cell.alignment = Alignment(horizontal='center')
-
-            # Spaltenbreiten anpassen
-            worksheet.column_dimensions['A'].width = 15
-            worksheet.column_dimensions['B'].width = 50
-            worksheet.column_dimensions['C'].width = 12
-            worksheet.column_dimensions['D'].width = 12
-            worksheet.column_dimensions['E'].width = 12
-            worksheet.column_dimensions['F'].width = 15
-            worksheet.column_dimensions['G'].width = 15
-            worksheet.column_dimensions['H'].width = 30
-
-        if st.download_button(
-            label="📥 Excel herunterladen",
-            data=buffer.getvalue(),
-            file_name="kostenberechnung_ebkp.xlsx",
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            help="Export der Kostenberechnung im Excel-Format",
-            use_container_width=True,
-            key="download_excel"
-        ):
-            st.balloons()
-    except ImportError:
-        st.info("Excel-Export nicht verfügbar (openpyxl nicht installiert)")
-
-with col3:
-    # PDF Export
-    config_info = get_state(CFG_COST_ESTIMATION_CONFIG)
-    if config_info and not config_info.get('selected'):
-        config_info = None
-
-    # Lade Projektdaten aus Session State
-    projekt_daten = get_state(DATA_PROJEKT_DATEN)
-
-    pdf_buffer = generate_pdf(edited_df, zwischensumme, total_betrag, min_betrag, max_betrag, tolerance, config_info, projekt_daten)
-
-    if pdf_buffer:
-        if st.download_button(
-            label="📄 PDF herunterladen",
-            data=pdf_buffer,
-            file_name="kostenberechnung_ebkp.pdf",
-            mime="application/pdf",
-            help="Export der Kostenberechnung als professionelles PDF-Dokument",
-            use_container_width=True,
-            key="download_pdf"
-        ):
-            st.balloons()
-    else:
-        st.error("PDF-Export nicht verfügbar", icon="❌")
-
-# Speichere bearbeitete Daten im Session State
-if st.button("💾 Kostenberechnung speichern", type="primary", use_container_width=True):
-    st.session_state.cost_calculation = edited_df.copy()
-    st.session_state.cost_summary = {
-        'zwischensumme': zwischensumme,
-        'total': total_betrag,
-        'min': min_betrag,
-        'max': max_betrag,
-        'tolerance': tolerance
-    }
-    st.success("✅ Kostenberechnung wurde gespeichert!")
-    st.balloons()
-
-# Footer
-st.divider()
-st.caption("💡 Hinweis: Diese Kostenberechnung basiert auf Kennwerten und dient als Schätzung. Die tatsächlichen Kosten können abweichen. Das Programm übernimmt keine Haftung für die Genauigkeit der Berechnungen.")
+if results_df is not None and summaries is not None:
+    render_divider("section")
+    render_results_section(results_df, summaries)
+    render_divider("section")
+    render_export_section(results_df, summaries)
 
 # Footer
 render_page_footer()
