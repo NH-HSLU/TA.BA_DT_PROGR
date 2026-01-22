@@ -43,7 +43,11 @@ def validate_paths(project_root):
                error_message ist None wenn alles OK ist
     """
     # Pfade zusammenbauen
-    venv_streamlit = os.path.join(project_root, ".venv", "Scripts", "streamlit.exe")
+    if sys.platform == "win32":                                                           
+        venv_streamlit = os.path.join(project_root, ".venv", "Scripts", "streamlit.exe")  
+    else:                                                                                 
+        # macOS/Linux                                                                     
+        venv_streamlit = os.path.join(project_root, ".venv", "bin", "streamlit")
     streamlit_app = os.path.join(project_root, "Streamlit", "streamlit_app.py")
 
     # Validierung .venv
@@ -143,7 +147,7 @@ def main():
 
     if error_msg:
         # Fehler: Dateien nicht gefunden
-        output.print_md("**L Fehler:** Benötigte Dateien nicht gefunden")
+        output.print_md("**Fehler:** Benötigte Dateien nicht gefunden")
         forms.alert(error_msg, title="Streamlit App - Fehler", warn_icon=True)
         return
 
