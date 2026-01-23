@@ -17,8 +17,8 @@ section { font-size: 30px; }
 
 ![width:150](LOGO.gif)
 
-# eBKP⁺
-eBKP-H Klassifizierung und Ausmass
+# eBKP-H⁺
+eBKP-H Klassifizierung und Kostenermittlung
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
 Ein pyRevit-Plugin von Nicole und Orlando
 
@@ -30,6 +30,27 @@ Ein pyRevit-Plugin von Nicole und Orlando
 - Schnelles, modellbasiertes **Ausmass nach eBKP-H**
   mit Anthropic's [Haiku](https://www.anthropic.com/claude/haiku) KI-Modell
 - Visualisierung und Export mit **Streamlit**
+
+---
+
+## Struktur
+
+
+![width:1000](Simplyfied.png)
+
+---
+
+## Revit
+
+![height:200](pyRevit.png)
+
+---
+
+## Streamlit
+
+![height:200](Kostenermittlung.png)
+
+![width:1000](Klassifizierung.png)
 
 ---
 
@@ -77,15 +98,16 @@ openpyxl        # Verarbeitung von Excel-Dateien (.xlsx).
 - Datenexport mit Schichtaufbau aus Revit
 - Prompt für eBKP-H Kategorisierung > Antwort in **JSON** Format
 - richtige Kostenberechnung mit Kostenkatalog
+- Manuelles Eintragen von Kosten und darstellen in der Auswertung
 
 ---
 
 ## Erfolge
 
 - eBKP-H Kategorisierung mit KI
-- Export aus pyRevit
-- übersichtliche Visualisierung in Streamlit
-- Export Kostenberechnung
+- Export der Elemente mit pyRevit
+- übersichtliche Visualisierungen in Streamlit
+- Export Kostenberechnung als PDF
 
 ---
 
@@ -148,37 +170,39 @@ Kostenberechnung
   ➤ Alle Bauteil-Kategorien in einer Liste Auswerten
 - Claude funktioniert viel besser mit `#TODO Änderung` als reinem umschreiben vom Problem das gelöst werden soll
 - Gute Promts schreiben "Du bist ein Softewareentwickler und machst..."
-- Teilsweise sinnvoll von neuem zu beginnen als der Fehler zu suchen (Kostenberechnung)
+- Teilsweise sinnvoll von neuem zu beginnen als der Fehler zu suchen und probieren zu beheben (Kostenberechnung)
 
 ---
 
 ### Projektziele erreicht
 
-1. Alle Elemente in einer **Excel**-Liste exportieren
+1. Alle Elemente in einer Liste exportieren
+2. Elemente mit **eBKP-H-Code** klassifizieren
 3. **Streamlit**-Dashboard erstellen
-4. Auswertung als **PDF** exportieren
-5. **Kostenberechnung** nach verschiedenen Methoden
+4. **Kostenberechnung** nach verschiedenen Genauigkeiten
+5. Auswertung als **PDF** exportieren
 
 ---
 
 ### Erweiterung vom Projekt
 
-1. Kostenberechnung auf Genauigkeit überprüfen => mit Experten sprechen
-2. ArchiCAD Plugin und IFC kompatibel machen
-3. EXE Datei
+1. Kostenberechnung auf Genauigkeit überprüfen ⇒ mit Experten sprechen
+2. ArchiCAD Plugin erstellen
+3. IFC Einlesen
+4. Projektinformation aus den Projektfiles lesen
+5. Ausführbare Datei erstellen (.exe und .app)
 
 ---
 
 <!-- _header: "" -->
-
 <!-- _footer: "" -->
-
 <!-- _paginate: skip -->
-
 <!-- _class: invert -->
 
-> If a picture is worth a thousand words,
->
-> a prototype is worth a thousand meetings,
+> 
+> Plans are nice and models are better,
+> 
+> but a running app is what actually changes how we build.
+> 
 
-— *Tom & David Kelley, IDEO*
+— *Orlando & Nicole, HSLU*
