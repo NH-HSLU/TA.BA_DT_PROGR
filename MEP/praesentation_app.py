@@ -12,6 +12,7 @@ current_dir = os.path.dirname(__file__)
 sys.path.insert(0, current_dir)
 
 from helpers.presentation_helpers import get_base_css, get_logo_html
+from helpers.pdf_export import generate_presentation_pdf, is_available as pdf_available
 
 # Seitenkonfiguration
 st.set_page_config(
@@ -97,3 +98,22 @@ col1, col2, col3 = st.columns([1, 2, 1])
 with col2:
     if st.button("▶ Präsentation starten", type="primary", use_container_width=True):
         st.switch_page("pages/01_Projektueberblick.py")
+
+# PDF Download Button
+st.markdown("<br>", unsafe_allow_html=True)
+col1, col2, col3 = st.columns([1, 2, 1])
+with col2:
+    if pdf_available():
+        try:
+            pdf_buffer = generate_presentation_pdf(logo_path=logo_dunkel)
+            st.download_button(
+                label="📄 PDF herunterladen",
+                data=pdf_buffer,
+                file_name="MEP_Praesentation_eBKP-H.pdf",
+                mime="application/pdf",
+                use_container_width=True
+            )
+        except Exception as e:
+            st.error(f"PDF-Generierung fehlgeschlagen: {e}")
+    else:
+        st.warning("ReportLab nicht installiert. PDF-Export nicht verfügbar.")

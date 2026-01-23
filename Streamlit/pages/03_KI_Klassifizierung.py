@@ -1294,27 +1294,10 @@ with tab1:
                    - Kategorie, Familie (optional)
 
                 3. **Klassifizierung starten**
-                   - Prüfen Sie die Kosten
-                   - Klicken Sie auf "Starten"
 
                 4. **Ergebnisse exportieren**
                    - Tab "Ergebnisse"
                    - Als CSV herunterladen
-                """)
-
-            with col2:
-                st.markdown("""
-                ### 🧪 Mit Testdaten starten:
-
-                Nutzen Sie die Datei:
-                **`muster_ki_klassifizierung.csv`**
-
-                Diese Datei enthält:
-                - 30 Bauelemente
-                - Verschiedene Kategorien
-                - Ohne BKP-Codes
-
-                Perfekt zum Testen der KI!
                 """)
 
     else:
@@ -1348,7 +1331,7 @@ with tab1:
 
         # Show a preview of the data
         with st.expander("📋 Datenvorschau", expanded=True):
-            st.dataframe(df.head(20), use_container_width=True)
+            st.dataframe(df.head(20), width="stretch")
 
         st.divider()
 
@@ -1407,7 +1390,7 @@ with tab1:
         Nach der Klassifizierung können die Ergebnisse automatisch auf alle Original-Elemente übertragen werden.
         """)
 
-        if st.button("🤖 KI-Klassifizierung starten", type="primary", use_container_width=True):
+        if st.button("🤖 KI-Klassifizierung starten", type="primary", width="stretch"):
             st.warning("⚠️ Die Klassifizierungslogik für vorbereitete Daten wird noch finalisiert.")
             st.info("""
             **Nächste Schritte:**

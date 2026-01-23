@@ -45,6 +45,7 @@ class BauherrInfo:
     """Repräsentiert den Bauherr (Auftraggeber) eines Projekts."""
 
     name: str
+    kontaktperson: str
     adresse: str
     plz_ort: str
 
@@ -128,6 +129,7 @@ def render_form() -> None:
     default_objekt_plz = existing_data.objekt.plz_ort if existing_data else ""
 
     default_bauherr_name = existing_data.bauherr.name if existing_data else ""
+    default_bauherr_kontakt = existing_data.bauherr.kontaktperson if existing_data else ""
     default_bauherr_adresse = existing_data.bauherr.adresse if existing_data else ""
     default_bauherr_plz = existing_data.bauherr.plz_ort if existing_data else ""
 
@@ -139,67 +141,77 @@ def render_form() -> None:
     # Verwendung eines Formulars sorgt dafür, dass die App nur
     # beim Klick auf den Submit-Button neu berechnet wird.
     with st.form("projekt_formular"):
-        st.subheader("Objekt")
-        objekt_projektname = st.text_input(
-            "Projektname",
-            value=default_projektname,
-            placeholder="MFH Schönenberg, Sanierung 2026",
-        )
-        objekt_adresse = st.text_input(
-            "Objektadresse",
-            value=default_objekt_adresse,
-            placeholder="Strasse, Nummer",
-        )
-        objekt_PLZ = st.text_input(
-            "Postleitzahl und Ort",
-            value=default_objekt_plz,
-            placeholder="PLZ Ort",
-        )
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            with st.container(border=True):
+                st.subheader("Objekt")
+                objekt_projektname = st.text_input(
+                    "Projektname",
+                    value=default_projektname,
+                    placeholder="MFH Schönenberg, Sanierung 2026",
+                )
+                objekt_adresse = st.text_input(
+                    "Objektadresse",
+                    value=default_objekt_adresse,
+                    placeholder="Strasse, Nummer",
+                )
+                objekt_PLZ = st.text_input(
+                    "Postleitzahl und Ort",
+                    value=default_objekt_plz,
+                    placeholder="PLZ Ort",
+                )
+            # Formular-Submit-Button - Text ändert sich je nachdem ob Daten vorhanden sind
+            button_text = "Projektdaten aktualisieren" if existing_data else "Projektdaten speichern"
+            submitted = st.form_submit_button(button_text)
+        with col2:
+            with st.container(border=True):
+                st.subheader("Bauherr")
+                bauherr_name = st.text_input(
+                    "Name des Bauherrn / Anschrift",
+                    value=default_bauherr_name,
+                placeholder="Firma / Privatperson",
+                )
+                bauherr_kontakt = st.text_input(
+                    "Kontaktperson",
+                    value=default_bauherr_kontakt,
+                    placeholder="Max Mustermann",
+                )
+                bauherr_adresse = st.text_input(
+                    "Adresse des Bauherrn",
+                    value=default_bauherr_adresse,
+                    placeholder="Strasse, Nummer",
+                )
+                bauherr_PLZ = st.text_input(
+                    "Postleitzahl und Ort",
+                    value=default_bauherr_plz,
+                    placeholder="PLZ Ort",
+                    key="bauherr_plz_input",
+                )
+        with col3:
+            with st.container(border=True):
+                st.subheader("Baumanagement")
+                bm_firma = st.text_input(
+                    "Baumanagement-Firma",
+                    value=default_bm_firma,
+                    placeholder="Baumanagement AG",
+                )
+                bm_kontakt = st.text_input(
+                    "Kontaktperson",
+                    value=default_bm_kontakt,
+                    placeholder="Max Muster",
+                )
+                bm_adresse = st.text_input(
+                    "Adresse Baumanagement",
+                    value=default_bm_adresse,
+                    placeholder="Strasse, Nummer",
+                )
+                bm_PLZ = st.text_input(
+                    "Postleitzahl und Ort",
+                    value=default_bm_plz,
+                    placeholder="PLZ Ort",
+                    key="baumanagement_plz_input",
+                )
 
-        st.subheader("Bauherr")
-        bauherr_name = st.text_input(
-            "Name des Bauherrn",
-            value=default_bauherr_name,
-            placeholder="Firma / Privatperson",
-        )
-        bauherr_adresse = st.text_input(
-            "Adresse des Bauherrn",
-            value=default_bauherr_adresse,
-            placeholder="Strasse, Nummer",
-        )
-        bauherr_PLZ = st.text_input(
-            "Postleitzahl und Ort",
-            value=default_bauherr_plz,
-            placeholder="PLZ Ort",
-            key="bauherr_plz_input",
-        )
-
-        st.subheader("Baumanagement")
-        bm_firma = st.text_input(
-            "Baumanagement-Firma",
-            value=default_bm_firma,
-            placeholder="Baumanagement AG",
-        )
-        bm_kontakt = st.text_input(
-            "Kontaktperson",
-            value=default_bm_kontakt,
-            placeholder="Max Muster",
-        )
-        bm_adresse = st.text_input(
-            "Adresse Baumanagement",
-            value=default_bm_adresse,
-            placeholder="Strasse, PLZ Ort",
-        )
-        bm_PLZ = st.text_input(
-            "Postleitzahl und Ort",
-            value=default_bm_plz,
-            placeholder="PLZ Ort",
-            key="baumanagement_plz_input",
-        )
-
-        # Formular-Submit-Button - Text ändert sich je nachdem ob Daten vorhanden sind
-        button_text = "Projektdaten aktualisieren" if existing_data else "Projektdaten speichern"
-        submitted = st.form_submit_button(button_text)
 
     if submitted:
         # Prüfe ob es ein Update ist (vor dem Speichern!)
@@ -213,6 +225,7 @@ def render_form() -> None:
         )
         bauherr_info = BauherrInfo(
             name=bauherr_name.strip(),
+            kontaktperson=bauherr_kontakt.strip(),
             adresse=bauherr_adresse.strip(),
             plz_ort=bauherr_PLZ.strip(),
         )
@@ -242,32 +255,7 @@ def render_form() -> None:
             st.success("Projektdaten wurden gespeichert.")
 
 
-def render_preview_and_download() -> None:
-    """
-    Zeigt eine Vorschau der aktuell gespeicherten Projektdaten
-    und bietet einen JSON-Download an.
-    """
-    st.header("Vorschau & Export")
 
-    # Zentrale get_state Funktion verwenden
-    projekt_daten: ProjektDaten | None = get_state(DATA_PROJEKT_DATEN)
-
-    if projekt_daten is None:
-        st.info("Noch keine Projektdaten erfasst. Bitte Formular ausfüllen.")
-        return
-
-    # Strukturierte Vorschau als JSON-Viewer
-    st.subheader("Strukturierte Daten (JSON-Vorschau)")
-    json_string = serialize_to_json(projekt_daten)
-    st.json(json.loads(json_string))
-
-    # Download-Button für JSON-Datei
-    st.download_button(
-        label="Daten als JSON herunterladen",
-        data=json_string,
-        file_name="projektdaten.json",
-        mime="application/json",
-    )
 
 
 def main() -> None:
@@ -291,10 +279,8 @@ def main() -> None:
     render_divider("gradient")
 
     render_form()
-    render_divider("section")
-    render_preview_and_download()
 
-    # Footer rendern
+      # Footer rendern
     render_page_footer()
 
 

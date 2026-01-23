@@ -109,11 +109,12 @@ st.markdown("""
     border: 2px solid #00cc00;
     box-shadow: 0 0 15px rgba(0,204,0,0.3);
 }
-.cost-card-level-1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
-.cost-card-level-2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; }
-.cost-card-level-3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; }
-.cost-card-level-4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white; }
-.cost-card-level-5 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white; }
+
+.cost-card-level-1 { background: linear-gradient(135deg, #3b4ea3 0%, #543474 100%); color: white; }
+.cost-card-level-2 { background: linear-gradient(135deg, #9c57a3 0%, #a33443 100%); color: white; }
+.cost-card-level-3 { background: linear-gradient(135deg, #397bb6 0%, #00bbc5 100%); color: white; }
+.cost-card-level-4 { background: linear-gradient(135deg, #32af5c 0%, #2ab69c 100%); color: white; }
+.cost-card-level-5 { background: linear-gradient(135deg, #a13f5d 0%, #af9b28 100%); color: white; }
 .cost-card-level-6 { background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); color: white; }
 .card-title { font-size: 0.95rem; font-weight: bold; margin-bottom: 0.3rem; }
 .card-tolerance { font-size: 0.85rem; font-weight: bold; margin: 0.2rem 0; }

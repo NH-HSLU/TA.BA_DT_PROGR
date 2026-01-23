@@ -103,5 +103,5 @@ else:
 st.markdown("<br>", unsafe_allow_html=True)
 
 # Start-Button
-if st.button("Start", type="primary", use_container_width=True):
+if st.button("Start", type="primary", width="stretch"):
    st.switch_page("pages/00_Dashboard.py")

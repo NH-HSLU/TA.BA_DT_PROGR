@@ -317,7 +317,7 @@ def render_slide_navigation(current_slide: int, total_slides: int = 12):
 
     with col1:
         if current_slide > 1:
-            if st.button("← Zurück", key="nav_prev", use_container_width=True):
+            if st.button("← Zurück", key="nav_prev", width="stretch"):
                 prev_slide = SLIDES[current_slide - 2][0]
                 if current_slide == 2:
                     st.switch_page("praesentation_app.py")
@@ -333,7 +333,7 @@ def render_slide_navigation(current_slide: int, total_slides: int = 12):
 
     with col3:
         if current_slide < total_slides:
-            if st.button("Weiter →", key="nav_next", use_container_width=True):
+            if st.button("Weiter →", key="nav_next", width="stretch"):
                 next_slide = SLIDES[current_slide][0]
                 st.switch_page(f"pages/{next_slide}.py")
 
