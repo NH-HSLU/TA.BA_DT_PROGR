@@ -1348,9 +1348,9 @@ def create_pdf_cost_summary_table(summaries: Dict[str, float], tolerance: int = 
 
 def create_pdf_detail_table(results_df: pd.DataFrame) -> Tuple[Table, int]:
     """
-    Erzeugt eine detaillierte Kostenberechnung-Tabelle mit aggregierten Positionen.
+    Erzeugt eine Kostenübersicht-Tabelle aggregiert nach Hauptgruppen.
 
-    Jeder eBKP-H Code erscheint nur einmal mit summierten Mengen und Kosten.
+    Alle Untergruppen werden in die jeweilige Hauptgruppe zusammengerechnet.
 
     Args:
         results_df: DataFrame mit Spalten:
@@ -1358,15 +1358,15 @@ def create_pdf_detail_table(results_df: pd.DataFrame) -> Tuple[Table, int]:
                   'Einzelkosten', 'Match_Level']
 
     Returns:
-        Tuple aus (Table-Objekt, Anzahl eindeutige Positionen mit Kosten)
+        Tuple aus (Table-Objekt, Anzahl Hauptgruppen mit Kosten)
     """
     # Filtere nur Positionen mit Einzelkosten > 0
     df_with_costs = results_df[results_df.get("Einzelkosten", pd.Series([0])) > 0].copy()
 
     if df_with_costs.empty:
         # Leere Tabelle zurückgeben
-        table_data = [["eBKP-H", "Beschreibung", "Kosten CHF"]]
-        table = Table(table_data, colWidths=[2 * cm, 8 * cm, 6.5 * cm])
+        table_data = [["Hauptgruppe", "Beschreibung", "Kosten CHF"]]
+        table = Table(table_data, colWidths=[2.5 * cm, 9 * cm, 7 * cm])
         table.setStyle(TableStyle([
             ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor(COLOR_SECONDARY_HEADER)),
             ("TEXTCOLOR", (0, 0), (-1, 0), colors.whitesmoke),
@@ -1374,53 +1374,48 @@ def create_pdf_detail_table(results_df: pd.DataFrame) -> Tuple[Table, int]:
         ]))
         return table, 0
 
-    # === AGGREGATION: Gruppiere nach BKP_Code ===
-    # Für jede Position: Summiere Menge und Einzelkosten, behalte erste Beschreibung/Einheit
-    aggregated = df_with_costs.groupby('BKP_Code', as_index=False).agg({
-        'BKP_Beschreibung': 'first',
-        'Menge': 'sum',
-        'Einheit_Kennwert': 'first',
-        'Einzelkosten': 'sum',
-        'Match_Level': 'first'
+    # === AGGREGATION: Gruppiere nach Hauptgruppe (erster Buchstabe) ===
+    df_with_costs['Hauptgruppe'] = df_with_costs['BKP_Code'].apply(
+        lambda x: str(x)[0].upper() if pd.notna(x) and x else 'X'
+    )
+
+    # Aggregiere nach Hauptgruppe
+    aggregated = df_with_costs.groupby('Hauptgruppe', as_index=False).agg({
+        'Einzelkosten': 'sum'
     })
 
-    # Sortiere nach BKP_Code
-    aggregated = aggregated.sort_values('BKP_Code').reset_index(drop=True)
+    # Sortiere nach Hauptgruppe
+    aggregated = aggregated.sort_values('Hauptgruppe').reset_index(drop=True)
 
     # Tabellenheader
     table_data = [
         [
-            "eBKP-H",
+            "Hauptgruppe",
             "Beschreibung",
-            # "Menge",
-            # "Einheit",
             "Kosten CHF",
         ]
     ]
 
-    # Datenzellen aus aggregierten Daten
+    # Datenzellen aus aggregierten Hauptgruppen
     for _, row in aggregated.iterrows():
-        # Beschreibung kürzen falls zu lang
-        beschreibung = str(row.get("BKP_Beschreibung", ""))[:50]
+        hauptgruppe = row['Hauptgruppe']
 
-        # menge = f"{row.get('Menge', 0):.2f}".rstrip("0").rstrip(".")
-        # einheit = str(row.get("Einheit_Kennwert", ""))[:15]
+        # Beschreibung aus EBKP_MAIN_GROUPS holen
+        beschreibung = EBKP_MAIN_GROUPS.get(hauptgruppe, 'Unbekannt')
         kosten = format_currency(row.get("Einzelkosten", 0))
 
         table_data.append(
             [
-                str(row.get("BKP_Code", ""))[:10],
+                hauptgruppe,
                 beschreibung,
-                # menge,
-                # einheit,
                 kosten,
             ]
         )
 
-    # Tabelle mit optimalen Spaltenbreiten (5 Spalten ohne Match)
+    # Tabelle mit optimalen Spaltenbreiten
     table = Table(
         table_data,
-        colWidths=[2 * cm, 8 * cm, 6.5 * cm],
+        colWidths=[2.5 * cm, 9 * cm, 7 * cm],
     )
 
     # Stil für Zeilen-Alternation
@@ -1434,11 +1429,11 @@ def create_pdf_detail_table(results_df: pd.DataFrame) -> Tuple[Table, int]:
         ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor(COLOR_SECONDARY_HEADER)),
         ("TEXTCOLOR", (0, 0), (-1, 0), colors.whitesmoke),
         ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
-        ("FONTSIZE", (0, 0), (-1, 0), 9),
+        ("FONTSIZE", (0, 0), (-1, 0), 10),
         ("ALIGN", (0, 0), (-1, 0), "CENTER"),
         ("VALIGN", (0, 0), (-1, 0), "MIDDLE"),
-        ("BOTTOMPADDING", (0, 0), (-1, 0), 8),
-        ("TOPPADDING", (0, 0), (-1, 0), 8),
+        ("BOTTOMPADDING", (0, 0), (-1, 0), 10),
+        ("TOPPADDING", (0, 0), (-1, 0), 10),
     ]
 
     # Zeilen-Alternation
@@ -1453,18 +1448,16 @@ def create_pdf_detail_table(results_df: pd.DataFrame) -> Tuple[Table, int]:
         [
             ("TEXTCOLOR", (0, 1), (-1, -1), colors.HexColor(COLOR_TEXT_DARK)),
             ("FONTNAME", (0, 1), (-1, -1), "Helvetica"),
-            ("FONTSIZE", (0, 1), (-1, -1), 8),
+            ("FONTSIZE", (0, 1), (-1, -1), 10),
             # Ausrichtung für Spalten
-            ("ALIGN", (0, 1), (0, -1), "CENTER"),   # Code
+            ("ALIGN", (0, 1), (0, -1), "CENTER"),   # Hauptgruppe
             ("ALIGN", (1, 1), (1, -1), "LEFT"),     # Beschreibung
-            ("ALIGN", (2, 1), (2, -1), "RIGHT"),    # Menge
-            ("ALIGN", (3, 1), (3, -1), "CENTER"),   # Einheit
-            ("ALIGN", (4, 1), (4, -1), "RIGHT"),    # Kosten
+            ("ALIGN", (2, 1), (2, -1), "RIGHT"),    # Kosten
             ("VALIGN", (0, 1), (-1, -1), "MIDDLE"),
-            ("LEFTPADDING", (0, 0), (-1, -1), 6),
-            ("RIGHTPADDING", (0, 0), (-1, -1), 6),
-            ("TOPPADDING", (0, 0), (-1, -1), 5),
-            ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
+            ("LEFTPADDING", (0, 0), (-1, -1), 8),
+            ("RIGHTPADDING", (0, 0), (-1, -1), 8),
+            ("TOPPADDING", (0, 0), (-1, -1), 8),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 8),
         ]
     )
 
