@@ -24,6 +24,7 @@ DATA_PROJEKT_DATEN = 'projekt_daten'                   # ProjektDaten object
 DATA_COST_RESULTS = 'cost_results_df'                  # pd.DataFrame mit Kostenberechnung
 DATA_COST_SUMMARIES = 'cost_summaries'                 # Dict mit Kostenzusammenfassungen
 DATA_CUSTOM_KENNWERTE = 'custom_kennwerte'             # pd.DataFrame mit benutzerdefinierten Kennwerten
+DATA_MANUAL_COSTS = 'manual_costs'                     # Dict für manuelle Kosteneingaben (A, B, V, W, Y, Z)
 CFG_USE_CUSTOM_KENNWERTE = 'use_custom_kennwerte'      # bool: Eigene Kennwerte verwenden
 
 # Processing States
@@ -64,6 +65,7 @@ def init_session_state() -> None:
         DATA_COST_RESULTS: None,
         DATA_COST_SUMMARIES: None,
         DATA_CUSTOM_KENNWERTE: None,
+        DATA_MANUAL_COSTS: {},
         CFG_USE_CUSTOM_KENNWERTE: False,
 
         # Processing States

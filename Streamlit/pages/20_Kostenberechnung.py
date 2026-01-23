@@ -66,6 +66,7 @@ try:
         CFG_COST_ESTIMATION_CONFIG,
         DATA_PROJEKT_DATEN,
         DATA_CUSTOM_KENNWERTE,
+        DATA_MANUAL_COSTS,
         CFG_USE_CUSTOM_KENNWERTE,
         has_classification_results
     )
@@ -712,6 +713,296 @@ def render_quantity_input_section(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def render_manual_cost_section() -> Dict[str, Dict]:
+    """
+    UI-Bereich für manuelle Kosteneingabe der Hauptgruppen A, B, V, W, Y, Z.
+
+    Diese Hauptgruppen sind typischerweise bereits bekannte Kosten, die nicht
+    aus BIM-Elementen abgeleitet werden (Grundstück, Planungskosten, Reserven).
+
+    Returns:
+        Dict mit manuellen Kosteneinträgen
+    """
+    st.subheader("💰 Bekannte Kosten nachtragen")
+
+    st.info("""
+    **Hinweis:** Hier können Sie bereits bekannte Kosten für folgende Hauptgruppen eintragen:
+    - **A** - Grundstück (Landkosten, Baurecht)
+    - **B** - Vorbereitungsarbeiten (Baustelleneinrichtung, Aushub)
+    - **V** - Planungskosten (Architekten, Ingenieure)
+    - **W** - Nebenkosten zur Erstellung (Bewilligungen, Versicherungen)
+    - **Y** - Reserve, Teuerung
+    - **Z** - Mehrwertsteuer
+    """)
+
+    # Hole aktuelle manuelle Kosten aus Session State
+    manual_costs = get_state(DATA_MANUAL_COSTS, {})
+
+    # Initialisiere falls leer
+    default_structure = {
+        'A': {'enabled': False, 'amount': 0.0, 'description': ''},
+        'B': {'enabled': False, 'amount': 0.0, 'description': ''},
+        'V': {'enabled': False, 'amount': 0.0, 'is_percentage': False, 'percentage': 0.0, 'description': ''},
+        'W': {'enabled': False, 'amount': 0.0, 'is_percentage': False, 'percentage': 0.0, 'description': ''},
+        'Y': {'enabled': False, 'amount': 0.0, 'description': ''},
+        'Z': {'enabled': False, 'amount': 0.0, 'is_percentage': False, 'percentage': 8.1, 'description': ''},
+    }
+
+    for key, default in default_structure.items():
+        if key not in manual_costs:
+            manual_costs[key] = default.copy()
+
+    # Gruppenbeschreibungen
+    group_info = {
+        'A': {'name': 'Grundstück', 'help': 'Landkosten, Baurecht, Nebenkosten Grundstück', 'type': 'absolute'},
+        'B': {'name': 'Vorbereitungsarbeiten', 'help': 'Baustelleneinrichtung, Aushub, Gerüst', 'type': 'absolute'},
+        'V': {'name': 'Planungskosten', 'help': 'Architekten, Ingenieure, Berater', 'type': 'percentage_or_absolute'},
+        'W': {'name': 'Nebenkosten', 'help': 'Bewilligungen, Versicherungen, Finanzierung', 'type': 'percentage_or_absolute'},
+        'Y': {'name': 'Reserve/Teuerung', 'help': 'Unvorhergesehenes, Preissteigerung', 'type': 'absolute'},
+        'Z': {'name': 'Mehrwertsteuer', 'help': 'MWST auf gesamte Projektkosten (Standard: 8.1%)', 'type': 'percentage_total'},
+    }
+
+    # Erstelle Eingabefelder in Expandern
+    for group_code in ['A', 'B', 'V', 'W', 'Y', 'Z']:
+        info = group_info[group_code]
+        current = manual_costs.get(group_code, {'enabled': False, 'amount': 0.0})
+
+        # Expander-Label mit aktuellem Betrag falls aktiviert
+        expander_label = f"**{group_code}** - {info['name']}"
+        if current.get('enabled') and current.get('amount', 0) > 0:
+            expander_label += f" ({format_currency(current.get('amount', 0.0))})"
+        elif current.get('enabled') and current.get('is_percentage') and current.get('percentage', 0) > 0:
+            expander_label += f" ({current.get('percentage', 0):.1f}%)"
+
+        with st.expander(expander_label, expanded=current.get('enabled', False)):
+            # Checkbox zum Aktivieren
+            enabled = st.checkbox(
+                f"Kosten für {info['name']} manuell eingeben",
+                value=current.get('enabled', False),
+                key=f'manual_{group_code}_enabled',
+                help=info['help']
+            )
+
+            if enabled:
+                # Für V und W: Auswahl zwischen absolut und prozentual
+                if info['type'] == 'percentage_or_absolute':
+                    col_type, col_input = st.columns([1, 2])
+
+                    with col_type:
+                        is_percentage = st.radio(
+                            "Eingabeart",
+                            options=[False, True],
+                            format_func=lambda x: "% der Bauwerkskosten" if x else "Betrag in CHF",
+                            index=1 if current.get('is_percentage', False) else 0,
+                            key=f'manual_{group_code}_type',
+                        )
+
+                    with col_input:
+                        if is_percentage:
+                            percentage = st.number_input(
+                                f"Prozentsatz für {info['name']}",
+                                min_value=0.0,
+                                max_value=100.0,
+                                value=float(current.get('percentage', 0.0)),
+                                step=0.5,
+                                format="%.1f",
+                                key=f'manual_{group_code}_percentage',
+                                help="Wird auf die Bauwerkskosten (C+D+E+F+G) angewendet"
+                            )
+                            # Speichere Prozentsatz - Betrag wird bei Berechnung ermittelt
+                            manual_costs[group_code] = {
+                                'enabled': True,
+                                'amount': 0.0,
+                                'is_percentage': True,
+                                'percentage': percentage,
+                                'description': f'Manuell: {percentage}% der Bauwerkskosten'
+                            }
+                        else:
+                            amount = st.number_input(
+                                f"Betrag für {info['name']} (CHF)",
+                                min_value=0.0,
+                                value=float(current.get('amount', 0.0)),
+                                step=1000.0,
+                                format="%.2f",
+                                key=f'manual_{group_code}_amount'
+                            )
+                            description = st.text_input(
+                                "Bemerkung",
+                                value=current.get('description', '') if not current.get('description', '').startswith('Manuell:') else '',
+                                key=f'manual_{group_code}_desc',
+                                placeholder="z.B. Gemäss Kostenvoranschlag"
+                            )
+                            manual_costs[group_code] = {
+                                'enabled': True,
+                                'amount': amount,
+                                'is_percentage': False,
+                                'percentage': 0.0,
+                                'description': description if description else 'Manuell eingegeben'
+                            }
+                elif info['type'] == 'percentage_total':
+                    # Z (Mehrwertsteuer): Immer Prozentsatz auf gesamte Projektkosten
+                    percentage = st.number_input(
+                        f"MWST-Satz (%)",
+                        min_value=0.0,
+                        max_value=100.0,
+                        value=float(current.get('percentage', 8.1)),
+                        step=0.1,
+                        format="%.1f",
+                        key=f'manual_{group_code}_percentage',
+                        help="Wird auf die Erstellungskosten (A-W ohne Z) angewendet"
+                    )
+                    manual_costs[group_code] = {
+                        'enabled': True,
+                        'amount': 0.0,
+                        'is_percentage': True,
+                        'percentage': percentage,
+                        'description': f'MWST {percentage}%'
+                    }
+                else:
+                    # Absolute Eingabe (A, B, Y)
+                    col1, col2 = st.columns([2, 1])
+                    with col1:
+                        amount = st.number_input(
+                            f"Betrag für {info['name']} (CHF)",
+                            min_value=0.0,
+                            value=float(current.get('amount', 0.0)),
+                            step=1000.0,
+                            format="%.2f",
+                            key=f'manual_{group_code}_amount'
+                        )
+                    with col2:
+                        description = st.text_input(
+                            "Bemerkung",
+                            value=current.get('description', ''),
+                            key=f'manual_{group_code}_desc',
+                            placeholder="z.B. Gemäss Offerte"
+                        )
+                    manual_costs[group_code] = {
+                        'enabled': True,
+                        'amount': amount,
+                        'description': description if description else 'Manuell eingegeben'
+                    }
+            else:
+                # Deaktiviert - setze auf Standardwerte
+                manual_costs[group_code] = default_structure[group_code].copy()
+
+    # Speichere in Session State
+    set_state(DATA_MANUAL_COSTS, manual_costs)
+
+    # Zeige Zusammenfassung der manuellen Kosten
+    enabled_costs = [
+        (code, entry) for code, entry in manual_costs.items()
+        if entry.get('enabled')
+    ]
+
+    if enabled_costs:
+        total_absolute = sum(
+            entry.get('amount', 0.0)
+            for _, entry in enabled_costs
+            if not entry.get('is_percentage')
+        )
+        percentage_entries = [
+            (code, entry.get('percentage', 0))
+            for code, entry in enabled_costs
+            if entry.get('is_percentage')
+        ]
+
+        summary_parts = []
+        if total_absolute > 0:
+            summary_parts.append(f"**Summe Beträge:** {format_currency(total_absolute)}")
+        if percentage_entries:
+            pct_str = ", ".join([f"{code}: {pct:.1f}%" for code, pct in percentage_entries])
+            summary_parts.append(f"**Prozentsätze:** {pct_str}")
+
+        if summary_parts:
+            st.success(" | ".join(summary_parts))
+
+    return manual_costs
+
+
+def inject_manual_costs_to_dataframe(
+    df: pd.DataFrame,
+    manual_costs: Dict[str, Dict],
+    reference_costs: Optional[Dict[str, float]] = None,
+    clear_previous: bool = True
+) -> pd.DataFrame:
+    """
+    Fügt manuelle Kosten als synthetische Zeilen zum DataFrame hinzu.
+
+    Args:
+        df: Original DataFrame mit klassifizierten Elementen
+        manual_costs: Dict mit manuellen Kosteneinträgen
+        reference_costs: Referenzkosten für Prozentberechnung (V, W, Z)
+        clear_previous: Wenn True, werden vorherige manuelle Einträge entfernt
+
+    Returns:
+        DataFrame mit zusätzlichen manuellen Kostenzeilen
+    """
+    df = df.copy()
+
+    # Entferne vorherige manuelle Einträge (falls gewünscht)
+    if clear_previous and '_is_manual' in df.columns:
+        df = df[~df['_is_manual'].fillna(False)].copy()
+
+    # Erstelle synthetische Zeilen für aktivierte manuelle Kosten
+    synthetic_rows = []
+
+    for group_code, entry in manual_costs.items():
+        if not entry.get('enabled'):
+            continue
+
+        # Berechne Betrag (Prozent oder absolut)
+        if entry.get('is_percentage') and reference_costs:
+            if group_code == 'Z':
+                # Z (MWST): Prozent auf Erstellungskosten (alles ausser Z)
+                base = reference_costs.get('erstellungskosten_ohne_z', 0)
+                percentage = entry.get('percentage', 8.1)
+                amount = base * (percentage / 100)
+                description = f"{EBKP_MAIN_GROUPS.get(group_code, group_code)} - {percentage}% von {format_currency(base)}"
+            else:
+                # V, W: Prozent auf Bauwerkskosten
+                base = reference_costs.get('bauwerkskosten', 0)
+                percentage = entry.get('percentage', 0)
+                amount = base * (percentage / 100)
+                description = f"{EBKP_MAIN_GROUPS.get(group_code, group_code)} - Manuell: {percentage}% von {format_currency(base)}"
+        else:
+            amount = entry.get('amount', 0.0)
+            desc_suffix = entry.get('description', 'Manuell eingegeben')
+            description = f"{EBKP_MAIN_GROUPS.get(group_code, group_code)} - {desc_suffix}"
+
+        if amount > 0:
+            synthetic_row = {
+                'BKP_Code': group_code,
+                'BKP_Beschreibung': description,
+                'Menge': 1.0,
+                'Einheit': 'Pauschal',
+                'Einzelkosten': amount,
+                'Berechnungsart': 'manual',
+                'Matched_Code': group_code,
+                'Match_Level': 'manual',
+                'Einheit_Kennwert': 'Pauschal',
+                '_is_manual': True
+            }
+            synthetic_rows.append(synthetic_row)
+
+    # Füge synthetische Zeilen hinzu
+    if synthetic_rows:
+        synthetic_df = pd.DataFrame(synthetic_rows)
+
+        # Stelle sicher dass alle Spalten vorhanden sind
+        for col in df.columns:
+            if col not in synthetic_df.columns:
+                synthetic_df[col] = None
+
+        for col in synthetic_df.columns:
+            if col not in df.columns:
+                df[col] = None
+
+        df = pd.concat([df, synthetic_df], ignore_index=True)
+
+    return df
+
+
 def render_results_section(results_df: pd.DataFrame, summaries: Dict[str, float]):
     """Zeigt Berechnungsergebnisse an."""
     st.subheader("📊 Ergebnisse")
@@ -788,10 +1079,16 @@ def render_results_section(results_df: pd.DataFrame, summaries: Dict[str, float]
         # else:
         #     badge = ""
 
+        # Prüfe ob manuelle Einträge vorhanden
+        has_manual = 'Match_Level' in hg_df.columns and (hg_df['Match_Level'] == 'manual').any()
+
         with st.expander(
-            f"**{hg}** - {hg_name}: {format_currency(hg_total)} ({hg_count} Positionen)",
+            f"**{hg}** - {hg_name}: {format_currency(hg_total)} ({hg_count} Positionen)" + (" 📝" if has_manual else ""),
             expanded=False
         ):
+            if has_manual:
+                st.caption("📝 Enthält manuell eingegebene Kosten")
+
             display_cols = ['BKP_Code', 'BKP_Beschreibung', 'Menge', 'Matched_Code', 'Match_Level', 'Einzelkosten']
             display_cols = [c for c in display_cols if c in hg_df.columns]
 
@@ -802,7 +1099,10 @@ def render_results_section(results_df: pd.DataFrame, summaries: Dict[str, float]
                         'Kosten CHF',
                         format="%.2f"
                     ),
-                    'Match_Level': st.column_config.TextColumn('Lookup'),
+                    'Match_Level': st.column_config.TextColumn(
+                        'Lookup',
+                        help="'manual' = Manuell eingegeben"
+                    ),
                 },
                 hide_index=True
             )
@@ -1634,6 +1934,11 @@ df = render_quantity_input_section(df)
 
 render_divider("section")
 
+# === Manuelle Kosten ===
+manual_costs = render_manual_cost_section()
+
+render_divider("section")
+
 # === Berechnung ===
 st.subheader("🧮 Berechnung")
 
@@ -1646,7 +1951,9 @@ else:
 if st.button("💵 Kosten berechnen", type="primary", width="stretch"):
     with st.spinner("Berechne Kosten mit hierarchischem Lookup..."):
         project_areas = get_state('project_areas')
+        manual_costs_data = get_state(DATA_MANUAL_COSTS, {})
 
+        # Pass 1: Berechne Basiskosten (BIM-Elemente)
         results_df, summaries = calculate_all_costs(
             df,
             kennwerte_df,
@@ -1654,6 +1961,52 @@ if st.button("💵 Kosten berechnen", type="primary", width="stretch"):
             quantity_column='Menge',
             project_areas=project_areas
         )
+
+        # Pass 2: Referenzkosten für Prozentberechnung (V, W)
+        reference_costs = {
+            'bauwerkskosten': summaries.get('bauwerkskosten', 0),
+            'erstellungskosten_basis': (
+                summaries.get('bauwerkskosten', 0) +
+                calculate_cost_hierarchy_sum(results_df, ['B', 'H', 'I', 'J'])
+            ),
+        }
+
+        # Pass 3: Manuelle Kosten injizieren (ohne Z, da Z auf Gesamtkosten basiert)
+        manual_costs_ohne_z = {k: v for k, v in manual_costs_data.items() if k != 'Z'}
+        results_df = inject_manual_costs_to_dataframe(
+            results_df,
+            manual_costs_ohne_z,
+            reference_costs,
+            clear_previous=True
+        )
+
+        # Pass 4: Erstellungskosten ohne Z berechnen (Basis für MWST)
+        erstellungskosten_ohne_z = calculate_cost_hierarchy_sum(
+            results_df, ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'V', 'W', 'Y']
+        )
+
+        # Pass 5: Z (MWST) injizieren basierend auf Erstellungskosten
+        reference_costs['erstellungskosten_ohne_z'] = erstellungskosten_ohne_z
+        z_entry = manual_costs_data.get('Z', {'enabled': False})
+        if z_entry.get('enabled'):
+            results_df = inject_manual_costs_to_dataframe(
+                results_df,
+                {'Z': z_entry},
+                reference_costs,
+                clear_previous=False
+            )
+
+        # Pass 6: Summen neu berechnen mit allen manuellen Kosten
+        summaries = {
+            'bauwerkskosten': calculate_cost_hierarchy_sum(results_df, ['C', 'D', 'E', 'F', 'G']),
+            'erstellungskosten': calculate_cost_hierarchy_sum(
+                results_df, ['B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'V', 'W']
+            ),
+            'anlagekosten': calculate_cost_hierarchy_sum(
+                results_df, ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'V', 'W', 'Y', 'Z']
+            ),
+            'total': results_df['Einzelkosten'].sum() if 'Einzelkosten' in results_df.columns else 0
+        }
 
         set_state('cost_results_df', results_df)
         set_state('cost_summaries', summaries)
