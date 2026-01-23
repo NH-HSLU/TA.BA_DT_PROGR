@@ -154,8 +154,7 @@ Kostenberechnung
 
 ### Projektziele erreicht
 
-1. Alle Elemente in einer **Excel**-Liste exportieren~
-2. Elemente mit **BKP** klassifizieren
+1. Alle Elemente in einer **Excel**-Liste exportieren
 3. **Streamlit**-Dashboard erstellen
 4. Auswertung als **PDF** exportieren
 5. **Kostenberechnung** nach verschiedenen Methoden
