@@ -1112,33 +1112,20 @@ def render_export_section(results_df: pd.DataFrame, summaries: Dict[str, float])
     """Export-Optionen."""
     st.subheader("📤 Export")
 
-    col1, col2 = st.columns(2)
-
-    with col1:
-        # CSV Export
-        csv = results_df.to_csv(index=False, sep=';', encoding='utf-8-sig')
-        st.download_button(
-            "📄 CSV herunterladen",
-            data=csv,
-            file_name=f"Kostenberechnung_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
-            mime="text/csv"
-        )
-
-    with col2:
-        # PDF Export
-        if REPORTLAB_AVAILABLE:
-            if st.button("📑 PDF generieren"):
-                with st.spinner("PDF wird erstellt..."):
-                    pdf_buffer = generate_cost_report_pdf(results_df, summaries)
-                    if pdf_buffer:
-                        st.download_button(
-                            "📥 PDF herunterladen",
-                            data=pdf_buffer,
-                            file_name=f"Kostenberechnung_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf",
-                            mime="application/pdf"
-                        )
-        else:
-            st.warning("ReportLab nicht installiert. PDF-Export nicht verfügbar.")
+    # PDF Export
+    if REPORTLAB_AVAILABLE:
+        if st.button("📑 PDF generieren", type="primary"):
+            with st.spinner("PDF wird erstellt..."):
+                pdf_buffer = generate_cost_report_pdf(results_df, summaries)
+                if pdf_buffer:
+                    st.download_button(
+                        "📥 PDF herunterladen",
+                        data=pdf_buffer,
+                        file_name=f"Kostenberechnung_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf",
+                        mime="application/pdf"
+                    )
+    else:
+        st.warning("ReportLab nicht installiert. PDF-Export nicht verfügbar.")
 
 
 def get_pdf_custom_styles() -> Dict[str, ParagraphStyle]:
