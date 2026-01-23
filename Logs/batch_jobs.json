@@ -1,0 +1,12 @@
+{
+  "msgbatch_012uh4Dv6kjHgfty94fAe27D": {
+    "batch_id": "msgbatch_012uh4Dv6kjHgfty94fAe27D",
+    "created_at": "2025-12-17T09:35:39.028685",
+    "num_elements": 8316,
+    "status": "failed",
+    "df_path": null,
+    "csv_filename": "eBKP-H_Export_20251216_223537.csv",
+    "updated_at": "2025-12-17T09:43:50.299768",
+    "error_message": "401 Client Error: Unauthorized for url: https://api.anthropic.com/v1/messages/batches/msgbatch_012uh4Dv6kjHgfty94fAe27D/results"
+  }
+}

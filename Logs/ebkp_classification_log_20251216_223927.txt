@@ -1,0 +1,424 @@
+
+================================================================================
+Timestamp: 2025-12-16 22:40:12
+Batch: 50 Elemente
+Tokens: Input=164881, Output=2000
+
+Prompt:
+Klassifiziere diese 50 Bauelemente nach eBKP-H (Level 1+2+3+4+5):
+
+1. Kat: Tueren, Typ: 36" x 84" (180 MIN), Fam: Door-Passage-Single-Flush, Info: S10
+2. Kat: Tueren, Typ: 36" x 84", Fam: Door-Passage-Single-Flush, Info: S11A
+3. Kat: Tueren, Typ: 36" x 84" (180 MIN), Fam: Door-Passage-Single-Flush, Info: S14
+4. Kat: Tueren, Typ: 36" x 84" (180 MIN), Fam: Door-Passage-Single-Flush, Info: S13
+5. Kat: Tueren, Typ: 36" x 84" (180 MIN), Fam: Door-Passage-Single-Flush, Info: S15
+6. Kat: Tueren, Typ: 36" x 84" (180 MIN), Fam: Door-Passage-Single-Flush, Info: S30
+7. Kat: Tueren, Typ: 36" x 84" (180 MIN), Fam: Door-Passage-Single-Flush, Info: S32
+8. Kat: Tueren, Typ: 36" x 84" (180 MIN), Fam: Door-Passage-Single-Flush, Info: S34
+9. Kat: Tueren, Typ: 36" x 84" (180 MIN), Fam: Door-Passage-Single-Flush, Info: S33
+10. Kat: Tueren, Typ: 36" x 84" (180 MIN), Fam: Door-Passage-Single-Flush, Info: S35
+11. Kat: Tueren, Typ: 36" x 84" (Exterior), Fam: Door-Passage-Single-Flush, Info: 109D
+12. Kat: Tueren, Typ: 36" x 96", Fam: Door-Passage-Single-Flush-Dbl_Acting, Info: 102B
+13. Kat: Tueren, Typ: 42" x 96" (Exterior), Fam: Door-Passage-Single-Flush, Info: 102A
+14. Kat: Tueren, Typ: 36" x 84" (90 MIN), Fam: Door-Passage-Single-Two_Lite, Info: 101D
+15. Kat: Tueren, Typ: 36" x 96", Fam: Door-Passage-Single-Flush, Info: 107B
+16. Kat: Tueren, Typ: 36" x 96" (Exterior), Fam: Door-Passage-Single-Flush, Info: 105C
+17. Kat: Tueren, Typ: 36" x 96" (Exterior), Fam: Door-Passage-Single-Flush, Info: 107C
+18. Kat: Tueren, Typ: 36" x 96" (Exterior), Fam: Door-Passage-Single-Flush, Info: 108E
+19. Kat: Tueren, Typ: 36" x 84" (Roof), Fam: Door-Passage-Single-Flush, Info: S16
+20. Kat: Tueren, Typ: 36" x 84" (90 MIN), Fam: Door-Passage-Single-Flush, Info: 301B
+21. Kat: Tueren, Typ: 36" x 84" (60 MIN), Fam: Door-Passage-Single-Flush, Info: 507B
+22. Kat: Tueren, Typ: 36" x 84" (Cores), Fam: Door-Passage-Single-Flush, Info: 303A
+23. Kat: Tueren, Typ: 36" x 84" (60 MIN), Fam: Door-Passage-Single-Flush, Info: 303B
+24. Kat: Tueren, Typ: 36" x 84" (Cores), Fam: Door-Passage-Single-Flush, Info: 202A
+25. Kat: Tueren, Typ: 36" x 84" (Cores), Fam: Door-Passage-Single-Flush, Info: 403A
+26. Kat: Tueren, Typ: 36" x 84" (Cores), Fam: Door-Passage-Single-Flush, Info: 205A
+27. Kat: Tueren, Typ: 36" x 84" (60 MIN), Fam: Door-Passage-Single-Flush, Info: 202B
+28. Kat: Tueren, Typ: 36" x 84" (60 MIN), Fam: Door-Passage-Single-Flush, Info: 205B
+29. Kat: Tueren, Typ: 36" x 84" (Cores), Fam: Door-Passage-Single-Flush, Info: 306B
+30. Kat: Tueren, Typ: 36" x 84" (Cores), Fam: Door-Passage-Single-Flush, Info: 407B
+31. Kat: Tueren, Typ: 36" x 84" (Cores), Fam: Door-Passage-Single-Flush, Info: 307A
+32. Kat: Tueren, Typ: 36" x 84" (Cores), Fam: Door-Passage-Single-Flush, Info: 408A
+33. Kat: Tueren, Typ: 36" x 84" (Cores), Fam: Door-Passage-Single-Flush, Info: 506B
+34. Kat: Tueren, Typ: 36" x 84" (60 MIN), Fam: Door-Passage-Single-Flush, Info: 307C
+35. Kat: Tueren, Typ: 36" x 84" (60 MIN), Fam: Door-Passage-Single-Flush, Info: 306A
+36. Kat: Tueren, Typ: 36" x 84" (60 MIN), Fam: Door-Passage-Single-Flush, Info: 408C
+37. Kat: Tueren, Typ: 36" x 84" (60 MIN), Fam: Door-Passage-Single-Flush, Info: 407A
+38. Kat: Tueren, Typ: 36" x 84" (60 MIN), Fam: Door-Passage-Single-Flush, Info: 506D
+39. Kat: Tueren, Typ: 36" x 84" (60 MIN), Fam: Door-Passage-Single-Flush, Info: 409A
+40. Kat: Tueren, Typ: 36" x 84" (60 MIN), Fam: Door-Passage-Single-Flush, Info: 410A
+41. Kat: Tueren, Typ: 36" x 84" (60 MIN), Fam: Door-Passage-Single-Flush, Info: 308A
+42. Kat: Tueren, Typ: 36" x 84" (60 MIN), Fam: Door-Passage-Single-Flush, Info: 309A
+43. Kat: Tueren, Typ: 36" x 84" (45 MIN), Fam: Door-Passage-Single-Flush, Info: P02
+44. Kat: Tueren, Typ: 36" x 84" (60 MIN), Fam: Door-Passage-Single-Flush, Info: P03
+45. Kat: Tueren, Typ: 36" x 84" (60 MIN), Fam: Door-Passage-Single-Flush, Info: P04
+46. Kat: Tueren, Typ: 36" x 84" (60 MIN), Fam: Door-Passage-Single-Flush, Info: P05
+47. Kat: Tueren, Typ: 36" x 84" (Cores), Fam: Door-Passage-Single-Flush, Info: 203B
+48. Kat: Tueren, Typ: 36" x 84" (60 MIN), Fam: Door-Passage-Single-Flush, Info: 203A
+49. Kat: Tueren, Typ: 36" x 84" (60 MIN), Fam: Door-Passage-Single-Flush, Info: 304A
+50. Kat: Tueren, Typ: 36" x 84" (60 MIN), Fam: Door-Passage-Single-Flush, Info: 404A
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+{"id":1, "code":"G01.05.000.000", "desc":"Innentür", "conf":0.95},
+{"id":2, "code":"G01.05.001.001", "desc":"Innentür: Eigenschaften", "conf":0.95},
+{"id":3, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 180 MIN", "conf":0.90},
+{"id":4, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 180 MIN", "conf":0.90},
+{"id":5, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 180 MIN", "conf":0.90},
+{"id":6, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 180 MIN", "conf":0.90},
+{"id":7, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 180 MIN", "conf":0.90},
+{"id":8, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 180 MIN", "conf":0.90},
+{"id":9, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 180 MIN", "conf":0.90},
+{"id":10, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 180 MIN", "conf":0.90},
+{"id":11, "code":"E03.02.000.000", "desc":"Aussentür", "conf":0.95},
+{"id":12, "code":"G01.05.001.001", "desc":"Doppelflügelige Innentür", "conf":0.90},
+{"id":13, "code":"E03.02.000.000", "desc":"Aussentür", "conf":0.95},
+{"id":14, "code":"G01.05.001.001", "desc":"Innentür mit Verglasung: Feuerschutztür 90 MIN", "conf":0.90},
+{"id":15, "code":"G01.05.001.001", "desc":"Innentür", "conf":0.95},
+{"id":16, "code":"E03.02.000.000", "desc":"Aussentür", "conf":0.95},
+{"id":17, "code":"E03.02.000.000", "desc":"Aussentür", "conf":0.95},
+{"id":18, "code":"E03.02.000.000", "desc":"Aussentür", "conf":0.95},
+{"id":19, "code":"E03.02.000.000", "desc":"Dachausstiegstür", "conf":0.90},
+{"id":20, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 90 MIN", "conf":0.90},
+{"id":21, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 60 MIN", "conf":0.90},
+{"id":22, "code":"G01.05.001.001", "desc":"Innentür: Kern", "conf":0.90},
+{"id":23, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 60 MIN", "conf":0.90},
+{"id":24, "code":"G01.05.001.001", "desc":"Innentür: Kern", "conf":0.90},
+{"id":25, "code":"G01.05.001.001", "desc":"Innentür: Kern", "conf":0.90},
+{"id":26, "code":"G01.05.001.001", "desc":"Innentür: Kern", "conf":0.90},
+{"id":27, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 60 MIN", "conf":0.90},
+{"id":28, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 60 MIN", "conf":0.90},
+{"id":29, "code":"G01.05.001.001", "desc":"Innentür: Kern", "conf":0.90},
+{"id":30, "code":"G01.05.001.001", "desc":"Innentür: Kern", "conf":0.90},
+{"id":31, "code":"G01.05.001.001", "desc":"Innentür: Kern", "conf":0.90},
+{"id":32, "code":"G01.05.001.001", "desc":"Innentür: Kern", "conf":0.90},
+{"id":33, "code":"G01.05.001.001", "desc":"Innentür: Kern", "conf":0.90},
+{"id":34, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 60 MIN", "conf":0.90},
+{"id":35, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 60 MIN", "conf":0.90},
+{"id":36, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 60 MIN", "conf":0.90},
+{"id":37, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 60 MIN", "conf":0.90},
+{"id":38, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 60 MIN", "conf":0.90},
+{"id":39, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 60 MIN", "conf":0.90},
+{"id":40, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 60 MIN", "conf":0.90},
+{"id":41, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 60 MIN", "conf":0.90},
+{"id":42, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 60 MIN", "conf":0.90},
+{"id":43, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 45 MIN", "conf":0.90},
+{"id":44, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 60 MIN", "conf":0.90},
+{"id":45, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 60 MIN", "conf":0.90},
+{"id":46, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 60 MIN", "conf":0.90},
+{"id":47, "code":"G01.05.001.001", "desc":"Innentür: Kern", "conf":0.90},
+{"id":48, "code":"G01.05.001.001", "desc":"Innentür: Feuerschutztür 60 MIN", "conf":0.90},
+{"id":49, "code":"G01.05.001.001", "desc":"Innentür: Feu
+================================================================================
+
+================================================================================
+Timestamp: 2025-12-16 22:42:17
+Batch: 50 Elemente
+Tokens: Input=164551, Output=318
+
+Prompt:
+Klassifiziere diese 50 Bauelemente nach eBKP-H (Level 1+2+3+4+5):
+
+1. Kat: Waende, Typ: Interior - 7 1/4" Partition (NR), Fam: nan, Info: nan
+2. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+3. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+4. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+5. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+6. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+7. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+8. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+9. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+10. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+11. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+12. Kat: Waende, Typ: Interior - 7 1/4" Partition (NR), Fam: nan, Info: nan
+13. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+14. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+15. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+16. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+17. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+18. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+19. Kat: Waende, Typ: Chase - GWB & Metal Stud 2 1/4", Fam: nan, Info: nan
+20. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+21. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+22. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+23. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+24. Kat: Waende, Typ: Interior - 7 1/4" Partition (NR), Fam: nan, Info: nan
+25. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+26. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+27. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+28. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+29. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+30. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+31. Kat: Waende, Typ: Chase - GWB & Metal Stud 2 1/4", Fam: nan, Info: nan
+32. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+33. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+34. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+35. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+36. Kat: Waende, Typ: Interior - 7 1/4" Partition (NR), Fam: nan, Info: nan
+37. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+38. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+39. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+40. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+41. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+42. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+43. Kat: Waende, Typ: Chase - GWB & Metal Stud 2 1/4", Fam: nan, Info: nan
+44. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+45. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+46. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+47. Kat: Waende, Typ: Interior - 6 1/8" Partition (2-hr), Fam: nan, Info: nan
+48. Kat: Waende, Typ: Interior - CMU 8", Fam: nan, Info: nan
+49. Kat: Waende, Typ: Interior - CMU 8", Fam: nan, Info: nan
+50. Kat: Waende, Typ: Interior - CMU 8", Fam: nan, Info: nan
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+    {"id":1, "code":"G01.01.001", "desc":"Fest stehende Trennwand", "conf":0.95},
+    {"id":2, "code":"G01.01.005", "desc":"7 1/4\" Gipsplatten-Trennwand", "conf":0.90},
+    {"id":3, "code":"G01.01.006", "desc":"4 7/8\" Gipsplatten-Trennwand", "conf":0.90},
+    {"id":4, "code":"G01.01.018", "desc":"Metallrahmen-Trennwand", "conf":0.85},
+    {"id":5, "code":"C02.02", "desc":"Innenwandkonstruktion", "conf":0.90},
+    {"id":6, "code":"G01.01.009", "desc":"Chase-Wand mit Metallständer", "conf":0.85},
+    {"id":7, "code":"G01.01.012", "desc":"Verglaste Trennwand", "conf":0.80},
+    {"id":8, "code":"G01.01.015", "desc":"CMU 8\" Trennwand", "conf":0.85}
+]
+================================================================================
+
+================================================================================
+Timestamp: 2025-12-16 22:45:45
+Batch: 50 Elemente
+Tokens: Input=164189, Output=1723
+
+Prompt:
+Klassifiziere diese 50 Bauelemente nach eBKP-H (Level 1+2+3+4+5):
+
+1. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+2. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+3. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+4. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+5. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+6. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+7. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+8. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+9. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+10. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+11. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+12. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+13. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+14. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+15. Kat: Sanitaer, Typ: Standard, Fam: Tee - Generic, Info: nan
+16. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+17. Kat: Sanitaer, Typ: Standard, Fam: Tee - Generic, Info: nan
+18. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+19. Kat: Sanitaer, Typ: Standard, Fam: Bend - PVC - Sch 40 - DWV, Info: nan
+20. Kat: Sanitaer, Typ: Standard, Fam: Tee - Generic, Info: nan
+21. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+22. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+23. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+24. Kat: Sanitaer, Typ: Standard, Fam: Bend - PVC - Sch 40 - DWV, Info: nan
+25. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+26. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+27. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+28. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+29. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+30. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+31. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+32. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+33. Kat: Sanitaer, Typ: Standard, Fam: Tee - Generic, Info: nan
+34. Kat: Sanitaer, Typ: Standard, Fam: Tee - Generic, Info: nan
+35. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+36. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+37. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+38. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+39. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+40. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+41. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+42. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+43. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+44. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+45. Kat: Sanitaer, Typ: Standard, Fam: Transition - Generic, Info: nan
+46. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+47. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+48. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+49. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+50. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+    {"id":1, "code":"D08.05.000.000", "desc":"Wasser: Armatur, Apparat", "conf":0.95},
+    {"id":2, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":3, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":4, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":5, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":6, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":7, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":8, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":9, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":10, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":11, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":12, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":13, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":14, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":15, "code":"D08.05.000.002", "desc":"Waschbecken", "conf":0.95},
+    {"id":16, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":17, "code":"D08.05.000.002", "desc":"Waschbecken", "conf":0.95},
+    {"id":18, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":19, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.90},
+    {"id":20, "code":"D08.05.000.002", "desc":"Waschbecken", "conf":0.95},
+    {"id":21, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":22, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":23, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":24, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.90},
+    {"id":25, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":26, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":27, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":28, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":29, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":30, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":31, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":32, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":33, "code":"D08.05.000.002", "desc":"Waschbecken", "conf":0.95},
+    {"id":34, "code":"D08.05.000.002", "desc":"Waschbecken", "conf":0.95},
+    {"id":35, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":36, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":37, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":38, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":39, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":40, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":41, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":42, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":43, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":44, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":45, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.90},
+    {"id":46, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":47, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":48, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":49, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95},
+    {"id":50, "code":"D08.05.000.001", "desc":"Waschtisch", "conf":0.95}
+]
+================================================================================
+
+================================================================================
+Timestamp: 2025-12-16 22:50:03
+Batch: 50 Elemente
+Tokens: Input=164618, Output=1767
+
+Prompt:
+Klassifiziere diese 50 Bauelemente nach eBKP-H (Level 1+2+3+4+5):
+
+1. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 64
+2. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 65
+3. Kat: Elektro, Typ: PV4, Fam: PV Panelboard 12V MCB - Surface, Info: 66
+4. Kat: Elektro, Typ: 240V - Fusible 100A, Fam: Disconnect Switches, Info: 67
+5. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 68
+6. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 69
+7. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 70
+8. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 71
+9. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 72
+10. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 73
+11. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 74
+12. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 75
+13. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 76
+14. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 77
+15. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 78
+16. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 79
+17. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 80
+18. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 81
+19. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 82
+20. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 83
+21. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 84
+22. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 85
+23. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 86
+24. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 87
+25. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 88
+26. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 89
+27. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 90
+28. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 91
+29. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 92
+30. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 93
+31. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 94
+32. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 95
+33. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 96
+34. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 97
+35. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 98
+36. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 99
+37. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 100
+38. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 101
+39. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 102
+40. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 103
+41. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 104
+42. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 105
+43. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 106
+44. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 107
+45. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 108
+46. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 109
+47. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 110
+48. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 111
+49. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 112
+50. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 113
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+    {"id":1, "code":"D01.05", "desc":"Verbraucher Starkstrom: Leuchten", "conf":0.95},
+    {"id":2, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":3, "code":"D01.06", "desc":"Verbraucher Starkstrom: Elektrogeräte", "conf":0.90},
+    {"id":4, "code":"D01.04", "desc":"Installation Starkstrom", "conf":0.90},
+    {"id":5, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":6, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":7, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":8, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":9, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":10, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":11, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":12, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":13, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":14, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":15, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":16, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":17, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":18, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":19, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":20, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":21, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":22, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":23, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":24, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":25, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":26, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":27, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":28, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":29, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":30, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":31, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":32, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":33, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":34, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":35, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":36, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":37, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":38, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":39, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":40, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":41, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":42, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":43, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":44, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":45, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":46, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":47, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":48, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":49, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95},
+    {"id":50, "code":"D01.05.000.001", "desc":"Leuchtelement", "conf":0.95}
+]
+================================================================================

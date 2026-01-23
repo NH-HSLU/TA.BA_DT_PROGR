@@ -1,249 +1,107 @@
 '''
-BKP Datenverarbeitungs-Suite
-Haupteinstiegspunkt für Multi-Page Streamlit App
+eBKP-H⁺ - Startseite
+Willkommensseite mit Logo und Start-Button
 '''
 
 import streamlit as st
 import os
-from datetime import datetime
+import base64
 
 # Seitenkonfiguration
 st.set_page_config(
-    page_title="BKP Suite",
-    page_icon="🏗️",
-    layout="wide",
-    initial_sidebar_state="expanded"
+    page_title="eBKP-H⁺",
+    page_icon="🤖",
+    layout="centered",
+    initial_sidebar_state="collapsed"
 )
 
-# Custom CSS (theme-aware, no fixed colors)
+# CSS für zentriertes Layout und versteckte Sidebar
 st.markdown("""
-    <style>
-    .big-title {
-        font-size: 2.5rem;
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 0.5rem;
+<style>
+    /* Sidebar komplett ausblenden */
+    [data-testid="stSidebar"] {
+        display: none;
     }
-    .subtitle {
-        text-align: center;
-        font-size: 1.1rem;
-        opacity: 0.7;
-        margin-bottom: 2rem;
+    [data-testid="stSidebarCollapsedControl"] {
+        display: none;
     }
-    </style>
+
+    /* Hauptcontainer zentrieren */
+    .main .block-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 80vh;
+        padding-top: 5rem;
+    }
+
+    /* Logo Container */
+    .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .logo-container img {
+        max-width: 400px;
+        height: auto;
+    }
+
+    /* Theme-abhängige Logos: Standard = hell */
+    .logo-dark { display: none; }
+    .logo-light { display: block; }
+
+    /* Start-Button Styling */
+    .stButton > button {
+        font-size: 1.2rem;
+        padding: 0.75rem 3rem;
+        border-radius: 0.5rem;
+        margin-top: 2rem;
+    }
+</style>
 """, unsafe_allow_html=True)
 
-# Haupttitel
-st.markdown('<p class="big-title">🏗️ BKP Datenverarbeitungs-Suite</p>', unsafe_allow_html=True)
-st.markdown('<p class="subtitle">Automatische BKP-Klassifizierung & Visualisierung für BIM-Daten</p>', unsafe_allow_html=True)
+# Funktion zum Base64-Encoding
+def get_base64_image(path):
+    with open(path, "rb") as f:
+        return base64.b64encode(f.read()).decode()
 
-st.markdown("---")
+# Pfade zu den Logos
+logo_dir = os.path.dirname(__file__)
+logo_hell = os.path.join(logo_dir, "Logo_hell.png")
+logo_dunkel = os.path.join(logo_dir, "Logo_dunkel.png")
 
-# Quick Start Cards
-st.header("🚀 Schnellstart")
+# Logos als Base64
+if os.path.exists(logo_hell) and os.path.exists(logo_dunkel):
+    b64_hell = get_base64_image(logo_hell)
+    b64_dunkel = get_base64_image(logo_dunkel)
 
-col1, col2, col3 = st.columns(3)
+    # HTML mit beiden Logos + JavaScript für Theme-Erkennung
+    st.markdown(f"""
+    <div class="logo-container">
+        <img src="data:image/png;base64,{b64_hell}" class="logo-light" alt="Logo">
+        <img src="data:image/png;base64,{b64_dunkel}" class="logo-dark" alt="Logo">
+    </div>
+    <script>
+        function updateLogo() {{
+            const isDark = window.parent.document.querySelector('[data-testid="stAppViewContainer"]')
+                ?.style.backgroundColor.includes('14, 17, 23') ||
+                window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-with col1:
-    st.info("""
-    ### 📊 Daten visualisieren
-    Sie haben bereits BKP-klassifizierte Daten?
+            document.querySelectorAll('.logo-light').forEach(el => el.style.display = isDark ? 'none' : 'block');
+            document.querySelectorAll('.logo-dark').forEach(el => el.style.display = isDark ? 'block' : 'none');
+        }}
+        updateLogo();
+        new MutationObserver(updateLogo).observe(window.parent.document.body, {{attributes: true, subtree: true}});
+    </script>
+    """, unsafe_allow_html=True)
+else:
+    st.warning("Logo_hell.png und Logo_dunkel.png nicht gefunden")
 
-    **→ Gehen Sie zu "eBKP-H Auswertung"**
+# Abstand
+st.markdown("<br>", unsafe_allow_html=True)
 
-    - CSV hochladen
-    - Kosten nach BKP analysieren
-    - Berichte exportieren
-    """)
-
-with col2:
-    st.success("""
-    ### 🤖 KI-Klassifizierung
-    Ihre Daten sind noch nicht klassifiziert?
-
-    **→ Gehen Sie zu "KI Klassifizierung"**
-
-    - CSV hochladen
-    - Automatisch klassifizieren
-    - BKP-Codes bearbeiten
-    - Ergebnisse prüfen
-    """)
-
-with col3:
-    st.warning("""
-    ### ⚙️ Einrichten
-    Erstmalige Nutzung der KI?
-
-    **→ Gehen Sie zu "Einstellungen"**
-
-    - API-Key eingeben
-    - Key validieren
-    - Los geht's!
-    """)
-
-
-st.markdown("---")
-
-# Was ist eBKP-H?
-st.header("💡 Was ist eBKP-H?")
-
-col1, col2 = st.columns([1, 1])
-
-with col1:
-    st.markdown("""
-    Der **eBKP-H** (erweiterter Baukostenplan - Hochbau) ist der Schweizer Standard
-    für die Strukturierung von Baukosten.
-
-    **Hauptgruppen:**
-    """)
-
-    bkp_data = {
-        "C": ("Bauwerk - Rohbau", "🏗️"),
-        "D": ("Bauwerk - Technik", "⚡"),
-        "E": ("Bauwerk - Ausbau", "🎨"),
-        "F": ("Umgebung", "🌳"),
-        "G": ("Baunebenkosten", "📋")
-    }
-
-    for code, (name, emoji) in bkp_data.items():
-        st.markdown(f"**{emoji} {code}** - {name}")
-
-with col2:
-    st.info("""
-    **Beispiel:**
-
-    Eine **Steckdose** wird klassifiziert als:
-    - Code: `C13`
-    - Beschreibung: Elektroinstallationen - Steckdosen
-
-    Dies ermöglicht:
-    ✓ Kostenauswertung nach Gewerken
-    ✓ Vergleich verschiedener Projekte
-    ✓ Standardisierte Kommunikation
-    """)
-
-st.markdown("---")
-
-# Workflow
-st.header("🔄 So funktioniert's")
-
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.markdown("""
-    ### 1️⃣ Daten vorbereiten
-    - Exportieren Sie Daten aus Revit
-    - Als CSV speichern
-    - Spalten: Typ, Kategorie, etc.
-    """)
-
-with col2:
-    st.markdown("""
-    ### 2️⃣ Klassifizieren
-    **Option A:** Manuelle BKP-Zuordnung
-    **Option B:** KI-Klassifizierung nutzen
-    (schneller & automatisch)
-    """)
-
-with col3:
-    st.markdown("""
-    ### 3️⃣ Auswerten
-    - Hierarchische Ansicht
-    - Kosten nach BKP
-    - Berichte exportieren
-    """)
-
-st.markdown("---")
-
-# Testdaten
-st.header("🧪 Testdaten verfügbar")
-
-col1, col2 = st.columns(2)
-
-with col1:
-    st.success("""
-    **📁 beispiel_daten.csv**
-
-    40 Einträge mit BKP-Codes zum Testen der Visualisierung
-
-    → Nutzen Sie diese für "eBKP-H Auswertung"
-    """)
-
-with col2:
-    st.success("""
-    **📁 muster_ki_klassifizierung.csv**
-
-    30 Einträge OHNE BKP-Codes zum Testen der KI
-
-    → Nutzen Sie diese für "KI Klassifizierung"
-    """)
-
-# Footer
-st.markdown("---")
-st.caption(f"BKP Datenverarbeitungs-Suite v1.0 | Letztes Update: {datetime.now().strftime('%d.%m.%Y')} | TA.BA_DT_PROGR")
-
-# Sidebar
-with st.sidebar:
-    st.header("📍 Navigation")
-
-    st.markdown("""
-    **Hauptseiten:**
-    - 🏠 Home (diese Seite)
-    - 📊 eBKP-H Auswertung
-    - 🤖 KI Klassifizierung
-    - ⚙️ Einstellungen
-    """)
-
-    st.markdown("---")
-
-    # Status
-    st.subheader("📊 Status")
-
-    # Testdaten
-    example_files = {
-        'beispiel_daten.csv': 'Processors/beispiel_daten.csv',
-        'muster_ki_klassifizierung.csv': 'Processors/muster_ki_klassifizierung.csv'
-    }
-
-    for name, path in example_files.items():
-        if os.path.exists(path):
-            st.success(f"✓ {name}")
-        else:
-            st.warning(f"✗ {name}")
-
-    st.markdown("---")
-
-    # API Status
-    st.subheader("🔑 API Status")
-
-    # Prüfe Session State
-    if 'api_key' in st.session_state and st.session_state.api_key:
-        if st.session_state.get('api_key_validated', False):
-            st.success("✓ API-Key aktiv")
-        else:
-            st.warning("⚠️ API-Key nicht validiert")
-            st.caption("Gehen Sie zu Einstellungen")
-    else:
-        # Fallback auf Umgebungsvariable
-        env_key = os.getenv('ANTHROPIC_API_KEY')
-        if env_key:
-            st.success("✓ API-Key (.env)")
-        else:
-            st.info("ℹ️ Kein API-Key")
-            st.caption("Für KI-Features erforderlich")
-
-    st.markdown("---")
-
-    with st.expander("ℹ️ Hilfe"):
-        st.markdown("""
-        **Erste Schritte:**
-
-        1. Testen Sie mit Beispieldaten
-        2. Konfigurieren Sie API-Key (optional)
-        3. Laden Sie eigene Daten hoch
-
-        **Support:**
-        - README.md
-        - CLAUDE.md
-        - Processors/README.md
-        """)
+# Start-Button
+if st.button("Start", type="primary", width="stretch"):
+   st.switch_page("pages/00_Dashboard.py")

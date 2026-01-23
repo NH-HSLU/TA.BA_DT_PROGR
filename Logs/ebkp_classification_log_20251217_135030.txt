@@ -1,0 +1,680 @@
+
+================================================================================
+Timestamp: 2025-12-17 13:50:45
+Batch: 50 Elemente
+Tokens: Input=2469, Output=1401
+
+Prompt:
+Klassifiziere diese 50 Bauelemente nach eBKP-H (Level 1):
+
+1. Kat: Allgemein, Typ: AC_Bandstand Canopy Rib Centerplane, Fam: AC_Bandstand Canopy Rib Centerplane, Info: nan
+2. Kat: Allgemein, Typ: AC_Bandstand Canopy, Fam: AC_Bandstand Canopy, Info: nan
+3. Kat: Allgemein, Typ: Bandstand Canopy, Fam: Bandstand Canopy, Info: nan
+4. Kat: Allgemein, Typ: 18" Deep, Fam: Closet Shelf and Pole, Info: nan
+5. Kat: Allgemein, Typ: Muntin Pattern_2x2, Fam: Muntin Pattern_2x2, Info: nan
+6. Kat: Allgemein, Typ: Muntin Pattern_2x1, Fam: Muntin Pattern_2x3, Info: nan
+7. Kat: Allgemein, Typ: Muntin Pattern_3x1, Fam: Muntin Pattern_3x1, Info: nan
+8. Kat: Allgemein, Typ: Picture Frame, Fam: Trim-Window-Exterior-Flat, Info: nan
+9. Kat: Allgemein, Typ: with Sill, Fam: Trim-Window-Exterior-Flat, Info: nan
+10. Kat: Allgemein, Typ: Picture Frame, Fam: Trim-Window-Interior-Flat, Info: nan
+11. Kat: Allgemein, Typ: 10" Trebuchet MS, Fam: nan, Info: nan
+12. Kat: Allgemein, Typ: 18" Trebuchet MS, Fam: nan, Info: nan
+13. Kat: Beleuchtung, Typ: Incandescent - 120V, Fam: Bollard Light, Info: 461
+14. Kat: Beleuchtung, Typ: 1'x4'(2 Lamp) - 120V, Fam: Ceiling Light - Linear Box, Info: 447
+15. Kat: Beleuchtung, Typ: 68W Rectangle, Fam: Downlight - Rectangle - LED, Info: 405
+16. Kat: Beleuchtung, Typ: LED15FM12-W120, Fam: Downlight - Round - LED, Info: 283
+17. Kat: Beleuchtung, Typ: 18" 120V, Fam: Downlight - Under Cabinet, Info: 35
+18. Kat: Beleuchtung, Typ: 24" 120V, Fam: Downlight - Under Cabinet, Info: 41
+19. Kat: Beleuchtung, Typ: Motion Sensor, Fam: Lighting Switches, Info: 50
+20. Kat: Beleuchtung, Typ: Single Pole, Fam: Lighting Switches, Info: 2
+21. Kat: Beleuchtung, Typ: Three Way, Fam: Lighting Switches, Info: 1
+22. Kat: Beleuchtung, Typ: Lighting-Exterior-Spot, Fam: Lighting-Exterior-Spot, Info: 404
+23. Kat: Beleuchtung, Typ: Lobby Chandelier, Fam: Lobby Chandelier, Info: 315
+24. Kat: Beleuchtung, Typ: Standard, Fam: Pendant Lamp - Art Glass - LED, Info: 316
+25. Kat: Beleuchtung, Typ: 150W - 120V 12" Drop, Fam: Pendant Light - Hemisphere, Info: 80
+26. Kat: Beleuchtung, Typ: 150W - 120V 36" Drop, Fam: Pendant Light - Hemisphere, Info: 93
+27. Kat: Beleuchtung, Typ: 150W - 120V 58" Drop, Fam: Pendant Light - Hemisphere, Info: 414
+28. Kat: Beleuchtung, Typ: 48" - 120V, Fam: Pendant Light - Linear - 1 Lamp, Info: 651
+29. Kat: Beleuchtung, Typ: 18" D x 15" H, Fam: Pendant-Dome, Info: 177
+30. Kat: Beleuchtung, Typ: 18" D x 5" H, Fam: Pendant-Dome, Info: 115
+31. Kat: Beleuchtung, Typ: 24'', Fam: Recessed Lamp - Linear - LED, Info: 286
+32. Kat: Beleuchtung, Typ: 36'', Fam: Recessed Lamp - Linear - LED, Info: 142
+33. Kat: Beleuchtung, Typ: 48'', Fam: Recessed Lamp - Linear - LED, Info: 114
+34. Kat: Beleuchtung, Typ: 4" Trimmed Downlight, Fam: Recessed Lamp - Round - LED, Info: 110
+35. Kat: Beleuchtung, Typ: 100W - 120V, Fam: Sconce Light - Uplight, Info: 311
+36. Kat: Beleuchtung, Typ: 150W - 120V, Fam: Wall Lamp - Bracket, Info: 332
+37. Kat: Beleuchtung, Typ: 100W - 120V, Fam: Wall Lamp - Industrial, Info: 334
+38. Kat: Boeden, Typ: Brick - 8", Fam: nan, Info: nan
+39. Kat: Boeden, Typ: Concrete 6", Fam: nan, Info: nan
+40. Kat: Boeden, Typ: Concrete Slab 4", Fam: nan, Info: nan
+41. Kat: Boeden, Typ: Concrete Slab 6", Fam: nan, Info: nan
+42. Kat: Boeden, Typ: Cores - Mechanical Space, Fam: nan, Info: nan
+43. Kat: Boeden, Typ: Finish Floor - Ceramic Tile (Wood), Fam: nan, Info: nan
+44. Kat: Boeden, Typ: Finish Floor - Laminate, Fam: nan, Info: nan
+45. Kat: Boeden, Typ: Finish Floor - Polished Concrete (Brown), Fam: nan, Info: nan
+46. Kat: Boeden, Typ: Finish Floor - Polished Concrete (Grey), Fam: nan, Info: nan
+47. Kat: Boeden, Typ: Finish Floor - Terrazo, Fam: nan, Info: nan
+48. Kat: Boeden, Typ: Hardscape - Brick Walk, Fam: nan, Info: nan
+49. Kat: Boeden, Typ: Landscape - Lawn, Fam: nan, Info: nan
+50. Kat: Boeden, Typ: Metal Stud 10" - Laminate Finish, Fam: nan, Info: nan
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+    {"id":1,"code":"B","desc":"Vorbereitung","conf":0.95},
+    {"id":2,"code":"B","desc":"Vorbereitung","conf":0.95},
+    {"id":3,"code":"B","desc":"Vorbereitung","conf":0.95},
+    {"id":4,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":5,"code":"E","desc":"Äussere Wandbekleidung Gebäude","conf":0.85},
+    {"id":6,"code":"E","desc":"Äussere Wandbekleidung Gebäude","conf":0.85},
+    {"id":7,"code":"E","desc":"Äussere Wandbekleidung Gebäude","conf":0.85},
+    {"id":8,"code":"E","desc":"Äussere Wandbekleidung Gebäude","conf":0.90},
+    {"id":9,"code":"E","desc":"Äussere Wandbekleidung Gebäude","conf":0.90},
+    {"id":10,"code":"G","desc":"Ausbau Gebäude","conf":0.90},
+    {"id":11,"code":"J","desc":"Ausstattung Gebäude","conf":0.80},
+    {"id":12,"code":"J","desc":"Ausstattung Gebäude","conf":0.80},
+    {"id":13,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":14,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":15,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":16,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":17,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":18,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":19,"code":"D","desc":"Technik Gebäude","conf":0.90},
+    {"id":20,"code":"D","desc":"Technik Gebäude","conf":0.90},
+    {"id":21,"code":"D","desc":"Technik Gebäude","conf":0.90},
+    {"id":22,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":23,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":24,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":25,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":26,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":27,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":28,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":29,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":30,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":31,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":32,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":33,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":34,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":35,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":36,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":37,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":38,"code":"I","desc":"Umgebung Gebäude","conf":0.90},
+    {"id":39,"code":"C","desc":"Konstruktion Gebäude","conf":0.95},
+    {"id":40,"code":"C","desc":"Konstruktion Gebäude","conf":0.95},
+    {"id":41,"code":"C","desc":"Konstruktion Gebäude","conf":0.95},
+    {"id":42,"code":"C","desc":"Konstruktion Gebäude","conf":0.90},
+    {"id":43,"code":"G","desc":"Ausbau Gebäude","conf":0.95},
+    {"id":44,"code":"G","desc":"Ausbau Gebäude","conf":0.95},
+    {"id":45,"code":"G","desc":"Ausbau Gebäude","conf":0.95},
+    {"id":46,"code":"G","desc":"Ausbau Gebäude","conf":0.95},
+    {"id":47,"code":"G","desc":"Ausbau Gebäude","conf":0.95},
+    {"id":48,"code":"I","desc":"Umgebung Gebäude","conf":0.90},
+    {"id":49,"code":"I","desc":"Umgebung Gebäude","conf":0.90},
+    {"id":50,"code":"G","desc":"Ausbau Gebäude","conf":0.95}
+]
+================================================================================
+
+================================================================================
+Timestamp: 2025-12-17 13:51:02
+Batch: 50 Elemente
+Tokens: Input=2561, Output=1524
+
+Prompt:
+Klassifiziere diese 50 Bauelemente nach eBKP-H (Level 1):
+
+1. Kat: Boeden, Typ: Roof - Brick Border, Fam: nan, Info: nan
+2. Kat: Boeden, Typ: Roof - Decking, Fam: nan, Info: nan
+3. Kat: Boeden, Typ: Roof - Planting Bed, Fam: nan, Info: nan
+4. Kat: Boeden, Typ: Roof - Porcelain Float Deck 2'x2', Fam: nan, Info: nan
+5. Kat: Boeden, Typ: Roof - Sculpture Bed, Fam: nan, Info: nan
+6. Kat: Boeden, Typ: Roof - Turf, Fam: nan, Info: nan
+7. Kat: Boeden, Typ: Sidewalk, Fam: nan, Info: nan
+8. Kat: Boeden, Typ: Stair Landing Steel Plate, Fam: nan, Info: nan
+9. Kat: Daten, Typ: Plain, Fam: Data Outlet, Info: 1
+10. Kat: Decken, Typ: 5/8" GWB on Mtl. Furring, Fam: nan, Info: nan
+11. Kat: Decken, Typ: 5/8" GWB on Mtl. Stud (Window Surround), Fam: nan, Info: nan
+12. Kat: Decken, Typ: 5/8" GWB on Mtl. Stud, Fam: nan, Info: nan
+13. Kat: Decken, Typ: Exterior Soffit, Fam: nan, Info: nan
+14. Kat: Elektro, Typ: 208V - Fusible 60A, Fam: Disconnect Switches, Info: ELD2
+15. Kat: Elektro, Typ: 240V - Fusible 100A, Fam: Disconnect Switches, Info: 37
+16. Kat: Elektro, Typ: T1, Fam: Dry Type Transformer - 12470-208Y120 - NEMA Type 1, Info: 168
+17. Kat: Elektro, Typ: Counter Top, Fam: Duplex Receptacle, Info: 17
+18. Kat: Elektro, Typ: Flush Valve, Fam: Duplex Receptacle, Info: 422
+19. Kat: Elektro, Typ: GFCI, Fam: Duplex Receptacle, Info: 1
+20. Kat: Elektro, Typ: Standard, Fam: Duplex Receptacle, Info: 3
+21. Kat: Elektro, Typ: 12 V, Fam: Electrical Equipment - Unbalanced Power Connector, Info: 26
+22. Kat: Elektro, Typ: 120 V, Fam: Electrical Fixtures - Unbalanced Power Connector, Info: 366
+23. Kat: Elektro, Typ: HRU Connection 208V, Fam: Electrical Fixtures - Unbalanced Power Connector, Info: 517
+24. Kat: Elektro, Typ: 120 V, Fam: Hand Dryer, Info: 191
+25. Kat: Elektro, Typ: Standard, Fam: High Voltage Receptacle, Info: 9
+26. Kat: Elektro, Typ: EL1, Fam: Lighting and Appliance Panelboard - 208V MCB - Surface, Info: 175
+27. Kat: Elektro, Typ: HDP, Fam: Lighting and Appliance Panelboard - 208V MCB - Surface, Info: ELD29
+28. Kat: Elektro, Typ: LP000, Fam: Lighting and Appliance Panelboard - 208V MCB - Surface, Info: ELD3
+29. Kat: Elektro, Typ: P-Roof, Fam: Lighting and Appliance Panelboard - 208V MCB - Surface, Info: 191
+30. Kat: Elektro, Typ: P102, Fam: Lighting and Appliance Panelboard - 208V MCB - Surface, Info: 177
+31. Kat: Elektro, Typ: P105, Fam: Lighting and Appliance Panelboard - 208V MCB - Surface, Info: 176
+32. Kat: Elektro, Typ: P106/7, Fam: Lighting and Appliance Panelboard - 208V MCB - Surface, Info: 174
+33. Kat: Elektro, Typ: P108, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 167
+34. Kat: Elektro, Typ: P109, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 166
+35. Kat: Elektro, Typ: P200, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 20
+36. Kat: Elektro, Typ: P202, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 18
+37. Kat: Elektro, Typ: P203, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 17
+38. Kat: Elektro, Typ: P204, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 19
+39. Kat: Elektro, Typ: P205, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 10
+40. Kat: Elektro, Typ: P300, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 183
+41. Kat: Elektro, Typ: P301, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 181
+42. Kat: Elektro, Typ: P303, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 180
+43. Kat: Elektro, Typ: P304, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 16
+44. Kat: Elektro, Typ: P306, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 178
+45. Kat: Elektro, Typ: P307, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 9
+46. Kat: Elektro, Typ: P308, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 179
+47. Kat: Elektro, Typ: P309, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 15
+48. Kat: Elektro, Typ: P400, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 190
+49. Kat: Elektro, Typ: P401, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 165
+50. Kat: Elektro, Typ: P403, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 161
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+    {"id":1, "code":"F", "desc":"Bedachung Gebäude", "conf":0.95},
+    {"id":2, "code":"F", "desc":"Bedachung Gebäude", "conf":0.95},
+    {"id":3, "code":"F", "desc":"Bedachung Gebäude", "conf":0.95},
+    {"id":4, "code":"F", "desc":"Bedachung Gebäude", "conf":0.95},
+    {"id":5, "code":"F", "desc":"Bedachung Gebäude", "conf":0.95},
+    {"id":6, "code":"F", "desc":"Bedachung Gebäude", "conf":0.95},
+    {"id":7, "code":"I", "desc":"Umgebung Gebäude", "conf":0.95},
+    {"id":8, "code":"I", "desc":"Umgebung Gebäude", "conf":0.95},
+    {"id":9, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":10, "code":"G", "desc":"Ausbau Gebäude", "conf":0.95},
+    {"id":11, "code":"G", "desc":"Ausbau Gebäude", "conf":0.95},
+    {"id":12, "code":"G", "desc":"Ausbau Gebäude", "conf":0.95},
+    {"id":13, "code":"E", "desc":"Äussere Wandbekleidung Gebäude", "conf":0.95},
+    {"id":14, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":15, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":16, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":17, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":18, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":19, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":20, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":21, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":22, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":23, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":24, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":25, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":26, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":27, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":28, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":29, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":30, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":31, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":32, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":33, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":34, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":35, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":36, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":37, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":38, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":39, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":40, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":41, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":42, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":43, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":44, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":45, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":46, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":47, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":48, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":49, "code":"D", "desc":"Technik Gebäude", "conf":0.95},
+    {"id":50, "code":"D", "desc":"Technik Gebäude", "conf":0.95}
+]
+================================================================================
+
+================================================================================
+Timestamp: 2025-12-17 13:51:16
+Batch: 50 Elemente
+Tokens: Input=2539, Output=1355
+
+Prompt:
+Klassifiziere diese 50 Bauelemente nach eBKP-H (Level 1):
+
+1. Kat: Elektro, Typ: P404, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 14
+2. Kat: Elektro, Typ: P405, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 162
+3. Kat: Elektro, Typ: P406, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 182
+4. Kat: Elektro, Typ: P407, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 163
+5. Kat: Elektro, Typ: P408, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 8
+6. Kat: Elektro, Typ: P409, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 164
+7. Kat: Elektro, Typ: P410, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 13
+8. Kat: Elektro, Typ: P500, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 188
+9. Kat: Elektro, Typ: P501, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 189
+10. Kat: Elektro, Typ: P504, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 12
+11. Kat: Elektro, Typ: P506, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 7
+12. Kat: Elektro, Typ: P507, Fam: Lighting and Appliance Panelboard - 208V MCB, Info: 11
+13. Kat: Elektro, Typ: MB11, Fam: Meter Bank, Info: ELD53
+14. Kat: Elektro, Typ: MB12, Fam: Meter Bank, Info: ELD54
+15. Kat: Elektro, Typ: MB13, Fam: Meter Bank, Info: ELD59
+16. Kat: Elektro, Typ: MB14, Fam: Meter Bank, Info: ELD58
+17. Kat: Elektro, Typ: MB21, Fam: Meter Bank, Info: ELD55
+18. Kat: Elektro, Typ: MB22, Fam: Meter Bank, Info: ELD56
+19. Kat: Elektro, Typ: MB23, Fam: Meter Bank, Info: ELD57
+20. Kat: Elektro, Typ: MAIN1, Fam: Meter Main, Info: ELD51
+21. Kat: Elektro, Typ: MAIN2, Fam: Meter Main, Info: ELD52
+22. Kat: Elektro, Typ: 36"x26.5", 277 V/480 V, Three Phase, 4 Wires, Wye, Fam: PV Battery Cabinet, Info: 22
+23. Kat: Elektro, Typ: 36"x26.5", 277 V/480 V, Three Phase, 4 Wires, Wye, Fam: PV Inverter, Info: 33
+24. Kat: Elektro, Typ: PV1, Fam: PV Panelboard 12V MCB - Surface, Info: 38
+25. Kat: Elektro, Typ: PV2, Fam: PV Panelboard 12V MCB - Surface, Info: 39
+26. Kat: Elektro, Typ: PV3, Fam: PV Panelboard 12V MCB - Surface, Info: 41
+27. Kat: Elektro, Typ: PV4, Fam: PV Panelboard 12V MCB - Surface, Info: 66
+28. Kat: Elektro, Typ: PV5, Fam: PV Panelboard 12V MCB - Surface, Info: 134
+29. Kat: Elektro, Typ: PV6, Fam: PV Panelboard 12V MCB - Surface, Info: 135
+30. Kat: Elektro, Typ: PV7, Fam: PV Panelboard 12V MCB - Surface, Info: 136
+31. Kat: Elektro, Typ: Plain, Fam: Quadruplex Receptacle, Info: 164
+32. Kat: Elektro, Typ: SWITCHBOARD, Fam: Switchboard, Info: ELD63
+33. Kat: Elektro, Typ: Standard, Fam: Weather Proof Receptacle, Info: 220
+34. Kat: Elektro, Typ: Wiring Pull Box, Fam: Wiring Pull Box, Info: 140
+35. Kat: Elektro, Typ: Electrical Metallic Tubing (EMT), Fam: nan, Info: nan
+36. Kat: Elektro, Typ: Rigid Nonmetallic Conduit (RNC Sch 80), Fam: nan, Info: nan
+37. Kat: Fenster, Typ: Schematic Opening Cut, Fam: Schematic Opening Cut, Info: 111
+38. Kat: Fenster, Typ: 74" x 98", Fam: Window-Double-Hung-Double, Info: 207
+39. Kat: Fenster, Typ: 50" x 98", Fam: Window-Double-Hung, Info: 180
+40. Kat: Fenster, Typ: 50" x 80", Fam: Window-Fixed-Transom, Info: 138
+41. Kat: Fenster, Typ: 39" x 76" (Solar Wall), Fam: Window-Fixed, Info: 158
+42. Kat: Fenster, Typ: 22" x 24", Fam: Window-Louvers, Info: 220
+43. Kat: Fenster, Typ: 50" x 60", Fam: Window-Sliding-Double, Info: 87
+44. Kat: HVAC, Typ: 4" DIA, Fam: Air Terminal-Exhaust Cap-FB, Info: 1
+45. Kat: HVAC, Typ: 4" DIA, Fam: Air Terminal-Supply Cap-FB, Info: 547
+46. Kat: HVAC, Typ: 4" DIA, Fam: Air Terminal-Vent Cap-FB, Info: 2
+47. Kat: HVAC, Typ: Heat Recovery Unit (HRU), Fam: HeatRecoveryUnit, Info: HRU202
+48. Kat: HVAC, Typ: 16x4 Connection 8 Diameter Duct, Fam: Return Grille - Double Deflection - Curve Face Rectangular Neck, Info: 29
+49. Kat: HVAC, Typ: 16x10, Fam: Return Grille - Perforated - Rectangular Face Rectangular Neck, Info: 13
+50. Kat: HVAC, Typ: 12" x 12", Fam: Supply Diffuser - Square - Hosted, Info: 4
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+{"id":1,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":2,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":3,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":4,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":5,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":6,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":7,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":8,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":9,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":10,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":11,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":12,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":13,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":14,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":15,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":16,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":17,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":18,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":19,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":20,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":21,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":22,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":23,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":24,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":25,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":26,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":27,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":28,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":29,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":30,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":31,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":32,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":33,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":34,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":35,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":36,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":37,"code":"E","desc":"Äussere Wandbekleidung Gebäude","conf":0.90},
+{"id":38,"code":"E","desc":"Äussere Wandbekleidung Gebäude","conf":0.90},
+{"id":39,"code":"E","desc":"Äussere Wandbekleidung Gebäude","conf":0.90},
+{"id":40,"code":"E","desc":"Äussere Wandbekleidung Gebäude","conf":0.90},
+{"id":41,"code":"E","desc":"Äussere Wandbekleidung Gebäude","conf":0.90},
+{"id":42,"code":"E","desc":"Äussere Wandbekleidung Gebäude","conf":0.90},
+{"id":43,"code":"E","desc":"Äussere Wandbekleidung Gebäude","conf":0.90},
+{"id":44,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":45,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":46,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":47,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":48,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":49,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":50,"code":"D","desc":"Technik Gebäude","conf":0.95}
+]
+================================================================================
+
+================================================================================
+Timestamp: 2025-12-17 13:51:31
+Batch: 50 Elemente
+Tokens: Input=2500, Output=1333
+
+Prompt:
+Klassifiziere diese 50 Bauelemente nach eBKP-H (Level 1):
+
+1. Kat: HVAC, Typ: 48x4 1/4-8 In Inlet 2-Slot, Fam: Supply Diffuser with Plenum - Linear Slot - Hosted, Info: 3
+2. Kat: HVAC, Typ: 16x4 Connection 8 Diameter Duct, Fam: Supply Grille - Double Deflection - Curve Face Rectangular Neck, Info: 15
+3. Kat: Moebel, Typ: Banquette - Double, Fam: Banquette - Double, Info: nan
+4. Kat: Moebel, Typ: Banquette - Single, Fam: Banquette - Single, Info: nan
+5. Kat: Moebel, Typ: King 78" x 83", Fam: Bed-Shaker, Info: nan
+6. Kat: Moebel, Typ: Chair-Breuer, Fam: Chair-Breuer, Info: nan
+7. Kat: Moebel, Typ: Chair-Kinder, Fam: Chair-Kinder, Info: nan
+8. Kat: Moebel, Typ: Pergola, Fam: Pergola Modern, Info: nan
+9. Kat: Moebel, Typ: 72" x 12" x 72", Fam: Shelving, Info: nan
+10. Kat: Moebel, Typ: 96" x 12" x 84", Fam: Shelving, Info: nan
+11. Kat: Moebel, Typ: 36" Diameter, Fam: Table-Dining Round w Chairs, Info: nan
+12. Kat: Moebel, Typ: 60" Diameter, Fam: Table-Dining Round w Chairs, Info: nan
+13. Kat: Moebel, Typ: 44" x 30", Fam: Table-Rectangular, Info: nan
+14. Kat: Moebel, Typ: 66" x 36", Fam: Table-Rectangular, Info: nan
+15. Kat: Moebel, Typ: 20" Diameter, Fam: Table-Trio End, Info: nan
+16. Kat: Moebel, Typ: TableWithUmbrella, Fam: TableWithUmbrella, Info: nan
+17. Kat: Sanitaer, Typ: 1", Fam: Ball Valve - 2-6 Inch, Info: 116
+18. Kat: Sanitaer, Typ: Standard, Fam: Bend - PVC - Sch 40 - DWV, Info: nan
+19. Kat: Sanitaer, Typ: Standard, Fam: Cap - Generic, Info: nan
+20. Kat: Sanitaer, Typ: Standard, Fam: Elbow - Generic, Info: nan
+21. Kat: Sanitaer, Typ: Faucet_Combo, Fam: Faucet_Combo, Info: 196
+22. Kat: Sanitaer, Typ: Faucet_Swing, Fam: Faucet_Swing, Info: 197
+23. Kat: Sanitaer, Typ: 5" Strainer - 2" Drain, Fam: Floor Drain - Round, Info: 162
+24. Kat: Sanitaer, Typ: 8" Strainer - 2" Drain, Fam: Floor Drain - Round, Info: 165
+25. Kat: Sanitaer, Typ: Floor Drain-2D, Fam: Floor Drain-2D, Info: 154
+26. Kat: Sanitaer, Typ: 6", Fam: Gate Valve - 2-12 Inch, Info: 3
+27. Kat: Sanitaer, Typ: Hand Sink, Fam: Hand Sink, Info: 193
+28. Kat: Sanitaer, Typ: Hose Bib, Fam: Hose Bib, Info: 125
+29. Kat: Sanitaer, Typ: Mop Sink Faucet, Fam: Mop Sink Faucet, Info: 195
+30. Kat: Sanitaer, Typ: 30"x22", Fam: Mop Sink_Rect, Info: 194
+31. Kat: Sanitaer, Typ: Mop Sink Connection, Fam: MopSinkConnection, Info: 160
+32. Kat: Sanitaer, Typ: Standard, Fam: Plug - PVC - Sch 40 - DWV, Info: nan
+33. Kat: Sanitaer, Typ: Partial Grate, Fam: Plumb_Floor Sink_TM, Info: 3
+34. Kat: Sanitaer, Typ: Full Grate, Fam: Plumb_Floor Sink, Info: 5
+35. Kat: Sanitaer, Typ: Partial Grate, Fam: Plumb_Floor Sink, Info: 3
+36. Kat: Sanitaer, Typ: 1", Fam: Pressure Regulating Valve - 0.5-2 Inch - Threaded, Info: 4
+37. Kat: Sanitaer, Typ: Standard, Fam: Reducer - PVC - Sch 40 - DWV, Info: nan
+38. Kat: Sanitaer, Typ: 12" Strainer - 6" Drain, Fam: Roof Drain, Info: 176
+39. Kat: Sanitaer, Typ: 36"x36" - Private, Fam: Shower Stall - Rectangular, Info: 111
+40. Kat: Sanitaer, Typ: 48"x36" - Private, Fam: Shower Stall with Seat - Rectangular, Info: 22
+41. Kat: Sanitaer, Typ: Shower Rectangular, Fam: ShowerConnection, Info: 105
+42. Kat: Sanitaer, Typ: Shower Square, Fam: ShowerConnection, Info: 101
+43. Kat: Sanitaer, Typ: 18" x 18", Fam: Sink Kitchen-Island, Info: 33
+44. Kat: Sanitaer, Typ: 19" x 19", Fam: Sink Vanity-Round, Info: 30
+45. Kat: Sanitaer, Typ: 91" Width, Fam: Sink-3 Basin, Info: 1
+46. Kat: Sanitaer, Typ: 101" Width, Fam: Sink-Produce, Info: 2
+47. Kat: Sanitaer, Typ: 22" x 27", Fam: Sink-Wall-Barrier Free-3D, Info: 153
+48. Kat: Sanitaer, Typ: Cafe Double Sink, Fam: SinkConnection, Info: 157
+49. Kat: Sanitaer, Typ: Cafe Hand Sink, Fam: SinkConnection, Info: 159
+50. Kat: Sanitaer, Typ: Cafe Triple Sink, Fam: SinkConnection, Info: 158
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+{"id":1,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":2,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":3,"code":"J","desc":"Ausstattung Gebäude","conf":0.95},
+{"id":4,"code":"J","desc":"Ausstattung Gebäude","conf":0.95},
+{"id":5,"code":"J","desc":"Ausstattung Gebäude","conf":0.95},
+{"id":6,"code":"J","desc":"Ausstattung Gebäude","conf":0.95},
+{"id":7,"code":"J","desc":"Ausstattung Gebäude","conf":0.95},
+{"id":8,"code":"I","desc":"Umgebung Gebäude","conf":0.85},
+{"id":9,"code":"J","desc":"Ausstattung Gebäude","conf":0.95},
+{"id":10,"code":"J","desc":"Ausstattung Gebäude","conf":0.95},
+{"id":11,"code":"J","desc":"Ausstattung Gebäude","conf":0.95},
+{"id":12,"code":"J","desc":"Ausstattung Gebäude","conf":0.95},
+{"id":13,"code":"J","desc":"Ausstattung Gebäude","conf":0.95},
+{"id":14,"code":"J","desc":"Ausstattung Gebäude","conf":0.95},
+{"id":15,"code":"J","desc":"Ausstattung Gebäude","conf":0.95},
+{"id":16,"code":"J","desc":"Ausstattung Gebäude","conf":0.95},
+{"id":17,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":18,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":19,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":20,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":21,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":22,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":23,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":24,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":25,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":26,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":27,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":28,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":29,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":30,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":31,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":32,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":33,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":34,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":35,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":36,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":37,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":38,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":39,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":40,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":41,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":42,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":43,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":44,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":45,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":46,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":47,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":48,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":49,"code":"D","desc":"Technik Gebäude","conf":0.95},
+{"id":50,"code":"D","desc":"Technik Gebäude","conf":0.95}
+]
+================================================================================
+
+================================================================================
+Timestamp: 2025-12-17 13:51:46
+Batch: 50 Elemente
+Tokens: Input=2560, Output=1406
+
+Prompt:
+Klassifiziere diese 50 Bauelemente nach eBKP-H (Level 1):
+
+1. Kat: Sanitaer, Typ: Kitchen Sink, Fam: SinkConnection, Info: 8
+2. Kat: Sanitaer, Typ: Retail Sink, Fam: SinkConnection, Info: 42
+3. Kat: Sanitaer, Typ: Vanity, Fam: SinkConnection, Info: 6
+4. Kat: Sanitaer, Typ: Standard, Fam: Tee - Generic, Info: nan
+5. Kat: Sanitaer, Typ: Standard, Fam: Tee Sanitary - PVC - Sch 40 - DWV, Info: nan
+6. Kat: Sanitaer, Typ: 19" Seat Height, Fam: Toilet-Commercial-Wall-3D, Info: 6
+7. Kat: Sanitaer, Typ: Toilet-Domestic-3D, Fam: Toilet-Domestic-3D, Info: 29
+8. Kat: Sanitaer, Typ: Standard, Fam: Transition - Generic, Info: nan
+9. Kat: Sanitaer, Typ: Washer Left Drain, Fam: WasherConnection, Info: 131
+10. Kat: Sanitaer, Typ: Washer Right Drain, Fam: WasherConnection, Info: 137
+11. Kat: Sanitaer, Typ: 1", Fam: Water Meter Unit, Info: 5
+12. Kat: Sanitaer, Typ: Water Closet Connection, Fam: WaterClosetConnection, Info: 9
+13. Kat: Tueren, Typ: Door-Curtain-Wall-Double-Storefront, Fam: Door-Curtain-Wall-Double-Storefront, Info: 105D
+14. Kat: Tueren, Typ: Door-Curtain-Wall-Single-Storefront, Fam: Door-Curtain-Wall-Single-Storefront, Info: S22A
+15. Kat: Tueren, Typ: 78" x 108", Fam: Door-Exterior-Revolving-Full Glass-Metal, Info: 106C
+16. Kat: Tueren, Typ: 32" x 84", Fam: Door-Opening, Info: 506OPN
+17. Kat: Tueren, Typ: 60" x 84", Fam: Door-Opening, Info: 109OPN
+18. Kat: Tueren, Typ: Access Door, Fam: Door-Overhead-Rolling, Info: 107A
+19. Kat: Tueren, Typ: 72" x 84", Fam: Door-Passage-Double-Flush, Info: R100D
+20. Kat: Tueren, Typ: 36" x 96", Fam: Door-Passage-Single-Flush-Dbl_Acting, Info: 102B
+21. Kat: Tueren, Typ: 26" x 84", Fam: Door-Passage-Single-Flush, Info: 101A
+22. Kat: Tueren, Typ: 36" x 84" (180 MIN), Fam: Door-Passage-Single-Flush, Info: S10
+23. Kat: Tueren, Typ: 36" x 84" (20 MIN), Fam: Door-Passage-Single-Flush, Info: 201C
+24. Kat: Tueren, Typ: 36" x 84" (45 MIN), Fam: Door-Passage-Single-Flush, Info: P02
+25. Kat: Tueren, Typ: 36" x 84" (60 MIN), Fam: Door-Passage-Single-Flush, Info: 507B
+26. Kat: Tueren, Typ: 36" x 84" (90 MIN), Fam: Door-Passage-Single-Flush, Info: 301B
+27. Kat: Tueren, Typ: 36" x 84" (Cores), Fam: Door-Passage-Single-Flush, Info: 303A
+28. Kat: Tueren, Typ: 36" x 84" (Exterior), Fam: Door-Passage-Single-Flush, Info: 109D
+29. Kat: Tueren, Typ: 36" x 84" (Roof), Fam: Door-Passage-Single-Flush, Info: S16
+30. Kat: Tueren, Typ: 36" x 84", Fam: Door-Passage-Single-Flush, Info: S11A
+31. Kat: Tueren, Typ: 36" x 96" (Exterior), Fam: Door-Passage-Single-Flush, Info: 105C
+32. Kat: Tueren, Typ: 36" x 96", Fam: Door-Passage-Single-Flush, Info: 107B
+33. Kat: Tueren, Typ: 42" x 96" (Exterior), Fam: Door-Passage-Single-Flush, Info: 102A
+34. Kat: Tueren, Typ: 36" x 96" Storefront, Fam: Door-Passage-Single-Full_Lite, Info: 106D
+35. Kat: Tueren, Typ: 34" x 84" (90 MIN), Fam: Door-Passage-Single-Two_Lite, Info: 502C
+36. Kat: Tueren, Typ: 36" x 84" (90 MIN), Fam: Door-Passage-Single-Two_Lite, Info: 101D
+37. Kat: Tueren, Typ: 36" x 89" (90 MIN), Fam: Door-Passage-Single-Two_Lite, Info: 205D
+38. Kat: Waende, Typ: Parapet Cap Bandstand, Fam: Parapet Cap Bandstand, Info: nan
+39. Kat: Waende, Typ: Block 37 Pilaster, Fam: nan, Info: nan
+40. Kat: Waende, Typ: Block 37 Storefront, Fam: nan, Info: nan
+41. Kat: Waende, Typ: Block 39 Pilaster, Fam: nan, Info: nan
+42. Kat: Waende, Typ: Block 39 Storefront, Fam: nan, Info: nan
+43. Kat: Waende, Typ: Block 41 Storefront, Fam: nan, Info: nan
+44. Kat: Waende, Typ: Block 43 Storefront, Fam: nan, Info: nan
+45. Kat: Waende, Typ: Chase - GWB & Metal Stud 2 1/4", Fam: nan, Info: nan
+46. Kat: Waende, Typ: Chase - GWB & Metal Stud 3 1/8", Fam: nan, Info: nan
+47. Kat: Waende, Typ: Chase - GWB & Metal Stud 4 1/4", Fam: nan, Info: nan
+48. Kat: Waende, Typ: Chase - GWB & Metal Stud 6 5/8", Fam: nan, Info: nan
+49. Kat: Waende, Typ: Core - Concrete 10", Fam: nan, Info: nan
+50. Kat: Waende, Typ: Core - Concrete 12", Fam: nan, Info: nan
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+    {"id":1,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":2,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":3,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":4,"code":"D","desc":"Technik Gebäude","conf":0.90},
+    {"id":5,"code":"D","desc":"Technik Gebäude","conf":0.90},
+    {"id":6,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":7,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":8,"code":"D","desc":"Technik Gebäude","conf":0.90},
+    {"id":9,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":10,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":11,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":12,"code":"D","desc":"Technik Gebäude","conf":0.95},
+    {"id":13,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":14,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":15,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":16,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":17,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":18,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":19,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":20,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":21,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":22,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":23,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":24,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":25,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":26,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":27,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":28,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":29,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":30,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":31,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":32,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":33,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":34,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":35,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":36,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":37,"code":"J","desc":"Ausstattung Gebäude","conf":0.90},
+    {"id":38,"code":"C","desc":"Konstruktion Gebäude","conf":0.85},
+    {"id":39,"code":"C","desc":"Konstruktion Gebäude","conf":0.85},
+    {"id":40,"code":"C","desc":"Konstruktion Gebäude","conf":0.85},
+    {"id":41,"code":"C","desc":"Konstruktion Gebäude","conf":0.85},
+    {"id":42,"code":"C","desc":"Konstruktion Gebäude","conf":0.85},
+    {"id":43,"code":"C","desc":"Konstruktion Gebäude","conf":0.85},
+    {"id":44,"code":"C","desc":"Konstruktion Gebäude","conf":0.85},
+    {"id":45,"code":"C","desc":"Konstruktion Gebäude","conf":0.85},
+    {"id":46,"code":"C","desc":"Konstruktion Gebäude","conf":0.85},
+    {"id":47,"code":"C","desc":"Konstruktion Gebäude","conf":0.85},
+    {"id":48,"code":"C","desc":"Konstruktion Gebäude","conf":0.85},
+    {"id":49,"code":"C","desc":"Konstruktion Gebäude","conf":0.85},
+    {"id":50,"code":"C","desc":"Konstruktion Gebäude","conf":0.85}
+]
+================================================================================
+
+================================================================================
+Timestamp: 2025-12-17 13:51:59
+Batch: 39 Elemente
+Tokens: Input=2055, Output=1119
+
+Prompt:
+Klassifiziere diese 39 Bauelemente nach eBKP-H (Level 1):
+
+1. Kat: Waende, Typ: Core - Concrete 18", Fam: nan, Info: nan
+2. Kat: Waende, Typ: Exterior - 10 1/4" Rainscreen w Insultation on Metal Stud, Fam: nan, Info: nan
+3. Kat: Waende, Typ: Exterior - 12 5/8" Rainscreen w Insultation on Metal Stud (Alley), Fam: nan, Info: nan
+4. Kat: Waende, Typ: Exterior - 12 5/8" Rainscreen w Insultation on Metal Stud, Fam: nan, Info: nan
+5. Kat: Waende, Typ: Exterior - 13 5/8" Rainscreen (Two Sides) w Insultation on Metal Stud, Fam: nan, Info: nan
+6. Kat: Waende, Typ: Exterior - 14 5/8" Rainscreen w Insultation on Metal Stud, Fam: nan, Info: nan
+7. Kat: Waende, Typ: Exterior - 5 3/8" Rainscreen w Insultation (for Concrete Core Walls), Fam: nan, Info: nan
+8. Kat: Waende, Typ: Exterior - 9 7/8" EIFS on Mtl. Stud, Fam: nan, Info: nan
+9. Kat: Waende, Typ: Exterior - GWB on Metal Stud w Insulated Panel 8 7/8", Fam: nan, Info: nan
+10. Kat: Waende, Typ: Foundation - 24" Concrete, Fam: nan, Info: nan
+11. Kat: Waende, Typ: Furring - GWB & Channels 1 7/8", Fam: nan, Info: nan
+12. Kat: Waende, Typ: Generic - 4", Fam: nan, Info: nan
+13. Kat: Waende, Typ: Generic - 6", Fam: nan, Info: nan
+14. Kat: Waende, Typ: Glazing Wall - Stair, Fam: nan, Info: nan
+15. Kat: Waende, Typ: Interior - 4 7/8" Partition (1-hr), Fam: nan, Info: nan
+16. Kat: Waende, Typ: Interior - 4 7/8" Partition (NR), Fam: nan, Info: nan
+17. Kat: Waende, Typ: Interior - 5 1/2" Partition (1-hr Smoke), Fam: nan, Info: nan
+18. Kat: Waende, Typ: Interior - 6 1/8" Partition (2-hr), Fam: nan, Info: nan
+19. Kat: Waende, Typ: Interior - 7 1/4" Partition (1 hr), Fam: nan, Info: nan
+20. Kat: Waende, Typ: Interior - 7 1/4" Partition (NR), Fam: nan, Info: nan
+21. Kat: Waende, Typ: Interior - 8 1/2" Partition (2-hr), Fam: nan, Info: nan
+22. Kat: Waende, Typ: Interior - CMU 8", Fam: nan, Info: nan
+23. Kat: Waende, Typ: Living Wall, Fam: nan, Info: nan
+24. Kat: Waende, Typ: Party - 6 1/8" (2-hr), Fam: nan, Info: nan
+25. Kat: Waende, Typ: Planter Wall - Steel Plate 1/2", Fam: nan, Info: nan
+26. Kat: Waende, Typ: Proposed Partition 4", Fam: nan, Info: nan
+27. Kat: Waende, Typ: Retaining - Split Face CMU, Fam: nan, Info: nan
+28. Kat: Waende, Typ: Soffit - Beam Wrap (Both Sides), Fam: nan, Info: nan
+29. Kat: Waende, Typ: Soffit - Beam Wrap 10 1/2" (Two Sides), Fam: nan, Info: nan
+30. Kat: Waende, Typ: Soffit - Beam Wrap 11 1/4" (One Side), Fam: nan, Info: nan
+31. Kat: Waende, Typ: Soffit - Beam Wrap 9 1/4" (One Side), Fam: nan, Info: nan
+32. Kat: Waende, Typ: Soffit - Beam Wrap Large (Both Sides), Fam: nan, Info: nan
+33. Kat: Waende, Typ: Solar Panels, Fam: nan, Info: nan
+34. Kat: Waende, Typ: Solar Wall (L5), Fam: nan, Info: nan
+35. Kat: Waende, Typ: Solar Wall (Multi-Level), Fam: nan, Info: nan
+36. Kat: Waende, Typ: Solar Wall (Parapet), Fam: nan, Info: nan
+37. Kat: Waende, Typ: Storefront, Fam: nan, Info: nan
+38. Kat: Waende, Typ: Trellis Member, Fam: nan, Info: nan
+39. Kat: Waende, Typ: _Not Defined, Fam: nan, Info: nan
+
+Antworte NUR mit diesem JSON Array (keine Markdown, kein Text davor/danach):
+[{"id":1,"code":"C02","desc":"Wandkonstruktion","conf":0.95},{"id":2,"code":"F03","desc":"Innentüren","conf":0.90}]
+
+Response:
+[
+    {"id":1,"code":"C","desc":"Konstruktion Gebäude","conf":0.95},
+    {"id":2,"code":"C","desc":"Konstruktion Gebäude","conf":0.95},
+    {"id":3,"code":"C","desc":"Konstruktion Gebäude","conf":0.95},
+    {"id":4,"code":"C","desc":"Konstruktion Gebäude","conf":0.95},
+    {"id":5,"code":"C","desc":"Konstruktion Gebäude","conf":0.95},
+    {"id":6,"code":"C","desc":"Konstruktion Gebäude","conf":0.95},
+    {"id":7,"code":"C","desc":"Konstruktion Gebäude","conf":0.95},
+    {"id":8,"code":"C","desc":"Konstruktion Gebäude","conf":0.95},
+    {"id":9,"code":"C","desc":"Konstruktion Gebäude","conf":0.95},
+    {"id":10,"code":"A","desc":"Grundstück","conf":0.9},
+    {"id":11,"code":"G","desc":"Ausbau Gebäude","conf":0.95},
+    {"id":12,"code":"C","desc":"Konstruktion Gebäude","conf":0.95},
+    {"id":13,"code":"C","desc":"Konstruktion Gebäude","conf":0.95},
+    {"id":14,"code":"E","desc":"Äussere Wandbekleidung Gebäude","conf":0.9},
+    {"id":15,"code":"G","desc":"Ausbau Gebäude","conf":0.95},
+    {"id":16,"code":"G","desc":"Ausbau Gebäude","conf":0.95},
+    {"id":17,"code":"G","desc":"Ausbau Gebäude","conf":0.95},
+    {"id":18,"code":"G","desc":"Ausbau Gebäude","conf":0.95},
+    {"id":19,"code":"G","desc":"Ausbau Gebäude","conf":0.95},
+    {"id":20,"code":"G","desc":"Ausbau Gebäude","conf":0.95},
+    {"id":21,"code":"G","desc":"Ausbau Gebäude","conf":0.95},
+    {"id":22,"code":"C","desc":"Konstruktion Gebäude","conf":0.95},
+    {"id":23,"code":"H","desc":"Nutzungsspezifische Anlage Gebäude","conf":0.85},
+    {"id":24,"code":"C","desc":"Konstruktion Gebäude","conf":0.95},
+    {"id":25,"code":"A","desc":"Grundstück","conf":0.9},
+    {"id":26,"code":"G","desc":"Ausbau Gebäude","conf":0.95},
+    {"id":27,"code":"A","desc":"Grundstück","conf":0.9},
+    {"id":28,"code":"G","desc":"Ausbau Gebäude","conf":0.95},
+    {"id":29,"code":"G","desc":"Ausbau Gebäude","conf":0.95},
+    {"id":30,"code":"G","desc":"Ausbau Gebäude","conf":0.95},
+    {"id":31,"code":"G","desc":"Ausbau Gebäude","conf":0.95},
+    {"id":32,"code":"G","desc":"Ausbau Gebäude","conf":0.95},
+    {"id":33,"code":"H","desc":"Nutzungsspezifische Anlage Gebäude","conf":0.85},
+    {"id":34,"code":"H","desc":"Nutzungsspezifische Anlage Gebäude","conf":0.85},
+    {"id":35,"code":"H","desc":"Nutzungsspezifische Anlage Gebäude","conf":0.85},
+    {"id":36,"code":"H","desc":"Nutzungsspezifische Anlage Gebäude","conf":0.85},
+    {"id":37,"code":"E","desc":"Äussere Wandbekleidung Gebäude","conf":0.9},
+    {"id":38,"code":"I","desc":"Umgebung Gebäude","conf":0.8},
+    {"id":39,"code":"C","desc":"Konstruktion Gebäude","conf":0.7}
+]
+================================================================================
